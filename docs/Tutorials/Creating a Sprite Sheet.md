@@ -4,39 +4,32 @@
 
 ## What does this do?
 
-This document will walk you through the process of creating a sprite sheet using the `generateSprite` function from the `sprite` library. A sprite sheet is a collection of images that can be used to animate a character or object.
+This tutorial will show you how to use the `sprite` module to generate a sprite sheet of a character walking.
 
 ## Why should I use this?
 
-Sprite sheets are a great way to optimize the performance of your game or animation. By using a sprite sheet, you can reduce the number of HTTP requests that are made to your server, which can improve the load time of your game or animation. Additionally, sprite sheets can help to reduce the file size of your game or animation, which can be important for mobile devices or other devices with limited storage space.
+Sprite sheets are a great way to optimize the performance of your game by reducing the number of draw calls that need to be made. By using a sprite sheet, you can draw multiple images at once, which can significantly improve the performance of your game.
 
 ## Prequsites
 
-To follow this tutorial, you will need the following:
+To complete this tutorial, you will need the following:
 
-* A computer with an internet connection
+* A copy of the `sprite` module
 * A text editor
-* The `sprite` library installed
+* A basic understanding of JavaScript
 
 ## How to use this
 
-To create a sprite sheet, you will first need to create a list of the images that you want to include in the sprite sheet. Once you have created your list, you can use the `generateSprite` function to generate the sprite sheet. The `generateSprite` function takes two arguments:
+To generate a sprite sheet, you will need to use the `generateSprite` function. This function takes two parameters:
 
-* The list of images that you want to include in the sprite sheet
-* An options object
+* The name of the character you want to generate a sprite sheet for
+* An object containing the following options:
+    * `save`: A boolean value that determines whether or not to save the sprite sheet to a file
+    * `width`: The width of the sprite sheet in pixels
+    * `height`: The height of the sprite sheet in pixels
+    * `frames`: The number of frames in the sprite sheet
 
-The options object can be used to specify the following settings:
-
-* The width and height of the sprite sheet
-* The number of columns and rows in the sprite sheet
-* The padding between the images in the sprite sheet
-* The format of the sprite sheet (PNG, JPEG, etc.)
-
-Once you have specified the options, the `generateSprite` function will generate the sprite sheet and save it to the specified location.
-
-## Example
-
-The following example shows how to use the `generateSprite` function to create a sprite sheet:
+The following example shows how to use the `generateSprite` function to generate a sprite sheet of a character walking:
 
 ```javascript
 const { sprite } = require("./index.js");
@@ -49,10 +42,31 @@ const main = async function() {
 main()
 ```
 
-This example will create a sprite sheet that is 500px wide and 500px high. The sprite sheet will have 5 columns and 5 rows, and there will be 10px of padding between the images. The sprite sheet will be saved in the PNG format.
+This example will generate a sprite sheet of a character walking that is 500 pixels wide and 300 pixels high. The sprite sheet will contain 10 frames.
 
-## Conclusion
+## Generating a 2D Asset of a House
 
-In this tutorial, you learned how to create a sprite sheet using the `generateSprite` function from the `sprite` library. Sprite sheets are a great way to optimize the performance of your game or animation. By using a sprite sheet, you can reduce the number of HTTP requests that are made to your server, which can improve the load time of your game or animation. Additionally, sprite sheets can help to reduce the file size of your game or animation, which can be important for mobile devices or other devices with limited storage space.
+To generate a 2D asset of a house, you will need to use the `generateHouseAsset` function. This function takes two parameters:
+
+* The type of house you want to generate
+* An object containing the following options:
+    * `save`: A boolean value that determines whether or not to save the house asset to a file
+    * `width`: The width of the house asset in pixels
+    * `height`: The height of the house asset in pixels
+
+The following example shows how to use the `generateHouseAsset` function to generate a 2D asset of a small cottage:
+
+```javascript
+const { sprite } = require("./index.js");
+
+const main = async function() {
+    const result = await sprite.generateHouseAsset("a small cottage", {save: true})
+    console.log('this is the finished result', result)
+}
+
+main()
+```
+
+This example will generate a 2D asset of a small cottage that is 200 pixels wide and 150 pixels high.
   
   

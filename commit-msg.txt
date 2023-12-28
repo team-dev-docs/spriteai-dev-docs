@@ -1,2 +1,1 @@
-gets rid of landing page
-
+Initial commit

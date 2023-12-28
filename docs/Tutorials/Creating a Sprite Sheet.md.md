@@ -1,66 +1,118 @@
 
   
-   # High Level Context
-This code is a set of functions that can be used to generate and process images for use in a Phaser JS game. It uses a variety of libraries, including OpenAI, axios, sharp, Jimp, and fs.
+   ## Title of Function
 
-## removeBackgroundColor
-This function takes an input image path, an output image path, a target color, and a color threshold as arguments. It uses the Jimp library to read the input image, define the color to replace, and scan the image pixel by pixel. For each pixel, it calculates the color difference between the pixel's color and the target color. If the color difference is less than the threshold, the pixel's alpha value is set to 0, making it transparent. The modified image is then written to the output path.
+### What does this do?
 
-This function is useful for removing the background from an image, which can be helpful for creating spritesheets or other game assets.
+The `removeBackgroundColor` function removes the background color from an image. This can be useful for creating transparent images or for changing the background color of an image.
 
-## encodeImage
-This function takes an image path as an argument and uses the fs library to read the image file. It then converts the image to a base64-encoded string and returns it.
+### Why should I use this?
 
-This function is useful for converting images to a format that can be easily stored or transmitted.
+You should use this function if you want to remove the background color from an image. This can be useful for creating transparent images or for changing the background color of an image.
 
-## getUniqueColors
-This function takes an image path as an argument and uses the Jimp library to read the image. It then scans the image pixel by pixel and adds each unique color to a set. The set is then converted to an array and returned.
+### How to use this
 
-This function is useful for getting a list of the unique colors in an image, which can be helpful for creating color palettes or other design elements.
+To use this function, you will need to provide the following arguments:
 
-## generateSprite
-This function takes a description and an options object as arguments. It uses the OpenAI library to generate a DALL-E 2 image based on the description. The image is then saved to a file and processed using the sharp library to ensure it has an alpha channel and is greyscale. The greyscale image is then converted to a base64-encoded string and returned.
+* `inputPath`: The path to the input image.
+* `outputPath`: The path to the output image.
+* `targetColor`: The color to be removed from the image.
+* `colorThreshold`: The threshold value for the color to be removed.
 
-This function is useful for generating spritesheets or other game assets from text descriptions.
+The following example shows how to use the `removeBackgroundColor` function:
 
-## generateHouseAsset
-This function takes a description and an options object as arguments. It uses the OpenAI library to generate a DALL-E 2 image based on the description. The image is then saved to a file.
-
-This function is useful for generating 2D assets for Phaser JS games from text descriptions.
-
-## Why use these functions?
-These functions provide a set of tools that can be used to generate and process images for use in a Phaser JS game. They can be used to remove the background from an image, convert an image to a base64-encoded string, get a list of the unique colors in an image, generate a sprite sheet from a DALL-E 2 image, and generate a 2D asset for a Phaser JS game.
-
-## How to use these functions
-To use these functions, you will need to install the following libraries:
-
-```
-npm install jimp sharp fs openai axios
+```js
+await removeBackgroundColor('input.png', 'output.png', '#FFFFFF', 0);
 ```
 
-Once you have installed the libraries, you can import the functions into your code:
+## Title of Function
 
-```javascript
-const { removeBackgroundColor, encodeImage, getUniqueColors, generateSprite, generateHouseAsset } = require('./context-index.js');
-```
+### What does this do?
 
-You can then use the functions as follows:
+The `encodeImage` function encodes an image to base64. This can be useful for storing images in a database or for sending images over the internet.
 
-```javascript
-// Remove the background from an image
-removeBackgroundColor('input.png', 'output.png', '#ffffff', 10);
+### Why should I use this?
 
-// Convert an image to a base64-encoded string
+You should use this function if you want to encode an image to base64. This can be useful for storing images in a database or for sending images over the internet.
+
+### How to use this
+
+To use this function, you will need to provide the following argument:
+
+* `imagePath`: The path to the image to be encoded.
+
+The following example shows how to use the `encodeImage` function:
+
+```js
 const base64Image = encodeImage('image.png');
+```
 
-// Get a list of the unique colors in an image
-const uniqueColors = getUniqueColors('image.png');
+## Title of Function
 
-// Generate a sprite sheet from a DALL-E 2 image
-const spriteSheet = generateSprite('knight');
+### What does this do?
 
-// Generate a 2D asset for a Phaser JS game
-const houseAsset = generateHouseAsset('house');
+The `getUniqueColors` function gets the unique colors in an image. This can be useful for creating a color palette for an image or for finding the most common colors in an image.
+
+### Why should I use this?
+
+You should use this function if you want to get the unique colors in an image. This can be useful for creating a color palette for an image or for finding the most common colors in an image.
+
+### How to use this
+
+To use this function, you will need to provide the following argument:
+
+* `imagePath`: The path to the image to be analyzed.
+
+The following example shows how to use the `getUniqueColors` function:
+
+```js
+const colors = await getUniqueColors('image.png');
+```
+
+## Title of Function
+
+### What does this do?
+
+The `generateSprite` function generates a sprite sheet of a character. This can be useful for creating animations or for creating a game.
+
+### Why should I use this?
+
+You should use this function if you want to generate a sprite sheet of a character. This can be useful for creating animations or for creating a game.
+
+### How to use this
+
+To use this function, you will need to provide the following arguments:
+
+* `description`: A description of the character to be generated.
+* `options`: An object containing the options for the sprite sheet.
+
+The following example shows how to use the `generateSprite` function:
+
+```js
+const spriteSheet = await sprite.generateSprite('knight');
+```
+
+## Title of Function
+
+### What does this do?
+
+The `generateHouseAsset` function generates a 2D asset of a house. This can be useful for creating a game or for creating a virtual world.
+
+### Why should I use this?
+
+You should use this function if you want to generate a 2D asset of a house. This can be useful for creating a game or for creating a virtual world.
+
+### How to use this
+
+To use this function, you will need to provide the following arguments:
+
+* `description`: A description of the house to be generated.
+* `options`: An object containing the options for the house asset.
+
+The following example shows how to use the `generateHouseAsset` function:
+
+```js
+const houseAsset = await sprite.generateHouseAsset('medieval house');
 ```
   
   

@@ -1,118 +1,51 @@
 
   
-   ## Title of Function
+   # **Image Processing**
 
-### What does this do?
+## What does this do?
 
-The `removeBackgroundColor` function removes the background color from an image. This can be useful for creating transparent images or for changing the background color of an image.
+The `Image Processing` library provides a set of functions to manipulate images. These functions can be used to remove the background color from an image, encode an image to base64, get the unique colors in an image, generate a sprite sheet of a character, and generate a 2D asset of a house.
 
-### Why should I use this?
+## Why should I use this?
 
-You should use this function if you want to remove the background color from an image. This can be useful for creating transparent images or for changing the background color of an image.
+The `Image Processing` library can be used to improve the quality of your images and to create custom graphics. For example, you can use the `removeBackgroundColor()` function to remove the background from an image so that you can use it in a different project. You can also use the `encodeImage()` function to encode an image to base64 so that you can send it over the internet.
 
-### How to use this
+## How to use this
 
-To use this function, you will need to provide the following arguments:
+To use the `Image Processing` library, you can import it into your project. The following code shows how to import the library into a JavaScript project:
 
-* `inputPath`: The path to the input image.
-* `outputPath`: The path to the output image.
-* `targetColor`: The color to be removed from the image.
-* `colorThreshold`: The threshold value for the color to be removed.
-
-The following example shows how to use the `removeBackgroundColor` function:
-
-```js
-await removeBackgroundColor('input.png', 'output.png', '#FFFFFF', 0);
+```javascript
+import * as imageProcessing from '@ned/image-processing';
 ```
 
-## Title of Function
+Once you have imported the library, you can use the functions provided by the library to manipulate images. The following code shows how to use the `removeBackgroundColor()` function to remove the background from an image:
 
-### What does this do?
-
-The `encodeImage` function encodes an image to base64. This can be useful for storing images in a database or for sending images over the internet.
-
-### Why should I use this?
-
-You should use this function if you want to encode an image to base64. This can be useful for storing images in a database or for sending images over the internet.
-
-### How to use this
-
-To use this function, you will need to provide the following argument:
-
-* `imagePath`: The path to the image to be encoded.
-
-The following example shows how to use the `encodeImage` function:
-
-```js
-const base64Image = encodeImage('image.png');
+```javascript
+await imageProcessing.removeBackgroundColor('input.png', 'output.png', '#ffffff');
 ```
 
-## Title of Function
+The following code shows how to use the `encodeImage()` function to encode an image to base64:
 
-### What does this do?
-
-The `getUniqueColors` function gets the unique colors in an image. This can be useful for creating a color palette for an image or for finding the most common colors in an image.
-
-### Why should I use this?
-
-You should use this function if you want to get the unique colors in an image. This can be useful for creating a color palette for an image or for finding the most common colors in an image.
-
-### How to use this
-
-To use this function, you will need to provide the following argument:
-
-* `imagePath`: The path to the image to be analyzed.
-
-The following example shows how to use the `getUniqueColors` function:
-
-```js
-const colors = await getUniqueColors('image.png');
+```javascript
+const base64Image = imageProcessing.encodeImage('image.png');
 ```
 
-## Title of Function
+The following code shows how to use the `getUniqueColors()` function to get the unique colors in an image:
 
-### What does this do?
-
-The `generateSprite` function generates a sprite sheet of a character. This can be useful for creating animations or for creating a game.
-
-### Why should I use this?
-
-You should use this function if you want to generate a sprite sheet of a character. This can be useful for creating animations or for creating a game.
-
-### How to use this
-
-To use this function, you will need to provide the following arguments:
-
-* `description`: A description of the character to be generated.
-* `options`: An object containing the options for the sprite sheet.
-
-The following example shows how to use the `generateSprite` function:
-
-```js
-const spriteSheet = await sprite.generateSprite('knight');
+```javascript
+const colors = await imageProcessing.getUniqueColors('image.png');
 ```
 
-## Title of Function
+The following code shows how to use the `generateSprite()` function to generate a sprite sheet of a character:
 
-### What does this do?
+```javascript
+const spriteSheet = await imageProcessing.generateSprite('knight');
+```
 
-The `generateHouseAsset` function generates a 2D asset of a house. This can be useful for creating a game or for creating a virtual world.
+The following code shows how to use the `generateHouseAsset()` function to generate a 2D asset of a house:
 
-### Why should I use this?
-
-You should use this function if you want to generate a 2D asset of a house. This can be useful for creating a game or for creating a virtual world.
-
-### How to use this
-
-To use this function, you will need to provide the following arguments:
-
-* `description`: A description of the house to be generated.
-* `options`: An object containing the options for the house asset.
-
-The following example shows how to use the `generateHouseAsset` function:
-
-```js
-const houseAsset = await sprite.generateHouseAsset('medieval house');
+```javascript
+const houseAsset = await imageProcessing.generateHouseAsset('medieval house');
 ```
   
   

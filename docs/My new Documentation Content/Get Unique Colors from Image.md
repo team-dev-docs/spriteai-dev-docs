@@ -4,42 +4,44 @@
 
 # Get Unique Colors from Image
 
-This is a function that is exported from the Sprite SDK that you can import like:
+This is a function that is exported from the Sprite SDK and can be imported like:
 
 ```js
 import { sprite } from 'sprite';
 ```
 
-## Why Use This Function
+## Why should I use this function?
 
-This function analyzes an image and returns an array of the unique color values found in the non-transparent pixels of that image. 
+This function allows you to get a set of unique color values from a given image file. It can be useful for analyzing the predominant colors in an image.
 
-It can be useful for extracting a palette from a sprite sheet or other image asset to use in your application.
-
-## Parameters
+## What parameters are required?
 
 The function takes one parameter:
 
-- `imagePath` - The file path of the image to analyze for colors
+- `imagePath` - The file path to the image file to analyze
 
 ## Prerequisites
 
-- The Sprite SDK installed via NPM
-- An image file that exists at the provided path
+- The `Sprite` SDK needs to be installed
+- The image file needs to exist at the given file path
 
-## Usage
+## How do I use this function?
 
-Call the `getUniqueColors` function, passing the path to your image:
+Import the `getUniqueColors` function from the `sprite` SDK:
+
+```js 
+import { sprite } from 'sprite';
+```
+
+Then call the function, passing in the file path to your image:
 
 ```js
 const colors = await sprite.getUniqueColors('/path/to/image.png');
 ```
 
-The function returns a Promise that resolves to an array of integer color values.
+This will return an array of unique color integer values found in the image. You can then process or display these colors as needed.
 
-It scans every pixel in the image, skips fully transparent ones, and adds each unique RGBA color encountered to a Set, before converting to an array. This eliminates duplicates and returns only the distinct colors in the image.
-
-You can then use this array of colors for something like dynamically styling your app to match the image palette.
+The function scans every pixel in the image and collects each unique RGBA color combo into a Set. It omits fully transparent pixels. This allows you to see the variety of colors present in the image.
 
 
   

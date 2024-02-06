@@ -4,40 +4,36 @@
 
 # removeBackgroundColor
 
-This is a function that removes the background color from an image by making pixels within a certain color threshold transparent.
+Removes the background color from an image based on a specified target color. This function is exported from the Sprite SDK and can be imported and used as follows:
 
-## Why should I use this function?
+```js
+import { sprite } from 'sprite';
 
-You should use this function when you want to remove a solid background color from an image to isolate the main subject or make the background transparent. 
+sprite.removeBackgroundColor(/* params */); 
+```
 
-## What are the parameters required?
+## Why use this function?
 
-This function takes in the following parameters:
+This function is useful when you want to remove a solid background color from an image to make the foreground subjects stand out more. For example, removing a white background from a product photo.
 
-- `inputPath` - The file path to the image you want to process
-- `outputPath` - The file path to save the output image 
-- `targetColor` - The color you want to remove, specified as a CSS color name (e.g. 'white')
-- `colorThreshold` (optional) - A number from 0-255 that defines the color tolerance, defaults to 0 to match the target color exactly
+## What parameters are required?
+
+- `inputPath` - The file path to the input image
+- `outputPath`- The file path to save the output image 
+- `targetColor` - The background color to remove, specified as a CSS color name (e.g. 'white')
+- `colorThreshold` (optional) - The color difference threshold used to replace pixels. Defaults to 0.
 
 ## Prerequisites
 
-You need to have the `Jimp` module installed to use this function.
+- Node.js installed
+- Sprite SDK installed via npm
+- Input image file with a solid background color
 
-## How do I use this function?
+## How to use
 
-You would use it like this:
+Import the `removeBackgroundColor` function from the Sprite SDK. Provide the input image path, output image path, and target background color name. Can also provide an optional `colorThreshold` value to control the color difference for replacing pixels.
 
-```js
-const sprite = require('sprite');
-
-async function processImage() {
-  await sprite.removeBackgroundColor('input.jpg', 'output.png', 'white'); 
-}
-
-processImage();
-```
-
-This would remove the white background from `input.jpg` and save the processed image to `output.png`.
+The function handles opening the image, scanning pixels, removing those within the threshold of the target color, saving the output image, and returning a Promise.
 
 
   

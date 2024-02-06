@@ -4,47 +4,40 @@
 
 # removeBackgroundColor
 
-This is a function that removes a specific background color from an image by making pixels with that color transparent.
+This is a function that removes the background color from an image by making pixels within a certain color threshold transparent.
 
 ## Why should I use this function?
 
-This function is useful when you want to remove a solid color background from an image to make the foreground content stand out more. For example, removing a white background from a product photo.
+You should use this function when you want to remove a solid background color from an image to isolate the main subject or make the background transparent. 
 
-## What params or arguments are required?
+## What are the parameters required?
 
-The function takes the following parameters:
+This function takes in the following parameters:
 
-- `inputPath` - The file path to the image file
+- `inputPath` - The file path to the image you want to process
 - `outputPath` - The file path to save the output image 
-- `targetColor` - The color to remove, specified as a CSS color name (e.g. 'white')
-- `colorThreshold` (optional) - How close a color needs to be to the target color to be replaced. Defaults to 0.
+- `targetColor` - The color you want to remove, specified as a CSS color name (e.g. 'white')
+- `colorThreshold` (optional) - A number from 0-255 that defines the color tolerance, defaults to 0 to match the target color exactly
 
 ## Prerequisites
 
-- The `Jimp` module needs to be installed and imported
-- The image file needs to exist at `inputPath`
+You need to have the `Jimp` module installed to use this function.
 
 ## How do I use this function?
 
-Import the function:
+You would use it like this:
 
 ```js
-const { removeBackgroundColor } = require('sprite'); 
+const sprite = require('sprite');
+
+async function processImage() {
+  await sprite.removeBackgroundColor('input.jpg', 'output.png', 'white'); 
+}
+
+processImage();
 ```
 
-Then call it:
-
-```js 
-await removeBackgroundColor('./image.jpg', './image-no-bg.png', 'white'); 
-```
-
-This will remove the white background from image.jpg and save the resulting image to image-no-bg.png.
-
-You can optionally specify a `colorThreshold` to control how similar a color needs to be to white before it is removed:
-
-```js
-await removeBackgroundColor('./image.jpg', './image-no-bg.png', 'white', 10); 
-```
+This would remove the white background from `input.jpg` and save the processed image to `output.png`.
 
 
   

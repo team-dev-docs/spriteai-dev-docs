@@ -8,33 +8,39 @@ This function allows you to generate a 2D asset image depicting a house using DA
 
 ## Why use this function?
 
-- Easily create house images to use in your Phaser.js games without needing to design the assets yourself.
-- Generate multiple variations by specifying `options.iterations`.
+This function provides an easy way to generate house images that you can use in your Phaser.js games. It handles prompting DALL-E 3 and returning the images.
 
 ## Parameters
 
-- `description` - String description of the type of house you want to generate.
-- `options` - Optional object with additional options:
-  - `iterations` - Number of images to generate.
-  - `size` - Size of the generated images, default `"1024x1024"`.
+- `description` - The description of the type of house you want to generate (e.g. "Victorian house")
+- `options` - Optional parameters:
+  - `iterations` - Number of images to generate
+  - `size` - Size of the generated images (default 1024x1024)
 
 ## Prerequisites
 
-- Access to the OpenAI API with DALL-E 3 model enabled.
-- API keys stored in the `openAiObject`.
+- Access to OpenAI's DALL-E 3 model
+- Node.js environment with OpenAI API keys configured
 
 ## Usage
 
 ```js
-import { sprite } from "sprite";
+import { sprite } from 'sprite';
 
-const house = await sprite.generateHouseAsset("victorian house", {
-  iterations: 3,
-  size: "512x512", 
+const house = await sprite.generateHouseAsset('ranch style house');
+```
+
+This will generate a 1024x1024 image of a ranch style house.
+
+You can also request multiple iterations:
+
+```js 
+const houses = await sprite.generateHouseAsset('log cabin', {
+  iterations: 5  
 });
 ```
 
-The function returns either a single image object or an array of images if `options.iterations` is set. The images can then be used as assets in a Phaser game.
+This will return 5 1024x1024 log cabin images in an array.
 
 
   

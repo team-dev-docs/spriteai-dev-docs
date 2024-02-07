@@ -4,46 +4,43 @@
 
 # generateHouseAsset
 
-This function allows you to generate a 2D asset image depicting a house using DALL-E 3.
+This function allows you to generate a 2D asset image depicting a house using DALL-E 3 AI.
 
 ## Why use this function?
 
-- Convenient way to generate house images for use in games or other applications
-- Leverages DALL-E 3 to create high quality, custom images based on a text description
-- Handles prompting DALL-E and returning the responses
+This function provides an easy way to generate custom 2D house images that you can use in your Phaser JS games. It handles prompting DALL-E 3 and returning the generated images.
 
-## Arguments
+## Parameters
 
-- `description` (string): Text description of the type of house you want to generate an image for
-- `options` (object): Optional additional parameters
-  - `iterations` (number): Generate multiple images by specifying number of iterations
-  - `size` (string): Size of the generated images, default 1024x1024
+- `description` - The description of the type of house you want to generate (e.g. "Victorian house")
+- `options` - Optional parameters:
+  - `iterations` - Number of images to generate
+  - `size` - Size of the generated images (default 1024x1024)
 
 ## Prerequisites
 
 - DALL-E 3 access credentials configured on the OpenAI object
-- Node.js environment
+- Phaser JS game setup
 
 ## Usage
 
 ```js
 import { sprite } from 'sprite';
 
-const house = await sprite.generateHouseAsset('ranch style house with white siding');
+const house = await sprite.generateHouseAsset('ranch style house');
+
+// Use house image in Phaser game
 ```
 
-This will generate a 1024x1024 image of a ranch style house with white siding.
-
-You can also specify iterations and size:
+You can generate multiple iterations by passing the `iterations` option:
 
 ```js 
-const houses = await sprite.generateHouseAsset('modern glass house', {
-  iterations: 5,
-  size: '512x512'
+const houses = await sprite.generateHouseAsset('log cabin', {
+  iterations: 5 
 });
 ```
 
-This will generate 5 images with 512x512 resolution of different modern glass houses.
+The function returns either a single image response or an array of responses if multiple iterations were requested.
 
 
   

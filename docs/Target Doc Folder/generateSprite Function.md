@@ -4,24 +4,24 @@
 
 # generateSprite
 
-This function generates a sprite image and metadata using DALL-E 3 and GPT-4.
+This function generates a sprite image and metadata using DALL-E 3 and GPT-4. It is exported from the sprite SDK.
 
-## Why use this function?
+## Why use generateSprite?
 
-This function allows you to easily generate sprite images optimized for animation along with the necessary metadata to load them into a game engine like Phaser. It handles prompting DALL-E 3, processing the image, sending it to GPT-4 to analyze, and returning sprite sheet details.
+This function allows you to easily generate sprite images optimized for animation along with the metadata needed to load them in a game engine like Phaser. It handles prompting DALL-E 3, downloading the images, processing them, and querying GPT-4 to determine the frame size.
 
 ## Parameters
 
 - `description` (required): A text description of the sprite to generate (e.g. "Italian plumber")
-- `options` (optional): An object with additional options
-  - `iterations`: Number of sprite variations to generate
+- `options` (optional): An options object
+  - `iterations`: Number of sprite sets to generate
   - `size`: Image size (default 1024x1024)
   - `save`: Whether to save the images to disk
 
 ## Prerequisites
 
-- OpenAI API key
-- Node.js environment
+- sprite SDK installed
+- OpenAI API key configured
 
 ## Usage
 
@@ -30,15 +30,14 @@ import { sprite } from 'sprite';
 
 const spriteData = await sprite.generateSprite('Italian plumber', {
   iterations: 5,
-  save: true 
+  save: true
 });
 ```
 
-The returned `spriteData` will be an array if `iterations` is set, otherwise an object with `image` and `messages` properties.
+The returned `spriteData` will be an array if `iterations` is set, otherwise an object containing:
 
-The `image` property is a data URI for the generated sprite image. 
-
-The `messages` property contains the GPT-4 extracted sprite sheet details like `frameWidth` and `frameHeight`.
+- `image`: Base64 encoded image
+- `messages`: Frame width and height for use in Phaser spritesheet config
 
 
   

@@ -9,38 +9,39 @@ This function allows you to generate a 2D asset image depicting a house using DA
 ## Why use this function?
 
 - Convenient way to generate house images for use in games or other applications
-- Leverages DALL-E 3 to create high quality, custom images
-- Handles prompting DALL-E 3 and returning the responses
+- Leverages DALL-E 3 AI to create images based on text descriptions
+- Handles iterations and image size configuration
 
 ## Parameters
 
-- `description` - string description of the type of house you want to generate an image for
-- `options` - object with optional additional parameters:
-  - `iterations` - number of images to generate
-  - `size` - size of the generated images (default 1024x1024)
+- `description` - Text description of the house you want to generate an image for
+- `options` - Optional configuration object
+  - `iterations` - Number of images to generate
+  - `size` - Size of the generated images (default 1024x1024)
 
 ## Prerequisites
 
-- DALL-E 3 access credentials configured on the OpenAI object
-- Phaser game using images that need house assets
+- Access to OpenAI API key
+- OpenAI object with DALL-E 3 model loaded
 
-## How to use
-
-Call the `generateHouseAsset` function, passing in a `description` of the house:
+## Usage
 
 ```js
-const houseImage = await sprite.generateHouseAsset("Victorian style house"); 
+const { sprite } = require('sprite');
+
+async function generateHouse() {
+  const house = await sprite.generateHouseAsset('a blue two story house with white trim', {
+    iterations: 3,
+    size: '512x512'  
+  });
+  
+  // house contains an array with 3 generated house images 
+}
+
+generateHouse();
 ```
 
-To generate multiple house images, specify `options.iterations`:
-
-```js 
-const houseImages = await sprite.generateHouseAsset("log cabin in the woods", {
-  iterations: 5 
-});
-```
-
-The function returns either a single image response or an array of responses if multiple iterations were requested. The images can then be used in a Phaser game or other application.
+This will generate 3 images of size 512x512 depicting a blue two story house with white trim. The images are returned in an array that can be used in a game or app.
 
 
   

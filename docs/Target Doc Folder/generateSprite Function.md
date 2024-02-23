@@ -4,37 +4,46 @@
 
 # generateSprite
 
-This function generates a sprite image and metadata using DALL-E 3 and GPT-4. It is exported from the sprite SDK.
+This function generates a sprite image and metadata using DALL-E 3 and GPT-4.
 
-## Why use generateSprite?
+## Why use this function?
 
-This function allows you to easily generate sprite images optimized for animation along with the appropriate metadata to load them in a game engine like Phaser. It handles prompting DALL-E 3, processing the image, sending it to GPT-4 to analyze, and returning sprite sheet details.
+This function allows you to easily generate sprite images optimized for animation along with the required metadata to load them into a Phaser game. It handles prompting DALL-E 3, processing the image, sending it to GPT-4 to analyze, and returning the sprite image and frame data.
 
-## Required parameters
+## Parameters
 
-- `description` - A text description of the sprite to generate, like "a knight with a sword and shield"
-- `options` - Optional additional parameters:
-  - `iterations` - Number of sprite variants to generate
-  - `size` - Size of the generated sprite image, default 1024x1024
-  - `save` - Whether to save the sprite image file to disk
+- `description` (required): A text description of the sprite to generate (e.g. "a knight")
+- `options` (optional): An object with the following optional properties:
+  - `size`: The image size to generate (default "1024x1024")
+  - `iterations`: Number of sprite sets to generate 
+  - `save`: Whether to save the generated sprite PNG to disk
 
 ## Prerequisites
 
-- sprite SDK installed
-- OpenAI API key configured 
+- OpenAI API key for DALL-E 3 and GPT-4 access
+- `OpenAI` SDK client instantiated
 
-## How to use
+## Usage
 
 ```js
 import { sprite } from 'sprite';
 
-const spriteData = await sprite.generateSprite('a knight with a sword and shield', {
-  iterations: 3,
-  save: true 
-});
+const sprite = await sprite.generateSprite('a knight');
+
+// Sprite image data URL 
+console.log(sprite.image); 
+
+// Frame metadata
+console.log(sprite.messages);
 ```
 
-The returned `spriteData` contains the GPT-4 analyzed frame width and height for each generated sprite image to use in a sprite sheet loader.
+The returned `sprite` object contains the generated sprite image data URL and frame metadata extracted by GPT-4.
+
+You can then load this into Phaser:
+
+```js
+this.load.spritesheet('knight', sprite.image, sprite.messages); 
+```
 
 
   

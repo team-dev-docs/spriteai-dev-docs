@@ -4,35 +4,42 @@
 
 # generateHouseAsset
 
-This function generates a 2D asset image depicting a house using DALL-E 3 AI.
+This function allows you to generate a 2D asset image depicting a house using DALL-E 3 AI.
 
 ## Why use this function?
 
-This function provides an easy way to generate house images that can be used in a Phaser JS game. It handles prompting DALL-E 3 and returning the generated images.
+- Convenient way to generate house images for use in games or other applications
+- Leverages DALL-E 3 to create high quality, custom images
+- Handles prompting DALL-E 3 and returning the responses
 
 ## Parameters
 
-- `description` - The description of the house asset to generate, e.g. "yellow two story house with white trim and a red door"
-- `options` - Optional parameters:
-  - `iterations` - Number of images to generate
-  - `size` - Size of the generated images, default 1024x1024
+- `description` - string description of the type of house you want to generate an image for
+- `options` - object with optional additional parameters:
+  - `iterations` - number of images to generate 
+  - `size` - size of the generated images (default 1024x1024)
 
 ## Prerequisites
 
-- Access to OpenAI API with DALL-E 3 model enabled
-- API key stored in `openAiObject`
+- DALL-E 3 access credentials configured on the `openAiObject`
+- Node.js environment
 
-## How to use
+## Usage
 
 ```js
-import { sprite } from "sprite";
+import { sprite } from 'sprite';
 
-const generatedImages = await sprite.generateHouseAsset("yellow two story house", {
-  iterations: 3  
+const houseImage = await sprite.generateHouseAsset('Victorian style house', {
+  iterations: 3,
+  size: '512x512'  
 });
 ```
 
-This will generate 3 1024x1024 images depicting a yellow two story house using DALL-E 3. The images are returned in the `generatedImages` variable.
+The function will handle prompting DALL-E 3 based on the description provided. By default, it will generate 1 image at 1024x1024 pixels. 
+
+You can request multiple images by passing `options.iterations`.
+
+The function returns either a single image response or an array of responses if multiple iterations were requested. Each response contains the generated image.
 
 
   

@@ -8,15 +8,15 @@ This function generates a sprite image and metadata using DALL-E 3 and GPT-4. It
 
 ## Why use generateSprite()?
 
-This function handles communicating with the OpenAI API to generate a sprite image and determine the frame width and height needed to use it as a sprite sheet in a Phaser game. It saves you the trouble of setting up the OpenAI clients and making the API calls yourself.
+This function handles communicating with the OpenAI APIs to generate a sprite image based on a text description. It also extracts key image metadata like frame width and height needed to use the image as a sprite sheet. This saves you time from having to do this yourself.
 
 ## Parameters
 
-- `description` (required): A text description of the sprite to generate (e.g. "a knight")
-- `options` (optional): An object with additional options
-  - `size`: The output image size (default "1024x1024")
-  - `iterations`: Number of sprite images to generate
-  - `save`: Whether to save the generated image to disk
+- `description`: The text description of the sprite to generate. This will be used to prompt DALL-E 3.
+- `options`: Optional object containing:
+  - `iterations`: Number of sprite variations to generate.
+  - `size`: Size of the generated image, default 1024x1024. 
+  - `save`: Whether to save the generated image as a PNG file.
 
 ## Prerequisites
 
@@ -33,16 +33,13 @@ And have OpenAI API keys configured.
 ```js
 import { sprite } from 'sprite';
 
-const spriteData = await sprite.generateSprite('a knight');
-
-// Sprite image data URL 
-console.log(spriteData.image); 
-
-// Frame width and height
-console.log(spriteData.messages);
+const spriteData = await sprite.generateSprite('a purple cat', {
+  iterations: 5,
+  save: true
+});
 ```
 
-The `generateSprite` method handles all the complexity of generating the image via DALL-E and determining the frame dimensions using GPT-4 behind the scenes.
+The returned `spriteData` contains the generated image data URI and metadata like frame sizes.
 
 
   

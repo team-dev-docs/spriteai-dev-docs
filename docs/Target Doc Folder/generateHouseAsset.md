@@ -4,25 +4,24 @@
 
 # generateHouseAsset
 
-This function allows you to generate a 2D asset image depicting a house using DALL-E 3 AI.
+This function allows you to generate a 2D asset image depicting a house using DALL-E 3.
 
 ## Why use this function?
 
 - Convenient way to generate house images for use in games or other applications
-- Leverages DALL-E 3 to create high quality, custom images
-- Handles prompting DALL-E 3 and returning the responses
+- Leverages DALL-E 3 to create high quality images based on text descriptions
 
-## Parameters
+## Arguments
 
-- `description` - string description of the type of house you want to generate an image for
-- `options` - object with optional additional parameters:
-  - `iterations` - number of images to generate 
-  - `size` - size of the generated images (default 1024x1024)
+- `description` (string): Text description of the type of house you want to generate an image for
+- `options` (object): Optional additional parameters
+  - `iterations` (number): Number of images to generate iteratively. Will return an array of images.
+  - `size` (string): Size of the generated images, e.g. "1024x1024". Default is "1024x1024".
 
 ## Prerequisites
 
-- DALL-E 3 access credentials configured on the `openAiObject`
-- Node.js environment
+- Access to the OpenAI API with a valid API key
+- The OpenAI SDK installed and imported
 
 ## Usage
 
@@ -35,11 +34,7 @@ const houseImage = await sprite.generateHouseAsset('Victorian style house', {
 });
 ```
 
-The function will handle prompting DALL-E 3 based on the description provided. By default, it will generate 1 image at 1024x1024 pixels. 
-
-You can request multiple images by passing `options.iterations`.
-
-The function returns either a single image response or an array of responses if multiple iterations were requested. Each response contains the generated image.
+The above will generate 3 images at 512x512 pixels depicting Victorian style houses.
 
 
   

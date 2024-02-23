@@ -8,24 +8,29 @@ This function generates a sprite image and metadata using DALL-E 3 and GPT-4. It
 
 ## Why use generateSprite?
 
-This function allows you to easily generate sprite images optimized for animation along with the required metadata to load them in a game engine like Phaser. It handles prompting DALL-E 3, processing the image, sending it to GPT-4 to analyze, and returning sprite sheet details.
+This function handles contacting the AI models, generating the image, saving it, and extracting the sprite sheet metadata in one easy call. It saves you having to call the AI APIs directly.
 
 ## Required parameters
 
-- `description` - A text description of the sprite to generate, e.g. "a knight with a sword and shield"  
-- `options` (optional) - An options object that can configure output
-  - `size` - The output image size, defaults to 1024x1024
-  - `iterations` - Number of sprite variants to generate
-  - `save` - Whether to save the PNGs to disk
+- `description` - A text description of the sprite to generate, e.g. "Italian plumber" 
+- `options` - An optional object with additional options:
+  - `iterations` - Number of sprite variations to generate
+  - `size` - Size of the generated image, default 1024x1024
+  - `save` - Whether to save the generated image to disk
 
 ## Prerequisites
 
-- OpenAI API key for DALL-E 3 and GPT models
-- Node.js environment
+You'll need to have the sprite SDK installed:
+
+```
+npm install sprite
+```
+
+And have access keys for DALL-E 3 and GPT-4 models.
 
 ## How to use
 
-Import the `generateSprite` function:
+Import the function:
 
 ```js
 import { sprite } from 'sprite';
@@ -34,15 +39,22 @@ import { sprite } from 'sprite';
 Generate a sprite:
 
 ```js 
-const sprite = await sprite.generateSprite("knight with sword and shield");
+const sprite = await sprite.generateSprite('Italian plumber');
 ```
 
-The returned `sprite` object contains:
+This will return the sprite image data URI and metadata.
 
-- `image` - A data URI for the generated PNG
-- `messages` - Metadata from GPT-4 analyzing the image, including suggested `frameWidth` and `frameHeight`
+You can also pass options:
 
-You can pass the URI to a Phaser loader and use the dimensions for animation.
+```js
+const sprites = await sprite.generateSprite('knight', {
+  iterations: 5,
+  size: '512x512',
+  save: true
+});
+```
+
+This will generate and save 5 variations of a 512x512 knight sprite.
 
 
   

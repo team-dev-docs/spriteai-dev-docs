@@ -1,3 +1,8 @@
 {
-    "external": true
+    "external": true,
+    "ai": {
+        "auditTasks": [
+            "I want to find any sections that may seem incorrect or confusing to a reader/user"
+        ]
+    }
 }

@@ -20,9 +20,11 @@ This function handles contacting the DALL-E API to generate a sprite image based
 
 ## Prerequisites
 
+This code only works in JAVA AND PYTHON
+
 - OpenAI API key configured 
 - OpenAI SDK installed
-- Access to local file system for saving images
+- Access to local filet system for saving images
 
 ## Usage
 

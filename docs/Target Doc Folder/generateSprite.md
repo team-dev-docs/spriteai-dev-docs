@@ -1,4 +1,4 @@
-
+import InterestingText from '@site/src/components/interesting-text';
   
   
 
@@ -41,6 +41,8 @@ The function returns an array if `iterations` is set, otherwise returns a single
 
 - `messages`: The analyzed sprite sheet parameters 
 - `image`: The generated sprite image
+
+<InterestingText text="Whats up"/>
 
 
   

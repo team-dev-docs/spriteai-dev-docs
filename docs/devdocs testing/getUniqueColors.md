@@ -2,59 +2,61 @@
   
   # **Get Unique Colors from Image**
 
-**High Level**
+High Level
 
-This is an asynchronous function that takes an image file path and optional options as input, and returns an array of unique color values present in the image. It utilizes the `jimp` library for image processing. The function is likely part of a larger library or SDK for working with images and sprites.
+This is a function that retrieves all unique colors from an image file. It is part of the sprite SDK, which you can install from NPM and import into your project like this:
 
-**Why should I use this function?**
+```javascript
+import { getUniqueColors } from 'sprite';
+```
 
-You should use this function if you need to analyze the unique colors present in an image. This can be useful in various scenarios, such as:
+## Why should I use this function?
 
-1. **Palette Generation**: The function can help generate a color palette for an image, which can be used for color-based image processing, design, or other artistic purposes.
+When working with images, it can be useful to identify the distinct colors present in the image. This function provides a convenient way to obtain an array of all unique color values (represented as integers) in a given image file. This information can be valuable for various image processing tasks, such as color analysis, palette extraction, or image segmentation.
 
-2. **Image Optimization**: By identifying the unique colors in an image, you can potentially optimize the image file size by reducing the number of colors or applying other compression techniques.
+## What parameters or arguments are required?
 
-3. **Image Analysis**: The unique color information can be used to analyze the image content, identify patterns, or perform other image processing tasks.
+The `getUniqueColors` function takes two arguments:
 
-4. **Sprite Sheet Generation**: If you're working with sprite sheets or game assets, this function can help identify the unique colors used in the sprites, which can be useful for optimizing the asset pipeline or generating color maps.
+1. `imagePath` (string, required): The file path or URL of the image you want to process.
+2. `options` (object, optional): An optional object that can be used to pass additional configuration options to the function. Currently, no options are supported, but this argument is included for future extensibility.
 
-**What are the parameters or arguments required?**
+## Prerequisites
 
-The function accepts two parameters:
+To use this function, you need to have the following prerequisites:
 
-1. **`imagePath`** (required): A string representing the file path of the image you want to analyze.
+- Node.js installed on your system.
+- The `sprite` package installed in your project. You can install it using npm:
 
-2. **`options`** (optional): An object that can be used to pass additional options or configurations to the function. Currently, the code doesn't seem to use any options, but this parameter allows for future extensibility.
+```
+npm install sprite
+```
 
-**Prerequisites**
+- The `jimp` library, which is a dependency of the `sprite` package. This library is used for image processing operations within the `getUniqueColors` function.
 
-To use this function, you'll need to have the `jimp` library installed in your project. Jimp is a Node.js library for image processing that provides a simple and efficient way to read, write, and manipulate images.
-
-**How do I use this function?**
+## How do I use this function?
 
 Here's an example of how you can use the `getUniqueColors` function:
 
 ```javascript
-import { sprite } from 'sprite';
+import { getUniqueColors } from 'sprite';
 
-const imagePath = '/path/to/your/image.png';
+const imagePath = 'path/to/your/image.jpg';
 
-sprite.getUniqueColors(imagePath)
+getUniqueColors(imagePath)
   .then(uniqueColors => {
-    console.log('Unique colors:', uniqueColors);
-    // Do something with the unique color array
+    console.log('Unique colors in the image:', uniqueColors);
+    // Further processing or analysis of unique colors
   })
   .catch(error => {
     console.error('Error:', error);
   });
 ```
 
-In this example, we first import the `sprite` object from the SDK or library. Then, we call the `getUniqueColors` function, passing the `imagePath` as an argument.
+In this example, the `getUniqueColors` function is called with the path to the image file you want to process. It returns a Promise that resolves to an array of unique color values (integers) found in the image.
 
-The function returns a Promise that resolves with an array of unique color values. Each color value is represented as an integer, where the red, green, blue, and alpha components are packed into a 32-bit integer using the `Jimp.rgbaToInt` function.
+The function scans through each pixel of the image, ignoring fully transparent pixels. It converts the RGB(A) values of each non-transparent pixel to an integer color value and adds it to a `Set` to ensure uniqueness. Finally, the `Set` is converted back to an array and returned.
 
-You can then work with the `uniqueColors` array as needed, such as displaying the colors, performing further analysis, or using them for image processing tasks.
-
-It's important to note that the function skips fully transparent pixels (where the alpha value is 0) when computing the unique colors.
+With the array of unique colors, you can perform further analysis or processing based on your specific requirements, such as generating a color palette, identifying dominant colors, or applying color-based filters or transformations to the image.
   
   

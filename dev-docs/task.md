@@ -1,1 +1,1 @@
-Create a brand a new doc around getting started with Dev-Docs.
+Create a brand a new doc around best practices.

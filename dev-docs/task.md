@@ -1,1 +1,1 @@
-Create a new doc for general concepts and best practices
+Can you create a blog post on how sprite AI called be used with technologies such as Unity, Gadot, and Phaser.

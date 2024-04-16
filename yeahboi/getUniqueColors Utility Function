@@ -1,0 +1,44 @@
+
+  
+  # **getUniqueColors Function**
+
+## What does this do?
+The `getUniqueColors` function is an asynchronous function that takes an image file path (`imagePath`) and an optional options object as input. Its purpose is to read the specified image file and extract a list of unique color values present in the image, excluding fully transparent pixels.
+
+## Why should I use this?
+This function can be useful in scenarios where you need to analyze the color palette of an image or perform color-based operations. For example, you might want to create a color palette based on the unique colors in an image, or you might need to quantize the colors in an image for compression or optimization purposes.
+
+## Prerequisites
+To use this function, you need to have the following dependencies installed:
+
+1. **Jimp**: A JavaScript library for image processing. This library is used to read and analyze the pixel data of the input image.
+
+## How to use this
+To use the `getUniqueColors` function, follow these steps:
+
+1. Import or require the necessary dependencies, such as Jimp, in your JavaScript file.
+2. Call the `getUniqueColors` function, passing the path to the image file as the first argument, and an optional options object as the second argument.
+3. The function will return a Promise that resolves with an array of unique color values present in the image, represented as integer values.
+
+Here's an example of how you might use this function:
+
+```javascript
+const imagePath = '/path/to/your/image.png';
+
+getUniqueColors(imagePath)
+  .then(uniqueColors => {
+    console.log('Unique colors in the image:', uniqueColors);
+    // Further processing or operations with the unique colors
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+The `getUniqueColors` function works by first reading the image file using the `Jimp.read` method. It then creates a `Set` to store unique color values. The function scans through each pixel of the image, and for non-transparent pixels, it converts the red, green, blue, and alpha values to an integer color value using the `Jimp.rgbaToInt` method. This color value is then added to the `Set`, ensuring that only unique colors are stored.
+
+After scanning the entire image, the function converts the `Set` back to an array using `Array.from` and returns this array containing the unique color values.
+
+Note that the function ignores fully transparent pixels (those with an alpha value of 0) when calculating the unique colors.
+  
+  

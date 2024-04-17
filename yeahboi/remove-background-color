@@ -1,0 +1,59 @@
+
+  
+  # **Remove Background Color from Image**
+
+## What does this do?
+
+This code defines an asynchronous function called `removeBackgroundColor` that takes an input image file path (`inputPath`), an output file path (`outputPath`), a target color to be removed (`targetColor`), an optional color threshold (`colorThreshold`), and an optional options object (`options`). The function reads the input image using the `Jimp` library, scans through each pixel of the image, and replaces the pixels that are within the specified color threshold of the target color with a transparent color (alpha value of 0). Finally, it writes the modified image to the specified output path.
+
+## Why should I use this?
+
+This function can be useful in situations where you need to remove a specific background color from an image. For example, you might have an image with a solid white background, and you want to make the background transparent to overlay the image on a different background or to create a transparent PNG file. By using this function, you can easily remove the background color and achieve the desired result.
+
+## Prerequisites
+
+To use this function, you need to have the `jimp` library installed in your project. You can install it via npm:
+
+```
+npm install jimp
+```
+
+## How to use this
+
+1. Import the required dependencies:
+
+```javascript
+const Jimp = require('jimp');
+```
+
+2. Call the `removeBackgroundColor` function with the appropriate arguments:
+
+```javascript
+const inputPath = '/path/to/input/image.jpg';
+const outputPath = '/path/to/output/image.png';
+const targetColor = '#FFFFFF'; // Hex code for white color
+const colorThreshold = 20; // Adjust the threshold value as needed
+
+removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+  .then(() => {
+    console.log('Background color removal successful!');
+  })
+  .catch((error) => {
+    console.error('Error occurred:', error);
+  });
+```
+
+3. Explain the function parameters:
+   - `inputPath`: The file path of the input image you want to modify.
+   - `outputPath`: The file path where the modified image will be saved.
+   - `targetColor`: The hex color code (e.g., '#FFFFFF' for white) of the background color you want to remove.
+   - `colorThreshold` (optional): A numerical value representing the maximum color difference allowed between the target color and the pixel color. Higher values will result in a more inclusive range of colors being replaced. The default value is 0, which means only exact matches of the target color will be replaced.
+   - `options` (optional): An object containing additional options for the `jimp` library. Currently, no options are being used in this implementation.
+
+4. The function scans through each pixel of the input image and calculates the color difference between the pixel color and the target color. If the color difference is less than or equal to the specified `colorThreshold`, the alpha value (transparency) of that pixel is set to 0, making it transparent.
+
+5. After processing all pixels, the modified image is written to the specified `outputPath` using the `writeAsync` method provided by the `jimp` library.
+
+By using this function, you can easily remove a specific background color from an image and save the modified image with a transparent background. Adjust the `colorThreshold` value as needed to achieve the desired level of color removal.
+  
+  

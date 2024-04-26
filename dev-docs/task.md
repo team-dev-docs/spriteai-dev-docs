@@ -2,5 +2,5 @@
 batch: 3
 ---
 
-Can you write what it is page for this node sdk.
+Can you write a "what is this" page for this node js sdk.
 

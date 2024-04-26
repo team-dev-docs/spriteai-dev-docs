@@ -1,0 +1,72 @@
+
+  
+  # **getUniqueColors Function**
+
+## What does this do?
+
+The `getUniqueColors` function is an asynchronous JavaScript function that takes an image file path and an optional options object as input. It reads the image file using the Jimp library, scans through all the pixels in the image, and returns an array of unique color integers (RGB + alpha values combined into a single integer value) present in the image.
+
+## Why should I use this?
+
+This function can be useful in various scenarios where you need to analyze the color composition of an image. Some potential use cases include:
+
+1. **Color Palette Generation**: You can use the unique colors obtained from this function to generate a color palette for the image, which can be helpful in design projects or color scheme creation.
+
+2. **Image Processing and Analysis**: The unique color information can be used as input for further image processing tasks, such as color quantization, image segmentation, or color-based image filtering.
+
+3. **Accessibility Analysis**: By analyzing the unique colors in an image, you can assess its color contrast and determine whether it meets accessibility guidelines for individuals with visual impairments.
+
+4. **Image Compression**: The unique color information can be useful in optimizing image compression algorithms, as it provides insights into the color complexity of the image.
+
+## Prerequisites
+
+To use this function, you need to have the following prerequisites:
+
+1. **Node.js**: This function is written in JavaScript and requires Node.js to be installed on your system.
+
+2. **Jimp Library**: The function relies on the Jimp library for image processing. You need to install the Jimp library as a dependency in your project.
+
+## How to use this
+
+To use the `getUniqueColors` function, follow these steps:
+
+1. **Import the Function**: First, import the `getUniqueColors` function into your JavaScript file.
+
+2. **Provide the Image Path**: Call the `getUniqueColors` function and pass the file path of the image you want to analyze as the first argument.
+
+3. **Provide Optional Options (Optional)**: You can optionally pass an options object as the second argument to the `getUniqueColors` function. This object can contain additional configuration options for image processing or analysis.
+
+4. **Handle the Result**: The function returns a Promise that resolves to an array of unique color integers present in the image. You can handle the result using the `.then` method or using the `async/await` syntax.
+
+Example usage:
+
+```javascript
+const imagePath = '/path/to/your/image.jpg';
+
+getUniqueColors(imagePath)
+  .then(uniqueColors => {
+    console.log('Unique colors:', uniqueColors);
+    // Do something with the unique colors
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+Or, with `async/await`:
+
+```javascript
+const imagePath = '/path/to/your/image.jpg';
+
+try {
+  const uniqueColors = await getUniqueColors(imagePath);
+  console.log('Unique colors:', uniqueColors);
+  // Do something with the unique colors
+} catch (error) {
+  console.error('Error:', error);
+}
+```
+
+By following these steps, you can effectively utilize the `getUniqueColors` function to analyze the unique colors present in an image file.
+  
+  

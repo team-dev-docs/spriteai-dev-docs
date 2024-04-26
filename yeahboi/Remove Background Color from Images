@@ -1,0 +1,45 @@
+
+  
+  # **Remove Background Color**
+
+## What does this do?
+This function removes a specified background color from an image file. It takes an input image path, an output image path, a target color to remove (in hexadecimal format), an optional color threshold, and optional additional options as parameters. The function uses the Jimp library to read the input image, scan through its pixels, and set the alpha channel (transparency) to 0 for pixels that match the target color within the specified color threshold.
+
+## Why should I use this?
+This function can be useful in various scenarios where you need to remove a specific background color from an image. For example, you might want to remove a solid color background to create a transparent background or make the image blend seamlessly with a different background. This can be particularly helpful when working with logos, icons, or other graphics that need to be composited onto different backgrounds.
+
+## Prerequisites
+To use this function, you need to have the Jimp library installed. Jimp is a JavaScript library for image processing that provides cross-platform support and advanced image manipulation capabilities.
+
+## How to use this
+To use the `removeBackgroundColor` function, you need to provide the following arguments:
+
+1. `inputPath` (string): The file path of the input image.
+2. `outputPath` (string): The file path where the modified image with the removed background color will be saved.
+3. `targetColor` (string): The hexadecimal color code (e.g., '#FFFFFF' for white) representing the background color you want to remove.
+4. `colorThreshold` (number, optional): An optional threshold value (default is 0) that determines the maximum color difference allowed between the target color and the pixel color for it to be considered a match. Higher values allow for more variation in color shades to be removed.
+5. `options` (object, optional): An optional object containing additional options for image processing with Jimp.
+
+Here's an example of how to use the function:
+
+```javascript
+const inputPath = '/path/to/input/image.png';
+const outputPath = '/path/to/output/image.png';
+const targetColor = '#FFFFFF'; // White color
+
+removeBackgroundColor(inputPath, outputPath, targetColor)
+  .then(() => {
+    console.log('Background color removal successful!');
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+```
+
+In this example, the function removes the white background color from the input image and saves the modified image with a transparent background at the specified output path.
+
+You can also adjust the `colorThreshold` parameter to fine-tune the color matching sensitivity. A higher threshold value will allow more color variation to be considered a match and removed, while a lower threshold value will be more strict in matching the exact target color.
+
+Remember to handle the returned Promise appropriately, either by using the `.then` and `.catch` methods or by using `async/await` syntax.
+  
+  

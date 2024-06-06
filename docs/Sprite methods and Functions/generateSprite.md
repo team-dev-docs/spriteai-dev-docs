@@ -1,65 +1,62 @@
 
   
-  # **Generate Sprite Image**
+  # **Generate Sprite Animation**
 
 **High Level**
 
-This is an asynchronous function `generateSprite` that is exported from a Node.js SDK. It allows you to generate a sprite image based on a given description and optional parameters. The function utilizes the OpenAI and Dall-E models to create the sprite image and provides additional processing options.
-
-**Why should I use this function?**
-
-- Generate sprite images programmatically based on textual descriptions.
-- Customize the sprite generation process with various options.
-- Optimize the generated sprites for walking animations.
-- Save the generated sprite images as PNG files.
-- Retrieve the frame dimensions for use in game engines like Phaser.js.
-
-**Parameters**
-
-1. `description` (string): A textual description of the character or sprite you want to generate.
-2. `options` (object, optional):
-   - `iterations` (number): The number of iterations to generate multiple sprite variations.
-   - `size` (string): The size of the generated image (e.g., "1024x1024").
-   - `save` (boolean): Indicates whether to save the generated image as a PNG file.
-
-**Prerequisites**
-
-- Node.js installed on your machine.
-- The `sprite` package installed and imported in your project.
-- API keys for OpenAI and Dall-E models (if required).
-
-**How do I use this function?**
-
-1. Import the `sprite` package in your Node.js project:
+This is an asynchronous function that generates a sprite animation using OpenAI's Dall-E and GPT models. It is part of a Node.js SDK that you can install from NPM and import from the `sprite` object like this:
 
 ```javascript
 import { sprite } from 'sprite';
 ```
 
-2. Call the `generateSprite` function with the desired description and options:
+**Why should I use this function?**
+
+This function allows you to generate custom sprite animations based on a textual description. It leverages the power of OpenAI's Dall-E model to create the visual frames and GPT models to determine the optimal frame dimensions for use in a game engine like Phaser.js. This can save time and effort compared to manually creating sprite animations from scratch.
+
+**What are the required parameters or arguments?**
+
+1. `description` (string): A textual description of the character or object you want to generate a sprite animation for.
+2. `options` (object, optional):
+   - `iterations` (number, optional): The number of iterations or variations of the sprite animation to generate.
+   - `size` (string, optional): The size of the generated image (e.g., "1024x1024"). Defaults to "1024x1024" if not provided.
+   - `save` (boolean, optional): If true, the generated image will be saved to the `assets` directory in the current working directory.
+
+**Prerequisites**
+
+To use this function, you need to have the following:
+
+1. An OpenAI API key with access to the Dall-E and GPT models.
+2. The necessary dependencies installed, such as `axios`, `sharp`, and `path`.
+
+**How do I use this function?**
+
+Here's an example of how you can use this function:
 
 ```javascript
-const spriteInstance = new sprite();
-const spriteDescription = 'A pixelated green frog';
+import { sprite } from 'sprite';
+
+const description = 'a walking robot';
 const options = {
-  iterations: 3,
-  size: '512x512',
-  save: true,
+  iterations: 3, // Generate 3 variations
+  size: '512x512', // Generate images with a size of 512x512 pixels
+  save: true // Save the generated images to the assets directory
 };
 
-const spriteGenerationResult = await spriteInstance.generateSprite(spriteDescription, options);
+const spriteAnimations = await sprite.generateSprite(description, options);
+
+console.log(spriteAnimations);
+// Output: an array of sprite animation objects, each containing the frame dimensions and a data URL for the generated image
 ```
 
-3. The function returns either a single object or an array of objects (if `iterations` is provided) containing the generated sprite image(s) and the corresponding frame dimensions.
+In this example, we import the `sprite` object from the SDK and call the `generateSprite` function with a description (`'a walking robot'`) and some options. The function will generate sprite animations based on the provided description, with the specified number of iterations, image size, and optionally save the images to the `assets` directory.
 
-4. Use the returned data to display or process the generated sprite images in your application or game engine.
+The function returns an array of objects (if `iterations` is specified) or a single object (if no `iterations` is provided). Each object contains the recommended frame dimensions for the generated sprite animation, determined by OpenAI's GPT models, and a data URL representing the generated image.
 
 **Why and How**
 
-This function simplifies the process of generating sprite images programmatically. It leverages the power of OpenAI and Dall-E models to create sprites based on textual descriptions, allowing for easy customization and generation of multiple variations.
+The `generateSprite` function leverages OpenAI's powerful language and image generation models to create custom sprite animations based on a textual description. It uses the Dall-E model to generate the visual frames of the animation and the GPT models to determine the optimal frame dimensions for use in a game engine like Phaser.js.
 
-The generated sprites are optimized for walking animations, with the frames arranged in a specific layout suitable for use in game engines like Phaser.js. The function provides options to save the generated images as PNG files and retrieve the frame dimensions for seamless integration into your projects.
-
-By providing a high-level abstraction over the underlying models and image processing libraries, this function streamlines the sprite generation workflow and enables developers to quickly prototype and iterate on sprite designs without needing to handle the complexities of the underlying technologies manually.
+By providing a description and optional parameters, you can generate sprite animations tailored to your specific needs, saving time and effort compared to manually creating them from scratch. The function returns the necessary information (frame dimensions and image data URLs) to easily integrate the generated sprite animations into your application or game.
   
   

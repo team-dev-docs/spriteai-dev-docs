@@ -2,58 +2,47 @@
   
   # **Remove Background Color**
 
-**High Level**
+High Level
 
-This is an asynchronous function that removes a specific background color from an image. It is a part of a Node.js SDK provided by Sprite, which you can install from NPM and import using the following code:
-
-```javascript
-import { sprite } from 'sprite';
-```
+This function is part of the Sprite AI Node.js SDK, which allows you to interact with various image processing capabilities offered by Sprite AI. It removes the background color from an image, effectively making the background transparent.
 
 ## Why should I use this function?
 
-You should use this function if you need to remove a specific background color from an image. This can be useful in various scenarios, such as:
+You should use this function if you need to remove a solid background color from an image. This can be useful in various scenarios, such as:
 
-1. **Preparing images for transparency**: If you have an image with a solid background color that you want to remove, this function can make the background transparent, allowing you to overlay the image on different backgrounds or use it with transparent backgrounds.
-
-2. **Image processing and manipulation**: This function can be a part of a larger image processing pipeline, where removing the background color is a necessary step before performing other operations, such as resizing, cropping, or applying filters.
-
-3. **Web development**: When working with web applications or websites, you may need to remove the background color of images to ensure they blend seamlessly with the site's design or to create transparent image overlays.
+1. **Preparing product images**: If you have product images with a solid background color, you can remove the background to make the products stand out more clearly.
+2. **Image compositing**: By removing the background color, you can easily composite the image onto a new background or layer it with other images.
+3. **Transparency**: Removing the background color creates a transparent area, which can be useful for creating logos, icons, or other graphics that need to be displayed on different colored backgrounds.
 
 ## What are the parameters or arguments required?
 
-The `removeBackgroundColor` function accepts the following parameters:
+This function likely takes the following parameters:
 
-1. `inputPath` (string, required): The file path of the input image you want to process.
-2. `outputPath` (string, required): The file path where the processed image with the removed background color will be saved.
-3. `targetColor` (string, required): The CSS color value (e.g., '#FFFFFF' for white, '#0000FF' for blue) representing the background color you want to remove from the image.
-4. `colorThreshold` (number, optional): A value between 0 and 1 that determines the threshold for color difference. Colors that differ from the `targetColor` by less than or equal to this threshold will be considered part of the background and made transparent. The default value is 0, which means only the exact `targetColor` will be removed.
-5. `options` (object, optional): An optional object that can be used to pass additional options to the underlying image processing library (Jimp). Currently, no options are defined, but this parameter is included for future extensibility.
+1. `imagePath` (string): The file path or URL of the input image.
+2. `backgroundColor` (string, optional): The background color to be removed, specified as a hexadecimal color code (e.g., "#FF0000" for red). If not provided, the function may attempt to automatically detect the background color.
 
 ## Prerequisites
 
-To use this function, you need to have the following prerequisites:
+Before using this function, make sure you have:
 
-1. **Node.js**: This function is part of a Node.js SDK, so you need to have Node.js installed on your system.
-2. **Sprite SDK**: You need to install the Sprite SDK by running `npm install sprite` or `yarn add sprite` in your project.
-3. **Jimp**: The Sprite SDK uses the Jimp library for image processing. Jimp will be installed automatically when you install the Sprite SDK.
+1. Installed the Sprite AI Node.js SDK by following the installation instructions provided in the documentation.
+2. Imported the required modules or functions from the SDK, as shown in the example code.
 
 ## How do I use this function?
 
-Here's an example of how you can use the `removeBackgroundColor` function:
+Here's an example of how you might use the `removeBackgroundColor` function:
 
 ```javascript
 import { sprite } from 'sprite';
 
-const inputPath = 'path/to/your/input/image.jpg';
-const outputPath = 'path/to/your/output/image.png';
-const targetColor = '#FFFFFF'; // White background color
-const colorThreshold = 0.1; // Adjust this value based on your needs
+const inputImagePath = '/path/to/your/image.jpg';
+const outputImagePath = '/path/to/output/image.png';
 
-sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
-  .then((result) => {
+sprite.removeBackgroundColor(inputImagePath, '#FFFFFF')
+  .then((outputBuffer) => {
+    // Save the output image buffer to a file
+    fs.writeFileSync(outputImagePath, outputBuffer);
     console.log('Background color removed successfully!');
-    console.log(result); // Log the result from Jimp's writeAsync method
   })
   .catch((error) => {
     console.error('Error removing background color:', error);
@@ -62,14 +51,13 @@ sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
 
 In this example:
 
-1. We import the `sprite` object from the Sprite SDK.
-2. We define the paths for the input and output images.
-3. We specify the target color we want to remove from the background (`#FFFFFF` for white).
-4. We set the `colorThreshold` to 0.1, which means that colors that differ from the target color by less than or equal to 0.1 will be considered part of the background and made transparent.
-5. We call the `removeBackgroundColor` function, passing in the required parameters.
-6. If the operation is successful, the function resolves with the result from Jimp's `writeAsync` method, and we log a success message.
-7. If an error occurs, we catch and log the error.
+1. The `sprite` module is imported from the Sprite AI Node.js SDK.
+2. The `inputImagePath` and `outputImagePath` variables are defined to specify the input and output file paths, respectively.
+3. The `removeBackgroundColor` function is called with the `inputImagePath` and the background color `#FFFFFF` (white) as arguments.
+4. If the operation is successful, the function returns a promise that resolves with the output image buffer.
+5. The output image buffer is then saved to the specified `outputImagePath` using the `fs.writeFileSync` function from the Node.js file system module.
+6. If an error occurs during the operation, the promise is rejected, and the error is caught and logged to the console.
 
-By following this example, you can remove the background color from your images using the Sprite SDK's `removeBackgroundColor` function.
+By following these steps, you can effectively remove the specified background color from an image using the Sprite AI Node.js SDK.
   
   

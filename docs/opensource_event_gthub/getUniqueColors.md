@@ -1,68 +1,56 @@
 
   
-  # **getUniqueColors Utility**
+  # **Get Unique Colors from an Image**
 
-High Level
+**High Level**
 
-This is an asynchronous function exported from our Node.js SDK that allows you to retrieve an array of unique colors present in an image. It leverages the `jimp` library for image processing. You can import it from the `sprite` object like this:
+The `getUniqueColors` function is a utility method provided by the SpriteAI Node.js SDK. It allows you to analyze an image and retrieve a list of unique colors present in the image. This function can be useful in various image processing tasks, such as color analysis, palette generation, and image compression.
 
-```javascript
-import { sprite } from 'sprite';
-```
+**Why should I use this function?**
 
-## Why should I use this function?
+- **Color Analysis**: By obtaining a list of unique colors, you can gain insights into the color distribution and composition of an image, which can be valuable for various applications like image segmentation, color quantization, and image similarity analysis.
+- **Palette Generation**: The unique color list can serve as a basis for generating a color palette for the image, which can be useful in design and artistic workflows.
+- **Image Compression**: Some image compression techniques, like color quantization, can benefit from having a list of unique colors, as it allows for more efficient encoding of color information.
+- **Image Processing Pipelines**: This function can be integrated into broader image processing pipelines, where knowledge of an image's color makeup is essential for subsequent operations.
 
-The `getUniqueColors` function is useful when you need to analyze the color palette of an image programmatically. It can be particularly helpful in scenarios such as:
+**What are the parameters or arguments required?**
 
-1. **Image Filtering**: If you need to filter or categorize images based on their color composition, this function can provide the necessary data.
-
-2. **Color Palette Generation**: When you want to generate a color palette from an image, knowing the unique colors present can be invaluable.
-
-3. **Image Analysis**: This function can aid in various image analysis tasks, such as identifying dominant colors, detecting color trends, or performing color-based clustering.
-
-## What are the parameters or arguments required?
-
-The `getUniqueColors` function accepts two parameters:
+The `getUniqueColors` function accepts two arguments:
 
 1. `imagePath` (string, required): The file path or URL of the image you want to analyze.
+2. `options` (object, optional): An optional object that can be used to pass additional configuration options for the image processing library (jimp) used by the function. Currently, no specific options are defined.
 
-2. `options` (object, optional): An optional object that can be used to pass additional options to the function. Currently, no specific options are defined, but this parameter allows for future extensibility.
+**Prerequisites**
 
-## Prerequisites
-
-To use this function, you need to have the following prerequisites:
-
-1. **Node.js**: This function is designed to run in a Node.js environment.
-
-2. **jimp**: The `jimp` library, which is used for image processing, must be installed. You can install it via npm:
+To use this function, you need to have the SpriteAI Node.js SDK installed in your project. You can install it via npm:
 
 ```
-npm install jimp
+npm install @spriteai/sdk
 ```
 
-## How do I use this function?
+**How do I use this function?**
 
 Here's an example of how you can use the `getUniqueColors` function:
 
 ```javascript
-import { sprite } from 'sprite';
+import { sprite } from '@spriteai/sdk';
 
 const imagePath = '/path/to/your/image.jpg';
 
-try {
-  const uniqueColors = await sprite.getUniqueColors(imagePath);
-  console.log('Unique colors:', uniqueColors);
-} catch (error) {
-  console.error('Error:', error);
-}
+sprite.getUniqueColors(imagePath)
+  .then(uniqueColors => {
+    console.log(`Unique colors in the image: ${uniqueColors.length}`);
+    console.log(uniqueColors);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 ```
 
-1. Import the `sprite` object from the SDK.
-2. Provide the file path or URL of the image you want to analyze as the `imagePath` argument.
-3. Call the `getUniqueColors` function with the `imagePath` and optionally pass an `options` object if needed.
-4. The function returns a Promise that resolves to an array of unique colors present in the image, represented as integer values.
-5. Handle any potential errors that might occur during the image processing or analysis.
+In this example, we import the `sprite` object from the SpriteAI SDK. We then call the `getUniqueColors` function, passing the path to the image we want to analyze.
 
-By using this function, you can efficiently retrieve the unique colors present in an image, which can be useful for various image processing tasks and analyses.
+The function returns a Promise that resolves with an array of unique color values. Each color value is represented as an integer calculated by the `Jimp.rgbaToInt` method, which combines the red, green, blue, and alpha (transparency) values into a single integer value.
+
+You can then process the array of unique colors as needed, such as generating a color palette, performing color quantization, or using it as input for other image processing tasks.
   
   

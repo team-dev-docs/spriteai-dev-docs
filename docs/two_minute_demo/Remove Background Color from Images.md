@@ -2,64 +2,73 @@
   
   # **Remove Background Color**
 
-**High Level**
+## High Level
 
-This is a utility function provided by the Sprite Node.js SDK that allows you to remove a specific background color from an image. It utilizes the Jimp library for image processing and manipulation.
+This is a function that is part of the Sprite AI Node.js SDK, which allows you to remove a specific background color from an image. It leverages the `jimp` library for image processing. To use this function, you need to install the SDK from NPM and import the `sprite` object:
 
-```js
-import { removeBackgroundColor } from 'sprite';
+```javascript
+import { sprite } from 'sprite-ai';
 ```
 
-**Why should I use this function?**
+## Why should I use this function?
 
-You should use this function when you need to remove a specific background color from an image. This can be useful in various scenarios, such as preparing images for use on websites or in applications where a transparent background is preferred. It can also be helpful for creating image assets with consistent backgrounds or removing unwanted background colors.
+You should use this function if you need to remove a specific background color from an image. This can be useful in various scenarios, such as:
 
-**What are the required parameters?**
+1. **Removing a solid color background**: If your image has a solid color background (e.g., white, blue, or yellow), you can remove it to make the image transparent or prepare it for further processing.
 
-1. `inputPath` (string): The file path of the input image.
-2. `outputPath` (string): The file path where the processed image with the removed background color will be saved.
-3. `targetColor` (string): The CSS color code (e.g., '#FFFFFF' for white) representing the background color you want to remove.
-4. `colorThreshold` (number, optional): The maximum color difference threshold for determining which pixels should be made transparent. The default value is 0, which means only exact color matches will be made transparent.
-5. `options` (object, optional): An optional object for passing additional options to the function. Currently, no additional options are supported.
+2. **Preparing images for compositing**: By removing the background color, you can easily layer or composite the image with other images or backgrounds.
 
-**Prerequisites**
+3. **Improving image quality**: Removing unnecessary background colors can help to improve the overall image quality and clarity.
 
-Before using this function, ensure that you have installed the `sprite` package in your Node.js project:
+## What are the required parameters?
 
-```
-npm install sprite
-```
+The `removeBackgroundColor` function takes the following parameters:
 
-Additionally, the function requires the input image file to be present at the specified `inputPath`.
+1. `inputPath` (string): The file path of the input image you want to process.
+2. `outputPath` (string): The file path where the processed image will be saved.
+3. `targetColor` (string): The CSS color code (e.g., '#FFFFFF' for white) or color name (e.g., 'white', 'blue', 'yellow') of the background color you want to remove.
+4. `colorThreshold` (number, optional): The maximum color difference threshold for determining if a pixel should be made transparent. The default value is 0, meaning an exact match to the target color is required.
+5. `options` (object, optional): An optional object for passing additional options to the image processing library (currently not used).
 
-**How do I use this function?**
+## Prerequisites
 
-Here's an example of how you can use the `removeBackgroundColor` function:
+Before using this function, make sure you have:
 
-```js
-import { removeBackgroundColor } from 'sprite';
+1. Installed the Sprite AI Node.js SDK by running `npm install sprite-ai` or `yarn add sprite-ai`.
+2. Imported the `sprite` object from the SDK in your JavaScript file.
+3. Prepared the input image file and determined the target background color you want to remove.
 
-const inputPath = 'path/to/input/image.jpg';
-const outputPath = 'path/to/output/image.png';
-const targetColor = '#FFFFFF'; // White background
+## How do I use this function?
 
-try {
-  const result = await removeBackgroundColor(inputPath, outputPath, targetColor);
-  console.log('Background color removal successful:', result);
-} catch (error) {
-  console.error('Error removing background color:', error);
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite-ai';
+
+async function processImage() {
+  const inputPath = '/path/to/input/image.jpg';
+  const outputPath = '/path/to/output/image.png';
+  const targetColor = 'white'; // or '#FFFFFF'
+  const colorThreshold = 10; // Allow a slight color variation
+
+  try {
+    const result = await sprite.removeBackgroundColor(
+      inputPath,
+      outputPath,
+      targetColor,
+      colorThreshold
+    );
+    console.log('Image processed successfully:', result);
+  } catch (error) {
+    console.error('Error processing image:', error);
+  }
 }
+
+processImage();
 ```
 
-In this example, the function will read the image located at `inputPath`, remove the white background color (`#FFFFFF`), and save the processed image with a transparent background at `outputPath`.
+In this example, the `removeBackgroundColor` function is called with the input and output file paths, the target color to remove ('white'), and a color threshold of 10 (allowing a slight color variation). The processed image will be saved at the specified `outputPath`.
 
-If you need to adjust the color threshold, you can pass an additional value for the `colorThreshold` parameter. A higher value will make the function more tolerant of slight color variations, while a lower value will make it more strict.
-
-```js
-const colorThreshold = 10; // Adjust this value as needed
-const result = await removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
-```
-
-This function can be particularly useful when working with images that have a consistent background color that needs to be removed or made transparent.
+By adjusting the `colorThreshold` parameter, you can control how strictly the function matches the target color. A higher value will allow for more color variation, while a lower value (closer to 0) will require an exact match.
   
   

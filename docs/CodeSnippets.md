@@ -1,3 +1,0 @@
-# Hey
-
-Whats up

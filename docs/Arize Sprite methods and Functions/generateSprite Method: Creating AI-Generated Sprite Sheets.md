@@ -4,63 +4,67 @@
 
 High Level
 
-This is a method that is part of the sprite object in our Node.js SDK. You can access it after installing the package from NPM and importing it like this:
+This is a method that is part of our Node.js SDK. You can access it after installing the package from NPM and importing the sprite object:
 
 ```javascript
-import { sprite } from 'sprite-ai'
+import { sprite } from 'spriteAI'
 ```
 
 ## Why should I use this method?
 
-The `generateSprite` method allows you to create custom sprite sheets for game characters or animations using AI-generated images. It's particularly useful for:
+The `generateSprite` method allows you to create custom sprite sheets for game characters or objects using AI-generated images. It's particularly useful for:
 
-1. Rapid prototyping of game assets
-2. Creating unique characters based on text descriptions
-3. Generating walking animations optimized for game development
-4. Obtaining sprite sheets in a format compatible with game engines like Phaser.js
+1. Rapidly prototyping game assets
+2. Creating unique characters with minimal effort
+3. Generating walking animations optimized for 2D games
 
-## What parameters or arguments are required?
+## What parameters are required?
 
-The `generateSprite` method accepts two parameters:
+The method accepts two parameters:
 
-1. `description` (required): A string describing the character or sprite you want to generate.
-2. `options` (optional): An object that can include:
+1. `description` (required): A string describing the character or object you want to generate.
+2. `options` (optional): An object with additional configuration:
    - `iterations`: Number of sprite variations to generate
-   - `size`: Image size (default is "1024x1024")
+   - `size`: Image size (default: "1024x1024")
    - `save`: Boolean to determine if the image should be saved locally
 
 ## Prerequisites
 
-To use this method, you need:
-
-1. An OpenAI API key with access to DALL-E 3 and GPT-4 Vision
-2. Node.js environment
-3. Axios for HTTP requests
-4. Sharp for image processing
+- Node.js environment
+- OpenAI API key properly configured
+- Axios for HTTP requests
+- Sharp for image processing
 
 ## How do I use this method?
 
 Here's a basic example of how to use the `generateSprite` method:
 
 ```javascript
-import { sprite } from 'sprite-ai'
+import { sprite } from 'spriteAI'
 
 async function createGameCharacter() {
-  const result = await sprite.generateSprite("A pixelated warrior with a sword", {
+  const result = await sprite.generateSprite("a pixelated warrior", {
     iterations: 1,
     size: "1024x1024",
     save: true
   });
 
-  console.log(result.messages); // Frame size information
-  console.log(result.image); // Base64 encoded image data
+  console.log(result.messages);
+  // Use result.image for your game's spritesheet
 }
 
 createGameCharacter();
 ```
 
-This method generates a sprite sheet with 6 frames of a walking animation, arranged in a 2x3 grid. It uses DALL-E 3 to create the image and GPT-4 Vision to analyze the frame sizes. The result includes both the image data and the recommended frame dimensions for use in game engines like Phaser.js.
+This method will:
 
-The method also supports generating multiple iterations, which can be useful for comparing different AI-generated versions of your sprite.
+1. Generate a 1024x1024 image with 6 frames of a pixelated warrior character.
+2. Process the image to ensure it's suitable for use as a sprite sheet.
+3. Use AI to determine the optimal frameWidth and frameHeight for the sprite.
+4. Return an object containing the processed image data and the AI-suggested frame dimensions.
+
+The returned image is in base64 format, ready to be used in your game engine. The method also provides an option to save the generated image locally in the assets folder.
+
+Note: The AI-generated suggestions for frameWidth and frameHeight should be reviewed and adjusted as needed for your specific game implementation.
   
   

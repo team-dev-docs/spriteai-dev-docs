@@ -27,6 +27,8 @@ The `generateSprite` function accepts two parameters:
    - `iterations`: Number of sprite variations to generate
    - `size`: Image size (default is "1024x1024")
    - `save`: Boolean to indicate if the image should be saved locally
+   - `style`: String to specify a particular art style (e.g., "pixel art", "cartoon")
+   - `palette`: Array of color hex codes to restrict the color scheme
 
 ## Prerequisites
 
@@ -72,6 +74,38 @@ The function handles the entire process of generating the sprite, including:
 - Using GPT-4 Vision to analyze the generated image and determine optimal frame dimensions
 - Optionally saving the image to your local file system
 
-By using this function, you can streamline your sprite creation workflow and focus on other aspects of game development.
+## Error Handling and Limitations
+
+While using the `generateSprite` function, be aware of the following:
+
+1. API Rate Limits: The function is subject to OpenAI's rate limits. If you exceed these limits, the function will throw a `RateLimitError`. Implement appropriate retry logic or delay between requests.
+
+2. Content Filtering: DALL-E 3 has built-in content filters. If your description violates content policies, you may receive a `ContentFilterError`.
+
+3. Network Errors: Handle potential network issues by wrapping the function call in a try-catch block.
+
+4. Consistency Limitations: While the AI strives for consistency, there might be slight variations between generated frames. For critical projects, manual review and touch-ups may be necessary.
+
+5. Style Constraints: The "Super Nintendo-like" style is an approximation. For pixel-perfect accuracy, additional post-processing might be required.
+
+Example error handling:
+
+```javascript
+try {
+  const result = await sprite.generateSprite("a cute robot", { iterations: 1, save: true });
+  // Process result
+} catch (error) {
+  if (error instanceof RateLimitError) {
+    console.log("Rate limit exceeded. Retrying in 60 seconds...");
+    // Implement retry logic
+  } else if (error instanceof ContentFilterError) {
+    console.log("Content violation. Please revise your description.");
+  } else {
+    console.error("An unexpected error occurred:", error);
+  }
+}
+```
+
+By using this function with proper error handling and understanding its limitations, you can streamline your sprite creation workflow and focus on other aspects of game development while ensuring robustness in your application.
 
   

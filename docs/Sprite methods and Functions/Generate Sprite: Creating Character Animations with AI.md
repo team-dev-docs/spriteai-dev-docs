@@ -27,6 +27,8 @@ The `generateSprite` function accepts two parameters:
    - `iterations`: Number of sprite variations to generate
    - `size`: Image size (default is "1024x1024")
    - `save`: Boolean to indicate if the image should be saved locally
+   - `style`: String to specify the visual style (e.g., "pixel art", "cartoon", "realistic")
+   - `palette`: Array of colors to use in the sprite generation
 
 ## Prerequisites
 
@@ -72,6 +74,38 @@ The function handles the entire process of generating the sprite, including:
 - Using GPT-4 Vision to analyze the generated image and determine optimal frame dimensions
 - Optionally saving the image to your local file system
 
-By using this function, you can streamline your sprite creation workflow and focus on other aspects of game development.
+## Error Handling and Limitations
+
+While using the `generateSprite` function, be aware of the following:
+
+1. API Rate Limits: The function is subject to OpenAI's rate limits. If you exceed these limits, you'll receive a `RateLimitError`. Implement appropriate retry logic or delay between requests.
+
+2. Image Generation Failures: Sometimes, DALL-E 3 may fail to generate an appropriate image. The function will throw a `GenerationError` in such cases.
+
+3. Inconsistent Results: AI-generated sprites may sometimes produce inconsistent or unexpected results. Always review the output before using it in production.
+
+4. Limited Control: While you can specify a style, the AI's interpretation may vary. For precise control, manual sprite creation might be necessary.
+
+5. Network Errors: Handle potential network issues by implementing proper error catching and retry mechanisms.
+
+Example error handling:
+
+```javascript
+try {
+  const result = await sprite.generateSprite("a cute robot", { iterations: 1, save: true });
+  // Process the result
+} catch (error) {
+  if (error instanceof RateLimitError) {
+    console.log("Rate limit exceeded. Retrying in 60 seconds...");
+    // Implement retry logic
+  } else if (error instanceof GenerationError) {
+    console.log("Failed to generate sprite. Please try a different description.");
+  } else {
+    console.error("An unexpected error occurred:", error);
+  }
+}
+```
+
+By using this function and understanding its limitations, you can streamline your sprite creation workflow and focus on other aspects of game development while being prepared for potential challenges.
 
   

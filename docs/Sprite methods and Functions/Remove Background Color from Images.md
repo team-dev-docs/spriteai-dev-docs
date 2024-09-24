@@ -63,4 +63,36 @@ This example removes the white background from 'input.png', saves the result to 
 
 The function uses the Jimp library to process the image, scanning each pixel and comparing it to the target color. If a pixel's color is within the specified threshold, it's made transparent. The resulting image is then saved to the specified output path.
 
+## Error Handling and Limitations
+
+When using the `removeBackgroundColor` function, be aware of the following potential error scenarios and limitations:
+
+1. **File not found**: If the input file doesn't exist, the function will throw an error. Always ensure the input path is correct.
+
+```javascript
+try {
+  await sprite.removeBackgroundColor('nonexistent.png', 'output.png', '#FFFFFF');
+} catch (error) {
+  console.error('Input file not found:', error.message);
+}
+```
+
+2. **Invalid color format**: If the `targetColor` is not a valid CSS color string, an error will occur. Use standard hex codes or RGB values.
+
+```javascript
+try {
+  await sprite.removeBackgroundColor('input.png', 'output.png', 'invalid-color');
+} catch (error) {
+  console.error('Invalid color format:', error.message);
+}
+```
+
+3. **Write permission issues**: Ensure you have write permissions for the output directory. If not, the function will fail when trying to save the processed image.
+
+4. **Memory limitations**: For very large images, you may encounter memory issues. Consider processing images in smaller chunks or using a machine with more available memory.
+
+5. **Color accuracy**: The function may struggle with images that have gradient backgrounds or subtle color variations. Adjusting the `colorThreshold` can help, but may also affect areas you want to preserve.
+
+Always wrap the function call in a try-catch block to handle these potential errors gracefully in your application.
+
   

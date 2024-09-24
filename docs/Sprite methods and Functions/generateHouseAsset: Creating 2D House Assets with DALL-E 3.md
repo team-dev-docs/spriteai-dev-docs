@@ -48,4 +48,60 @@ Each response object contains information about the generated image, including i
 
 Remember to handle the asynchronous nature of this function using `async/await` or promises in your implementation.
 
+## API Rate Limits and Costs
+
+When using the `generateHouseAsset` function, be aware of OpenAI's API rate limits and associated costs:
+
+- The DALL-E 3 API has rate limits that may vary based on your account tier.
+- Each API call incurs a cost, which depends on the image size and the number of iterations.
+- Implement appropriate error handling to manage rate limit errors (429 status code).
+
+To manage API usage effectively:
+
+```javascript
+try {
+  const generatedAssets = await sprite.generateHouseAsset(houseDescription, options);
+  // Process generated assets
+} catch (error) {
+  if (error.response && error.response.status === 429) {
+    console.log("Rate limit reached. Retrying after a delay...");
+    // Implement retry logic with exponential backoff
+  } else {
+    console.error("Error generating house asset:", error);
+  }
+}
+```
+
+## Integrating Generated Assets into Phaser.js
+
+To use the generated assets in your Phaser.js game:
+
+1. Load the image in your Phaser.js preload function:
+
+```javascript
+function preload() {
+  this.load.image('house', generatedAssets[0].url);
+}
+```
+
+2. Create a sprite using the loaded asset in your create function:
+
+```javascript
+function create() {
+  this.add.sprite(400, 300, 'house');
+}
+```
+
+3. For multiple assets, you can create an array of sprites or use them for different game elements:
+
+```javascript
+function create() {
+  generatedAssets.forEach((asset, index) => {
+    this.add.sprite(100 * (index + 1), 300, `house${index}`);
+  });
+}
+```
+
+By following these steps, you can seamlessly integrate AI-generated house assets into your Phaser.js game, enhancing its visual appeal and reducing development time.
+
   

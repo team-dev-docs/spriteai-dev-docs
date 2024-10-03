@@ -16,6 +16,7 @@ Use this function when you need to analyze the color palette of an image. It's p
 - Extracting color information for sprite sheets or pixel art
 - Optimizing image color usage
 - Creating color palettes from existing images
+- Analyzing color distribution in game assets
 
 ## What parameters or arguments are required?
 
@@ -28,6 +29,7 @@ The function requires the following parameters:
 Before using this function, ensure you have:
 1. Installed the Jimp library (the function uses Jimp for image processing)
 2. Proper file permissions to read the image at the specified path
+3. A valid sprite image file (PNG, JPEG, or other formats supported by Jimp)
 
 ## How do I use this function?
 
@@ -40,7 +42,7 @@ Here's a step-by-step guide to using the `getUniqueColors` function:
 
 2. Call the function with the path to your image:
    ```javascript
-   const imagePath = './path/to/your/image.png';
+   const imagePath = './path/to/your/sprite.png';
    const uniqueColors = await sprite.getUniqueColors(imagePath);
    ```
 
@@ -56,5 +58,15 @@ Here's a step-by-step guide to using the `getUniqueColors` function:
    ```
 
 Note: The function ignores fully transparent pixels (alpha = 0) when collecting unique colors.
+
+## Best Practices for Sprite Image Processing
+
+When working with sprite images, consider the following tips:
+- Use consistent color palettes across your sprite sheets for better performance
+- Optimize your sprites by reducing the number of unique colors where possible
+- Consider using indexed color mode for sprites with limited color palettes
+- Ensure your sprite images are properly aligned to pixel boundaries for crisp rendering
+
+Remember, efficient color usage in sprites can significantly impact the performance and visual quality of your game or application.
 
   

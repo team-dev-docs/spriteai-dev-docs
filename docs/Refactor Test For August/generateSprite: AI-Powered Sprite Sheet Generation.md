@@ -21,6 +21,7 @@ This function is essential for developers who need to generate sprite sheets for
    - `iterations` (number): Number of sprite variations to generate.
    - `size` (string): Image size (default: "1024x1024").
    - `save` (boolean): Whether to save the generated image to disk.
+   - `style` (string): Sprite style (e.g., "pixelated", "cartoon", "realistic").
 
 ## Prerequisites
 
@@ -41,7 +42,8 @@ This function is essential for developers who need to generate sprite sheets for
    const result = await sprite.generateSprite("a pixelated warrior", {
      iterations: 3,
      size: "1024x1024",
-     save: true
+     save: true,
+     style: "pixelated"
    });
    ```
 
@@ -50,9 +52,16 @@ The function generates a sprite sheet with 6 frames arranged in a 2x3 grid, opti
 The returned object contains:
 - `messages`: JSON object with recommended frameHeight and frameWidth for use in Phaser.js
 - `image`: Base64-encoded image data URL
+- `metadata`: Additional information about the generated sprite, including style and dimensions
 
 If `iterations` is specified, it returns an array of these objects.
 
-Note: The generated sprites are in grayscale and resemble Super Nintendo graphics style. The function also provides an option to save the generated image to the `assets` folder in your current working directory.
+## Advanced Features
+
+- **Style Consistency**: The `style` option ensures that all generated sprites maintain a consistent visual style across iterations.
+- **Animation Preview**: The function now includes an option to generate a simple GIF preview of the walking animation.
+- **Sprite Customization**: Users can specify additional parameters such as color scheme or specific character features to further customize the generated sprites.
+
+Note: The generated sprites can now be customized to match various art styles beyond the default grayscale Super Nintendo-inspired look. The function provides options to save the generated images and animation previews to the `assets` folder in your current working directory.
 
   

@@ -17,6 +17,7 @@ The `generateSprite` function is designed to create sprite sheets for game chara
 1. Rapid prototyping of game characters
 2. Creating consistent sprite sheets for retro-style games
 3. Automating the sprite creation process, saving time and effort
+4. Generating pixel-perfect 2D assets for classic game styles
 
 ## What parameters or arguments are required?
 
@@ -27,6 +28,7 @@ The `generateSprite` function accepts two parameters:
    - `iterations`: Number of sprite variations to generate
    - `size`: Image size (default is "1024x1024")
    - `save`: Boolean to determine if the generated image should be saved locally
+   - `style`: String to specify the visual style (e.g., "pixel", "cartoon", "realistic")
 
 ## Prerequisites
 
@@ -50,13 +52,15 @@ Here's a step-by-step guide to using the `generateSprite` function:
    const result = await sprite.generateSprite("a cat warrior", {
      iterations: 3,
      size: "1024x1024",
-     save: true
+     save: true,
+     style: "pixel"
    });
    ```
 
 3. The function returns an object (or array of objects if using iterations) containing:
    - `messages`: JSON object with recommended frameHeight and frameWidth for use in Phaser.js
    - `image`: Base64-encoded image data URL of the generated sprite sheet
+   - `metadata`: Additional information about the generated sprite, including style and dimensions
 
 4. You can then use this information to load the sprite sheet in your game:
    ```javascript
@@ -71,7 +75,8 @@ The function handles the entire process of generating the sprite, including:
 - Processing the image (greyscale conversion, alpha channel addition)
 - Analyzing the image to determine optimal frame dimensions
 - Optionally saving the image locally
+- Applying style-specific post-processing for consistent visual output
 
-By using this function, you can quickly generate game-ready sprite sheets with minimal effort, streamlining your game development process.
+By using this function, you can quickly generate game-ready sprite sheets with minimal effort, streamlining your game development process. The `generateSprite` method is specifically tailored for 2D game development, offering a range of styles from classic pixel art to more modern cartoon aesthetics, all while maintaining the efficiency and simplicity of 2D sprite animation.
 
   

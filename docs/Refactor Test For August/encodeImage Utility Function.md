@@ -38,4 +38,16 @@ const encodedImage = encodeImage(imagePath);
 
 Note: This function reads files synchronously, which can block the event loop for large files. In production environments, asynchronous alternatives might be preferred for better performance.
 
+## Performance Considerations
+
+When working with large image files, it's important to be aware of potential memory usage issues. The `encodeImage` function loads the entire image file into memory, which could lead to high memory consumption for very large images. 
+
+For handling large files or processing multiple images concurrently, consider using streaming techniques or asynchronous file reading methods. This can help manage memory more efficiently and prevent potential bottlenecks in your application.
+
+## Security Considerations
+
+When working with file paths, always ensure that the `imagePath` parameter is properly sanitized and validated. Accepting arbitrary file paths without proper checks could lead to security vulnerabilities, such as directory traversal attacks.
+
+It's recommended to implement strict input validation and use absolute paths or constrain the allowed paths to specific directories to mitigate potential security risks.
+
   

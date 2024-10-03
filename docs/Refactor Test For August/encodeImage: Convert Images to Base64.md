@@ -37,4 +37,30 @@ This function reads the specified image file, converts it to a Buffer, and then 
 
 Note: While this function is not directly exported from the `sprite` object, it may be used internally by other functions in the SDK. If you need to encode images in your own code, you might want to consider using a similar approach or check if there's a public API in the SDK that provides this functionality.
 
+## Performance Considerations
+
+When working with large images or processing multiple images, it's important to consider the performance implications of base64 encoding:
+
+1. **Memory usage**: Base64 encoding increases the size of the data by approximately 33%. For large images, this can lead to significant memory consumption.
+
+2. **Processing time**: Encoding large files can be time-consuming. Consider using asynchronous operations or worker threads for heavy encoding tasks to avoid blocking the main thread.
+
+3. **Network transfer**: While base64 encoded strings are convenient for text-based protocols, they increase the amount of data transferred. For large-scale operations, consider alternative methods like binary transfer or streaming.
+
+## Error Handling
+
+The `encodeImage` function may throw errors in certain situations. It's recommended to implement proper error handling when using this function:
+
+```javascript
+try {
+  const encodedImage = encodeImage(imagePath);
+  // Process the encoded image
+} catch (error) {
+  console.error('Error encoding image:', error.message);
+  // Handle the error appropriately
+}
+```
+
+Common errors to watch out for include file not found, permission issues, and out-of-memory errors for exceptionally large images.
+
   

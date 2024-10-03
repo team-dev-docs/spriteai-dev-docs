@@ -1,66 +1,68 @@
 
 
-  # **Remove Background Color**
+  # **Remove Background Elements from 3D Model Textures**
 
 High Level
 
-This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+This function is part of our Node.js SDK for 3D model processing, which you can install from NPM and import from the `sprite3D` object as follows:
 
 ```javascript
-import { sprite } from 'sprite'
+import { sprite3D } from 'sprite3D'
 ```
 
 ## Why should I use this function?
 
-The `removeBackgroundColor` function is designed to remove a specific background color from an image, making it transparent. This is particularly useful when working with sprites or images that need to be integrated into various backgrounds or scenes without carrying their original background.
+The `removeBackgroundElements` function is designed to remove specific background elements or colors from textures used in 3D models. This is particularly useful when working with 3D models that need to be integrated into various environments or scenes without carrying unwanted background elements from their original textures.
 
 ## What parameters are required?
 
 The function accepts the following parameters:
 
-1. `inputPath` (string): The path to the input image file.
-2. `outputPath` (string): The path where the processed image will be saved.
-3. `targetColor` (string): The color to be removed, specified as a CSS color string (e.g., '#FFFFFF' for white).
-4. `colorThreshold` (number, optional): The tolerance for color matching. Default is 0.
-5. `options` (object, optional): Additional options (currently unused in the provided code).
+1. `modelPath` (string): The path to the input 3D model file.
+2. `outputPath` (string): The path where the processed 3D model will be saved.
+3. `targetElements` (array): An array of elements or colors to be removed, specified as strings (e.g., ['#FFFFFF', 'sky', 'ground']).
+4. `threshold` (number, optional): The tolerance for element or color matching. Default is 0.
+5. `options` (object, optional): Additional options for fine-tuning the removal process.
 
 ## Prerequisites
 
 - Node.js environment
-- Jimp library installed (`npm install jimp`)
+- Three.js library installed (`npm install three`)
+- A compatible 3D model processing library (e.g., `gltf-pipeline`)
 
 ## How do I use this function?
 
-To use the `removeBackgroundColor` function, follow these steps:
+To use the `removeBackgroundElements` function, follow these steps:
 
-1. Import the function from the sprite SDK:
+1. Import the function from the sprite3D SDK:
 
 ```javascript
-import { sprite } from 'sprite'
+import { sprite3D } from 'sprite3D'
 ```
 
 2. Call the function with the required parameters:
 
 ```javascript
-async function processImage() {
+async function process3DModel() {
   try {
-    await sprite.removeBackgroundColor(
-      'input.png',
-      'output.png',
-      '#FFFFFF',
-      10
+    await sprite3D.removeBackgroundElements(
+      'input.glb',
+      'output.glb',
+      ['#FFFFFF', 'sky'],
+      10,
+      { preserveTransparency: true }
     );
-    console.log('Background removed successfully!');
+    console.log('Background elements removed successfully!');
   } catch (error) {
-    console.error('Error removing background:', error);
+    console.error('Error removing background elements:', error);
   }
 }
 
-processImage();
+process3DModel();
 ```
 
-This example removes the white background from 'input.png', saves the result to 'output.png', and uses a color threshold of 10 for more flexible color matching.
+This example removes white backgrounds and sky elements from the textures in 'input.glb', saves the result to 'output.glb', and uses a threshold of 10 for more flexible element matching. The `preserveTransparency` option ensures that any existing transparency in the textures is maintained.
 
-The function uses the Jimp library to process the image, scanning each pixel and comparing it to the target color. If a pixel's color is within the specified threshold, it's made transparent. The resulting image is then saved to the specified output path.
+The function uses Three.js and additional 3D processing libraries to load the model, analyze and modify its textures, and then save the processed model. It scans each texture, identifying and removing specified elements or colors that match the given criteria.
 
   

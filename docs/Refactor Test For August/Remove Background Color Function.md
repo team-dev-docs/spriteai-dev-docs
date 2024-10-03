@@ -17,6 +17,7 @@ Use this function when you need to remove a specific background color from an im
 1. Creating sprites or assets for games
 2. Preparing images for layering in graphic design
 3. Isolating objects in photographs
+4. Generating seamless textures for 2D game environments
 
 ## What parameters are required?
 
@@ -69,5 +70,17 @@ processImage();
 In this example, we're removing a white background (#FFFFFF) with a color threshold of 10. Adjust the `targetColor` and `colorThreshold` as needed for your specific use case.
 
 The function will process the image, removing the specified background color, and save the result to the specified output path. The returned `result` can be used for further processing or validation if needed.
+
+## Advanced Usage
+
+For more complex sprite creation, you can combine this function with other image processing techniques:
+
+1. **Sprite Sheet Generation**: After removing backgrounds from individual sprite frames, use the `createSpriteSheet` function to combine them into a single sprite sheet.
+
+2. **Animated Sprite Preparation**: Process multiple frames of an animated sprite to create transparent backgrounds for smooth animations.
+
+3. **Mask Creation**: Use the output as a mask for other image processing operations, such as applying effects only to non-background areas.
+
+Remember, while this function is powerful for 2D sprite creation, it's important to choose the right tool for your project. For 3D game development, you might need to explore additional tools and techniques beyond simple background removal.
 
   

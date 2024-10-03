@@ -16,6 +16,7 @@ Use this function when you need to analyze the color palette of an image. It's p
 - Identifying the number of distinct colors in an image
 - Extracting a color palette for further processing or analysis
 - Preparing data for color-based image manipulation tasks
+- Optimizing sprite sheets by reducing color redundancy
 
 ## What parameters or arguments are required?
 
@@ -28,6 +29,7 @@ The function takes two parameters:
 Before using this function, ensure you have:
 1. Installed the Jimp library, as the function relies on it for image processing.
 2. Properly set up the sprite SDK in your project.
+3. Sufficient memory available, as processing large images may require significant resources.
 
 ## How do I use this function?
 
@@ -68,6 +70,13 @@ async function analyzeImageColors() {
 analyzeImageColors()
 ```
 
-This function provides a powerful tool for color analysis in images, enabling various image processing and design-related tasks in your Node.js applications.
+## Performance Considerations
+
+When working with large sprites or complex images, keep in mind:
+- The function's execution time may increase with the image size and color complexity.
+- For optimal performance, consider processing smaller sections of large sprite sheets separately.
+- If memory usage is a concern, you may need to implement a chunking strategy for very large images.
+
+This function provides a powerful tool for color analysis in images, enabling various image processing and design-related tasks in your Node.js applications, especially when working with sprite-based graphics.
 
   

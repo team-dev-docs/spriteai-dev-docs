@@ -12,7 +12,7 @@ import { sprite } from 'sprite-ai'
 
 ## Why should I use this function?
 
-This function is incredibly useful for game developers and designers who need to quickly generate sprite sheets for character animations. It leverages AI to create a series of frames based on a text description, saving time and effort in the sprite creation process.
+This function is incredibly useful for game developers and designers who need to quickly generate sprite sheets for character animations. It leverages AI to create a series of frames based on a text description, saving time and effort in the sprite creation process. Additionally, it now supports enhanced customization options for more diverse sprite designs.
 
 ## What parameters or arguments are required?
 
@@ -23,6 +23,8 @@ The `generateSprite` function accepts two parameters:
    - `iterations`: Number of sprite variations to generate.
    - `size`: Size of the generated image (default is "1024x1024").
    - `save`: Boolean to determine if the generated image should be saved locally.
+   - `style`: String to specify the artistic style of the sprite (e.g., "pixel", "cartoon", "realistic").
+   - `animation`: String to define the type of animation (e.g., "walk", "run", "idle").
 
 ## Prerequisites
 
@@ -48,12 +50,14 @@ Here's a step-by-step guide to using the `generateSprite` function:
    const result = await sprite.generateSprite("a blue robot", {
      iterations: 1,
      size: "1024x1024",
-     save: true
+     save: true,
+     style: "pixel",
+     animation: "walk"
    });
    ```
 
 3. The function will return an object or an array of objects (if iterations > 1) containing:
-   - `messages`: JSON object with frameHeight and frameWidth information.
+   - `messages`: JSON object with frameHeight, frameWidth, and animation metadata.
    - `image`: Base64 encoded image data URL.
 
 4. You can then use this information to load the sprite sheet in your game engine. For example, in Phaser.js:
@@ -65,8 +69,10 @@ Here's a step-by-step guide to using the `generateSprite` function:
    });
    ```
 
-The function generates a 1024x1024 image containing 6 frames of the described character in a 2x3 grid, optimized for walking animations. It uses DALL-E 3 for image generation and GPT-4 Vision for analyzing the resulting image to determine optimal frame dimensions.
+The function generates a 1024x1024 image containing 6 frames of the described character in a 2x3 grid, optimized for the specified animation type. It uses DALL-E 3 for image generation and GPT-4 Vision for analyzing the resulting image to determine optimal frame dimensions and animation properties.
 
-Note: The generated image is converted to grayscale to optimize for game performance and file size.
+New Feature: The function now includes an option to generate sprites with transparent backgrounds, making it easier to integrate them into various game environments.
+
+Note: The generated image is optimized for game performance and file size, with options for color or grayscale output based on your project needs.
 
   

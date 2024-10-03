@@ -50,4 +50,30 @@ The function returns either an array of responses (if iterations > 1) or a singl
 
 Note: The actual image data format and additional properties in the response may vary based on the OpenAI API's current implementation.
 
+## Integration with Phaser JS
+
+Once you've generated your house assets, you can easily integrate them into your Phaser JS game. Here's a quick example of how to load and use the generated asset:
+
+```javascript
+function preload() {
+    this.load.image('house', 'path/to/generated/house.png');
+}
+
+function create() {
+    this.add.image(400, 300, 'house');
+}
+```
+
+This will add your generated house asset to the game at coordinates (400, 300). You can adjust the position and scale as needed for your specific game layout.
+
+## Performance Considerations
+
+When using generated assets, keep in mind that they may be larger in file size compared to manually optimized sprites. To ensure smooth gameplay, consider the following tips:
+
+1. Use appropriate image sizes for your game's resolution.
+2. Implement texture atlases for multiple house variations.
+3. Utilize asset compression techniques supported by Phaser JS.
+
+By following these practices, you can maintain high performance while leveraging the flexibility of dynamically generated house assets in your game.
+
   

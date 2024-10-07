@@ -4,65 +4,46 @@
 
 High Level
 
-This is a function that is part of our image processing toolkit, which can be used to replace specific colors in sprite images. It's particularly useful for making certain colors transparent or changing the color scheme of sprites.
+This is a method that is part of our image processing functionality within the Sprite AI SDK. It allows you to replace specific colors in sprite images with transparency. You can access this functionality after installing our SDK from NPM and importing it like this:
 
 ```javascript
-import { replaceColor } from 'sprite-image-processor'
+import { sprite } from 'sprite-ai';
 ```
 
-## Why should I use this function?
+## Why should I use this method?
 
-This function allows you to selectively replace colors in your sprite images. It's particularly useful for:
+This method is particularly useful when you need to:
+1. Remove backgrounds from sprite images
+2. Create transparent areas in sprites for game development
+3. Prepare images for layering in graphic design projects
 
-1. Creating transparent backgrounds by removing a specific color.
-2. Adjusting the color scheme of sprites without redrawing them.
-3. Preparing sprites for different visual themes or environments in your game or application.
+By replacing specific colors with transparency, you can achieve cleaner, more versatile sprite images that can be easily integrated into various visual contexts.
 
 ## What parameters are required?
 
-The function requires the following parameters:
-
-1. `image`: A Jimp image object representing the sprite.
-2. `colorToReplace`: The color you want to replace, represented as an integer.
-3. `colorThreshold`: A number representing the tolerance for color matching.
+The method requires the following parameters:
+1. `image`: A Jimp image object representing the sprite
+2. `colorToReplace`: The color you want to replace with transparency (in integer format)
+3. `colorThreshold`: A number representing the tolerance for color matching (higher values allow for more variation)
 
 ## Prerequisites
 
-Before using this function, ensure you have:
+Before using this method, ensure that you have:
+1. Installed the Sprite AI SDK
+2. Imported the necessary modules (Jimp is used internally)
+3. Loaded your sprite image into a Jimp object
 
-1. Installed the Jimp library for image processing.
-2. An image file that you want to process.
+## How do I use this method?
 
-## How do I use this function?
+Here's a step-by-step guide to using the color replacement functionality:
 
-Here's a step-by-step guide to using the color replacement function:
+1. Load your sprite image using Jimp
+2. Determine the color you want to replace and its threshold
+3. Call the method, passing in the required parameters
+4. Save or further process the resulting image
 
-1. First, load your image using Jimp.
-2. Determine the color you want to replace and its threshold.
-3. Call the function with your image, color to replace, and threshold.
+The method will scan through each pixel of the image, comparing it to the specified color. If a pixel's color is within the threshold, its alpha channel will be set to 0, making it transparent.
 
-Example usage:
-
-```javascript
-import Jimp from 'jimp';
-import { replaceColor } from 'sprite-image-processor';
-
-Jimp.read('path/to/your/sprite.png')
-  .then(image => {
-    const colorToReplace = Jimp.rgbaToInt(255, 0, 0, 255); // Replace red
-    const colorThreshold = 50; // Adjust based on your needs
-
-    replaceColor(image, colorToReplace, colorThreshold);
-
-    return image.writeAsync('path/to/output/sprite.png');
-  })
-  .catch(err => {
-    console.error(err);
-  });
-```
-
-This function scans each pixel of the image, calculates the color difference between the pixel and the color to be replaced, and if the difference is within the threshold, it makes the pixel transparent.
-
-Remember to adjust the `colorThreshold` based on your specific needs. A lower threshold will result in more precise color matching, while a higher threshold will replace a broader range of similar colors.
+Note that this process modifies the original image object, so make sure to create a copy if you need to preserve the original.
 
   

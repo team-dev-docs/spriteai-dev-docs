@@ -4,46 +4,63 @@
 
 High Level
 
-This is an asynchronous function that is part of our image processing toolkit. While it's not explicitly shown as being exported from an SDK, it's designed to extract unique colors from an image file.
-
-```javascript
-async function getUniqueColors(imagePath, options = {})
-```
+This is an asynchronous function that is part of our image processing toolkit. While it's not explicitly shown as being exported from a Node.js SDK, it can be utilized in your project after proper setup and import.
 
 ## Why should I use this function?
 
-Use this function when you need to analyze the color palette of an image. It's particularly useful for:
-- Color analysis in graphic design projects
-- Optimizing image compression by identifying the color range
-- Creating color schemes based on existing images
+The `getUniqueColors` function is useful when you need to analyze an image and extract all unique colors present in it. This can be particularly helpful in various scenarios such as:
+
+1. Color palette generation
+2. Image analysis and processing
+3. Detecting color usage in sprites or pixel art
+4. Optimization of color schemes in graphics
 
 ## What parameters or arguments are required?
 
-1. `imagePath` (required): The path to the image file you want to analyze.
-2. `options` (optional): An object for additional configuration (currently unused in the provided code).
+The function takes two parameters:
+
+1. `imagePath` (required): A string representing the path to the image file you want to analyze.
+2. `options` (optional): An object for additional configuration. Currently, no specific options are utilized in the function, but it's included for potential future expansions.
 
 ## Prerequisites
 
-- Node.js environment
-- Jimp library installed (`npm install jimp`)
+To use this function, you need to have:
+
+1. Node.js installed in your environment
+2. The `jimp` library installed in your project (`npm install jimp`)
 
 ## How do I use this function?
 
-1. Ensure you have the Jimp library installed in your project.
-2. Call the function with the path to your image:
+Here's a step-by-step guide on how to use the `getUniqueColors` function:
 
-```javascript
-const uniqueColors = await getUniqueColors('./path/to/your/image.png');
-console.log(uniqueColors);
-```
+1. Ensure you have the necessary prerequisites installed.
 
-This will return an array of unique color values found in the image, represented as integers.
+2. Import the function into your script (exact import statement may vary based on your project structure):
 
-Note:
-- The function ignores fully transparent pixels (alpha = 0).
-- Colors are returned as Jimp integer representations. You may need to convert these to other formats (like hex) for further use.
-- The function scans every pixel of the image, which may be time-consuming for large images.
+   ```javascript
+   import { getUniqueColors } from './path/to/your/module';
+   ```
 
-Remember to handle potential errors when reading the image file or processing large images.
+3. Call the function with the path to your image:
+
+   ```javascript
+   const imagePath = './path/to/your/image.png';
+   
+   getUniqueColors(imagePath)
+     .then(uniqueColors => {
+       console.log('Unique colors:', uniqueColors);
+     })
+     .catch(error => {
+       console.error('Error:', error);
+     });
+   ```
+
+4. The function returns a Promise that resolves to an array of unique colors found in the image. Each color is represented as an integer value.
+
+5. You can then process this array of unique colors as needed for your specific use case.
+
+Note: The function ignores fully transparent pixels (alpha = 0) when collecting unique colors.
+
+Remember that this function uses the `jimp` library to read and process the image, so make sure you're familiar with its capabilities and limitations when working with different image formats and sizes.
 
   

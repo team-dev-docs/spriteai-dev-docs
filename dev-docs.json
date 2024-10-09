@@ -1,7 +1,6 @@
 {
     "external": true,
     "ai": {
-        "task": "dev-docs/task.md",
         "auditTasks": [
             "I want to find any sections that may seem incorrect or confusing to a reader/user"
         ]

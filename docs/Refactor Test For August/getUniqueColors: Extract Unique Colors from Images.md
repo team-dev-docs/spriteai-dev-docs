@@ -4,63 +4,63 @@
 
 High Level
 
-This is an asynchronous function that is part of our image processing toolkit. While it's not explicitly shown as being exported from a Node.js SDK, it can be utilized in your project after proper setup and import.
+This is an asynchronous function that extracts unique colors from an image. It's part of our Node.js SDK, which you can install from NPM and import from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
 
 ## Why should I use this function?
 
-The `getUniqueColors` function is useful when you need to analyze an image and extract all unique colors present in it. This can be particularly helpful in various scenarios such as:
+Use this function when you need to analyze an image and obtain a list of unique colors it contains. This can be particularly useful for:
 
-1. Color palette generation
-2. Image analysis and processing
-3. Detecting color usage in sprites or pixel art
-4. Optimization of color schemes in graphics
+- Color palette extraction
+- Image analysis and processing
+- Sprite sheet optimization
 
-## What parameters or arguments are required?
+## What parameters are required?
 
 The function takes two parameters:
 
-1. `imagePath` (required): A string representing the path to the image file you want to analyze.
-2. `options` (optional): An object for additional configuration. Currently, no specific options are utilized in the function, but it's included for potential future expansions.
+1. `imagePath` (required): A string representing the path to the image file.
+2. `options` (optional): An object for additional configuration (currently unused in the provided code).
 
 ## Prerequisites
 
-To use this function, you need to have:
+Before using this function, ensure you have:
 
-1. Node.js installed in your environment
-2. The `jimp` library installed in your project (`npm install jimp`)
+1. Installed the Sprite SDK via NPM
+2. Imported the necessary modules (Jimp is used internally)
+3. Proper read access to the image file specified by `imagePath`
 
 ## How do I use this function?
 
-Here's a step-by-step guide on how to use the `getUniqueColors` function:
+Here's a basic example of how to use the `getUniqueColors` function:
 
-1. Ensure you have the necessary prerequisites installed.
+```javascript
+import { sprite } from 'sprite'
 
-2. Import the function into your script (exact import statement may vary based on your project structure):
+async function analyzeImage() {
+  const imagePath = './path/to/your/image.png'
+  try {
+    const uniqueColors = await sprite.getUniqueColors(imagePath)
+    console.log('Unique colors found:', uniqueColors.length)
+    console.log('Color values:', uniqueColors)
+  } catch (error) {
+    console.error('Error analyzing image:', error)
+  }
+}
 
-   ```javascript
-   import { getUniqueColors } from './path/to/your/module';
-   ```
+analyzeImage()
+```
 
-3. Call the function with the path to your image:
+This function works by:
 
-   ```javascript
-   const imagePath = './path/to/your/image.png';
-   
-   getUniqueColors(imagePath)
-     .then(uniqueColors => {
-       console.log('Unique colors:', uniqueColors);
-     })
-     .catch(error => {
-       console.error('Error:', error);
-     });
-   ```
+1. Reading the image file using Jimp
+2. Scanning each pixel of the image
+3. Collecting unique color values, ignoring fully transparent pixels
+4. Returning an array of unique color integers
 
-4. The function returns a Promise that resolves to an array of unique colors found in the image. Each color is represented as an integer value.
-
-5. You can then process this array of unique colors as needed for your specific use case.
-
-Note: The function ignores fully transparent pixels (alpha = 0) when collecting unique colors.
-
-Remember that this function uses the `jimp` library to read and process the image, so make sure you're familiar with its capabilities and limitations when working with different image formats and sizes.
+Note that the function returns color values as integers. You may need to convert these to a more readable format (like hexadecimal) for further use.
 
   

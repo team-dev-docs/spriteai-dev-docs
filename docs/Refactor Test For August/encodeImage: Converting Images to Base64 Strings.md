@@ -4,41 +4,41 @@
 
 High Level
 
-This is a utility function that is part of our Node.js SDK. While it's not directly exported or imported like other functions in the SDK, it plays a crucial role in image processing within the system.
+The `encodeImage` function is a utility provided in our Node.js SDK. While it's not directly exported from the `sprite` object, it's an internal function that may be used within the SDK. Here's how you typically import and use functions from our SDK:
+
+```javascript
+import { sprite } from 'sprite'
+```
 
 ## Why should I use this function?
 
-The `encodeImage` function is used to convert an image file into a base64-encoded string. This is particularly useful when you need to transmit image data over networks or APIs that expect text-based inputs. By encoding the image, you can easily include it in JSON payloads or other text-based data structures.
+The `encodeImage` function is designed to convert an image file into a base64 encoded string. This is particularly useful when you need to transmit image data over text-based protocols or include image data directly in JSON payloads.
 
 ## What parameters or arguments are required?
 
-The `encodeImage` function requires one parameter:
+The `encodeImage` function takes one parameter:
 
-- `imagePath` (string): The file system path to the image you want to encode.
+- `imagePath` (string): The file path to the image you want to encode.
 
 ## Prerequisites
 
-Before using this function, ensure that:
+To use this function, you need to ensure:
 
-1. You have the necessary file system permissions to read the image file.
-2. The `fs` (File System) module is available in your Node.js environment.
+1. You have the `fs` (File System) module available, which is a core Node.js module.
+2. The image file you're trying to encode exists at the specified path and is readable.
 
 ## How do I use this function?
 
-Here's a step-by-step guide on how to use the `encodeImage` function:
-
-1. Ensure you have the correct file path to your image.
-2. Call the function with the image path as its argument.
-3. The function will return a base64-encoded string representing your image.
-
-Example usage:
+Here's an example of how to use the `encodeImage` function:
 
 ```javascript
 const imagePath = '/path/to/your/image.jpg';
 const encodedImage = encodeImage(imagePath);
-console.log(encodedImage); // Outputs the base64-encoded string
+console.log(encodedImage); // Outputs the base64 encoded string
 ```
 
-Note that this function reads the entire file into memory, so be cautious when working with very large images to avoid memory issues.
+The function reads the image file from the provided path, converts it to a Buffer, and then encodes that Buffer to a base64 string. This encoded string can then be used in various scenarios where you need to represent binary image data as text.
+
+Note: While this function is not directly exposed in the SDK's public interface, it demonstrates how image encoding might be handled internally. Always refer to the official SDK documentation for the most up-to-date and publicly available methods.
 
   

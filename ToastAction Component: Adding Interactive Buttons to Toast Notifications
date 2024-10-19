@@ -1,0 +1,46 @@
+
+
+  # **ToastAction Component**
+
+## What does this do?
+
+The ToastAction class is a component that creates an interactive button within a toast notification. It allows users to define clickable actions directly in the toast, enhancing user interaction with notifications.
+
+## Why should I use this?
+
+You should use ToastAction when you want to:
+
+1. Add interactive elements to your toast notifications.
+2. Provide users with quick action options related to the notification content.
+3. Improve user engagement and streamline user workflows by allowing immediate responses to notifications.
+
+## Prerequisites
+
+To use ToastAction, you need to:
+
+1. Have the Reflex framework set up in your project.
+2. Be working with a toast notification system that supports action buttons.
+
+## How to use this
+
+To implement ToastAction in your Reflex application:
+
+1. Import the ToastAction class from the appropriate module.
+2. Create a ToastAction instance, specifying the label and on_click handler:
+
+```python
+from reflex.components.sonner import ToastAction
+
+action = ToastAction(
+    label="Click me",
+    on_click=your_click_handler
+)
+```
+
+3. Include this action in your toast configuration or rendering logic.
+
+The `label` parameter sets the text displayed on the button, while `on_click` defines the function or action to be executed when the button is clicked.
+
+Remember to define your click handler function separately and ensure it's compatible with your application's state management approach.
+
+  

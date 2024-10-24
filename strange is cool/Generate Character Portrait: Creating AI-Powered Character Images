@@ -1,0 +1,73 @@
+
+
+  # **Generate Character Portrait**
+
+High Level
+
+This is an asynchronous function that generates a detailed character portrait using OpenAI's DALL-E 3 model. It's part of our Node.js SDK, which you can install from NPM and import from the sprite object like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to create realistic, detailed character portraits based on text descriptions. It's particularly useful for:
+
+- Game developers needing to generate character avatars
+- Writers visualizing their characters
+- Content creators requiring unique character imagery
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (required): A string describing the character you want to portray.
+2. `options` (optional): An object with additional settings:
+   - `size`: Image size (default is "1024x1024")
+   - `save`: Boolean indicating whether to save the image locally
+
+## Prerequisites
+
+To use this function, you need:
+
+1. An OpenAI API key with access to DALL-E 3
+2. The `sprite` package installed in your project
+3. `axios` for making HTTP requests
+4. `sharp` for image processing (if saving images locally)
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateCharacterPortrait` function:
+
+1. Import the function from the sprite package:
+
+```javascript
+import { generateCharacterPortrait } from 'sprite'
+```
+
+2. Call the function with a description and optional parameters:
+
+```javascript
+const result = await generateCharacterPortrait("A wise old wizard with a long white beard", { save: true });
+```
+
+3. The function returns an object with two properties:
+   - `image`: A base64-encoded data URL of the generated image
+   - `buffer`: A Buffer containing the image data
+
+4. You can use the returned data to display the image or process it further:
+
+```javascript
+// Display the image in an HTML img tag
+document.getElementById('characterImage').src = result.image;
+
+// Or use the buffer for further processing
+processImageBuffer(result.buffer);
+```
+
+If the `save` option is set to `true`, the function will also save the image to your local filesystem in the `assets` folder, using a filename based on the description.
+
+This function leverages advanced AI to create unique, detailed character portraits, saving time and resources in character design and visualization processes.
+
+  

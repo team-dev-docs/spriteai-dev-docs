@@ -1,0 +1,76 @@
+
+
+  # **Generate Character Portrait**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateCharacterPortrait` function allows you to create detailed, realistic character portraits based on text descriptions. It's particularly useful for:
+
+1. Game developers needing quick character visualizations
+2. Writers wanting to bring their character descriptions to life
+3. Content creators looking for unique, AI-generated character images
+
+By leveraging the power of DALL-E 3, this function produces high-quality, customized character portraits that can save time and resources in various creative projects.
+
+## What parameters or arguments are required?
+
+The function accepts two parameters:
+
+1. `description` (required): A string describing the character you want to portray.
+2. `options` (optional): An object with the following properties:
+   - `size`: The size of the generated image (default is "1024x1024")
+   - `save`: A boolean indicating whether to save the image locally (default is false)
+
+## Prerequisites
+
+To use this function, you need to:
+
+1. Have an OpenAI API key with access to DALL-E 3
+2. Install the necessary dependencies:
+   - `openai`
+   - `axios`
+   - `sharp`
+3. Set up your OpenAI configuration properly
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateCharacterPortrait` function:
+
+1. Import the function from your SDK:
+
+```javascript
+import { generateCharacterPortrait } from 'sprite'
+```
+
+2. Call the function with a character description:
+
+```javascript
+const result = await generateCharacterPortrait("A wise old wizard with a long white beard and piercing blue eyes");
+```
+
+3. Optionally, you can specify additional options:
+
+```javascript
+const result = await generateCharacterPortrait("A cyberpunk hacker with neon hair", {
+  size: "1792x1024",
+  save: true
+});
+```
+
+4. The function returns an object with two properties:
+   - `image`: A base64-encoded data URL of the generated image
+   - `buffer`: A Buffer object containing the image data
+
+5. You can use the returned image data in your application, or if you set `save: true`, find the saved image in your project's `assets` folder.
+
+This function streamlines the process of generating character portraits, allowing you to quickly visualize characters for your projects with minimal effort.
+
+  

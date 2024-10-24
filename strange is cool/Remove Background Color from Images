@@ -1,0 +1,58 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This is a function that is part of our image processing toolkit, which can be used to remove a specific background color from an image. It's particularly useful for isolating objects or creating transparent backgrounds.
+
+```javascript
+import { removeBackgroundColor } from 'image-processing-toolkit';
+```
+
+## Why should I use this function?
+
+Use this function when you need to:
+- Remove a uniform background color from an image
+- Create transparent backgrounds for sprites or icons
+- Prepare images for compositing or further processing
+
+## What parameters are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+1. `inputPath` (string): Path to the input image file
+2. `outputPath` (string): Path where the processed image will be saved
+3. `targetColor` (string): The color to be removed, in hexadecimal format (e.g., '#FFFFFF' for white)
+4. `colorThreshold` (number): Tolerance for color matching (0-255)
+
+## Prerequisites
+
+- Node.js environment
+- The `image-processing-toolkit` package installed
+- `Jimp` library (used internally for image processing)
+
+## How do I use this function?
+
+Here's a basic example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { removeBackgroundColor } from 'image-processing-toolkit';
+
+const inputPath = './input-image.png';
+const outputPath = './output-image.png';
+const targetColor = '#FFFFFF'; // White background
+const colorThreshold = 10; // Slight tolerance for color variations
+
+try {
+  await removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+  console.log('Background removed successfully!');
+} catch (error) {
+  console.error('Error removing background:', error);
+}
+```
+
+This function processes the input image, removes the specified background color, and saves the result to the output path. It handles errors for non-existent input files and other potential issues.
+
+Note: The function is asynchronous, so remember to use `await` or handle the returned promise appropriately.
+
+  

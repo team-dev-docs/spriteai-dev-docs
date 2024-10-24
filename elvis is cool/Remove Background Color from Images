@@ -1,0 +1,61 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This is a function that is part of our Node.js SDK. You can install it from NPM and import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing a uniform background.
+
+## What parameters or arguments are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The path to the input image file.
+2. `outputPath`: The path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a hexadecimal string (e.g., '#FFFFFF' for white).
+4. `colorThreshold`: A number representing the threshold for color matching. A value of 0 means exact matching.
+
+## Prerequisites
+
+- Node.js environment
+- The `sprite` package installed in your project
+- `Jimp` library for image processing
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the function from the `sprite` package.
+2. Prepare your input image and decide on an output path.
+3. Determine the target color you want to remove and set a color threshold if needed.
+4. Call the function with the required parameters.
+
+Here's an example of how to use the function:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = 'path/to/your/input/image.png'
+const outputPath = 'path/to/your/output/image.png'
+const targetColor = '#FFFFFF' // White background
+const colorThreshold = 0
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+  console.log('Background removed successfully!')
+} catch (error) {
+  console.error('Error removing background:', error)
+}
+```
+
+This function will process the input image, remove the specified background color, and save the result to the output path. If the input file doesn't exist or there's an error during processing, the function will throw an exception, which you should handle in your code.
+
+  

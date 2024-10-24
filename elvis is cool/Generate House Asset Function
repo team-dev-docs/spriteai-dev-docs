@@ -1,0 +1,64 @@
+
+
+  # **Generate House Asset**
+
+High Level
+
+This function is part of the Sprite AI SDK, which you can install from NPM and import into your project. It allows you to generate house assets based on a description.
+
+```javascript
+import { sprite } from 'sprite-ai'
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate house assets for your application or game. It's particularly useful for:
+
+- Creating dynamic content in real-estate applications
+- Populating game worlds with diverse house designs
+- Generating mock-ups for architectural visualization
+
+## What parameters or arguments are required?
+
+The `generateHouseAsset` function takes two parameters:
+
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An optional configuration object. Currently, it supports:
+   - `iterations` (number): The number of assets to generate in a single call.
+
+## Prerequisites
+
+- Node.js environment
+- Sprite AI SDK installed in your project
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateHouseAsset` function:
+
+1. Import the Sprite AI SDK in your project:
+
+   ```javascript
+   import { sprite } from 'sprite-ai'
+   ```
+
+2. Call the `generateHouseAsset` function with your desired description and options:
+
+   ```javascript
+   const description = 'A cozy two-story cottage with a red roof';
+   const options = { iterations: 1 };
+
+   try {
+     const result = await sprite.generateHouseAsset(description, options);
+     console.log(result);
+   } catch (error) {
+     console.error('Error generating house asset:', error);
+   }
+   ```
+
+3. The function returns a promise that resolves to an array of generated assets. Each asset in the array has a `data` property containing the asset information.
+
+4. You can then use the generated asset data in your application as needed, such as displaying it or saving it to a file.
+
+Remember that the function is asynchronous, so you should use `await` or handle the returned promise appropriately in your code.
+
+  

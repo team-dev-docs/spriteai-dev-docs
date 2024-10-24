@@ -1,0 +1,60 @@
+
+
+  # **Generate House Asset**
+
+High Level
+
+This function is part of our Node.js SDK that generates house assets using AI. You can import it from the `sprite` object after installing the package from NPM:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate house assets for your application. It's particularly useful for:
+
+- Creating dynamic game environments
+- Populating architectural visualization tools
+- Generating random house designs for simulations
+
+## What parameters or arguments are required?
+
+The `generateHouseAsset` function takes two parameters:
+
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An optional configuration object. Currently, it supports:
+   - `iterations` (number): The number of house assets to generate.
+
+## Prerequisites
+
+- Ensure you have installed the Sprite SDK in your project.
+- Make sure you have the necessary API credentials set up (if required by the SDK).
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function createHouse() {
+  const description = 'A two-story suburban house with a red roof';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log('Generated house asset:', result[0].data);
+  } catch (error) {
+    console.error('Error generating house asset:', error);
+  }
+}
+
+createHouse();
+```
+
+This function returns a Promise that resolves to an array of generated assets. Each asset in the array has a `data` property containing the actual asset information.
+
+Note that the function is asynchronous, so you should use `await` or `.then()` to handle the result.
+
+  

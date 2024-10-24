@@ -1,0 +1,66 @@
+
+
+  # **Generate Character Portrait**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object. To use it, you would typically import it like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+The `generateCharacterPortrait` function provides a powerful way to create detailed, realistic character portraits based on text descriptions. It leverages OpenAI's DALL-E 3 model to generate high-quality images, making it ideal for:
+
+- Game developers needing character visuals
+- Writers wanting to visualize their characters
+- Content creators seeking unique, AI-generated portraits
+
+## What parameters or arguments are required?
+
+The function accepts two parameters:
+
+1. `description` (required): A string describing the character you want to portray.
+2. `options` (optional): An object with additional settings:
+   - `size`: Image size (default: "1024x1024")
+   - `save`: Boolean to determine if the image should be saved locally
+
+## Prerequisites
+
+To use this function, you need:
+
+1. The Sprite SDK installed in your Node.js project
+2. An OpenAI API key with access to DALL-E 3
+3. Axios for HTTP requests
+4. Sharp for image processing (if saving images locally)
+
+## How do I use this function?
+
+Here's a basic example of how to use the `generateCharacterPortrait` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createPortrait() {
+  const description = "A wise old wizard with a long white beard and piercing blue eyes";
+  const options = { save: true, size: "1024x1024" };
+
+  try {
+    const result = await sprite.generateCharacterPortrait(description, options);
+    console.log("Portrait generated:", result.image);
+    // You can now use result.image (base64 string) or result.buffer (image buffer)
+  } catch (error) {
+    console.error("Error generating portrait:", error);
+  }
+}
+
+createPortrait();
+```
+
+This function will generate a portrait based on the description, optionally save it to the `assets` folder in your current working directory, and return both a base64-encoded data URL and a buffer of the image.
+
+The generated image will be in a realistic style, focusing on facial features and expressions as specified in the prompt.
+
+  

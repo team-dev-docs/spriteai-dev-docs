@@ -1,0 +1,75 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It's accessible through the `sprite` object:
+
+```javascript
+import { sprite } from 'sprite-ai'
+```
+
+## Why should I use this function?
+
+The `generateSprite` function is a powerful tool for creating game assets, particularly character sprites for walking animations. It leverages AI to generate a spritesheet based on a text description, saving time and resources in game development. This function is especially useful for:
+
+1. Rapid prototyping of game characters
+2. Creating consistent sprite styles resembling Super Nintendo graphics
+3. Automating the process of creating spritesheets for walking animations
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (required): A string describing the character you want to generate.
+2. `options` (optional): An object that can include:
+   - `iterations`: Number of sprite variations to generate
+   - `size`: Image size (default is "1024x1024")
+   - `save`: Boolean to determine if the generated image should be saved locally
+
+## Prerequisites
+
+To use this function, you need:
+
+1. Node.js environment
+2. The sprite-ai package installed
+3. OpenAI API key set up in your environment
+4. Axios for HTTP requests
+5. Sharp for image processing
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateSprite` function:
+
+1. Import the function:
+   ```javascript
+   import { sprite } from 'sprite-ai'
+   ```
+
+2. Call the function with a description and options:
+   ```javascript
+   const result = await sprite.generateSprite("a cartoon cat", {
+     iterations: 1,
+     size: "1024x1024",
+     save: true
+   });
+   ```
+
+3. The function will return an object or array (if multiple iterations) containing:
+   - `messages`: JSON object with recommended frameHeight and frameWidth
+   - `image`: Base64 encoded image data URL
+
+4. You can use the returned data to load the sprite in Phaser.js:
+   ```javascript
+   this.load.spritesheet('character', result.image, {
+     frameWidth: result.messages.content.frameWidth,
+     frameHeight: result.messages.content.frameHeight
+   });
+   ```
+
+The function generates a 6-frame spritesheet optimized for walking animations, in a 2x3 grid layout. It uses DALL-E 3 for image generation and GPT-4 Vision for analyzing the generated image to provide optimal frame dimensions.
+
+Note: The generated image is grayscale and includes a blank bottom half, adhering to the Super Nintendo style graphics.
+
+  

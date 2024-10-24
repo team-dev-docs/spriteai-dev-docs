@@ -1,0 +1,66 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It allows you to generate sprite images based on text descriptions. Import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically create sprite images for games, animations, or other visual applications. It leverages AI to generate sprites based on text descriptions, saving time and resources in the sprite creation process.
+
+## What parameters or arguments are required?
+
+The `generateSprite` function requires two parameters:
+
+1. `description` (string): A text description of the sprite you want to generate (e.g., "knight").
+2. `options` (object): An object containing configuration options, including:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+- Node.js environment
+- The sprite SDK installed via NPM
+- Access to the AI service used for sprite generation
+
+## How do I use this function?
+
+Here's an example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateSprite(description, options);
+    
+    // The result is an array of objects, each containing:
+    // - messages: Information about the generated sprite
+    // - image: The sprite image data as a base64 string
+
+    console.log(result[0].messages.content); // Log frame information
+    console.log(result[0].image); // Log base64 image data
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+The function returns an array of objects, each representing a generated sprite. Each object contains:
+
+- `messages`: An object with a `content` property containing frame information (width and height) in JSON format.
+- `image`: A base64-encoded string of the sprite image data.
+
+The generated sprite images are 1024x1024 pixels in size, which you can process further as needed for your specific use case.
+
+  

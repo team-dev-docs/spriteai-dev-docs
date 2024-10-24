@@ -1,0 +1,61 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image, making it transparent. This is particularly helpful for creating sprites or isolating objects in images for various applications such as game development, web design, or image processing tasks.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+
+1. `inputPath` (string): The path to the input image file.
+2. `outputPath` (string): The path where the processed image will be saved.
+3. `targetColor` (string): The color to be removed, specified as a CSS color string (e.g., '#FFFFFF' for white).
+4. `colorThreshold` (number, optional): The tolerance for color matching. Default is 0.
+5. `options` (object, optional): Additional options (currently not used in the function).
+
+## Prerequisites
+
+- Node.js installed on your system
+- The `sprite` package installed via NPM
+- The `jimp` library, which is used for image processing
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  const inputPath = 'path/to/your/input/image.png'
+  const outputPath = 'path/to/your/output/image.png'
+  const targetColor = '#FFFFFF' // white background
+  const colorThreshold = 10 // allow some color variation
+
+  try {
+    await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+    console.log('Background removal completed successfully!')
+  } catch (error) {
+    console.error('Error removing background:', error)
+  }
+}
+
+processImage()
+```
+
+This function uses the Jimp library to read the input image, scan through each pixel, and set the alpha channel to 0 (making it transparent) for pixels that match the target color within the specified threshold. The resulting image with the background removed is then saved to the specified output path.
+
+The color threshold parameter allows for some flexibility in color matching, which can be useful when dealing with images that have slight variations in the background color due to compression or other factors.
+
+  

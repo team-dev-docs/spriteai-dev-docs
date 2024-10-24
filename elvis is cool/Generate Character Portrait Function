@@ -1,0 +1,64 @@
+
+
+  # **Generate Character Portrait**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `generateCharacterPortrait` function allows you to create detailed, realistic character portraits based on text descriptions using DALL-E 3.
+
+## Why should I use this function?
+
+Use this function when you need to:
+- Create visual representations of characters for games, stories, or applications
+- Generate high-quality, realistic portraits based on textual descriptions
+- Obtain both base64 encoded images and image buffers for flexible usage
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+1. `description` (required): A string describing the character you want to portray
+2. `options` (optional): An object with the following properties:
+   - `size`: Image size (default: "1024x1024")
+   - `save`: Boolean indicating whether to save the image locally (default: false)
+
+## Prerequisites
+
+Before using this function, ensure you have:
+1. Installed the Sprite SDK and necessary dependencies (OpenAI, axios, sharp)
+2. Set up your OpenAI API credentials
+3. Proper file system permissions if saving images locally
+
+## How do I use this function?
+
+Here's an example of how to use the `generateCharacterPortrait` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function createPortrait() {
+  const description = "A wise old wizard with a long white beard and piercing blue eyes"
+  const options = { size: "1024x1024", save: true }
+  
+  try {
+    const result = await sprite.generateCharacterPortrait(description, options)
+    console.log("Portrait generated:", result.image)
+    // Use result.buffer for further image processing if needed
+  } catch (error) {
+    console.error("Error generating portrait:", error)
+  }
+}
+
+createPortrait()
+```
+
+This function will generate a portrait based on the description, save it locally if specified, and return both a base64 encoded image string and an image buffer. You can then use these for displaying in your application or further processing.
+
+Remember to handle potential errors and ensure you're complying with OpenAI's usage policies when using this function.
+
+  

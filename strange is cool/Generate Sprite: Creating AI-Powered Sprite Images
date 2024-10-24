@@ -1,0 +1,63 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It allows you to generate sprite images based on textual descriptions. Import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically create sprite images for games, animations, or other visual applications. It leverages AI to generate sprites based on textual descriptions, saving time and effort in manual sprite creation.
+
+## What parameters or arguments are required?
+
+The `generateSprite` function requires two parameters:
+
+1. `description` (string): A textual description of the sprite you want to generate (e.g., "knight").
+2. `options` (object): An object containing additional configuration options. Currently, it includes:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+- Node.js environment
+- The sprite SDK installed via NPM
+- Access to the AI service used for sprite generation (credentials may be required)
+
+## How do I use this function?
+
+Here's an example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+  
+  try {
+    const result = await sprite.generateSprite(description, options);
+    console.log('Sprite generated:', result);
+    // Process the generated sprite(s) as needed
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+The function returns a promise that resolves to an array of objects. Each object contains:
+
+- `messages`: An object with a `content` property containing frame information in JSON format (including `frameWidth` and `frameHeight`).
+- `image`: A base64-encoded string representing the generated sprite image.
+
+The generated image is 1024x1024 pixels, which you can process or resize as needed for your application.
+
+Note: The actual implementation may include additional error handling and configuration options not shown in the test code.
+
+  

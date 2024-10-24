@@ -1,0 +1,62 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK that you can install from NPM. It's designed to remove a specific background color from an image. You can import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+Use this function when you need to remove a specific background color from an image programmatically. It's particularly useful for:
+
+- Preparing images for further processing or analysis
+- Creating transparent backgrounds for sprites or icons
+- Cleaning up images for web or app use
+
+## What parameters are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The file path of the input image
+2. `outputPath`: The file path where the processed image will be saved
+3. `targetColor`: The color to be removed (e.g., '#FFFFFF' for white)
+4. `colorThreshold`: The tolerance for color matching (0 for exact match)
+
+## Prerequisites
+
+Before using this function, ensure you have:
+
+- Installed the SDK via NPM
+- Imported the `sprite` object in your code
+- The necessary permissions to read the input file and write the output file
+
+## How do I use this function?
+
+Here's a basic example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+const inputPath = './path/to/input/image.png';
+const outputPath = './path/to/output/image.png';
+const targetColor = '#FFFFFF'; // White background
+const colorThreshold = 0;
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+  console.log('Background removal successful!');
+} catch (error) {
+  console.error('Error removing background:', error);
+}
+```
+
+This function works asynchronously, so remember to use `await` or handle the returned Promise appropriately.
+
+Note: The function will throw an error if the input file doesn't exist, so it's a good practice to wrap the call in a try-catch block.
+
+  

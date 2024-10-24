@@ -1,0 +1,60 @@
+
+
+  # **Generate House Asset**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateHouseAsset` function allows you to create customized house assets for your projects. It's particularly useful when you need to generate unique house images programmatically, saving time and resources in asset creation for games, simulations, or other applications that require house visuals.
+
+## What parameters or arguments are required?
+
+The `generateHouseAsset` function accepts two parameters:
+
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An object containing additional settings, including:
+   - `iterations` (number): The number of house assets to generate in a single call.
+
+## Prerequisites
+
+Before using this function, ensure that:
+
+1. You have installed the Sprite SDK in your Node.js project.
+2. You have the necessary credentials or API keys set up to access the Sprite services.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function createHouseAsset() {
+  const description = 'A cozy two-story cottage with a red roof and white walls';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log('Generated house asset:', result[0].data);
+  } catch (error) {
+    console.error('Error generating house asset:', error);
+  }
+}
+
+createHouseAsset();
+```
+
+This function will generate a single house asset based on the provided description. The result is an array containing the generated asset(s), where each asset has a `data` property with the actual asset content.
+
+You can adjust the `iterations` option to generate multiple house assets in a single call. The function returns a promise, so make sure to use `async/await` or handle the promise appropriately.
+
+Remember to handle potential errors that may occur during the asset generation process.
+
+  

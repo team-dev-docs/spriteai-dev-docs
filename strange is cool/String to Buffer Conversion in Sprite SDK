@@ -1,0 +1,47 @@
+
+
+  # **String to Buffer Conversion**
+
+High Level
+
+This is a utility function exported from our Node.js SDK. You can install it from NPM and import it from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+The `stringToBuffer` function is useful when you need to convert a JavaScript string into a Buffer object. This conversion is often necessary when working with binary data, file operations, or certain Node.js APIs that expect Buffer inputs.
+
+## What parameters or arguments are required?
+
+The function takes a single parameter:
+
+- `str` (String): The input string that you want to convert to a Buffer.
+
+## Prerequisites
+
+To use this function, you need to have:
+
+1. Node.js installed in your environment.
+2. The Sprite SDK installed in your project.
+
+## How do I use this function?
+
+Here's an example of how to use the `stringToBuffer` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+const myString = "Hello, World!";
+const buffer = sprite.stringToBuffer(myString);
+
+console.log(buffer); // <Buffer 48 65 6c 6c 6f 2c 20 57 6f 72 6c 64 21>
+```
+
+This function uses the `Buffer.from()` method internally, which creates a new Buffer containing a copy of the string's UTF-8 encoded bytes. The resulting Buffer can be used in various Node.js operations that require binary data.
+
+Remember that while this function provides a convenient way to convert strings to Buffers, it's essentially a wrapper around Node.js's built-in `Buffer.from()` method. Use it when you want to maintain consistency with the Sprite SDK's API or when you prefer a more descriptive function name in your code.
+
+  

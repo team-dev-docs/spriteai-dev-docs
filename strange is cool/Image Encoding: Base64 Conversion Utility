@@ -1,0 +1,62 @@
+
+
+  # **Image Encoding Function**
+
+High Level
+
+This is a utility function that is part of a Node.js module. While it's not explicitly exported as part of an SDK, it can be used within your project after being defined or imported from the file where it resides.
+
+## Why should I use this function?
+
+The `encodeImage` function is useful when you need to convert an image file into a base64-encoded string. This is particularly helpful in scenarios where you need to:
+
+1. Send image data over networks or APIs that expect text-based input
+2. Store image data in databases that don't support binary data
+3. Embed images directly in HTML or CSS without external file references
+
+## What parameters or arguments are required?
+
+The `encodeImage` function requires one parameter:
+
+- `imagePath` (string): The file path to the image you want to encode
+
+## Prerequisites
+
+To use this function, you need to ensure:
+
+1. Node.js is installed on your system
+2. The `fs` (File System) module is available, which is a core Node.js module
+3. You have the necessary permissions to read the image file at the specified path
+
+## How do I use this function?
+
+Here's a step-by-step guide on how to use the `encodeImage` function:
+
+1. First, make sure the function is available in your project, either by defining it or importing it from the file where it's located.
+
+2. Call the function with the path to your image file:
+
+   ```javascript
+   const encodedImage = encodeImage('/path/to/your/image.jpg');
+   ```
+
+3. The function will return a base64-encoded string representing your image. You can then use this string as needed in your application.
+
+Example usage:
+
+```javascript
+const fs = require('fs');
+
+function encodeImage(imagePath) {
+  const image = fs.readFileSync(imagePath);
+  return Buffer.from(image).toString('base64');
+}
+
+// Use the function
+const encodedImage = encodeImage('./myImage.png');
+console.log(encodedImage); // Outputs the base64-encoded string
+```
+
+Remember that this function reads the entire file into memory, so be cautious when dealing with very large image files to avoid memory issues.
+
+  

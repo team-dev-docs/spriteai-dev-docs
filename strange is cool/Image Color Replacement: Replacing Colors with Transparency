@@ -1,0 +1,61 @@
+
+
+  # **Image Color Replacement Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+This function allows you to replace specific colors in an image with transparency. It's particularly useful when you need to remove backgrounds or create transparent areas in sprites or other image assets. By adjusting the color threshold, you can fine-tune the selection of colors to be made transparent.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+
+1. `image`: A Jimp image object to process
+2. `colorToReplace`: The color to be replaced with transparency (as an integer)
+3. `colorThreshold`: A threshold value to determine how close a color needs to be to the target color to be replaced
+
+## Prerequisites
+
+- Jimp library must be installed and imported in your project
+- The image to be processed should be loaded as a Jimp image object
+
+## How do I use this function?
+
+To use this function, follow these steps:
+
+1. Load your image using Jimp
+2. Determine the color you want to replace and convert it to an integer using `Jimp.rgbaToInt()`
+3. Set a color threshold value (e.g., 100)
+4. Call the function with these parameters
+
+Here's an example of how you might use this function:
+
+```javascript
+import Jimp from 'jimp';
+import { sprite } from 'sprite';
+
+Jimp.read('path/to/your/image.png')
+  .then(image => {
+    const colorToReplace = Jimp.rgbaToInt(255, 0, 0, 255); // Replace red
+    const colorThreshold = 100;
+    
+    sprite.replaceColorWithTransparency(image, colorToReplace, colorThreshold);
+    
+    return image.writeAsync('path/to/output/image.png');
+  })
+  .catch(err => {
+    console.error(err);
+  });
+```
+
+This function scans each pixel of the image, calculates the color difference between the pixel and the target color, and if the difference is within the specified threshold, it sets the pixel's alpha value to 0, making it transparent.
+
+  

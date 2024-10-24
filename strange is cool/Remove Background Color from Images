@@ -1,0 +1,62 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK that you can install from NPM and import from the sprite object `sprite` like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to remove a specific background color from an image, making it transparent. It's particularly useful for creating sprites or isolating objects in images by removing uniform backgrounds.
+
+## What parameters or arguments are required?
+
+1. `inputPath` (string): The file path of the input image.
+2. `outputPath` (string): The file path where the processed image will be saved.
+3. `targetColor` (string): The CSS color value of the background to be removed (e.g., '#FFFFFF' for white).
+4. `colorThreshold` (number, optional): The tolerance for color matching. Default is 0.
+5. `options` (object, optional): Additional options (currently unused in the provided code).
+
+## Prerequisites
+
+- Node.js environment
+- Jimp library installed (`npm install jimp`)
+
+## How do I use this function?
+
+1. Import the function from the sprite SDK:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+2. Call the function with the required parameters:
+
+```javascript
+async function processImage() {
+  try {
+    await sprite.removeBackgroundColor(
+      'input.png',
+      'output.png',
+      '#FF0000',
+      10
+    );
+    console.log('Background removed successfully');
+  } catch (error) {
+    console.error('Error removing background:', error);
+  }
+}
+
+processImage();
+```
+
+This function uses the Jimp library to process the image. It scans each pixel of the input image and compares it to the target color. If the color difference is within the specified threshold, it makes that pixel transparent. The resulting image is then saved to the specified output path.
+
+Note that the function is asynchronous, so you need to use `await` when calling it or handle the returned promise appropriately.
+
+  

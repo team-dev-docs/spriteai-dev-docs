@@ -1,0 +1,57 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing a uniform background.
+
+## What parameters or arguments are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The path to the input image file.
+2. `outputPath`: The path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a hexadecimal string (e.g., '#FFFFFF' for white).
+4. `colorThreshold`: A number indicating the tolerance for color matching. A value of 0 means exact matching.
+
+## Prerequisites
+
+- Ensure you have the Sprite SDK installed in your project.
+- The `Jimp` library should be available, as it's used for image processing.
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the function from the Sprite SDK.
+2. Prepare your input image and decide on an output path.
+3. Determine the target color you want to remove and set an appropriate color threshold.
+4. Call the function with the required parameters.
+
+Here's an example of how you might use it:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = './input-image.jpg'
+const outputPath = './output-image.jpg'
+const targetColor = '#FFFFFF' // White background
+const colorThreshold = 0
+
+await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+```
+
+This will process the image at `inputPath`, remove the white background, and save the result to `outputPath`. The function returns a Promise, so remember to use `await` or handle it with `.then()`.
+
+Note: The effectiveness of this function depends on the consistency of the background color in your input image. Complex or gradient backgrounds may require more sophisticated image processing techniques.
+
+  

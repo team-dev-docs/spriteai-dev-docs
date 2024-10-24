@@ -1,0 +1,60 @@
+
+
+  # **removeBackgroundColor Function**
+
+High Level
+
+This function is part of the Sprite AI Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing a uniform background.
+
+## What are the parameters or arguments required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. Input file path (string): The path to the image file you want to process.
+2. Output file path (string): The path where the processed image will be saved.
+3. Target color (string): The color to be removed, specified as a hex code (e.g., '#FFFFFF' for white).
+4. Color threshold (number): The tolerance level for color matching.
+
+## Prerequisites
+
+- Ensure you have the Sprite AI SDK installed in your project.
+- The input image file should exist and be accessible.
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the function from the Sprite AI SDK.
+2. Prepare the necessary parameters: input file path, output file path, target color, and color threshold.
+3. Call the function with these parameters.
+4. Handle any potential errors, as the function may throw an exception if the input file doesn't exist.
+
+Here's an example of how you might use it:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = '/path/to/input/image.png';
+const outputPath = '/path/to/output/image.png';
+const targetColor = '#FFFFFF';
+const colorThreshold = 10;
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+  console.log('Background removal completed successfully');
+} catch (error) {
+  console.error('Error removing background:', error.message);
+}
+```
+
+Note that this function works asynchronously, so you should use it with `await` or handle the returned promise appropriately. Also, be prepared to handle errors, especially for cases where the input file might not exist.
+
+  

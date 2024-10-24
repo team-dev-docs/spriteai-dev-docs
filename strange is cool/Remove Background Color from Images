@@ -1,0 +1,56 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing a uniform background.
+
+## What are the parameters or arguments required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The file path of the input image.
+2. `outputPath`: The file path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a hex code (e.g., '#FFFFFF' for white).
+4. `colorThreshold`: A number indicating the tolerance for color matching.
+
+## Prerequisites
+
+Before using this function, ensure that:
+
+1. You have installed the Sprite SDK in your Node.js project.
+2. You have the necessary permissions to read from the input file path and write to the output file path.
+3. The input image file exists and is in a supported format.
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = '/path/to/your/input/image.png';
+const outputPath = '/path/to/your/output/image.png';
+const targetColor = '#FFFFFF';  // Remove white background
+const colorThreshold = 10;  // Allow some variation in the white color
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+  console.log('Background removal completed successfully');
+} catch (error) {
+  console.error('Error removing background:', error);
+}
+```
+
+Note that this function will throw an error if the input file doesn't exist. Always wrap the function call in a try-catch block to handle potential errors gracefully.
+
+  

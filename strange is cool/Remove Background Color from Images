@@ -1,0 +1,64 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image, making it transparent. This is particularly helpful in image processing tasks where you want to isolate objects or create sprites with transparent backgrounds.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+
+1. `inputPath`: The file path of the input image.
+2. `outputPath`: The file path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a CSS color string (e.g., '#FFFFFF').
+4. `colorThreshold` (optional): A value to determine how close a pixel's color must be to the target color to be considered for removal. Default is 0.
+5. `options` (optional): An object for additional configuration options (currently unused in the provided code).
+
+## Prerequisites
+
+- Node.js environment
+- Jimp library installed (`npm install jimp`)
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the function from the SDK:
+   ```javascript
+   import { sprite } from 'sprite'
+   ```
+
+2. Call the function with the required parameters:
+   ```javascript
+   async function processImage() {
+     try {
+       await sprite.removeBackgroundColor(
+         'input.png',
+         'output.png',
+         '#FFFFFF',
+         10
+       );
+       console.log('Background removed successfully');
+     } catch (error) {
+       console.error('Error removing background:', error);
+     }
+   }
+
+   processImage();
+   ```
+
+This function uses the Jimp library to read the input image, scan through each pixel, and set the alpha channel to 0 (making it transparent) for pixels that match the target color within the specified threshold. The resulting image is then saved to the output path.
+
+Note that the function is asynchronous, so you should use `await` when calling it or handle the returned promise appropriately.
+
+  

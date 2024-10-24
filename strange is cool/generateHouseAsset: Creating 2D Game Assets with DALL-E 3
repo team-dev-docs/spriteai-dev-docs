@@ -1,0 +1,52 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateHouseAsset` function allows you to create 2D assets for your Phaser JS game using OpenAI's DALL-E 3 model. It's particularly useful when you need to generate custom house assets or other game elements based on textual descriptions.
+
+## What parameters or arguments are required?
+
+1. `description` (string): A textual description of the house or asset you want to generate.
+2. `options` (object): 
+   - `iterations` (number, optional): The number of images to generate.
+   - `size` (string, optional): The size of the generated image(s). Defaults to "1024x1024".
+
+## Prerequisites
+
+- You must have the OpenAI API set up and configured in your project.
+- The `openAiObject` should be properly initialized with your API credentials.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+const result = await sprite.generateHouseAsset("medieval stone house", {
+  iterations: 3,
+  size: "512x512"
+});
+```
+
+This will generate three 512x512 images of a medieval stone house using DALL-E 3.
+
+If you don't specify the `iterations` option, the function will generate a single image:
+
+```javascript
+const result = await sprite.generateHouseAsset("futuristic skyscraper");
+```
+
+The function returns either an array of responses (if `iterations` is specified) or a single response object containing the generated image data.
+
+Note: The function uses the DALL-E 3 model to generate images based on the provided description. The prompt is specifically tailored for creating 2D assets suitable for Phaser JS games.
+
+  

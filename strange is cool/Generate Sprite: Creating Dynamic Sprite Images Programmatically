@@ -1,0 +1,64 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It allows you to generate sprite images based on a given description. You can import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate sprite images for your game or application. It's particularly useful for creating dynamic content or when you need to generate sprites based on user input or other variables.
+
+## What parameters or arguments are required?
+
+The `generateSprite` function requires two parameters:
+
+1. `description` (string): A text description of the sprite you want to generate.
+2. `options` (object): An object containing additional options, including:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+- Node.js environment
+- The sprite SDK installed in your project
+- Sharp library for image processing
+
+## How do I use this function?
+
+Here's an example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+  
+  try {
+    const result = await sprite.generateSprite(description, options);
+    
+    if (result && result.length > 0) {
+      const { messages, image } = result[0];
+      const frameInfo = JSON.parse(messages.content);
+      
+      console.log('Frame dimensions:', frameInfo.frameWidth, 'x', frameInfo.frameHeight);
+      console.log('Generated image data:', image);
+    }
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+This function will generate a sprite based on the description "knight". The resulting image will be 1024x1024 pixels, containing the sprite frame. The function also returns frame dimension information, which you can use to properly slice and display the sprite in your application.
+
+Note that the function returns an array of results, even when generating a single sprite. This is to accommodate multiple iterations if specified in the options.
+
+  

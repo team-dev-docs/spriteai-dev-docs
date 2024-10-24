@@ -1,0 +1,54 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `generateHouseAsset` function allows you to create 2D assets for house-like structures that can be used in Phaser JS games.
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate 2D assets for houses or similar structures in your Phaser JS game. It leverages the DALL-E 3 AI model to create these assets based on your description, saving time on manual asset creation and allowing for dynamic content generation.
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (string): A description of the house or structure you want to generate.
+2. `options` (object): An optional configuration object with the following properties:
+   - `iterations` (number): The number of assets to generate.
+   - `size` (string): The size of the generated image (default: "1024x1024").
+
+## Prerequisites
+
+- You need to have the sprite SDK installed in your project.
+- An initialized `openAiObject` with proper authentication for accessing the DALL-E 3 API.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+// Generate a single house asset
+const singleHouse = await sprite.generateHouseAsset("modern two-story house with a red roof");
+
+// Generate multiple house assets
+const multipleHouses = await sprite.generateHouseAsset("Victorian-style mansion", {
+  iterations: 3,
+  size: "512x512"
+});
+```
+
+The function returns a promise that resolves to either a single response object or an array of response objects, depending on whether you specify the `iterations` option. Each response object contains the generated image data from the DALL-E 3 API.
+
+Note that the function uses the DALL-E 3 model to generate images, so the quality and accuracy of the generated assets will depend on the model's capabilities and the specificity of your description.
+
+  

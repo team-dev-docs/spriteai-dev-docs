@@ -1,0 +1,65 @@
+
+
+  # **Sprite Generation and Asset Creation**
+
+High Level
+
+This module provides functions for generating sprites and house assets using AI. It's part of our Node.js SDK that you can install from NPM and import from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use these functions?
+
+These functions allow you to programmatically generate sprite images and house assets for your game or application. By leveraging AI, you can quickly create diverse visual elements based on text descriptions, saving time in asset creation and enabling dynamic content generation.
+
+## What parameters or arguments are required?
+
+### For generateSprite:
+- `description`: A string describing the sprite you want to generate (e.g., 'knight').
+- `options`: An object containing configuration options, including:
+  - `iterations`: The number of sprite variations to generate.
+
+### For generateHouseAsset:
+- `description`: A string describing the house asset you want to generate.
+- `options`: An object containing configuration options, similar to `generateSprite`.
+
+## Prerequisites
+
+- Node.js environment
+- The `sprite` package installed via NPM
+- Sharp library for image processing
+
+## How do I use these functions?
+
+### Generating a Sprite:
+
+```javascript
+const description = 'knight';
+const options = { iterations: 1 };
+const result = await sprite.generateSprite(description, options);
+
+// Process the result
+const { messages, image } = result[0];
+const frameInfo = JSON.parse(messages.content);
+console.log(`Frame dimensions: ${frameInfo.frameWidth}x${frameInfo.frameHeight}`);
+// Use the 'image' data as needed
+```
+
+### Generating a House Asset:
+
+```javascript
+const description = 'house';
+const options = { iterations: 1 };
+const result = await sprite.generateHouseAsset(description, options);
+
+// Process the result
+const asset = result[0];
+console.log(`Asset data length: ${asset.data.length}`);
+// Use the asset data as needed
+```
+
+These functions return promises, so make sure to use `async/await` or `.then()` when calling them. The generated sprites and assets can be further processed or integrated into your game or application as required.
+
+  

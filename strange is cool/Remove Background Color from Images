@@ -1,0 +1,50 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to remove a specific background color from an image. It's particularly useful for isolating objects or creating transparent backgrounds, which is essential in image processing and graphic design tasks.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+1. `inputPath`: The file path of the input image
+2. `outputPath`: The file path where the processed image will be saved
+3. `targetColor`: The color to be removed (e.g., '#FFFFFF' for white)
+4. `colorThreshold`: The tolerance level for color matching (0 for exact match)
+
+## Prerequisites
+
+- Node.js environment
+- The Sprite SDK installed in your project
+- Jimp library for image processing (used in the test, likely required for the actual function)
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = 'path/to/input/image.jpg';
+const outputPath = 'path/to/output/image.png';
+const targetColor = '#FFFFFF'; // White background
+const colorThreshold = 0; // Exact color match
+
+await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+```
+
+This function processes the image at `inputPath`, removes the specified background color, and saves the result to `outputPath`. The `targetColor` parameter specifies which color to remove, and `colorThreshold` allows for some flexibility in color matching if needed.
+
+After calling the function, you can expect the output image to have the specified background color removed, potentially resulting in a transparent background depending on the image format used.
+
+  

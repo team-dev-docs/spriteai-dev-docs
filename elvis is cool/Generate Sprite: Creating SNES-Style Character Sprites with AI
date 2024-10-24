@@ -1,0 +1,76 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite-ai'
+```
+
+## Why should I use this function?
+
+The `generateSprite` function is designed to create sprite sheets for game characters, specifically optimized for walking animations. It utilizes AI-powered image generation to produce consistent, SNES-style sprites based on a text description. This function is particularly useful for game developers who need quick, customizable sprite assets without the need for manual pixel art creation.
+
+## What parameters or arguments are required?
+
+The function accepts two parameters:
+
+1. `description` (required): A string describing the character you want to generate.
+2. `options` (optional): An object that can include:
+   - `iterations`: Number of sprite variations to generate.
+   - `size`: Image size (default is "1024x1024").
+   - `save`: Boolean to determine if the generated image should be saved locally.
+
+## Prerequisites
+
+To use this function, you need:
+
+1. An OpenAI API key with access to DALL-E 3 and GPT-4 Vision models.
+2. Node.js installed on your system.
+3. The following npm packages installed: `openai`, `axios`, `sharp`, and `path`.
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateSprite` function:
+
+1. Import the function from the SDK:
+
+   ```javascript
+   import { sprite } from 'sprite-ai'
+   ```
+
+2. Call the function with a description and optional parameters:
+
+   ```javascript
+   const result = await sprite.generateSprite("a medieval knight", {
+     iterations: 3,
+     size: "1024x1024",
+     save: true
+   });
+   ```
+
+3. The function will return an object (or an array of objects if iterations > 1) containing:
+   - `messages`: JSON object with recommended frameWidth and frameHeight for use in Phaser.js.
+   - `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+4. You can then use this information to load the sprite sheet in your game:
+
+   ```javascript
+   this.load.spritesheet('knight', result.image, { 
+     frameWidth: result.messages.content.frameWidth, 
+     frameHeight: result.messages.content.frameHeight 
+   });
+   ```
+
+The function handles the entire process of generating the sprite sheet, including:
+- Creating a prompt for DALL-E 3 to generate the initial image.
+- Processing the image to ensure it's in the correct format (grayscale with alpha channel).
+- Using GPT-4 Vision to analyze the image and determine optimal frame dimensions.
+- Optionally saving the generated image to your local file system.
+
+This automated process saves time and ensures consistency in your sprite creation workflow, making it an invaluable tool for rapid game prototyping and development.
+
+  

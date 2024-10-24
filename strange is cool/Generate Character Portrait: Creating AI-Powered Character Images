@@ -1,0 +1,78 @@
+
+
+  # **Generate Character Portrait**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateCharacterPortrait` function allows you to create detailed, realistic character portraits based on text descriptions. This is particularly useful for:
+
+1. Game developers who need to quickly generate character visuals
+2. Writers who want to visualize their characters
+3. Content creators looking for unique, customized character images
+
+By leveraging the power of DALL-E 3, this function produces high-quality, AI-generated portraits that can save time and resources in various creative projects.
+
+## What parameters or arguments are required?
+
+The function accepts two parameters:
+
+1. `description` (required): A string describing the character you want to portray.
+2. `options` (optional): An object with additional settings:
+   - `size`: The dimensions of the generated image (default: "1024x1024")
+   - `save`: A boolean indicating whether to save the image to the local filesystem
+
+## Prerequisites
+
+To use this function, you need to:
+
+1. Have the Sprite SDK installed in your project
+2. Set up proper authentication for OpenAI API access
+3. Have the necessary dependencies installed (axios, sharp)
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateCharacterPortrait` function:
+
+1. Import the function from the Sprite SDK:
+
+   ```javascript
+   import { generateCharacterPortrait } from 'sprite'
+   ```
+
+2. Call the function with a description and optional parameters:
+
+   ```javascript
+   const result = await generateCharacterPortrait("A wise old wizard with a long white beard", {
+     size: "1024x1024",
+     save: true
+   });
+   ```
+
+3. The function returns an object with two properties:
+   - `image`: A base64-encoded data URL of the generated image
+   - `buffer`: A Buffer object containing the image data
+
+4. You can use the returned data to display the image or process it further:
+
+   ```javascript
+   // Display the image in a web environment
+   document.getElementById('portrait').src = result.image;
+
+   // Or use the buffer for further processing
+   // e.g., resize the image using sharp
+   const resizedImage = await sharp(result.buffer).resize(500, 500).toBuffer();
+   ```
+
+Note that if you set `save: true` in the options, the function will automatically save the generated image in the `assets` folder of your current working directory, using a filename based on the description.
+
+This function provides a powerful tool for creating unique character portraits on-demand, enhancing your creative workflow and adding visual depth to your projects.
+
+  

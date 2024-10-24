@@ -1,0 +1,60 @@
+
+
+  # **generateHouseAsset**
+
+High Level
+
+This is an asynchronous function that is part of our Node.js SDK. You can access it after installing the package from NPM and importing the sprite object:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateHouseAsset` function allows you to create 2D assets for use in Phaser.js games. It leverages the DALL-E 3 model to generate images based on your description, making it easier to quickly produce game assets without the need for manual design.
+
+## What parameters or arguments are required?
+
+1. `description` (string): A description of the house asset you want to generate.
+2. `options` (object): An optional configuration object with the following properties:
+   - `iterations` (number): The number of images to generate.
+   - `size` (string): The size of the generated image (default: "1024x1024").
+
+## Prerequisites
+
+- An active OpenAI API key with access to the DALL-E 3 model.
+- The `openAiObject` should be properly initialized with your API credentials.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+const sprite = require('sprite');
+
+async function generateGameAsset() {
+  const description = "medieval stone house with a thatched roof";
+  const options = {
+    iterations: 3,
+    size: "1024x1024"
+  };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log(result);
+  } catch (error) {
+    console.error("Error generating asset:", error);
+  }
+}
+
+generateGameAsset();
+```
+
+This function will generate three iterations of a medieval stone house with a thatched roof, each as a 1024x1024 image. The results will be returned as an array of responses from the DALL-E 3 API.
+
+If you don't specify the `iterations` option, the function will generate a single image and return the API response directly.
+
+Note: The generated images are intended for use in a Phaser.js game environment, so they will be optimized for 2D game graphics.
+
+  

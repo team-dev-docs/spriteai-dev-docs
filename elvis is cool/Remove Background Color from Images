@@ -1,0 +1,64 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject by eliminating a uniform background.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+1. `inputPath`: The path to the input image file
+2. `outputPath`: The path where the processed image will be saved
+3. `targetColor`: The color to be removed, specified as a hex code (e.g., '#FFFFFF')
+4. `colorThreshold`: A number indicating the tolerance for color matching
+
+## Prerequisites
+
+- Node.js environment
+- The Sprite SDK installed in your project
+- Access to the file system for reading and writing image files
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function:
+
+1. Import the function from the Sprite SDK.
+2. Prepare the input file path, output file path, target color, and color threshold.
+3. Call the function with these parameters.
+4. Handle the result using async/await or promises.
+
+Example usage:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  const inputPath = 'path/to/input/image.png';
+  const outputPath = 'path/to/output/image.png';
+  const targetColor = '#FFFFFF';
+  const colorThreshold = 0;
+
+  try {
+    await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+    console.log('Background removed successfully');
+  } catch (error) {
+    console.error('Error removing background:', error);
+  }
+}
+
+processImage();
+```
+
+Note: The function will throw an error if the input file does not exist, so it's important to handle potential errors when using this function.
+
+  

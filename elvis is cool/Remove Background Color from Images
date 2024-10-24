@@ -1,0 +1,65 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `removeBackgroundColor` function allows you to remove a specific color from an image, effectively making it transparent.
+
+## Why should I use this function?
+
+Use this function when you need to:
+- Remove a solid background color from an image
+- Create transparent images from sprites or logos with uniform backgrounds
+- Prepare images for overlaying on other backgrounds
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+1. `inputPath` (string): The file path of the input image
+2. `outputPath` (string): The file path where the processed image will be saved
+3. `targetColor` (string): The CSS color value to be removed (e.g., '#FFFFFF' for white)
+4. `colorThreshold` (number, optional): Tolerance for color matching (default: 0)
+5. `options` (object, optional): Additional options (currently unused)
+
+## Prerequisites
+
+- Node.js environment
+- The `sprite` package installed via NPM
+- The `Jimp` library (used internally by the function)
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  try {
+    await sprite.removeBackgroundColor(
+      'input/image.png',
+      'output/transparent_image.png',
+      '#FFFFFF',
+      5
+    )
+    console.log('Background removed successfully!')
+  } catch (error) {
+    console.error('Error removing background:', error)
+  }
+}
+
+processImage()
+```
+
+This function works asynchronously, so make sure to use `async/await` or handle the returned promise appropriately. The function will read the input image, process it to remove the specified color, and save the result to the output path.
+
+You can adjust the `colorThreshold` parameter to fine-tune the color removal process. A higher threshold allows for more variation in the target color, which can be useful for images with slight color variations in the background.
+
+  

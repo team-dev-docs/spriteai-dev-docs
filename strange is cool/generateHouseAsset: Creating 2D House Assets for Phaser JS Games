@@ -1,0 +1,61 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateHouseAsset` function allows you to create 2D assets for use in Phaser JS games, specifically depicting houses or building-like structures. It leverages the DALL-E 3 model to generate these assets based on your description, making it easier to quickly produce game assets without manual design work.
+
+## What parameters or arguments are required?
+
+1. `description` (string): A description of the house or building you want to generate.
+2. `options` (object): An optional parameter with the following properties:
+   - `iterations` (number): The number of assets to generate.
+   - `size` (string): The size of the generated image (default: "1024x1024").
+
+## Prerequisites
+
+- You must have the Sprite SDK installed in your project.
+- An active OpenAI API key with access to the DALL-E 3 model.
+- The `openAiObject` should be properly initialized with your API key.
+
+## How do I use this function?
+
+To use the `generateHouseAsset` function, follow these steps:
+
+1. Import the function from the Sprite SDK.
+2. Call the function with a description and optional parameters.
+3. Handle the returned promise to access the generated asset(s).
+
+Example usage:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createGameAsset() {
+  try {
+    const asset = await sprite.generateHouseAsset("modern two-story house with a red roof", {
+      iterations: 3,
+      size: "1024x1024"
+    });
+    console.log(asset);
+    // Process the generated asset(s) for your game
+  } catch (error) {
+    console.error("Error generating house asset:", error);
+  }
+}
+
+createGameAsset();
+```
+
+This function is particularly useful when you need to quickly generate multiple variations of house assets for your Phaser JS game. By specifying the `iterations` option, you can generate multiple assets in a single call, allowing for greater variety in your game environments.
+
+  

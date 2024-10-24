@@ -1,0 +1,62 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object. Here's how you can import it:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image, effectively making it transparent. This is particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing its background.
+
+## What parameters or arguments are required?
+
+The function requires the following parameters:
+
+1. `inputPath` (string): The path to the input image file.
+2. `outputPath` (string): The path where the processed image will be saved.
+3. `targetColor` (string): The color to be removed, specified as a CSS color string (e.g., '#FFFFFF' for white).
+4. `colorThreshold` (number, optional): The tolerance for color matching. Default is 0.
+5. `options` (object, optional): Additional options (currently not used in the function).
+
+## Prerequisites
+
+Before using this function, ensure that you have:
+
+1. Installed the Sprite SDK in your Node.js project.
+2. Imported the necessary modules, including Jimp for image processing.
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  try {
+    const inputPath = 'path/to/input/image.png'
+    const outputPath = 'path/to/output/image.png'
+    const targetColor = '#FFFFFF' // White background
+    const colorThreshold = 10 // Adjust this value for more or less strict color matching
+
+    await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+    console.log('Background removal complete!')
+  } catch (error) {
+    console.error('Error processing image:', error)
+  }
+}
+
+processImage()
+```
+
+This function uses the Jimp library to read the input image, scan through each pixel, and make pixels transparent if they match the specified target color within the given threshold. The resulting image with the background removed is then saved to the specified output path.
+
+Remember to handle the asynchronous nature of the function by using async/await or promises in your implementation.
+
+  

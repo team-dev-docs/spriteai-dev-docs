@@ -1,0 +1,73 @@
+
+
+  # **Character Portrait Generation**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `generateCharacterPortrait` function allows you to create detailed, realistic character portraits based on textual descriptions. It's particularly useful for:
+
+- Game developers needing quick character visualizations
+- Writers wanting to bring their character descriptions to life
+- Content creators seeking custom, AI-generated character images
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (required): A string describing the character you want to generate.
+2. `options` (optional): An object with the following properties:
+   - `size`: The size of the generated image (default: "1024x1024")
+   - `save`: A boolean indicating whether to save the image to disk (default: false)
+
+## Prerequisites
+
+To use this function, you need:
+
+1. An OpenAI API key with access to DALL-E 3
+2. The following npm packages installed:
+   - `openai`
+   - `axios`
+   - `sharp`
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateCharacterPortrait` function:
+
+1. Import the function from the sprite SDK:
+
+   ```javascript
+   import { generateCharacterPortrait } from 'sprite'
+   ```
+
+2. Call the function with a character description:
+
+   ```javascript
+   const result = await generateCharacterPortrait("a wise old wizard with a long white beard");
+   ```
+
+3. The function returns an object with two properties:
+   - `image`: A base64-encoded data URL of the generated image
+   - `buffer`: A Buffer containing the image data
+
+4. You can use the `options` parameter to customize the output:
+
+   ```javascript
+   const result = await generateCharacterPortrait("a young elf princess", {
+     size: "1792x1024",
+     save: true
+   });
+   ```
+
+   This will generate a larger image and save it to the `assets` folder in your current working directory.
+
+The function uses DALL-E 3 to generate the image, downloads it, and optionally saves it to disk. It provides both a data URL and a buffer, giving you flexibility in how you use the generated image in your application.
+
+  

@@ -1,0 +1,71 @@
+
+
+  # **generateSprite Function**
+
+High Level
+
+The `generateSprite` function is a powerful tool exported from our Node.js SDK. You can easily access it by installing the package from NPM and importing it from the `sprite` object:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+The `generateSprite` function allows you to programmatically create sprite images based on textual descriptions. This is particularly useful for:
+
+1. Generating game assets dynamically
+2. Creating placeholder images for prototyping
+3. Automating the sprite creation process in your development workflow
+
+## What parameters or arguments are required?
+
+The `generateSprite` function takes two parameters:
+
+1. `description` (string): A textual description of the sprite you want to generate (e.g., "knight").
+2. `options` (object): An optional configuration object. Currently, it supports:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+Before using the `generateSprite` function, ensure that:
+
+1. You have installed the sprite package from NPM
+2. You have the necessary dependencies, including the `sharp` library for image processing
+
+## How do I use this function?
+
+Here's a basic example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+  
+  try {
+    const result = await sprite.generateSprite(description, options);
+    
+    // Process the generated sprite
+    const { messages, image } = result[0];
+    const frameInfo = JSON.parse(messages.content);
+    
+    console.log(`Frame dimensions: ${frameInfo.frameWidth}x${frameInfo.frameHeight}`);
+    console.log(`Generated image data: ${image}`);
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+The function returns a promise that resolves to an array of results. Each result contains:
+
+- `messages`: An object with sprite information, including frame dimensions
+- `image`: A base64-encoded string representing the generated sprite image
+
+You can then use this data to display the sprite in your application or save it to a file for later use.
+
+  

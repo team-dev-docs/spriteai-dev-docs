@@ -1,0 +1,53 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK for image processing. It allows you to remove a specific background color from an image. You can access this functionality after installing the SDK from NPM and importing it like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to remove a particular background color from an image. This is especially useful for:
+- Creating transparent backgrounds for logos or product images
+- Preparing images for overlays or compositing
+- Cleaning up scanned documents or drawings
+
+## What parameters are required?
+
+The function requires the following parameters:
+1. `inputPath`: Path to the input image file
+2. `outputPath`: Path where the processed image will be saved
+3. `targetColor`: The color to be removed (e.g., '#FFFFFF' for white)
+4. `colorThreshold`: Tolerance for color matching (0 for exact match)
+
+## Prerequisites
+
+- Node.js environment
+- Sprite SDK installed (`npm install sprite`)
+- Input image file accessible on the file system
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = 'path/to/input/image.jpg'
+const outputPath = 'path/to/output/image.png'
+const targetColor = '#FFFFFF' // White background
+const colorThreshold = 0
+
+await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+```
+
+This will process the input image, remove the white background, and save the result to the specified output path. The function returns a Promise, so you can use `await` or `.then()` to handle the asynchronous operation.
+
+Note: The actual implementation may vary slightly from the test code provided. Always refer to the official documentation for the most up-to-date usage instructions.
+
+  

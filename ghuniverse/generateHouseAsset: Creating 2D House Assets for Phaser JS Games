@@ -1,0 +1,58 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `generateHouseAsset` function allows you to create 2D assets for use in Phaser JS games, specifically depicting house-like structures or environments.
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate custom 2D assets for your Phaser JS game. It's particularly useful for creating house-related game elements without the need for manual asset creation. This function leverages the DALL-E 3 model to produce high-quality, unique assets based on your descriptions.
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (string): A description of the house asset you want to generate.
+2. `options` (object): An optional configuration object with the following properties:
+   - `iterations` (number): The number of assets to generate (optional).
+   - `size` (string): The size of the generated image (default: "1024x1024").
+
+## Prerequisites
+
+Before using this function, ensure that:
+1. You have installed the sprite SDK in your Node.js project.
+2. You have set up and configured the OpenAI API client (the `openAiObject` should be properly initialized).
+3. You have the necessary API credentials and permissions to use the DALL-E 3 model.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+// Generate a single house asset
+const singleHouse = await sprite.generateHouseAsset("modern two-story house with a red roof", {
+  size: "1024x1024"
+});
+
+// Generate multiple house assets
+const multipleHouses = await sprite.generateHouseAsset("medieval castle", {
+  iterations: 3,
+  size: "512x512"
+});
+```
+
+The function returns a promise that resolves to either a single response object or an array of response objects (if `iterations` is specified). Each response object contains the generated image data from the DALL-E 3 model.
+
+Note that the function uses the DALL-E 3 model, which may have usage limits or costs associated with it. Be mindful of your API usage and any applicable rate limits or charges.
+
+  

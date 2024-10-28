@@ -1,0 +1,56 @@
+
+
+  # **Generate House Asset**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It's accessible through the `sprite` object after importing:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate house assets for your application. It's particularly useful for creating dynamic, customizable house sprites or images based on a given description.
+
+## What parameters or arguments are required?
+
+The `generateHouseAsset` function takes two parameters:
+
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An optional parameter with configuration settings. Currently, it supports:
+   - `iterations` (number): The number of assets to generate.
+
+## Prerequisites
+
+- You must have the Sprite SDK installed in your project.
+- Ensure you have the necessary API keys or authentication set up (refer to the SDK documentation for details).
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function createHouseAsset() {
+  const description = 'A cozy two-story cottage with a red roof';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log('Generated house asset:', result[0].data);
+  } catch (error) {
+    console.error('Error generating house asset:', error);
+  }
+}
+
+createHouseAsset();
+```
+
+This function returns a promise that resolves to an array of generated assets. Each asset in the array has a `data` property containing the actual asset data (likely a base64 encoded image or a buffer).
+
+Remember to handle potential errors using try/catch when working with asynchronous functions.
+
+  

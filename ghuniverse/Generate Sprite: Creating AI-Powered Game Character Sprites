@@ -1,0 +1,76 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It's designed to generate sprite sheets for game characters using AI. You can import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite-ai'
+```
+
+## Why should I use this function?
+
+The `generateSprite` function offers a powerful way to create sprite sheets for game characters using AI-generated images. It's particularly useful for:
+
+1. Rapid prototyping of game characters
+2. Creating consistent, SNES-style sprite animations
+3. Automating the sprite creation process for walking animations
+4. Generating multiple iterations of a character for variety
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (required): A string describing the character you want to generate.
+2. `options` (optional): An object with the following possible properties:
+   - `iterations`: Number of sprite variations to generate
+   - `size`: Image size (default is "1024x1024")
+   - `save`: Boolean to determine if the image should be saved locally
+
+## Prerequisites
+
+To use this function, you need:
+
+1. Node.js installed on your system
+2. The sprite-ai package installed in your project
+3. An OpenAI API key with access to DALL-E 3 and GPT-4 Vision
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `generateSprite` function:
+
+1. Import the function:
+   ```javascript
+   import { sprite } from 'sprite-ai'
+   ```
+
+2. Call the function with a description and options:
+   ```javascript
+   const result = await sprite.generateSprite("a knight in armor", {
+     iterations: 3,
+     size: "1024x1024",
+     save: true
+   });
+   ```
+
+3. The function will:
+   - Generate AI images of the character in a 2x3 grid of walking animation frames
+   - Process the image to make it grayscale
+   - Use AI to determine the optimal frameWidth and frameHeight for use in Phaser.js
+   - Return an object or array of objects (if multiple iterations) containing:
+     - `messages`: JSON object with frameWidth and frameHeight
+     - `image`: Base64-encoded image data
+
+4. You can then use this information to load the sprite sheet in your game:
+   ```javascript
+   this.load.spritesheet('character', 'path/to/saved/image.png', {
+     frameWidth: result.messages.content.frameWidth,
+     frameHeight: result.messages.content.frameHeight
+   });
+   ```
+
+This function streamlines the process of creating game-ready sprite sheets, saving time and ensuring consistency in your game's visual style.
+
+  

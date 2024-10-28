@@ -1,0 +1,57 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of the Sprite AI SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite-ai'
+```
+
+## Why should I use this function?
+
+The `generateHouseAsset` function allows you to create customized house assets for your game or application. It's particularly useful when you need to generate unique house sprites dynamically based on specific descriptions.
+
+## What parameters or arguments are required?
+
+The function requires two parameters:
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An object containing additional settings, such as:
+   - `iterations` (number): The number of assets to generate in a single call.
+
+## Prerequisites
+
+Before using this function, ensure that:
+1. You have installed the Sprite AI SDK in your project.
+2. You have properly imported the `sprite` object from the SDK.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite-ai'
+
+async function createHouseAsset() {
+  const description = 'A cozy cottage with a red roof and white walls';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log('Generated house asset:', result);
+    // Process the generated asset as needed
+  } catch (error) {
+    console.error('Error generating house asset:', error);
+  }
+}
+
+createHouseAsset();
+```
+
+The function returns a Promise that resolves to an array of generated assets. Each asset in the array is an object containing a `data` property, which holds the actual asset data (likely in a format such as base64-encoded image data).
+
+You can then use this generated asset in your game or application as needed, such as displaying it on the screen or saving it to a file.
+
+  

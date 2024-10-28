@@ -1,0 +1,62 @@
+
+
+  # **removeBackgroundColor Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is designed to remove a specified background color from an image file. This can be particularly useful in image processing tasks where you need to isolate the main subject of an image by removing its background.
+
+## What parameters are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The path to the input image file
+2. `outputPath`: The path where the processed image will be saved
+3. `targetColor`: The color to be removed, specified as a hex code (e.g., '#FFFFFF' for white)
+4. `colorThreshold`: A number indicating the tolerance for color matching
+
+## Prerequisites
+
+- Ensure you have the Sprite SDK installed in your Node.js project
+- The input image file should exist and be accessible
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the function from the Sprite SDK
+2. Prepare your input image file path
+3. Specify an output path for the processed image
+4. Define the target color to be removed
+5. Set a color threshold value
+6. Call the function with these parameters
+
+Here's an example of how you might use it:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = './path/to/your/image.png';
+const outputPath = './path/to/output/image.png';
+const targetColor = '#FFFFFF';  // Remove white background
+const colorThreshold = 10;  // Allow some variation in the white color
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+  console.log('Background removed successfully!');
+} catch (error) {
+  console.error('Error removing background:', error);
+}
+```
+
+Note: The function will throw an error if the input file doesn't exist, so it's a good practice to use try-catch when calling this function.
+
+  

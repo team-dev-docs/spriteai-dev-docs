@@ -1,0 +1,61 @@
+
+
+  # **Remove Background Color Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use this function when you need to remove a specific background color from an image, making it transparent. This is particularly useful for creating sprites or isolating objects in images for various graphical applications.
+
+## What parameters or arguments are required?
+
+The `removeBackgroundColor` function accepts the following parameters:
+
+1. `inputPath` (string): The path to the input image file.
+2. `outputPath` (string): The path where the processed image will be saved.
+3. `targetColor` (string): The color to be removed, specified as a CSS color string (e.g., '#FFFFFF' for white).
+4. `colorThreshold` (number, optional): The tolerance for color matching. Default is 0.
+5. `options` (object, optional): Additional options for image processing (currently unused).
+
+## Prerequisites
+
+- Node.js environment
+- The `sprite` package installed in your project
+- The `Jimp` library (used internally by the function)
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  const inputPath = 'path/to/input/image.png'
+  const outputPath = 'path/to/output/image.png'
+  const targetColor = '#FFFFFF' // White background
+  const colorThreshold = 10 // Allows for slight color variations
+
+  try {
+    await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+    console.log('Background removed successfully!')
+  } catch (error) {
+    console.error('Error removing background:', error)
+  }
+}
+
+processImage()
+```
+
+This function uses the Jimp library to read the input image, scan through each pixel, and make pixels transparent if they match the target color within the specified threshold. The resulting image is then saved to the output path.
+
+Note that the color threshold parameter allows for some flexibility in color matching, which can be useful when dealing with images that have slight variations in the background color due to compression or other factors.
+
+  

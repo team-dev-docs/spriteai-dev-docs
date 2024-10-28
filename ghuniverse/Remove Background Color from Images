@@ -1,0 +1,63 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image or create transparent backgrounds for sprites or icons.
+
+## What parameters or arguments are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The file path of the input image.
+2. `outputPath`: The file path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a hex string (e.g., '#FFFFFF' for white).
+4. `colorThreshold`: A threshold value to determine how closely a pixel's color should match the target color to be removed.
+
+## Prerequisites
+
+Before using this function, ensure that you have:
+
+1. Installed the Sprite AI SDK in your Node.js project.
+2. Imported the necessary modules, including `fs` and `path` from Node.js core, and `Jimp` for image processing.
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Prepare your input image file.
+2. Determine the target color you want to remove.
+3. Choose an appropriate color threshold value.
+4. Call the function with the required parameters.
+
+Here's an example of how to use the function:
+
+```javascript
+import { sprite } from 'sprite'
+import path from 'path'
+
+const inputPath = path.join(__dirname, 'input.png')
+const outputPath = path.join(__dirname, 'output.png')
+const targetColor = '#FFFFFF' // White background
+const colorThreshold = 0
+
+try {
+  await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+  console.log('Background removed successfully!')
+} catch (error) {
+  console.error('Error removing background:', error)
+}
+```
+
+This function processes the input image, removes the specified background color, and saves the result to the output path. If the input file doesn't exist or there's an error during processing, it will throw an exception that you should handle appropriately in your code.
+
+  

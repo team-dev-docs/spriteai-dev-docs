@@ -1,0 +1,66 @@
+
+
+  # **Generate Sprite**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM. It allows you to generate sprite images based on a given description. You can import it from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite-ai';
+```
+
+## Why should I use this function?
+
+Use this function when you need to programmatically generate sprite images for games, animations, or other visual applications. It simplifies the process of creating consistent, frame-based sprite images based on textual descriptions.
+
+## What parameters or arguments are required?
+
+The `generateSprite` function requires two parameters:
+
+1. `description` (string): A textual description of the sprite you want to generate (e.g., "knight").
+2. `options` (object): An object containing additional configuration options. Currently, it includes:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+- Node.js environment
+- The `sprite-ai` package installed in your project
+- Sharp library for image processing
+
+## How do I use this function?
+
+Here's an example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite-ai';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+  
+  try {
+    const result = await sprite.generateSprite(description, options);
+    
+    // The result is an array of objects, each containing:
+    // - messages: Object with sprite frame information
+    // - image: Base64 encoded image data
+    
+    console.log(result[0].messages.content); // Log frame information
+    // Process or save the image data as needed
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+The function returns a promise that resolves to an array of objects. Each object contains:
+
+- `messages`: An object with a `content` property containing JSON-stringified frame information (including `frameWidth` and `frameHeight`).
+- `image`: A base64-encoded string of the generated sprite image.
+
+The generated sprite image is 1024x1024 pixels, which you can process or resize as needed using image manipulation libraries like Sharp.
+
+  

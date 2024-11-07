@@ -1,0 +1,65 @@
+
+
+  # **generateSprite Function**
+
+High Level
+
+The `generateSprite` function is a powerful tool exported from our Node.js SDK. You can easily access it by installing the package from NPM and importing it from the `sprite` object as shown below:
+
+```javascript
+import { sprite } from 'sprite';
+```
+
+## Why should I use this function?
+
+The `generateSprite` function allows you to programmatically create sprite images based on textual descriptions. This is particularly useful for game developers, designers, or anyone needing to generate custom sprite assets dynamically. It leverages AI to interpret your description and produce a corresponding sprite image.
+
+## What parameters or arguments are required?
+
+The `generateSprite` function takes two parameters:
+
+1. `description` (string): A textual description of the sprite you want to generate (e.g., "knight").
+2. `options` (object): An optional configuration object. Currently, it supports:
+   - `iterations` (number): The number of sprite variations to generate.
+
+## Prerequisites
+
+To use this function, ensure you have:
+
+1. Installed the sprite package from NPM.
+2. Proper authentication set up (if required by the SDK).
+3. Node.js environment with support for async/await.
+
+## How do I use this function?
+
+Here's a basic example of how to use the `generateSprite` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createSprite() {
+  const description = 'knight';
+  const options = { iterations: 1 };
+  
+  try {
+    const result = await sprite.generateSprite(description, options);
+    console.log('Sprite generated:', result);
+    // Process the generated sprite(s) as needed
+  } catch (error) {
+    console.error('Error generating sprite:', error);
+  }
+}
+
+createSprite();
+```
+
+The function returns a promise that resolves to an array of objects. Each object contains:
+
+- `messages`: Includes metadata about the generated sprite, such as frame dimensions.
+- `image`: The generated sprite image in base64 format.
+
+You can then use this data to display the sprite, save it to a file, or further process it as needed for your application.
+
+Remember to handle potential errors and adjust the description and options according to your specific requirements.
+
+  

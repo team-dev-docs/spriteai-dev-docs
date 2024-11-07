@@ -1,0 +1,59 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `removeBackgroundColor` function allows you to remove a specific background color from an image.
+
+## Why should I use this function?
+
+Use this function when you need to remove a uniform background color from an image. This is particularly useful for:
+
+- Creating transparent images from those with solid color backgrounds
+- Preparing images for overlays or compositing
+- Cleaning up scanned documents or drawings
+
+## What parameters are required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The file path of the input image
+2. `outputPath`: The file path where the processed image will be saved
+3. `targetColor`: The color to be removed, specified as a hexadecimal string (e.g., '#FFFFFF' for white)
+4. `colorThreshold`: A number representing the tolerance for color matching (0 for exact match)
+
+## Prerequisites
+
+- Node.js environment
+- Sprite SDK installed (`npm install sprite`)
+- Jimp library for image processing (automatically included with Sprite SDK)
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+const inputPath = 'path/to/input/image.jpg'
+const outputPath = 'path/to/output/image.png'
+const targetColor = '#FFFFFF' // White background
+const colorThreshold = 5 // Allow slight variation in white color
+
+await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+```
+
+This will process the image at `inputPath`, remove the white background (with a small threshold for variation), and save the result to `outputPath`.
+
+Note: The function returns a Promise, so you should use `await` or `.then()` when calling it.
+
+After processing, you can verify the result by comparing it with an expected output or by visually inspecting the saved image.
+
+  

@@ -1,0 +1,57 @@
+
+
+  # **generateHouseAsset**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as shown below:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use `generateHouseAsset` when you need to programmatically create visual assets representing houses. This function is particularly useful for applications that require dynamic generation of house images, such as game development, architectural visualization tools, or real estate software.
+
+## What parameters or arguments are required?
+
+The `generateHouseAsset` function requires two parameters:
+
+1. `description` (string): A text description of the house you want to generate.
+2. `options` (object): An object containing configuration options for the asset generation. Currently, it includes:
+   - `iterations` (number): The number of house assets to generate.
+
+## Prerequisites
+
+- Ensure you have installed the Sprite SDK in your Node.js project.
+- Import the `sprite` object from the SDK in your code.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function createHouseAsset() {
+  const description = 'A cozy two-story suburban house with a red roof';
+  const options = { iterations: 1 };
+
+  try {
+    const result = await sprite.generateHouseAsset(description, options);
+    console.log('House asset generated:', result);
+    // Process the generated asset data as needed
+  } catch (error) {
+    console.error('Error generating house asset:', error);
+  }
+}
+
+createHouseAsset();
+```
+
+The function returns a Promise that resolves to an array of generated assets. Each asset in the array is an object containing a `data` property, which holds the actual asset data (likely in a format such as base64-encoded image data).
+
+Note that the function is asynchronous, so you should use `await` when calling it or handle the returned Promise appropriately.
+
+  

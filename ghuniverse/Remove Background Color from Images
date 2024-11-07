@@ -1,0 +1,61 @@
+
+
+  # **Remove Background Color**
+
+High Level
+
+This is a function that is exported from our Node.js SDK that you install from NPM and import from the sprite object `sprite` like below:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image. This can be particularly helpful in image processing tasks where you want to isolate the main subject of an image by removing a uniform background.
+
+## What are the params or arguments required?
+
+The `removeBackgroundColor` function requires the following parameters:
+
+1. `inputPath`: The file path of the input image.
+2. `outputPath`: The file path where the processed image will be saved.
+3. `targetColor`: The color to be removed, specified as a hex string (e.g., '#FFFFFF' for white).
+4. `colorThreshold`: A number indicating the tolerance for color matching.
+
+## Prerequisites
+
+Before using this function, ensure that you have:
+
+1. Installed the sprite SDK in your Node.js project.
+2. The necessary permissions to read from the input file path and write to the output file path.
+3. A valid input image file.
+
+## How do I use this function?
+
+To use the `removeBackgroundColor` function, follow these steps:
+
+1. Import the sprite SDK in your JavaScript file:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+2. Call the function with the required parameters:
+
+```javascript
+const inputPath = 'path/to/your/input/image.png';
+const outputPath = 'path/to/your/output/image.png';
+const targetColor = '#FFFFFF'; // The color you want to remove (e.g., white)
+const colorThreshold = 0; // Adjust this value for color matching tolerance
+
+await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+```
+
+3. The function will process the input image, remove the specified background color, and save the result to the output path.
+
+Note: This function is asynchronous, so make sure to use `await` when calling it or handle the returned promise appropriately.
+
+Be aware that if the input file doesn't exist, the function will throw an error. It's good practice to handle potential errors when using this function in your application.
+
+  

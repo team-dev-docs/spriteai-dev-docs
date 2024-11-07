@@ -1,0 +1,73 @@
+
+
+  # **Remove Background Color Function**
+
+High Level
+
+This function is part of our Node.js SDK that you can install from NPM and import from the sprite object `sprite` like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+The `removeBackgroundColor` function is useful when you need to remove a specific background color from an image, creating transparency. This is particularly helpful in image processing tasks such as:
+
+- Creating sprites for games or animations
+- Preparing images for overlay in graphic design
+- Cleaning up product images for e-commerce sites
+
+## What parameters or arguments are required?
+
+The function takes the following parameters:
+
+1. `inputPath` (string): The path to the input image file.
+2. `outputPath` (string): The path where the processed image will be saved.
+3. `targetColor` (string): The color to be removed, specified as a CSS color string (e.g., '#FFFFFF' for white).
+4. `colorThreshold` (number, optional): The threshold for color matching. Default is 0.
+5. `options` (object, optional): Additional options (currently unused in the provided code).
+
+## Prerequisites
+
+To use this function, you need to:
+
+1. Have Node.js installed on your system.
+2. Install the Sprite SDK via NPM.
+3. Have the Jimp library installed (it's used internally by the function).
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  try {
+    await sprite.removeBackgroundColor(
+      'input/image.png',
+      'output/transparent_image.png',
+      '#FFFFFF',
+      10
+    )
+    console.log('Background removed successfully!')
+  } catch (error) {
+    console.error('Error processing image:', error)
+  }
+}
+
+processImage()
+```
+
+In this example, the function will:
+
+1. Read the image from 'input/image.png'
+2. Remove white pixels (with a threshold of 10 to account for slight color variations)
+3. Save the resulting image with a transparent background to 'output/transparent_image.png'
+
+The function uses the Jimp library to read and process the image. It scans each pixel, compares it to the target color, and if the color difference is within the specified threshold, it makes that pixel transparent.
+
+Note: The color threshold allows for some flexibility in color matching. A higher threshold will remove colors that are similar but not exactly the same as the target color.
+
+  

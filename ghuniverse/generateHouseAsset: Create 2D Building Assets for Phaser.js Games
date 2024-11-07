@@ -1,0 +1,64 @@
+
+
+  # **generateHouseAsset Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the sprite object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `generateHouseAsset` function allows you to create 2D assets for use in Phaser.js games, specifically depicting houses or building-like structures.
+
+## Why should I use this function?
+
+Use this function when you need to dynamically generate 2D house or building assets for your Phaser.js game. It leverages the DALL-E 3 model to create custom images based on your description, saving time on manual asset creation and allowing for a wide variety of unique game elements.
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `description` (string): A description of the house or building you want to generate.
+2. `options` (object): An optional configuration object with the following properties:
+   - `iterations` (number): The number of images to generate.
+   - `size` (string): The size of the generated image (default: "1024x1024").
+
+## Prerequisites
+
+- You must have the Sprite SDK installed in your project.
+- An active OpenAI API key with access to the DALL-E 3 model.
+- The OpenAI SDK must be properly configured in your project.
+
+## How do I use this function?
+
+Here's an example of how to use the `generateHouseAsset` function:
+
+```javascript
+import { sprite } from 'sprite';
+
+async function createGameAsset() {
+  const description = "medieval stone castle with tall towers";
+  const options = {
+    iterations: 3,
+    size: "1024x1024"
+  };
+
+  try {
+    const assets = await sprite.generateHouseAsset(description, options);
+    console.log("Generated assets:", assets);
+    // Process the generated assets for use in your game
+  } catch (error) {
+    console.error("Error generating assets:", error);
+  }
+}
+
+createGameAsset();
+```
+
+This function will generate the specified number of 2D assets based on your description. If `iterations` is not provided, it will generate a single asset. The generated images are returned as an array of responses from the DALL-E 3 API, which you can then process and use in your Phaser.js game.
+
+Remember to handle the asynchronous nature of this function using async/await or promises in your game logic.
+
+  

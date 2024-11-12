@@ -4,7 +4,7 @@
 
 High Level
 
-This is a function that is exported from our Node.js SDK. You can install it from NPM and import it from the `sprite` object like this:
+This is a function that is exported from our Node.js SDK that you install from NPM and import from the sprite object `sprite` like below:
 
 ```javascript
 import { sprite } from 'sprite'
@@ -12,20 +12,20 @@ import { sprite } from 'sprite'
 
 ## Why should I use this function?
 
-The `generateHouseAsset` function allows you to programmatically create house asset images based on a given description. This is particularly useful when you need to generate multiple house assets for games, simulations, or any application that requires dynamic house imagery.
+Use this function when you need to programmatically generate house assets for your game or application. It's particularly useful for creating procedurally generated content or when you need to dynamically create house sprites based on user input or game logic.
 
 ## What parameters or arguments are required?
 
-The function requires two parameters:
+The `generateHouseAsset` function requires two parameters:
 
-1. `description`: A string that describes the house you want to generate.
-2. `options`: An object that contains additional configuration. Currently, it includes:
-   - `iterations`: The number of assets to generate (default is 1).
+1. `description` (string): A description of the house you want to generate.
+2. `options` (object): An object containing additional options. Currently, it includes:
+   - `iterations` (number): The number of assets to generate.
 
 ## Prerequisites
 
-- You must have the Sprite SDK installed in your project.
-- Ensure you have the necessary permissions and API keys set up to use the Sprite services.
+- Ensure you have installed the sprite package from NPM.
+- Import the sprite object in your JavaScript/TypeScript file.
 
 ## How do I use this function?
 
@@ -37,10 +37,11 @@ import { sprite } from 'sprite'
 async function createHouse() {
   const description = 'A cozy cottage with a red roof and white walls';
   const options = { iterations: 1 };
-
+  
   try {
     const result = await sprite.generateHouseAsset(description, options);
-    console.log('Generated house asset:', result[0].data);
+    console.log('Generated house asset:', result);
+    // Process the generated asset here
   } catch (error) {
     console.error('Error generating house asset:', error);
   }
@@ -49,10 +50,8 @@ async function createHouse() {
 createHouse();
 ```
 
-The function returns a promise that resolves to an array of asset objects. Each asset object contains a `data` property with the generated image data.
+The function returns a Promise that resolves to an array of generated assets. Each asset in the array is an object containing a `data` property, which holds the actual asset data (likely in a format suitable for rendering or further processing).
 
-Note that the function is asynchronous, so you should use `await` or `.then()` to handle the result.
-
-You can adjust the `iterations` option to generate multiple house assets in a single call. The function will return an array with the specified number of asset objects.
+Note that the function is asynchronous, so you should use `await` when calling it or handle the returned Promise appropriately.
 
   

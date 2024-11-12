@@ -1,0 +1,64 @@
+
+
+  # **Remove Background Color Function**
+
+High Level
+
+This function is part of our Node.js SDK, which you can install from NPM and import from the `sprite` object as follows:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+The `removeBackgroundColor` function is designed to remove a specific background color from an image, making it transparent.
+
+## Why should I use this function?
+
+Use this function when you need to:
+- Remove a specific background color from an image
+- Create transparent images from ones with solid color backgrounds
+- Prepare images for use in projects requiring transparency (e.g., web design, game development)
+
+## What parameters are required?
+
+The function accepts the following parameters:
+1. `inputPath` (string): Path to the input image file
+2. `outputPath` (string): Path where the processed image will be saved
+3. `targetColor` (string): CSS color value of the background to be removed (e.g., '#FFFFFF' for white)
+4. `colorThreshold` (number, optional): Tolerance for color matching (default: 0)
+5. `options` (object, optional): Additional options (currently unused)
+
+## Prerequisites
+
+- Node.js environment
+- Jimp library installed (`npm install jimp`)
+
+## How do I use this function?
+
+Here's an example of how to use the `removeBackgroundColor` function:
+
+```javascript
+import { sprite } from 'sprite'
+
+async function processImage() {
+  const inputPath = 'path/to/input/image.jpg'
+  const outputPath = 'path/to/output/image.png'
+  const targetColor = '#FFFFFF' // white background
+  const colorThreshold = 10 // slight tolerance for color variations
+
+  try {
+    await sprite.removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+    console.log('Background removed successfully!')
+  } catch (error) {
+    console.error('Error removing background:', error)
+  }
+}
+
+processImage()
+```
+
+This function uses the Jimp library to read the input image, scan through each pixel, and set the alpha channel to 0 (transparent) for pixels matching the target color within the specified threshold. The resulting image with the background removed is then saved to the specified output path.
+
+Remember to handle the returned promise appropriately, as the function is asynchronous.
+
+  

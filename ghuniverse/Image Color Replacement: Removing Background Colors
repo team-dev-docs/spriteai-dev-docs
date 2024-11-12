@@ -1,0 +1,40 @@
+
+
+  # **Image Color Replacement Function**
+
+High Level
+
+This is a function that is part of our image processing toolkit. It allows you to replace a specific color in an image with transparency. The function is typically used within a larger image manipulation process, likely as part of the `sprite` object in our SDK.
+
+## Why should I use this function?
+
+This function is particularly useful when you need to remove a specific background color from an image, effectively making it transparent. This is commonly used in sprite creation for games or web applications where you want to isolate a character or object from its background.
+
+## What are the parameters or arguments required?
+
+The function doesn't have explicit parameters in the provided code snippet, but it operates on an `image` object and uses the following variables:
+
+1. `colorToReplace`: The color you want to make transparent.
+2. `colorThreshold`: A value determining how close a pixel's color needs to be to `colorToReplace` to be considered for replacement.
+
+## Prerequisites
+
+To use this function, you need to have:
+
+1. The Jimp library installed and imported in your project.
+2. An image object created using Jimp.
+
+## How do I use this function?
+
+This function is typically used as part of a larger image processing operation. Here's a general outline of how it might be used:
+
+1. Load your image using Jimp.
+2. Define the color you want to replace and the threshold for color matching.
+3. Apply this function to your image.
+4. Save or further process the resulting image.
+
+The function scans every pixel of the image, calculates the difference between each pixel's color and the color to be replaced, and if the difference is below the threshold, it sets that pixel to transparent.
+
+Note: This function modifies the image in-place, so make sure to create a copy of your original image if you need to preserve it.
+
+  

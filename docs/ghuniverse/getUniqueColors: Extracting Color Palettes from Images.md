@@ -1,0 +1,65 @@
+
+
+  # **getUniqueColors Function**
+
+High Level
+
+This is an asynchronous function that extracts unique colors from an image. It's part of our Node.js SDK, which you can install from NPM and import from the `sprite` object like this:
+
+```javascript
+import { sprite } from 'sprite'
+```
+
+## Why should I use this function?
+
+Use `getUniqueColors` when you need to analyze the color palette of an image. This function is particularly useful for:
+
+1. Color analysis in digital art or design projects
+2. Optimizing image color schemes
+3. Creating color-based image metadata
+
+## What parameters or arguments are required?
+
+The function takes two parameters:
+
+1. `imagePath` (required): A string representing the path to the image file you want to analyze.
+2. `options` (optional): An object for additional configuration (currently unused in the provided code).
+
+## Prerequisites
+
+Before using this function, ensure you have:
+
+1. Installed the Sprite SDK in your Node.js project
+2. Imported the necessary modules (Jimp is used internally)
+
+## How do I use this function?
+
+Here's a step-by-step guide to using the `getUniqueColors` function:
+
+1. Import the function from the Sprite SDK:
+
+   ```javascript
+   import { sprite } from 'sprite'
+   ```
+
+2. Call the function with the path to your image:
+
+   ```javascript
+   const imagePath = './path/to/your/image.png'
+   const uniqueColors = await sprite.getUniqueColors(imagePath)
+   ```
+
+3. The function returns a Promise that resolves to an array of unique color integers. You can then process these colors as needed:
+
+   ```javascript
+   uniqueColors.forEach(colorInt => {
+     const rgba = Jimp.intToRGBA(colorInt)
+     console.log(`R: ${rgba.r}, G: ${rgba.g}, B: ${rgba.b}, A: ${rgba.a}`)
+   })
+   ```
+
+Note that the function ignores fully transparent pixels (alpha = 0) when collecting unique colors.
+
+The `getUniqueColors` function efficiently scans the entire image, collecting unique colors in a Set to avoid duplicates, and then returns an array of these unique colors as integer values. This approach ensures both performance and accuracy in color analysis.
+
+  

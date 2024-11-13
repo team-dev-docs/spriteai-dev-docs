@@ -1,92 +1,85 @@
 
 
-  # Getting Started with SpriteAI
+  # Getting Started with Parselmouth
 
-This guide will walk you through the process of setting up and using SpriteAI to generate sprites. Follow these steps to get started with sprite generation using SpriteAI.
-
-## Prerequisites
-
-Before you begin, make sure you have the following installed on your system:
-
-- Node.js (version 12 or higher)
-- npm (Node Package Manager)
+Parselmouth is a command-line tool for generating and managing conda to PyPI package mappings. This guide will help new users get up and running with Parselmouth.
 
 ## Installation
 
-1. Create a new directory for your SpriteAI project:
+To install Parselmouth:
 
-```bash
-mkdir spriteai-project
-cd spriteai-project
+```
+pip install parselmouth
 ```
 
-2. Initialize a new Node.js project:
+## Basic Usage
 
-```bash
-npm init -y
+Parselmouth is used via the command line. The basic structure of commands is:
+
+```
+parselmouth [command] [options]
 ```
 
-3. Install SpriteAI and its dependencies:
+To see available commands:
 
-```bash
-npm install spriteai axios jimp openai sharp
+```
+parselmouth --help
 ```
 
-## Setting Up Your Project
+## Key Features
 
-1. Create a new file named `index.js` in your project directory.
+Parselmouth has several core features:
 
-2. Add the following code to `index.js` to import the SpriteAI module:
+### Updater Producer
 
-```javascript
-import { sprite } from "spriteai";
+Generates the subdir@letter list used for mapping:
+
+```
+parselmouth updater-producer --output-dir output_index --channel conda-forge
 ```
 
-## Generating a Sprite
+### Updater
 
-Now that you have set up your project, you can start generating sprites. Here's a basic example of how to use the sprite generation functionality:
+Gets packages based on subdir@letter and saves partial mappings:
 
-1. Create a new file named `generate-sprite.js` in your project directory.
-
-2. Add the following code to `generate-sprite.js`:
-
-```javascript
-import { sprite } from "spriteai";
-
-const main = async function() {
-    const result = await sprite.generateSprite("a robot samurai cat", {save: true});
-    console.log('Sprite generation result:', result);
-}
-
-main();
+```  
+parselmouth updater noarch@s --output-dir output_index --partial-output-dir output
 ```
 
-3. Run the script using Node.js:
+### Updater Merger  
 
-```bash
-node generate-sprite.js
+Merges partial mappings into a single file:
+
+```
+parselmouth updater-merger --output-dir output
 ```
 
-This script will generate a sprite based on the prompt "a robot samurai cat" and save it to your local filesystem.
+### Check One Package
 
-## Customizing Sprite Generation
+Check mapping for a single package:
 
-You can customize the sprite generation by modifying the prompt and options passed to the `generateSprite` function. Here are some examples:
+```
+parselmouth check-one package-name-1.0.0.tar.bz2 linux-64
+```
 
-- Change the prompt to generate different types of sprites:
-  ```javascript
-  await sprite.generateSprite("a magical floating crystal", {save: true});
-  ```
+### Remove Packages
 
-- Adjust the options to control the output:
-  ```javascript
-  await sprite.generateSprite("a fierce dragon", {save: true, size: 64, format: "png"});
-  ```
+Remove packages from the index:
 
-## Next Steps
+```
+parselmouth remove linux-64 --dry-run
+```
 
-Now that you've successfully generated your first sprite using SpriteAI, you can explore more advanced features and integrate sprite generation into your projects. Refer to the SpriteAI documentation for more information on available options and advanced usage.
+## Overview of Main Features
 
-Happy sprite generating!
+- Generate conda to PyPI mappings
+- Update mappings incrementally 
+- Merge partial mappings
+- Check individual package mappings
+- Remove outdated packages
+- Support for different conda channels
+- Ability to upload results to S3
+
+Parselmouth provides a powerful set of tools for managing conda/PyPI package mappings through an easy-to-use CLI interface. Refer to the help output of each command for more detailed usage information.
 
   

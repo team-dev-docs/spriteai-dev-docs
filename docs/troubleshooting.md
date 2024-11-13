@@ -1,95 +1,104 @@
 
 
-  # SpriteAI Troubleshooting Guide
+  # Common Issues and Troubleshooting
 
-This guide covers common issues you may encounter when using SpriteAI, along with potential solutions and workarounds.
+This guide covers some common issues users may encounter when using Parselmouth, along with solutions and troubleshooting steps.
 
-## Image Generation Issues
+## Installation Problems
 
-### Problem: Sprite not generating or taking too long
+### Issue: ImportError when trying to import Parselmouth
 
-**Possible causes:**
-- Network connectivity issues
-- OpenAI API rate limits or downtime
-- Invalid API key
+**Error message:**
+```
+ImportError: No module named parselmouth
+```
 
-**Solutions:**
-1. Check your internet connection
-2. Verify your OpenAI API key is valid and has sufficient credits
-3. Try again after a few minutes if you suspect rate limiting
-4. Check [OpenAI status page](https://status.openai.com/) for any ongoing issues
+**Solution:**
+- Ensure Parselmouth is installed properly: `pip install parselmouth`
+- Check that you're using the correct Python environment where Parselmouth is installed
+- Verify the installation with `pip list | grep parselmouth`
 
-### Problem: Generated sprite doesn't match description
+### Issue: Build errors during installation
 
-**Possible causes:**
-- Ambiguous or conflicting prompt
-- Limitations of the AI model
+**Error message:** 
+```
+error: command 'gcc' failed with exit status 1
+```
 
-**Solutions:**
-1. Refine your description to be more specific and consistent
-2. Try breaking down complex characters into simpler elements
-3. Experiment with different prompt formulations
+**Solution:**
+- Make sure you have a C++ compiler installed (e.g. gcc on Linux/macOS, Visual C++ on Windows)
+- Install required development libraries: `sudo apt-get install python3-dev` on Ubuntu/Debian
+- Try installing from a pre-built wheel instead of source: `pip install --only-binary=:all: parselmouth`
 
-## Image Processing Issues
+## Runtime Errors
 
-### Problem: Incorrect frame dimensions
+### Issue: FileNotFoundError when loading sound files
 
-**Possible causes:**
-- AI misinterpretation of sprite layout
-- Inconsistent sprite sizes in generated image
+**Error message:**
+```
+FileNotFoundError: [Errno 2] No such file or directory: 'audio.wav'
+```
 
-**Solutions:**
-1. Manually adjust the `frameWidth` and `frameHeight` values in your game code
-2. Regenerate the sprite with a more explicit prompt about layout and consistency
-3. Use image editing software to standardize frame sizes if necessary
+**Solution:**
+- Check that the audio file exists in the correct path
+- Use absolute file paths instead of relative paths
+- Verify file permissions allow read access
 
-### Problem: Background not fully transparent
+### Issue: ValueError when creating a Sound object
 
-**Possible causes:**
-- Imperfect background removal
-- Color threshold too low in removeBackgroundColor function
+**Error message:**
+```
+ValueError: File format not recognized
+```
 
-**Solutions:**
-1. Adjust the `colorThreshold` parameter when calling `removeBackgroundColor`
-2. Manually touch up the sprite using image editing software
-3. Experiment with different background colors in the generation prompt
+**Solution:**
+- Ensure the audio file is in a supported format (WAV, AIFF, etc.)
+- Check if the file is corrupted by opening it in another audio program
+- Try converting the file to a different format
 
-## Game Engine Integration Issues
+## Performance Issues
 
-### Problem: Sprite not loading in Phaser
+### Issue: Slow processing of large audio files
 
-**Possible causes:**
-- Incorrect file path
-- Unsupported image format
+**Solution:**
+- Use smaller audio chunks if possible
+- Increase available memory if processing very large files
+- Consider using multi-processing for batch operations
 
-**Solutions:**
-1. Double-check the file path in your `this.load.spritesheet()` call
-2. Ensure the generated image is saved in a format Phaser supports (e.g., PNG)
-3. Verify the sprite file is in the correct assets directory
+## API Usage Problems
 
-### Problem: Animation not playing correctly
+### Issue: AttributeError when calling a Parselmouth function
 
-**Possible causes:**
-- Mismatched frame dimensions
-- Incorrect animation key or frame numbers
+**Error message:**
+```
+AttributeError: 'Sound' object has no attribute 'get_intensity'
+```
 
-**Solutions:**
-1. Confirm the `frameWidth` and `frameHeight` match the actual sprite dimensions
-2. Check your animation configuration (key, frames, frameRate, etc.)
-3. Use Phaser's debug tools to visualize sprite boundaries and frames
+**Solution:**
+- Check the Parselmouth documentation for correct method names and usage
+- Ensure you're using the latest version of Parselmouth, as method names may change
+- Verify that the object you're calling the method on is of the correct type
 
-## General Troubleshooting Tips
+## Debugging Tips
 
-1. **Enable logging:** Add console.log statements to track the progress of sprite generation and processing.
+1. Enable verbose logging:
+   ```python
+   import logging
+   logging.basicConfig(level=logging.DEBUG)
+   ```
 
-2. **Check file outputs:** Verify that files are being saved correctly in the expected locations.
+2. Check Parselmouth version:
+   ```python
+   import parselmouth
+   print(parselmouth.__version__)
+   ```
 
-3. **Update dependencies:** Ensure you're using the latest versions of OpenAI, axios, sharp, and Jimp libraries.
+3. Isolate the problem by creating a minimal reproducible example
 
-4. **Isolate the problem:** Test each step of the process separately (generation, processing, game integration) to pinpoint the issue.
+4. Consult the [Parselmouth documentation](https://parselmouth.readthedocs.io/) for proper API usage
 
-5. **Review API documentation:** Consult the OpenAI API docs for any changes or known issues with image generation.
+5. Search for similar issues on the [Parselmouth GitHub repository](https://github.com/YannickJadoul/Parselmouth/issues)
 
-If you continue to experience problems after trying these solutions, please reach out to the SpriteAI community forums or submit an issue on the project's GitHub repository.
+If you encounter persistent issues not covered here, please open an issue on the Parselmouth GitHub repository with a detailed description of the problem and steps to reproduce it.
 
   

@@ -1,61 +1,78 @@
 
 
-  # Best Practices for Using SpriteAI in Game Development
+  # Parselmouth Best Practices
 
-SpriteAI is a powerful tool for generating sprite assets for game development. Follow these best practices to use it effectively in your projects.
+Parselmouth is a powerful tool for generating conda to PyPI package mappings. Follow these best practices to use Parselmouth effectively in your workflows.
 
-## Crafting Good Sprite Descriptions
+## Optimizing Performance
 
-- Be specific and detailed in your descriptions
-- Mention key visual elements like character appearance, pose, and style
-- Specify the desired number of animation frames (e.g. "6 frames for a walking animation")
-- Reference art styles (e.g. "Super Nintendo style graphics") 
-- Describe the layout (e.g. "2 rows with 3 columns each")
+- Use the `updater_producer` command to generate the subdir@letter list before running the main updater. This pre-generates the index and reduces S3 requests.
 
-Example:
-```
-Generate 6 frames of a 24-bit character of a robot samurai cat, 
-optimized for walking animations. Style should resemble Super Nintendo graphics. 
-The frames should be two rows with 3 columns each.
-```
+- Take advantage of concurrency when processing packages:
+  ```python
+  with concurrent.futures.ThreadPoolExecutor() as executor:
+      futures = {
+          executor.submit(get_artifact_info, ...): package_name 
+          for package_name in packages
+      }
+  ```
 
-## Optimizing Generated Assets
+- Use asynchronous uploads when pushing data to S3:
+  ```python 
+  asyncio.run(upload_to_s3(names_mapping))
+  ```
 
-- Use the `greyscale()` option to simplify the color palette
-- Specify image size with the `size` option (e.g. "1024x1024")
-- Use `sharp` for post-processing like adding alpha channels
-- Save iterations with the `save` option to compare results
-- Use `getUniqueColors()` to analyze the color palette
+- Set appropriate pool sizes for S3 connections:
+  ```python
+  config = botocore.client.Config(max_pool_connections=50)
+  ```
 
-Example:
-```javascript
-let grayImageBuffer = await sharp(imgBuffer)
-  .ensureAlpha()
-  .greyscale()
-  .toBuffer()
-```
+## Managing Large Mappings
 
-## Integrating with Phaser JS
+- Process mappings in batches by subdir and letter:
+  ```
+  parselmouth updater noarch@a
+  parselmouth updater linux-64@b
+  ```
 
-- Use the generated frameWidth and frameHeight for loading spritesheets
-- Convert the image to a base64 data URL for easy loading
-- Use Phaser's spritesheet loading function with the correct dimensions
+- Use partial output files to break up large mappings:
+  ```python
+  partial_json_name = f"{subdir}@{letter}.json"
+  ```
 
-Example:
-```javascript
-this.load.spritesheet('character', 
-  'data:image/jpeg;base64,' + base64Image, 
-  { frameWidth: 115, frameHeight: 380 }
-);
-```
+- Leverage the `updater_merger` command to combine partial mappings into a single file.
 
-## General Tips
+- Store mappings compressed in S3 and decompress on-demand to reduce storage and transfer costs.
 
-- Experiment with multiple iterations using the `iterations` option
-- Save generated assets for reuse to avoid unnecessary API calls
-- Use the Vision API to analyze generated images for dimensions
-- Process images to remove backgrounds or adjust colors as needed
+## Integration into Workflows  
 
-By following these best practices, you can effectively leverage SpriteAI to generate high-quality, optimized sprite assets for your game development projects.
+- Use environment variables for configuration:
+  ```python
+  load_dotenv()
+  account_id = os.getenv("R2_PREFIX_ACCOUNT_ID")
+  ```
+
+- Leverage the CLI for easy integration into CI/CD pipelines:
+  ```
+  parselmouth updater-producer --channel conda-forge
+  parselmouth updater linux-64@a --upload
+  ```
+
+- Use the `check_one` command to verify individual package mappings:
+  ```
+  parselmouth check-one package-1.0-py39.conda linux-64
+  ```
+
+- Implement the `YankConfig` to control which packages should be excluded from mappings.
+
+- Use the `update_mapping` and `update_mapping_legacy` commands to keep repository files up-to-date.
+
+## Best Practices for Specific Scenarios
+
+- For .conda packages, prefer the `STREAMED` backend.
+- For .tar.bz2 packages on conda-forge, use the `OCI` backend.
+- For .tar.bz2 packages on other channels like PyTorch, fall back to `STREAMED`.
+
+By following these best practices, you can optimize Parselmouth's performance, manage large-scale mappings efficiently, and seamlessly integrate it into your existing package management workflows.
 
   

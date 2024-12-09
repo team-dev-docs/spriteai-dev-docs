@@ -1,0 +1,33 @@
+// ai-banner.scss
+
+.banner {
+    border-radius: 1rem;
+    
+    // Dark mode styles (default)
+    @media (prefers-color-scheme: dark) {
+      border: 1px solid #DD7BFF;
+      background-color: #0A0A0A;
+      box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.30),
+                  0px 12px 24px 0px rgba(0, 0, 0, 0.20);
+    }
+  
+    // Light mode styles
+    @media (prefers-color-scheme: light) {
+      border: 1px solid #7984eb;
+      background-color: #FFFFFF;
+      box-shadow: 0px 4px 8px 0px rgba(147, 51, 234, 0.10),
+                  0px 12px 24px 0px rgba(147, 51, 234, 0.05);
+    }
+  
+    // Button grid layout
+    .banner-grid {
+      @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-4;
+    }
+  
+    // Banner buttons
+    .banner-button {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }

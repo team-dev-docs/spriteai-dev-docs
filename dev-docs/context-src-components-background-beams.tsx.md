@@ -54,7 +54,7 @@ Here's a concise explanation of the `className` parameter in the given code snip
 
 Example usage:
 
-// Defining the component export const BackgroundBeams = ({ className }: { className?: string }) => { return \<div className={\`background-beams ${className || ''}\`}>...\</div>; }; // Using the component \<BackgroundBeams className="custom-class" />
+``// Defining the component export const BackgroundBeams = ({ className }: { className?: string }) => { return <div className={`background-beams ${className || ''}`}>...</div>; }; // Using the component <BackgroundBeams className="custom-class" />``
 
 In this example, "custom-class" would be added to the component's existing classes.
 

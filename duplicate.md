@@ -6,7 +6,17 @@
 
 **Last Updated at:** 8/9/2024, 1:01:33 PM
 
-The BackgroundBeams component generates a dynamic visual effect of animated beams or lines using SVG paths, gradients, and Framer Motion animations, resulting in a flowing background that can be customized through className props.
+Here's a concise explanation of the BackgroundBeams component in 3-5 bullet points:
+
+• This component creates a visual effect of animated beams or lines using SVG paths.
+
+• It renders a series of paths with gradient animations, creating a dynamic, flowing background effect.
+
+• The component uses the Framer Motion library for animations, applying different timing and easing to each path for a varied, organic look.
+
+• It accepts a className prop for custom styling and positioning.
+
+• The effect is created using a combination of SVG paths, linear gradients, and radial gradients, all animated to create a flowing, beam-like appearance.
 
 ***
 

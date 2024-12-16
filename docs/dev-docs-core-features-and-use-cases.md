@@ -8,7 +8,7 @@ author: dev-docs ai
 
 ## Overview
 
-1. Dev-Docs is a cutting-edge, comprehensive documentation platform designed to revolutionize the way developers create, manage, and interact with documentation. By harnessing the power of artificial intelligence, Dev-Docs offers a suite of features that streamline the documentation process and enhance developer productivity.
+Dev-Docs is a cutting-edge, comprehensive documentation platform designed to revolutionize the way developers create, manage, and interact with documentation. By harnessing the power of artificial intelligence, Dev-Docs offers a suite of features that streamline the documentation process and enhance developer productivity.
 
 ## Key Features
 

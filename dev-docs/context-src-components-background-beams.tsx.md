@@ -22,7 +22,7 @@ Here's a concise explanation of the BackgroundBeamsDemo component:
 
 \--
 
-# BackgroundBeams /src/components/background-beams.tsx
+## BackgroundBeams /src/components/background-beams.tsx
 
 ## Imported Code Object
 

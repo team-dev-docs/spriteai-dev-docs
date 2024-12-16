@@ -14,11 +14,11 @@ Dev-Docs is a cutting-edge, comprehensive documentation platform designed to rev
 
 ### AI-Assisted Documentation Generation
 
-* Automatically generate documentation stubs from code
+1. Automatically generate documentation stubs from code
 
-* Intelligent suggestions for improving documentation clarity and completeness
+2. Intelligent suggestions for improving documentation clarity and completeness
 
-* Natural language processing to ensure consistent terminology and style
+3. Natural language processing to ensure consistent terminology and style
 
 ### Advanced Query System
 

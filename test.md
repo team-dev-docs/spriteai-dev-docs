@@ -8,7 +8,7 @@ test content
 
 testtest
 
-# **Summary of Old Content**
+# Summary of Old Content
 
 The previous content indicated:
 

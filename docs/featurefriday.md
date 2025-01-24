@@ -1,1 +1,1 @@
-# HEY YEAH IT IS FRIDAY
+# Feature Friday

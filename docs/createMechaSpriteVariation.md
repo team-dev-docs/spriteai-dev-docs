@@ -2,11 +2,11 @@
 
 ## Brief Description
 
-`createMechaSpriteVariation` is a method of the sprite object that generates a mechanized variation of a given sprite using AI-powered image processing techniques.
+`createMechaSpriteVariation` is a method that generates a mechanical variation of a given sprite using AI-powered image processing techniques. This function is part of the sprite object and allows for the creation of robotic or mechanical versions of existing pixel art sprites.
 
 ## Usage
 
-To use `createMechaSpriteVariation`, import it from the sprite module and call it with a description of the character you want to generate, along with optional mecha options and general options.
+To use `createMechaSpriteVariation`, import it from the sprite module and call it with a description of the character you want to generate and optional mecha customization options.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
@@ -19,18 +19,18 @@ const result = await sprite.createMechaSpriteVariation(description, mechaOptions
 - `description` (string, required): A text description of the character to generate.
 - `mechaOptions` (object, optional):
   - `armorLevel` (number): Amount of mechanical armor coverage (0-1, default: 0.5).
-  - `glowEffects` (boolean): Whether to add energy/tech glow effects (default: true).
+  - `glowEffects` (boolean): Add energy/tech glow effects (default: true).
   - `colorScheme` (string): Color scheme for the mecha variation ('chrome', 'neon', or 'industrial', default: 'chrome').
   - `appendages` (number): Number of additional mechanical parts (default: 2).
-  - `techLevel` (string): Technology level of the mecha ('basic', 'advanced', or 'futuristic', default: 'advanced').
-- `options` (object, optional): General options for sprite generation (same as `generateSprite`).
+  - `techLevel` (string): Technological advancement level ('basic', 'advanced', or 'futuristic', default: 'advanced').
+- `options` (object, optional): Additional options for sprite generation (same as `generatePixelArt`).
 
 ## Return Value
 
-Returns an object containing:
+Returns a Promise that resolves to an object containing:
 
-- `original`: Base64-encoded image data URL of the original generated sprite.
-- `mechaVariation`: Base64-encoded image data URL of the mechanized variation.
+- `original`: Base64-encoded image data URL of the original sprite.
+- `mechaVariation`: Base64-encoded image data URL of the generated mecha variation.
 - `settings`: Object containing the applied mecha transformation settings.
 
 ## Examples
@@ -38,13 +38,13 @@ Returns an object containing:
 1. Generate a basic mecha variation:
 
 ```javascript
-const result = await sprite.createMechaSpriteVariation("A humanoid robot");
+const result = await sprite.createMechaSpriteVariation("A cartoon robot");
 console.log(result.original);
 console.log(result.mechaVariation);
 console.log(result.settings);
 ```
 
-2. Generate a futuristic neon mecha variation:
+2. Generate a customized mecha variation:
 
 ```javascript
 const mechaOptions = {
@@ -55,14 +55,19 @@ const mechaOptions = {
   techLevel: 'futuristic'
 };
 
-const result = await sprite.createMechaSpriteVariation("A cyborg warrior", mechaOptions);
+const result = await sprite.createMechaSpriteVariation("A medieval knight", mechaOptions);
 console.log(result.mechaVariation);
 ```
 
-## Notes or Considerations
+## Notes and Considerations
 
 - The function uses AI models to generate and process images, which may result in varying outputs for the same input.
-- The mecha transformation applies various effects such as color inversion, metallic texturing, and glow effects based on the specified options.
-- The function may take some time to complete due to image processing operations.
-- Ensure that you have the necessary dependencies (sharp, Jimp) installed in your project.
-- The quality and consistency of the mecha variations may depend on the initial sprite generation and the complexity of the description.
+- The mecha transformation applies various effects such as color inversion, metallic textures, and glow effects to create a mechanical appearance.
+- The `armorLevel` parameter controls the intensity of the mechanical transformation, with higher values resulting in more robotic appearances.
+- Different `colorScheme` options provide distinct visual styles:
+  - 'chrome': Metallic, reflective appearance
+  - 'neon': Bright, glowing cyber aesthetic
+  - 'industrial': Muted, utilitarian look
+- The `techLevel` parameter influences the complexity and detailing of the mechanical elements added to the sprite.
+- This function builds upon the `generatePixelArt` method, so all options available for that method can also be used here.
+- Processing time may vary depending on the complexity of the original sprite and the selected mecha options.

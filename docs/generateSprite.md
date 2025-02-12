@@ -1,49 +1,65 @@
-# generateSprite Documentation
+# generateSpriteWithBorder
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+
+`generateSpriteWithBorder` is a function that generates a pixel art sprite with a customizable border around it. It builds on the existing `generatePixelArt` function to create a sprite and then adds a border of specified color and thickness.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+To use `generateSpriteWithBorder`, import it from the sprite module and call it with a description of the character you want to generate, along with border options.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const result = await sprite.generateSpriteWithBorder(description, borderColor, borderThickness, options);
 ```
 
 ## Parameters
+
 - `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `borderColor` (object, optional): An object specifying the RGBA values for the border color. Default is black (r: 0, g: 0, b: 0, alpha: 255).
+- `borderThickness` (number, optional): The thickness of the border in pixels. Default is 1.
+- `options` (object, optional): Additional options passed to the underlying `generatePixelArt` function.
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+Returns an object containing:
+- `original`: Base64-encoded image data URL of the original generated sprite without a border.
+- `bordered`: Base64-encoded image data URL of the sprite with the added border.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Generate a sprite with default black border:
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const result = await sprite.generateSpriteWithBorder("A pixelated robot");
+console.log(result.original);
+console.log(result.bordered);
 ```
 
-2. Generate multiple variations:
+2. Generate a sprite with a custom red border of 2 pixels:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+const borderColor = { r: 255, g: 0, b: 0, alpha: 255 };
+const borderThickness = 2;
+const result = await sprite.generateSpriteWithBorder("A cartoon cat", borderColor, borderThickness);
+console.log(result.bordered);
+```
+
+3. Generate a sprite with a semi-transparent blue border and custom options:
+
+```javascript
+const borderColor = { r: 0, g: 0, b: 255, alpha: 128 };
+const borderThickness = 1;
+const options = { size: "512x512" };
+const result = await sprite.generateSpriteWithBorder("A fantasy dragon", borderColor, borderThickness, options);
+console.log(result.bordered);
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+
+- The function uses AI models to generate the initial sprite, so results may vary for the same input.
+- The border is added after the sprite generation, ensuring it doesn't interfere with the original pixel art.
+- The border color can be fully or partially transparent by adjusting the alpha value.
+- The function returns both the original and bordered versions, allowing for comparison or further processing if needed.
+- Ensure that the border thickness is appropriate for the sprite size to avoid obscuring too much of the original image.

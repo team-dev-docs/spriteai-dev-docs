@@ -1,0 +1,109 @@
+# Advanced Customization Guide for SpriteAI
+
+This guide covers advanced techniques for customizing and extending the functionality of the SpriteAI library. It is intended for experienced users who want to go beyond the basic API capabilities.
+
+## Table of Contents
+
+1. Creating Custom Effects
+2. Modifying Existing Generation Algorithms  
+3. Integrating with Other Tools and Workflows
+
+## 1. Creating Custom Effects
+
+SpriteAI provides a flexible framework for creating custom visual effects. To create a new effect:
+
+1. Define a new async function in index.js that takes an image buffer as input and returns a modified buffer.
+
+2. Implement your effect logic using the Sharp image processing library.
+
+3. Add a new method to the `sprite` object that calls your effect function.
+
+Example:
+
+```javascript
+async function myCustomEffect(imageBuffer, options) {
+  // Implement effect using Sharp
+  return modifiedBuffer;
+}
+
+sprite.addMyCustomEffect = async function(description, options) {
+  const baseSprite = await this.generatePixelArt(description);
+  const imgBuffer = Buffer.from(baseSprite.image.split(',')[1], 'base64');
+  const effectBuffer = await myCustomEffect(imgBuffer, options);
+  
+  return {
+    original: baseSprite.image,
+    effect: `data:image/png;base64,${effectBuffer.toString('base64')}`
+  };
+}
+```
+
+## 2. Modifying Existing Generation Algorithms
+
+To modify the core sprite generation algorithms:
+
+1. Locate the relevant generation function in index.js (e.g. `generatePixelArt`, `generateIsometric`, etc.)
+
+2. Copy the existing function and rename it (e.g. `generateCustomPixelArt`)
+
+3. Modify the prompt construction, image processing steps, or other logic as needed
+
+4. Update or add a new method to the `sprite` object to use your custom generator
+
+Example:
+
+```javascript
+async function generateCustomPixelArt(description, options) {
+  // Modified version of generatePixelArt
+  // ...
+}
+
+sprite.generateCustomPixelArt = async function(description, options) {
+  // Wrapper method calling the custom generator
+  // ...
+}
+```
+
+## 3. Integrating with Other Tools and Workflows
+
+SpriteAI can be integrated into larger workflows and tools:
+
+### Exporting for Game Engines
+
+Create export functions for popular game engines:
+
+```javascript
+sprite.exportForUnity = async function(description, options) {
+  const spriteData = await this.generatePixelArt(description, options);
+  // Convert to Unity-compatible format
+  // ...
+  return unityAsset;
+}
+```
+
+### Batch Processing
+
+Implement batch processing for multiple sprites:
+
+```javascript
+sprite.generateBatch = async function(descriptions, options) {
+  const results = await Promise.all(
+    descriptions.map(desc => this.generatePixelArt(desc, options))
+  );
+  return results;
+}
+```
+
+### Custom API Endpoints
+
+If using SpriteAI in a web application, create custom API endpoints:
+
+```javascript
+app.post('/api/custom-sprite', async (req, res) => {
+  const { description, effect, options } = req.body;
+  const result = await sprite[effect](description, options);
+  res.json(result);
+});
+```
+
+By leveraging these advanced customization techniques, you can tailor SpriteAI to your specific needs and integrate it seamlessly into your development workflow.

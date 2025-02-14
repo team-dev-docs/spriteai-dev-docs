@@ -1,94 +1,96 @@
 # Sprite Generation Guide
 
-This guide provides detailed instructions on how to use the sprite generation features in our library. It covers generating basic sprites, applying effects, and creating animated sprites.
+This guide provides detailed instructions on how to use the sprite generation features in our library. You can generate basic sprites, apply various effects, and create animated sprites.
 
 ## Table of Contents
-1. Basic Sprite Generation
-2. Applying Effects
-3. Creating Animated Sprites
-4. Customization Options
+1. [Generating Basic Sprites](#generating-basic-sprites)
+2. [Applying Effects](#applying-effects)
+3. [Creating Animated Sprites](#creating-animated-sprites)
+4. [Customization Options](#customization-options)
 
-## 1. Basic Sprite Generation
+## Generating Basic Sprites
 
-To generate a basic sprite, use the `generatePixelArt` function:
+To generate a basic sprite, use the `generateSprite` function:
 
 ```javascript
-const result = await sprite.generatePixelArt("a red apple", {
-  size: "64x64"
+const result = await sprite.generateSprite("a cute cat", {
+  size: "256x256",
+  save: true
 });
 ```
 
-This will return an object containing the generated sprite image in base64 format.
+This will generate a sprite of a cute cat and save it to the assets folder.
 
-## 2. Applying Effects
+## Applying Effects
 
 You can apply various effects to your sprites:
 
 ### Add Outline
 ```javascript
-const result = await sprite.addOutline("a red apple", {
-  color: { r: 0, g: 0, b: 0, alpha: 255 },
-  thickness: 1
+const outlined = await sprite.addOutline("a cute cat", {
+  color: { r: 255, g: 0, b: 0, alpha: 255 },
+  thickness: 2
 });
 ```
 
 ### Create Glitch Art
 ```javascript
-const result = await sprite.createGlitchArt("a red apple", {
-  sortMode: 'brightness',
-  noiseAmount: 10
+const glitched = await sprite.createGlitchArt("a cute cat", {
+  sortMode: "brightness",
+  noiseAmount: 15
 });
 ```
 
 ### Add Shadow
 ```javascript
-const result = await sprite.addShadow("a red apple", {
+const shadowed = await sprite.addShadow("a cute cat", {
   opacity: 0.5,
-  blur: 3,
-  offsetX: 5,
-  offsetY: 5
+  blur: 5,
+  offsetX: 10,
+  offsetY: 10
 });
 ```
 
-## 3. Creating Animated Sprites
+## Creating Animated Sprites
 
 To create animated sprites:
 
-### Generate Sprite Animation
+### Generate Spritesheet
 ```javascript
-const result = await sprite.createSpriteAnimation("a walking cat", 4, {
-  steps: 3
+const spritesheet = await sprite.generateCharacterSpritesheet("adventurer", {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  size: '1024x1024'
 });
 ```
 
-### Add Wave Effect
+### Create Wave Effect Animation
 ```javascript
-const result = await sprite.addWaveEffect("a flag", {
+const waveEffect = await sprite.addWaveEffect("ocean waves", {
   intensity: 20,
   frames: 10
 });
 ```
 
-## 4. Customization Options
+## Customization Options
 
-Most functions accept an `options` object that can include:
+Many functions accept custom options for fine-tuning the output:
 
-- `size`: Output size (e.g., "64x64")
-- `save`: Boolean to save the sprite to disk
+- `size`: Dimensions of the output image (e.g., "256x256")
+- `save`: Boolean to determine if the sprite should be saved to disk
+- `scale`: Scaling factor for the sprite
 - `rotate`: Rotation angle in degrees
-- `tint`: Color tint to apply
-- `scale`: Scale factor for the sprite
+- `tint`: Color tint to apply to the sprite
 
 Example with custom options:
-
 ```javascript
-const result = await sprite.generatePixelArt("a blue car", {
-  size: "128x128",
+const customSprite = await sprite.generateSprite("a majestic dragon", {
+  size: "512x512",
   save: true,
+  scale: 1.5,
   rotate: 45,
-  tint: { r: 0, g: 0, b: 255 },
-  scale: 1.5
+  tint: { r: 100, g: 150, b: 200 }
 });
 ```
 
-Refer to individual function documentation for specific customization options available for each effect or animation type.
+Refer to the specific function documentation for more detailed customization options available for each effect or generation method.

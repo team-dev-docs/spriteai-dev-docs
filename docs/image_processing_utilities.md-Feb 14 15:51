@@ -1,0 +1,70 @@
+# Image Processing Utilities
+
+This document describes various utility functions for processing sprite images and creating special effects.
+
+## rotateSpritesheet(inputBuffer, degrees)
+
+Rotates a spritesheet image by the specified number of degrees.
+
+- `inputBuffer`: Buffer containing the image data
+- `degrees`: Number of degrees to rotate
+
+Returns a Buffer with the rotated image.
+
+## tintSprite(inputBuffer, color)
+
+Applies a color tint to a sprite image.
+
+- `inputBuffer`: Buffer containing the image data  
+- `color`: Color to tint the sprite with
+
+Returns a Buffer with the tinted image.
+
+## createParticleEffect(imageBuffer, particleCount)
+
+Generates particle effects from a sprite image.
+
+- `imageBuffer`: Buffer containing the sprite image
+- `particleCount`: Number of particles to generate (default 10)
+
+Returns an array of Buffers, each containing a particle image.
+
+## flipSprite(imageBuffer, direction)
+
+Flips a sprite horizontally or vertically.
+
+- `imageBuffer`: Buffer containing the sprite image
+- `direction`: Either 'horizontal' or 'vertical' (default 'horizontal')
+
+Returns a Buffer with the flipped image.
+
+## createColorCyclingAnimation(imageBuffer, colorShift)
+
+Creates a color cycling animation from a sprite image.
+
+- `imageBuffer`: Buffer containing the sprite image
+- `colorShift`: Amount to shift the hue for each frame (default 30)
+
+Returns an array of Buffers, each containing a frame of the animation.
+
+## combineSprites(spriteBufferA, spriteBufferB, position)
+
+Combines two sprite images into one.
+
+- `spriteBufferA`: Buffer containing first sprite image
+- `spriteBufferB`: Buffer containing second sprite image  
+- `position`: How to combine the sprites - 'overlay', 'side-by-side', or 'stacked'
+
+Returns a Buffer with the combined image.
+
+## generateOutline(imageBuffer, outlineColor, thickness)
+
+Generates an outline around a sprite image.
+
+- `imageBuffer`: Buffer containing the sprite image
+- `outlineColor`: Color for the outline
+- `thickness`: Thickness of the outline in pixels
+
+Returns a Buffer with the outlined image.
+
+These utility functions can be used in combination with the main sprite generation functions to create various effects and modifications to sprite images. For example, you could generate a base sprite, then rotate it, add an outline, and combine it with another sprite to create a more complex game asset.

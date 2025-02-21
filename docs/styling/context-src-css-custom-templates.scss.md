@@ -1,37 +1,49 @@
-# Custom Templates Styling
+# Custom Templates Styling (SCSS)
 
-This file (`context-src-css-custom-templates.scss`) contains SCSS styles for custom templates used in the application. It provides a set of reusable styles and components that can be applied to various custom template elements.
+This file contains SCSS styles specifically for custom templates used in the application.
+
+## File Location
+
+`src/css/custom-templates.scss`
+
+## Purpose
+
+The purpose of this file is to define styles that are unique to custom templates, separate from the main application styles. This separation allows for easier maintenance and organization of template-specific styles.
 
 ## Usage
 
-To use these styles, import this file into your main SCSS file:
+To add or modify styles for custom templates:
 
-```scss
-@import 'custom-templates';
-```
-
-## Key Components
-
-1. **Template Container**: Provides a base structure for custom templates.
-2. **Header Styles**: Defines styles for template headers.
-3. **Content Area**: Styles for the main content area of templates.
-4. **Footer**: Styling for template footers.
-
-## Customization
-
-To customize these styles, you can override the variables defined at the top of the file. For example:
-
-```scss
-$template-background: #f5f5f5;
-$header-color: #333333;
-```
+1. Open the `custom-templates.scss` file.
+2. Locate the relevant section or create a new one for your template.
+3. Add or modify the SCSS rules as needed.
+4. Compile the SCSS to CSS for use in the application.
 
 ## Best Practices
 
-1. Maintain a consistent naming convention for classes and variables.
-2. Use SCSS features like nesting and mixins to keep your code DRY and maintainable.
-3. Comment your code to explain complex selectors or styles.
+- Use semantic class names that describe the purpose or content of the element.
+- Leverage SCSS features such as variables, mixins, and nesting for efficient and maintainable code.
+- Follow the established naming conventions and structure of the existing styles.
+- Ensure cross-device and cross-browser compatibility by thoroughly testing changes on various platforms.
+- Familiarize yourself with SCSS fundamentals to maximize the benefits of its advanced features, including variables, mixins, and nesting capabilities.
 
-## Important Notes
+## Example
 
-It is crucial to thoroughly test any changes across various devices and browsers to ensure compatibility and responsiveness. Familiarity with SCSS and its advanced features such as variables, mixins, and nesting is recommended to fully leverage its capabilities in this context.
+```scss
+.custom-template {
+  .header {
+    font-size: 24px;
+    color: $primary-color;
+  }
+
+  .content {
+    padding: 20px;
+    background-color: $light-gray;
+  }
+}
+```
+
+## Notes
+
+- This file is specifically for custom template styles. For global styles, use the appropriate global SCSS files.
+- Always consider the impact of your changes on the overall design and user experience of the application.

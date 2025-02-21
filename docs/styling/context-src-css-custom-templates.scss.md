@@ -1,50 +1,33 @@
-# custom-templates.scss
+# Custom Templates Styling
 
-## Overview
+This SCSS file contains custom styles for various templates used throughout the application. It's important to maintain consistency and follow best practices when modifying these styles.
 
-The `custom-templates.scss` file is part of an open-source Docusaurus template. It contains custom SCSS styles that define various visual elements and layouts used throughout the template. These styles are designed to enhance the appearance and functionality of the template, providing a range of customizable components such as cards, grids, and responsive designs.
+## File Structure
 
-Key features of this stylesheet include:
+The file is organized into sections for different templates, each clearly commented. Please maintain this structure when adding new styles or modifying existing ones.
 
-1. Responsive grid layouts
-2. Custom card designs with hover effects
-3. Glassmorphism effects
-4. Gradient animations
-5. Media queries for different screen sizes
-6. Syntax highlighting for code blocks
-7. Custom table styles
+## Usage
 
-## How can I customize this for my use case
+To modify styles for a specific template:
 
-To customize the `custom-templates.scss` file for your specific needs, you can follow these steps:
+1. Locate the relevant section in the file.
+2. Make your changes within the appropriate selector.
+3. Use SCSS features like variables and mixins where applicable to maintain consistency and reduce redundancy.
 
-1. **Color Scheme**: 
-   - Look for color variables (e.g., `$color-1`, `$color-2`, etc.) and modify them to match your desired color scheme.
-   - Update gradient colors in various classes like `.gradient-hover-card-one`, `.gradient-hover-card-two`, etc.
+## Best Practices
 
-2. **Card Styles**:
-   - Modify classes like `.general-card`, `.glass-card-one`, `.gradient-hover-card-one`, etc., to change the appearance of different card types.
-   - Adjust padding, border-radius, and box-shadow properties to alter the card design.
+- Use descriptive class names that reflect the purpose of the element.
+- Avoid overly specific selectors to maintain flexibility.
+- Utilize SCSS variables for colors, fonts, and other recurring values.
+- Implement responsive design principles to ensure proper display across different screen sizes.
 
-3. **Grid Layouts**:
-   - Customize the `.draggable-grid` and `.draggable-logo-grid` classes to change the layout of grid elements.
-   - Modify `flex` properties and `gap` values to adjust spacing and sizing.
+## Important Note
 
-4. **Responsive Design**:
-   - Edit the media queries (`@media (max-width: 768px)` and `@media (max-width: 1024px)`) to adjust the responsive behavior for different screen sizes.
-   - Modify properties like `flex`, `height`, and `padding` within these media queries to fine-tune the mobile and tablet layouts.
+Thorough testing across various devices and browsers is essential to ensure compatibility and responsiveness of any style changes. Proficiency in SCSS, including its advanced features such as variables, mixins, and nesting, is recommended for optimal utilization of this styling system.
 
-5. **Typography**:
-   - Adjust font sizes, line heights, and letter spacing in various classes to match your typography preferences.
+## Related Files
 
-6. **Animations**:
-   - Modify the `@keyframes rotation` and `@keyframes rotate` rules to change animation behaviors.
-   - Adjust animation properties in classes like `.gradient-hover-card-one:hover::before` to alter hover effects.
+- `_variables.scss`: Contains global SCSS variables
+- `_mixins.scss`: Contains reusable SCSS mixins
 
-7. **Code Highlighting**:
-   - Customize the colors in the `.ProseMirror pre` section to change the appearance of syntax highlighting in code blocks.
-
-8. **Custom Components**:
-   - Add new classes or modify existing ones like `.callout`, `.background-landing`, or `.radial-card-content` to create or adjust custom components.
-
-Remember to test your changes thoroughly across different devices and browsers to ensure compatibility and desired appearance. You may also want to use CSS preprocessing tools to take full advantage of SCSS features like variables and mixins for more efficient customization.
+For any questions or concerns, please contact the development team.

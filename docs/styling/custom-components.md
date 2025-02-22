@@ -16,11 +16,9 @@ This guide will help you create and style custom components within the Dev-Docs 
 
 1. Create a new SCSS file for your component in the `src/css` directory!!!!
 
-2.
+2. Use the BEM (Block Element Modifier) methodology for naming your classes.
 
-3. Use the BEM (Block Element Modifier) methodology for naming your classes.
-
-4. Import your SCSS file in the `src/css/custom.scss` file.
+3. Import your SCSS file in the `src/css/custom.scss` file.
 
 Example:
 

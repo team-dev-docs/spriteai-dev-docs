@@ -5,15 +5,19 @@ This guide will help you create and style custom components within the Dev-Docs 
 ## Creating Custom Components
 
 1. Define your component in a new JavaScript or TypeScript file.
+
 2. Use React to create your component structure.
+
 3. Import and use your component in your Docusaurus pages or documents.
 
 ## Styling Custom Components
 
 ### Using SCSS
 
-1. Create a new SCSS file for your component in the `src/css` directory.
+1. Create a new SCSS file for your component in the `src/css` directory!
+
 2. Use the BEM (Block Element Modifier) methodology for naming your classes.
+
 3. Import your SCSS file in the `src/css/custom.scss` file.
 
 Example:
@@ -38,6 +42,7 @@ Example:
 ### Using CSS Modules
 
 1. Create a CSS module file with the `.module.css` extension.
+
 2. Import the styles in your component file and use them as JavaScript objects.
 
 Example:
@@ -74,6 +79,7 @@ export default MyComponent;
 To ensure your custom components work with both light and dark themes:
 
 1. Use CSS variables defined in `src/css/custom.scss` for colors and other theme-specific properties.
+
 2. Create theme-specific styles using the `[data-theme='dark']` and `[data-theme='light']` selectors.
 
 Example:
@@ -98,7 +104,9 @@ Example:
 To make your custom components responsive:
 
 1. Use flexbox or CSS Grid for layout.
+
 2. Utilize media queries to adjust styles for different screen sizes.
+
 3. Consider using Docusaurus' built-in responsive classes.
 
 Example:

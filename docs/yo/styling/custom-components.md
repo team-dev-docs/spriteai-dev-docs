@@ -3,20 +3,6 @@ test: 2
 yes: oh
 ---
 
-
-
----
-test: 2 
-yes: oh
----
-
-
-
----
-test: 2 
-yes: oh
----
-
 # Custom Components Styling Guide
 
 This guide will help you create and style custom components within the Dev-Docs framework.

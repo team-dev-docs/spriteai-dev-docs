@@ -1,14 +1,7 @@
 ---
-test: 2 yes: oh
+test: 2 
+yes: oh
 ---
-
-
-
----
-test: 2 yes: oh
----
-
-
 
 # Custom Components Styling Guide
 

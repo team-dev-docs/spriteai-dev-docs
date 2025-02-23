@@ -1,10 +1,16 @@
+---
+test: 2
+---
+
+
+
 # Custom Components Styling Guide
 
 This guide will help you create and style custom components within the Dev-Docs framework.
 
 ## Creating Custom Components
 
-1. Define your component in a new JavaScript or TypeScript file.
+1. Define your component in a new JavaScript or TypeScript file...
 
 2. Use React to create your component structure.
 

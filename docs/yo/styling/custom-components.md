@@ -3,6 +3,16 @@ test: 2
 yes: oh nice
 yeah: lol
 becool: iamcool
+naaah: yeah
+---
+
+
+
+---
+test: 2
+yes: oh nice
+yeah: lol
+becool: iamcool
 ---
 
 # Custom Components Styling Guide

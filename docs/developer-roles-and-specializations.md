@@ -1,4 +1,4 @@
-Front-End Developers: • Core features: HTML, CSS, JavaScript, front-end frameworks (React, Angular, Vue.js) • Use cases: Building responsive user interfaces, implementing designs, client-side functionality
+Front-End Developers: • Core features: HTML, CSS, JavaScript, front-end frameworks (React, Angular, Vue.js) • Use cases: Building responsive user interfaces, implementing designs, client-side functionality!
 
 ``Back-End Developers: • Core features: Server-side languages (Java, Python, PHP, etc.), databases, APIs, server management • Use cases: Building application logic, data storage and retrieval, server configuration
 

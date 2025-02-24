@@ -1,1 +1,1 @@
-# Yo bro![](upload)
+# Yo bro![](/img/funtest.png)

@@ -40,7 +40,25 @@
 
 ## Core Technologies:
 
-### 🍎 iOS Development: Where Apples Grow on Digital Trees 1. Swift-ly swim through oceans of code 2. Xcode: The mystical realm where apps are born 3. App Store: The magical portal to user's hearts (and wallets) # 🤖 Android Development: Robots Building Dreams 1. Java jive and Kotlin craziness 2. Android Studio: Where developers go to pull their hair out 3. Google Play: The wild west of app distribution # 🌈 React Native: The Unicorn of Cross-Platform Sorcery 1. JavaScript juggling act 2. "Write once, debug everywhere" - Ancient developer proverb 3. Facebook's gift to the world (no, not the endless scrolling) Remember: In the world of app development, bugs are just unexpected features waiting to be discovered!
+* 🍎 iOS Development: Where Apples Grow on Digital Trees\
+  \
+  1\. Swift-ly swim through oceans of code\
+  2\. Xcode: The mystical realm where apps are born\
+  3\. App Store: The magical portal to user's hearts (and wallets)\
+  \
+  \# 🤖 Android Development: Robots Building Dreams\
+  \
+  1\. Java jive and Kotlin craziness\
+  2\. Android Studio: Where developers go to pull their hair out\
+  3\. Google Play: The wild west of app distribution\
+  \
+  \# 🌈 React Native: The Unicorn of Cross-Platform Sorcery\
+  \
+  1\. JavaScript juggling act\
+  2\. "Write once, debug everywhere" - Ancient developer proverb\
+  3\. Facebook's gift to the world (no, not the endless scrolling)\
+  \
+  Remember: In the world of app development, bugs are just unexpected features waiting to be discovered!
 
 ## Key Services:
 

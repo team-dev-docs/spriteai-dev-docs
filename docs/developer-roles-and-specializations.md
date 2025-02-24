@@ -1,3 +1,1 @@
-# Yo bro
-
-# ![](/img/funtest.png)
+Greetings, esteemed colleague.

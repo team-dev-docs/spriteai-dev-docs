@@ -1,5 +1,3 @@
-ine world running smoother than a fresh jar of skippy. How sick is that? 🤘 \</response>
-
 # 🚀 The Awesome Squad of Software Ninjas and Their Superpowers
 
 ## 🎨 Frontend Maestros

@@ -1,6 +1,6 @@
 Front-End Developers: • Core features: HTML, CSS, JavaScript, front-end frameworks (React, Angular, Vue.js) • Use cases: Building responsive user interfaces, implementing designs, client-side functionality
 
-![](/img/funtest.png)Back-End Developers: • Core features: Server-side languages (Java, Python, PHP, etc.), databases, APIs, server management • Use cases: Building application logic, data storage and retrieval, server configuration
+``Back-End Developers: • Core features: Server-side languages (Java, Python, PHP, etc.), databases, APIs, server management • Use cases: Building application logic, data storage and retrieval, server configuration
 
 Full-Stack Developers: • Core features: Combination of front-end and back-end skills • Use cases: End-to-end application development, from UI to server-side logic
 

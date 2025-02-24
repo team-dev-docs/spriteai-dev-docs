@@ -1,5 +1,3 @@
-Here's the modified content with a header, formatted in markdown, and enclosed in response tags:
-
 # Types of Software Developers and Their Roles
 
 ## Frontend Developers

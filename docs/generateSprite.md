@@ -1,49 +1,48 @@
-# generateSprite Documentation
+# batchProcessSprites
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`batchProcessSprites` is a function that allows for the batch processing of multiple sprite descriptions, generating multiple sprite sheets in a single operation.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use `batchProcessSprites`, import it from the sprite module and call it with an array of sprite descriptions.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const results = await sprite.batchProcessSprites(descriptions);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `descriptions` (array of strings, required): An array of text descriptions for the characters to generate.
 
 ## Return Value
-Returns an object or array of objects containing:
+Returns a Promise that resolves to an array of objects, each containing:
 - `messages`: JSON object with frameHeight and frameWidth information.
 - `image`: Base64-encoded image data URL of the generated sprite sheet.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Generate multiple sprite sheets in a batch:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
+const descriptions = [
+  "A pixelated robot",
+  "A cartoon cat",
+  "A medieval knight"
+];
 
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const results = await sprite.batchProcessSprites(descriptions);
+results.forEach((result, index) => {
+  console.log(`Sprite ${index + 1}:`, result.messages);
+  console.log(`Image data:`, result.image);
 });
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+- This function uses the same AI models and processing as the `generateSprite` function, but allows for more efficient batch processing.
+- Processing time may increase with the number of descriptions provided.
+- Each sprite in the batch is generated independently, so variations in output may occur even with similar descriptions.
+- Consider implementing error handling to manage potential failures in individual sprite generations within the batch.
+
+## Related Functions
+- `generateSprite`: For generating single sprite sheets.
+- `resizeSprite`: For resizing generated sprites if needed after batch processing.

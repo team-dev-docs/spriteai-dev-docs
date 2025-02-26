@@ -1,10 +1,10 @@
 # generateSprite Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis. It is part of the `sprite` object, which contains various asset generation methods for game development.
+`generateSprite` is a function within the `sprite` object that generates various types of game assets using AI-powered image generation and analysis. It can create sprite sheets, character portraits, environmental elements, and more.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use the asset generation functions, import the `sprite` object from the module and call the desired method with a description and options.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
@@ -12,59 +12,115 @@ import { sprite } from './path/to/sprite/module';
 const result = await sprite.generateSprite(description, options);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
+## Common Parameters
+Most asset generation functions share these common parameters:
+- `description` (string, required): A text description of the asset to generate.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `size` (string): Size of the generated image (default varies by function).
   - `save` (boolean): Whether to save the generated image to disk.
 
+## Asset Generation Functions
+
+### generateSprite
+Generates a sprite sheet for character animations.
+
+```javascript
+const result = await sprite.generateSprite("A pixelated robot", { size: "1024x1024" });
+```
+
+### generateCharacterSprite
+Creates a character sprite optimized for 2D games.
+
+```javascript
+const result = await sprite.generateCharacterSprite("A brave knight in shining armor");
+```
+
+### generateEnvironmentAsset
+Produces environmental elements for game backgrounds.
+
+```javascript
+const result = await sprite.generateEnvironmentAsset("A lush forest with ancient trees");
+```
+
+### generateItemAsset
+Generates items or objects for game inventories.
+
+```javascript
+const result = await sprite.generateItemAsset("A mystical glowing potion");
+```
+
+### generateVehicleAsset
+Creates vehicle assets for game transportation.
+
+```javascript
+const result = await sprite.generateVehicleAsset("A futuristic hovering spaceship");
+```
+
+### generateWeaponAsset
+Produces weapon assets for game combat systems.
+
+```javascript
+const result = await sprite.generateWeaponAsset("An ornate magical staff");
+```
+
+### generateBuildingAsset
+Generates building assets for game environments.
+
+```javascript
+const result = await sprite.generateBuildingAsset("A medieval castle with high towers");
+```
+
+### generateAnimationAsset
+Creates animation frames for game effects or character actions.
+
+```javascript
+const result = await sprite.generateAnimationAsset("A fireball explosion", 6);
+```
+
+### generateTilesetAsset
+Produces tileset assets for creating game levels.
+
+```javascript
+const result = await sprite.generateTilesetAsset("A desert landscape", 9);
+```
+
+### generateUIAsset
+Creates user interface elements for game menus and HUDs.
+
+```javascript
+const result = await sprite.generateUIAsset("A fantasy-style health bar");
+```
+
+### generateBackgroundAsset
+Generates seamless background assets for game scenes.
+
+```javascript
+const result = await sprite.generateBackgroundAsset("A starry night sky");
+```
+
+### generateEffectAsset
+Produces special effect assets for game visual enhancements.
+
+```javascript
+const result = await sprite.generateEffectAsset("A swirling portal", 6);
+```
+
+### generatePortraitAsset
+Creates character portrait assets for dialogues or UI elements.
+
+```javascript
+const result = await sprite.generatePortraitAsset("A wise old wizard");
+```
+
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
-
-## Examples
-
-1. Generate a single sprite sheet:
-```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
-
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
-```
-
-## Additional Asset Generation Methods
-
-The `sprite` object includes several other methods for generating game assets:
-
-- `generateCharacterSprite(characterDescription, options)`: Generates a character sprite sheet.
-- `generateEnvironmentAsset(environmentDescription, options)`: Creates environment assets.
-- `generateItemAsset(itemDescription, options)`: Produces item assets.
-- `generateVehicleAsset(vehicleDescription, options)`: Generates vehicle assets.
-- `generateWeaponAsset(weaponDescription, options)`: Creates weapon assets.
-- `generateBuildingAsset(buildingDescription, options)`: Produces building assets.
-- `generateAnimationAsset(animationDescription, frames, options)`: Generates animated assets.
-- `generateTilesetAsset(tilesetDescription, tileCount, options)`: Creates tileset assets.
-- `generateUIAsset(uiDescription, options)`: Produces UI elements.
-- `generateBackgroundAsset(backgroundDescription, options)`: Generates background assets.
-- `generateEffectAsset(effectDescription, frameCount, options)`: Creates special effect assets.
-- `generatePortraitAsset(characterDescription, options)`: Produces character portraits.
-
-Each of these methods follows a similar pattern to `generateSprite`, taking a description and optional parameters to generate the desired asset.
+Most functions return an object containing:
+- `image`: Base64-encoded image data URL of the generated asset.
+- `type`: The type of asset generated.
+- `properties`: Additional information about the asset, such as recommended usage or animation details.
 
 ## Notes and Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
+- The functions use AI models (DALL-E 3) to generate images, which may result in varying outputs for the same input.
+- Generated assets are optimized for 2D games and follow a pixel art style unless specified otherwise.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
-- Additional asset generation methods provide a wide range of options for creating game-ready graphics.
-- All generated assets are returned as base64-encoded image data URLs, making them easy to use in web-based game development environments.
+- The functions may take some time to complete due to API calls and image processing.
+- Always review and potentially edit the generated assets to ensure they meet your game's specific requirements and art style.

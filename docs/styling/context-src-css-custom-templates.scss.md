@@ -19,6 +19,14 @@ To add or modify styles for custom templates:
 3. Add or modify the SCSS rules as needed.
 4. Compile the SCSS to CSS for use in the application.
 
+To implement the custom styles:
+
+1. Ensure that the compiled CSS file is properly linked in your HTML or main stylesheet.
+2. Apply the appropriate class names to your HTML elements that correspond to the custom styles.
+3. Use template-specific class names as parent selectors to scope your styles and prevent conflicts with other parts of the application.
+4. Utilize SCSS variables for consistent theming across your custom templates.
+5. Consider creating mixins for commonly used style patterns within your templates.
+
 ## Best Practices
 
 - Use semantic class names that describe the purpose or content of the element.

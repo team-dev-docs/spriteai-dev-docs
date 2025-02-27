@@ -1,49 +1,84 @@
-# generateSprite Documentation
+# batchProcessSprites
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+
+`batchProcessSprites` is a function that allows for concurrent generation of multiple sprites based on provided descriptions. This function leverages the `generateSprite` capability to create multiple sprites in parallel, improving performance when generating a large number of sprites.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+To use `batchProcessSprites`, import it from the sprite module and call it with an array of sprite descriptions.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const descriptions = [
+  "A pixelated robot",
+  "A cartoon cat",
+  "A medieval knight"
+];
+
+const results = await sprite.batchProcessSprites(descriptions);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+
+- `descriptions` (array of strings, required): An array containing text descriptions of the characters to generate.
 
 ## Return Value
-Returns an object or array of objects containing:
+
+Returns a Promise that resolves to an array of objects, each containing:
+
 - `messages`: JSON object with frameHeight and frameWidth information.
 - `image`: Base64-encoded image data URL of the generated sprite sheet.
 
+The array will be in the same order as the input descriptions.
+
 ## Examples
 
-1. Generate a single sprite sheet:
-```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
+1. Generate multiple sprites concurrently:
 
-2. Generate multiple variations:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const descriptions = [
+  "A futuristic spaceship",
+  "A tropical bird",
+  "An ancient tree"
+];
+
+const results = await sprite.batchProcessSprites(descriptions);
+
+results.forEach((result, index) => {
+  console.log(`Sprite ${index + 1}:`);
+  console.log(result.messages);
+  console.log(result.image);
 });
 ```
 
+2. Process sprites with custom options:
+
+```javascript
+const descriptions = [
+  "A steampunk airship",
+  "A cyberpunk character"
+];
+
+const customOptions = {
+  size: "512x512",
+  save: true
+};
+
+const results = await sprite.batchProcessSprites(descriptions.map(desc => ({
+  description: desc,
+  options: customOptions
+})));
+
+console.log(`Generated ${results.length} sprites`);
+```
+
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+
+- This function uses `Promise.all` to process multiple sprites concurrently, which can significantly improve performance when generating a large number of sprites.
+- The function inherits the same considerations as `generateSprite`, including the use of AI models for image generation and analysis.
+- Processing time may vary depending on the number and complexity of the sprite descriptions.
+- Ensure your system has sufficient resources to handle concurrent sprite generation, especially for large batches.
+- The function returns results in the same order as the input descriptions, making it easy to match results with their corresponding inputs.
+- Error handling for individual sprite generation is managed within the `generateSprite` function. If an error occurs for a specific sprite, it will be reflected in the corresponding result object.

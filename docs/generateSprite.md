@@ -41,9 +41,29 @@ variations.forEach((variation, index) => {
 });
 ```
 
+## Batch Processing
+
+The `batchProcessSprites` function allows you to generate multiple sprites in parallel:
+
+```javascript
+import { batchProcessSprites } from './path/to/sprite/module';
+
+const descriptions = [
+  "A pixelated robot",
+  "A cartoon cat",
+  "A fantasy dragon"
+];
+
+const results = await batchProcessSprites(descriptions);
+console.log(results);
+```
+
+This function takes an array of sprite descriptions and returns a Promise that resolves to an array of generated sprite objects.
+
 ## Notes or Considerations
 - The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
 - Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+- Batch processing can significantly improve performance when generating multiple sprites, but be mindful of rate limits and resource usage.

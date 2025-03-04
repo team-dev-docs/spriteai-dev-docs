@@ -4,8 +4,6 @@ Responsive design is crucial for ensuring your documentation looks great and fun
 
 To enhance the responsive design of your Docusaurus site:
 
-![](upload)
-
 1. Use media queries: Add more granular breakpoints in your SCSS files to target specific screen sizes.
 
 ```scss

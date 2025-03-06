@@ -1,3 +1,8 @@
+---
+slug: /
+sidebar_position: 1
+---
+
 # generateSprite Documentation
 
 ## Brief Description

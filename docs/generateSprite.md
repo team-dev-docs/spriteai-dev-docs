@@ -1,49 +1,66 @@
-# generateSprite Documentation
+# batchProcessSprites Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`batchProcessSprites` is a function that processes multiple sprite descriptions in parallel, generating sprite sheets for each description provided.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use `batchProcessSprites`, import it from the sprite module and call it with an array of sprite descriptions.
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { batchProcessSprites } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const results = await batchProcessSprites(descriptions);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `descriptions` (array, required): An array of sprite descriptions. Each description should be a string describing the character or object to generate.
 
 ## Return Value
-Returns an object or array of objects containing:
+Returns a Promise that resolves to an array of objects, each containing:
 - `messages`: JSON object with frameHeight and frameWidth information.
 - `image`: Base64-encoded image data URL of the generated sprite sheet.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Process multiple sprite descriptions:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
+const descriptions = [
+  "A pixelated robot",
+  "A cartoon cat",
+  "A medieval knight"
+];
 
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const results = await batchProcessSprites(descriptions);
+results.forEach((result, index) => {
+  console.log(`Sprite ${index + 1}:`, result.messages);
+  console.log(`Image data: ${result.image.substring(0, 50)}...`);
 });
 ```
 
+2. Handle errors for individual sprite generation:
+```javascript
+const descriptions = [
+  "A valid description",
+  "An invalid description that might cause an error"
+];
+
+try {
+  const results = await batchProcessSprites(descriptions);
+  results.forEach((result, index) => {
+    if (result.error) {
+      console.error(`Error generating sprite ${index + 1}:`, result.error);
+    } else {
+      console.log(`Sprite ${index + 1} generated successfully`);
+    }
+  });
+} catch (error) {
+  console.error("Batch processing failed:", error);
+}
+```
+
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+- The function processes sprite descriptions in parallel, which can significantly improve performance when generating multiple sprites.
+- Each sprite is generated independently, so an error in one sprite generation won't affect the others.
+- The function uses the same AI models and image processing techniques as the `generateSprite` function.
+- Large batches of sprite descriptions may take considerable time to process, depending on the complexity of the descriptions and the available system resources.
+- Consider implementing rate limiting or chunking for very large batches to avoid overwhelming the system or exceeding API rate limits.

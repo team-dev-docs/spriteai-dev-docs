@@ -1,95 +1,137 @@
 # Custom Components Styling Guide
 
-This guide will help you create and style custom components within the Dev-Docs framework.
+This guide explains how to create and style custom components within the Dev-Docs framework.
 
-## Creating a Custom Component
+## Creating Custom Components
 
-1. Create a new file in the `src/components` directory with a `.js` or `.jsx` extension.
-2. Define your component using React syntax.
-3. Export your component at the end of the file.
+To create a custom component:
+
+1. Create a new React component file in the `src/components` directory
+2. Import and use the component in your markdown files using MDX syntax
 
 Example:
 
 ```jsx
+// src/components/MyCustomComponent.js
 import React from 'react';
 
-const CustomButton = ({ text, onClick }) => {
+export default function MyCustomComponent({children}) {
   return (
-    <button className="custom-button" onClick={onClick}>
-      {text}
-    </button>
+    <div className="my-custom-component">
+      {children}
+    </div>
   );
-};
+}
 
-export default CustomButton;
+// Usage in markdown:
+import MyCustomComponent from '@site/src/components/MyCustomComponent';
+
+<MyCustomComponent>
+  Custom component content
+</MyCustomComponent>
 ```
 
-## Styling Your Custom Component
+## Styling Custom Components
 
-1. Create a new SCSS file in the `src/css` directory for your component.
-2. Import the SCSS file in your component file.
-3. Use BEM methodology for naming your classes.
+There are a few ways to style custom components:
 
-Example:
+### 1. CSS Modules
 
-```scss
-// src/css/CustomButton.scss
+Create a CSS module file alongside your component:
 
-.custom-button {
-  padding: 10px 20px;
-  background-color: var(--ifm-color-primary);
-  color: white;
-  border: none;
+```css
+/* MyCustomComponent.module.css */
+.wrapper {
+  background-color: #f0f0f0;
+  padding: 20px;
   border-radius: 4px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--ifm-color-primary-dark);
-  }
 }
 ```
 
-## Using Tailwind CSS
-
-Dev-Docs supports Tailwind CSS. You can use Tailwind utility classes directly in your components:
+Import and use in your component:
 
 ```jsx
-const CustomCard = ({ title, content }) => {
+import styles from './MyCustomComponent.module.css';
+
+export default function MyCustomComponent({children}) {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <p className="text-gray-600">{content}</p>
+    <div className={styles.wrapper}>
+      {children}
     </div>
   );
-};
+}
+```
+
+### 2. Global SCSS
+
+Add styles to `src/css/custom.scss`:
+
+```scss
+.my-custom-component {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 4px;
+}
+```
+
+Use the class in your component:
+
+```jsx
+export default function MyCustomComponent({children}) {
+  return (
+    <div className="my-custom-component">
+      {children}
+    </div>
+  );
+}
+```
+
+### 3. Inline Styles
+
+Use inline styles for dynamic styling:
+
+```jsx
+export default function MyCustomComponent({children, bgColor}) {
+  return (
+    <div style={{backgroundColor: bgColor, padding: '20px', borderRadius: '4px'}}>
+      {children}
+    </div>
+  );
+}
 ```
 
 ## Theming
 
 To support both light and dark themes:
 
-1. Use CSS variables defined in `src/css/custom.scss`.
-2. Add theme-specific styles using the `[data-theme='dark']` selector.
+1. Use CSS custom properties defined in `src/css/custom.scss`
+2. Use the `data-theme` attribute for theme-specific styles
 
 Example:
 
 ```scss
-.custom-component {
-  background-color: var(--ifm-background-color);
-  color: var(--ifm-font-color-base);
+/* In src/css/custom.scss */
+:root {
+  --custom-component-bg: #f0f0f0;
+}
 
-  [data-theme='dark'] & {
-    background-color: var(--ifm-color-gray-900);
-  }
+[data-theme='dark'] {
+  --custom-component-bg: #333;
+}
+
+.my-custom-component {
+  background-color: var(--custom-component-bg);
 }
 ```
 
+This ensures your custom components adapt to the selected theme.
+
 ## Best Practices
 
-1. Keep components modular and reusable.
-2. Use consistent naming conventions for your components and styles.
-3. Leverage existing Dev-Docs styles and components when possible.
-4. Test your components in both light and dark themes.
-5. Ensure your components are responsive and work well on different screen sizes.
+1. Use consistent naming conventions for your components and styles
+2. Leverage existing utility classes from the Dev-Docs framework when possible
+3. Keep components modular and reusable
+4. Test your components in both light and dark themes
+5. Ensure responsive design by using flexible layouts and media queries
 
-By following these guidelines, you can create custom components that integrate seamlessly with the Dev-Docs framework and maintain a consistent look and feel across your documentation site.
+By following these guidelines, you can create and style custom components that integrate seamlessly with the Dev-Docs framework.

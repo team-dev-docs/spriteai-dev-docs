@@ -1,54 +1,81 @@
----
-slug: /
-sidebar_position: 1
----
-
-# generateSprite Documentation
+# applyPixelArtFilters
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+
+The `applyPixelArtFilters` function applies pixel art-specific filters and effects to a sprite image. It allows you to create retro-style graphics by applying various transformations such as pixelation, dithering, color palette reduction, and noise effects.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+To use `applyPixelArtFilters`, import it from the sprite module and call it with the input image and desired options:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { applyPixelArtFilters } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const result = await applyPixelArtFilters(inputImageBuffer, options);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
+
+- `input` (Buffer | string, required): The input sprite as a buffer or file path.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+  - `pixelation` (string | number): Pixelation effect ('low', 'medium', 'high', or a custom number).
+  - `dithering` (object): Dithering effect settings.
+    - `enabled` (boolean): Whether to enable dithering.
+    - `pattern` (string): Dithering pattern ('bayer', 'floydSteinberg', or 'halftone').
+  - `palette` (object): Color palette constraints.
+    - `colors` (number): Number of colors to reduce to.
+    - `preset` (string): Predefined color palette ('gameboy', 'nes', 'grayscale', or 'cga').
+  - `noise` (object): Retro noise effect settings.
+    - `amount` (number): Intensity of the noise effect.
+    - `type` (string): Type of noise ('grain', 'static', or 'scanlines').
+  - `output` (object): Output options.
+    - `format` (string): Output image format.
+    - `quality` (number): Output image quality (1-100).
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+Returns a Promise that resolves to an object containing:
+- `buffer` (Buffer): The processed image data.
+- `metadata` (object): Information about the processed image, including format, width, height, channels, and size.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Apply basic pixelation:
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const inputBuffer = fs.readFileSync('input.png');
+const result = await applyPixelArtFilters(inputBuffer, {
+  pixelation: 'medium'
+});
+fs.writeFileSync('output.png', result.buffer);
 ```
 
-2. Generate multiple variations:
+2. Apply dithering and color palette reduction:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const result = await applyPixelArtFilters('input.png', {
+  pixelation: 'low',
+  dithering: { enabled: true, pattern: 'floydSteinberg' },
+  palette: { colors: 16, preset: 'nes' }
+});
+console.log(result.metadata);
+```
+
+3. Add retro noise effect:
+
+```javascript
+const result = await applyPixelArtFilters(inputBuffer, {
+  noise: { amount: 10, type: 'scanlines' },
+  output: { format: 'png', quality: 90 }
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## Notes and Considerations
+
+- The function uses the Sharp library for image processing, ensuring high-performance operations.
+- Pixelation levels can be fine-tuned by providing a custom number instead of preset levels.
+- When using color palette reduction, consider the visual impact on your sprite and adjust the number of colors accordingly.
+- Dithering can help create the illusion of more colors when working with a limited palette.
+- Experiment with different combinations of effects to achieve the desired retro look for your sprites.
+- The function may take longer to process larger images or when applying multiple effects.
+- Always test the output with different options to find the best balance between visual quality and file size for your specific use case.

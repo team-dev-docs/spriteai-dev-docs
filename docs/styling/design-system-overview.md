@@ -1,80 +1,76 @@
 # Design System Overview
 
-Our design system provides a comprehensive set of styles and components to ensure consistency across the Dev-Docs platform. This overview covers the key aspects of our design system, including color palette, typography, and component styles.
+This document provides a comprehensive overview of our design system, including color palette, typography, and component styles.
 
 ## Color Palette
 
-Our color palette consists of primary and secondary colors, with variations for light and dark themes:
+Our color palette consists of primary and secondary colors, with variations for each:
 
 ### Primary Colors
-- Primary: `$color-1` (with 12 variations from lightest to darkest)
+- Primary: `#313032` (dark gray)
+- Secondary: `#A2A1A5` (light gray)
+- Accent: `#0D0D0D` (near black)
 
-### Secondary Colors  
-- Pink/Magenta: `$color-2` (with 12 variations)
-- Blue: `$color-3` (with 12 variations)  
-- Brown/Terra Cotta: `$color-4` (with 12 variations)
-- Blue: `$color-5` (identical to color-3, with 12 variations)
+### Secondary Colors
+- Pink/Magenta: `rgba(199, 21, 133, 1)`
+- Blue: `rgba(30, 144, 255, 1)`
+- Brown/Terra Cotta: `rgba(160, 79, 49, 1)`
 
-Colors are defined using RGBA values and have corresponding hex codes for each variation. The color system is designed to be flexible and easily customizable.
+Each color has 12 variations, ranging from lightest (1) to darkest (12).
 
 ## Typography
 
-Our typography system uses a consistent set of styles for headings, paragraphs, and other text elements:
+We use a clean, modern sans-serif font throughout the design system:
 
-- Font Family: System fonts with fallbacks
-- Headings: H1 to H6 with decreasing font sizes
-- Body Text: 16px base size
-- Line Heights: 1.5 for body text, adjusted for headings
-- Font Weights: Regular (400), Medium (500), Bold (700)
+- Headings: Bold weight, sizes ranging from 16px to 60px
+- Body text: Regular weight, 16px
+- Code: Monospace font, 14px
 
 ## Component Styles
 
-Key components in our design system include:
-
 ### Cards
-- General Card
-- Glass Card
-- Gradient Hover Card
+- General Card: Clean design with subtle border and box shadow
+- Glass Card: Frosted glass effect with backdrop filter
+- Gradient Hover Card: Gradient background on hover
 
 ### Buttons
-- Primary Button
-- Secondary Button
-- Gradient Button
+- Primary Button: Solid background with rounded corners
+- Gradient Button: Gradient background with hover effect
+- Border Button: Transparent background with colored border
 
 ### Navigation
-- Navbar
-- Sidebar
-- Footer
+- Navbar: Fixed-top design with blur effect background
+- Sidebar: Collapsible menu with active state highlighting
+- Breadcrumbs: Simple text-based navigation path
 
 ### Content
-- Table of Contents
-- Code Blocks
-- Blockquotes
-- Tables
+- Table of Contents: Sticky sidebar with collapsible sections
+- Code Blocks: Syntax highlighting and copy button
+- Images: Responsive sizing with optional captions
 
-Components are styled using a combination of custom CSS and Tailwind utility classes, allowing for flexibility and consistency across the platform.
+### Layout
+- Grid System: Flexible grid for responsive layouts
+- Containers: Max-width containers for content alignment
 
 ## Responsive Design
 
-Our design system includes responsive breakpoints and styles to ensure a seamless experience across devices:
+The design system includes responsive breakpoints for:
+- Mobile: Up to 767px
+- Tablet: 768px to 1023px
+- Desktop: 1024px and above
 
-- Mobile: < 768px
-- Tablet: 768px - 1023px
-- Desktop: > 1024px
-
-Media queries and flexible layouts are used to adapt components and typography for different screen sizes.
+Components and layouts adjust automatically for optimal viewing on different devices.
 
 ## Themes
 
-The design system supports both light and dark themes, with color variables and styles adjusted accordingly. Theme toggling is handled via CSS custom properties and data attributes.
+The design system supports both light and dark themes, with color variables that adjust automatically based on the selected theme.
 
 ## Customization
 
 To customize the design system:
-
-1. Modify color variables in `secondaryColors.scss` and `design-preferences.scss`
-2. Adjust typography styles in `headings-and-paragraphs.scss`
+1. Modify color variables in `secondaryColors.scss`
+2. Adjust typography in `root-and-body.scss`
 3. Customize component styles in their respective SCSS files (e.g., `cards.scss`, `buttons.scss`)
-4. Extend or override Tailwind classes in `custom.scss`
+4. Update responsive breakpoints in `custom.scss`
 
-Always test changes across different themes and screen sizes to ensure consistency and accessibility.
+Always test changes across different themes and screen sizes to ensure consistency.

@@ -2,53 +2,160 @@
 slug: /
 sidebar_position: 1
 ---
+# SpriteProcessor and Unified Sprite API
 
-# generateSprite Documentation
+## Overview
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+The SpriteProcessor class and unified sprite API provide a comprehensive set of tools for processing, transforming, and manipulating sprite images. This documentation covers the main features and usage of the new unified API.
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+## SpriteProcessor Class
+
+The SpriteProcessor class is the core component for sprite manipulation. It offers various methods for applying transformations, pixel art effects, and visual effects to sprite images.
+
+### Constructor
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
-
-const result = await sprite.generateSprite(description, options);
+const processor = new SpriteProcessor(input);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `input`: Can be a file path (string) or a buffer containing the image data.
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+### Methods
 
-## Examples
+#### process(options)
 
-1. Generate a single sprite sheet:
+Applies a series of operations to the sprite image.
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
-
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+await processor.process({
+  transform: {...},
+  pixelArt: {...},
+  effects: {...}
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+- `options`: An object containing operation configurations:
+  - `transform`: Transformations like resize, rotate, flip, etc.
+  - `pixelArt`: Pixel art effects like pixelation and color palette reduction.
+  - `effects`: Visual effects like outline, shadow, and glow.
+
+#### output(options)
+
+Generates the output buffer and metadata for the processed image.
+
+```javascript
+const result = await processor.output({
+  format: 'png',
+  quality: 80
+});
+```
+
+- `options`: Output configuration (format, quality, etc.)
+- Returns: An object with `buffer` (processed image data) and `metadata`.
+
+## Unified API Functions
+
+### processSprite(input, options)
+
+Process a single sprite with given operations.
+
+```javascript
+const result = await processSprite(input, {
+  transform: {...},
+  pixelArt: {...},
+  effects: {...},
+  output: {...}
+});
+```
+
+### processSprites(sprites, options)
+
+Process multiple sprites with the same set of operations.
+
+```javascript
+const results = await processSprites(spriteArray, options);
+```
+
+### createSpriteSheet(sprites, options)
+
+Create a sprite sheet from multiple images.
+
+```javascript
+const sheet = await createSpriteSheet(spriteArray, {
+  columns: 4,
+  spacing: 2,
+  padding: 10
+});
+```
+
+### createSpriteAnimation(frames, options)
+
+Create an animated sprite sequence.
+
+```javascript
+const animation = await createSpriteAnimation(frameArray, {
+  delay: 100,
+  loop: 0
+});
+```
+
+### extractSprites(spriteSheet, options)
+
+Extract individual sprites from a sprite sheet.
+
+```javascript
+const sprites = await extractSprites(sheetImage, {
+  columns: 4,
+  rows: 3,
+  padding: 2,
+  spacing: 1
+});
+```
+
+## Examples
+
+### Basic Sprite Processing
+
+```javascript
+const { processSprite } = require('./sprite-module');
+
+const result = await processSprite('input.png', {
+  transform: {
+    resize: { width: 64, height: 64 },
+    flipHorizontal: true
+  },
+  pixelArt: {
+    pixelation: 'medium',
+    palette: { preset: 'gameboy' }
+  },
+  effects: {
+    outline: { width: 2, color: { r: 0, g: 0, b: 0, alpha: 1 } }
+  },
+  output: { format: 'png', quality: 90 }
+});
+
+console.log(result.metadata);
+// Use result.buffer for the processed image data
+```
+
+### Creating a Sprite Sheet
+
+```javascript
+const { createSpriteSheet } = require('./sprite-module');
+
+const sheet = await createSpriteSheet(['sprite1.png', 'sprite2.png', 'sprite3.png'], {
+  columns: 3,
+  spacing: 2,
+  padding: 5
+});
+
+console.log(sheet.width, sheet.height);
+// Use sheet.buffer for the sprite sheet image data
+```
+
+## Notes
+
+- The new unified API provides a more consistent and flexible approach to sprite manipulation compared to the legacy methods.
+- When using the `processSprites` function, all sprites will be processed with the same options.
+- The `createSpriteAnimation` function outputs an animated WebP image by default.
+- For backwards compatibility, legacy method aliases are still available but may be deprecated in future versions.

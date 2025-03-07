@@ -2,53 +2,163 @@
 slug: /
 sidebar_position: 1
 ---
+# SpriteProcessor
 
-# generateSprite Documentation
+## Overview
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+The `SpriteProcessor` class is a unified sprite processing library that provides various image manipulation and sprite sheet operations. It offers features such as image transformations, pixel art effects, visual effects, and sprite sheet creation and extraction.
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+## Installation
 
-```javascript
-import { sprite } from './path/to/sprite/module';
+To use the `SpriteProcessor` class, make sure you have the following dependencies installed:
 
-const result = await sprite.generateSprite(description, options);
+```bash
+npm install sharp fs
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+## Usage
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+First, import the `SpriteProcessor` class:
+
+```javascript
+const SpriteProcessor = require('./path/to/SpriteProcessor');
+```
+
+## Class Methods
+
+### Constructor
+
+```javascript
+new SpriteProcessor(input)
+```
+
+Creates a new `SpriteProcessor` instance.
+
+- `input`: Buffer or string (required) - Image buffer or file path
+
+### process
+
+```javascript
+async process(options)
+```
+
+Processes the sprite with all operations in a single call.
+
+- `options`: Object (optional) - Processing options
+  - `transform`: Object - Transformation options
+  - `pixelArt`: Object - Pixel art effect options
+  - `effects`: Object - Visual effect options
+  - `output`: Object - Output format options
+
+Returns a Promise that resolves to a Buffer or an Object with metadata.
+
+### createSheet
+
+```javascript
+static async createSheet(sprites, options)
+```
+
+Creates a sprite sheet from multiple images.
+
+- `sprites`: Array<Buffer|string> (required) - Array of image buffers or file paths
+- `options`: Object (required) - Sheet creation options
+  - `columns`: number (required) - Number of columns in the sheet
+  - `spacing`: number (optional) - Spacing between sprites
+  - `padding`: number (optional) - Padding around the sheet
+
+Returns a Promise that resolves to an Object containing the sprite sheet buffer and metadata.
+
+### extractFromSheet
+
+```javascript
+static async extractFromSheet(spriteSheet, options)
+```
+
+Extracts sprites from a sheet.
+
+- `spriteSheet`: Buffer|string (required) - Sheet buffer or file path
+- `options`: Object (required) - Extraction options
+  - `columns`: number (required) - Number of columns in the sheet
+  - `rows`: number (required) - Number of rows in the sheet
+  - `padding`: number (optional) - Padding around the sheet
+  - `spacing`: number (optional) - Spacing between sprites
+
+Returns a Promise that resolves to an Array of Objects containing extracted sprite buffers and their positions.
+
+### createAnimation
+
+```javascript
+static async createAnimation(frames, options)
+```
+
+Creates an animation from sprite frames.
+
+- `frames`: Array<Buffer|string> (required) - Array of frame buffers or file paths
+- `options`: Object (optional) - Animation options
+  - `delay`: number (optional) - Delay between frames in milliseconds (default: 100)
+  - `loop`: number (optional) - Number of times to loop the animation (default: 0, infinite)
+  - `quality`: number (optional) - Output quality (default: 80)
+
+Returns a Promise that resolves to a Buffer containing the animated WebP image.
 
 ## Examples
 
-1. Generate a single sprite sheet:
-```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
+### Basic Image Processing
 
-2. Generate multiple variations:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const processor = new SpriteProcessor('input.png');
+const result = await processor.process({
+  transform: {
+    resize: { width: 64, height: 64 },
+    flipHorizontal: true
+  },
+  pixelArt: {
+    pixelation: 'medium',
+    palette: { preset: 'gameboy' }
+  },
+  effects: {
+    outline: { width: 1, color: { r: 0, g: 0, b: 0, alpha: 1 } }
+  },
+  output: { format: 'png', quality: 90 }
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+### Creating a Sprite Sheet
+
+```javascript
+const sprites = ['sprite1.png', 'sprite2.png', 'sprite3.png', 'sprite4.png'];
+const sheetResult = await SpriteProcessor.createSheet(sprites, {
+  columns: 2,
+  spacing: 1,
+  padding: 2
+});
+```
+
+### Extracting Sprites from a Sheet
+
+```javascript
+const extractedSprites = await SpriteProcessor.extractFromSheet('sheet.png', {
+  columns: 4,
+  rows: 2,
+  padding: 2,
+  spacing: 1
+});
+```
+
+### Creating an Animation
+
+```javascript
+const frames = ['frame1.png', 'frame2.png', 'frame3.png', 'frame4.png'];
+const animationBuffer = await SpriteProcessor.createAnimation(frames, {
+  delay: 200,
+  loop: 3,
+  quality: 85
+});
+```
+
+## Notes
+
+- The `SpriteProcessor` class uses the `sharp` library for image processing, which provides high-performance operations.
+- When using pixel art effects, be mindful of the input image size and the pixelation factor to achieve the desired result.
+- The `createAnimation` method outputs WebP animations, which may not be supported in all browsers. Consider providing fallback options for broader compatibility.
+- For optimal performance, consider processing images in batches or using worker threads for parallel processing when dealing with large numbers of sprites.

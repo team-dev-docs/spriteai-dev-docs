@@ -2,53 +2,151 @@
 slug: /
 sidebar_position: 1
 ---
+# SpriteProcessor Documentation
 
-# generateSprite Documentation
+## Overview
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+The `SpriteProcessor` class is a powerful tool for manipulating and processing sprite images. It provides various methods to transform, resize, and apply pixel art effects to images.
+
+## Installation
+
+To use the `SpriteProcessor` class, make sure you have the following dependencies installed:
+
+```bash
+npm install fs sharp
+```
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+First, import the `SpriteProcessor` class:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
-
-const result = await sprite.generateSprite(description, options);
+const SpriteProcessor = require('./path/to/SpriteProcessor');
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+Then, create an instance of the `SpriteProcessor` class:
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
-
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const processor = new SpriteProcessor('path/to/your/image.png');
 ```
 
-2. Generate multiple variations:
+## Methods
+
+### process(options)
+
+The `process` method applies various transformations and effects to the sprite image.
+
+#### Parameters
+
+- `options` (object): An object containing the following properties:
+  - `transform` (object, optional): Transformation options
+    - `resize` (object, optional): Resize options
+      - `width` (number): Target width
+      - `height` (number): Target height
+      - `fit` (string, optional): Resize fit option (default: 'contain')
+    - `flipHorizontal` (boolean, optional): Flip the image horizontally
+    - `flipVertical` (boolean, optional): Flip the image vertically
+    - `rotate` (number, optional): Rotation angle in degrees
+    - `hsl` (object, optional): HSL adjustment
+      - `hue` (number, optional): Hue adjustment (0-360)
+      - `saturation` (number, optional): Saturation adjustment (0-2)
+      - `lightness` (number, optional): Lightness adjustment (0-2)
+    - `tint` (object, optional): Tint color
+      - `r` (number): Red component (0-255)
+      - `g` (number): Green component (0-255)
+      - `b` (number): Blue component (0-255)
+      - `alpha` (number, optional): Alpha component (0-1)
+    - `blendMode` (string, optional): Blend mode for tint (default: 'multiply')
+  - `pixelArt` (object, optional): Pixel art effect options
+    - `pixelation` (number or string, optional): Pixelation factor or preset ('low', 'medium', 'high')
+    - `palette` (object, optional): Color palette options
+      - `preset` (string, optional): Preset palette ('grayscale', 'gameboy', 'cga')
+      - `colors` (number, optional): Number of colors (default: 16)
+    - `dithering` (boolean, optional): Enable dithering
+  - `output` (object, optional): Output options
+    - `format` (string, optional): Output format (default: 'png')
+    - `quality` (number, optional): Output quality (0-100, default: 80)
+    - `metadata` (boolean, optional): Include metadata in the result
+
+#### Returns
+
+A Promise that resolves to:
+- If `output.metadata` is true: An object containing `buffer` (processed image data) and `metadata` (format and image info)
+- Otherwise: A Buffer containing the processed image data
+
+#### Example
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const processor = new SpriteProcessor('input.png');
+
+processor.process({
+  transform: {
+    resize: { width: 64, height: 64 },
+    flipHorizontal: true,
+    rotate: 90,
+    hsl: { saturation: 1.5 }
+  },
+  pixelArt: {
+    pixelation: 'medium',
+    palette: { preset: 'gameboy' },
+    dithering: true
+  },
+  output: {
+    format: 'png',
+    quality: 90,
+    metadata: true
+  }
+})
+.then(result => {
+  console.log('Processed image:', result.buffer);
+  console.log('Metadata:', result.metadata);
+})
+.catch(error => {
+  console.error('Error processing image:', error);
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+### static processSprite(input, options)
+
+A static method that creates a new `SpriteProcessor` instance and processes the sprite in one step.
+
+#### Parameters
+
+- `input` (string or Buffer): Path to the input image or a Buffer containing the image data
+- `options` (object): Same as the `options` parameter for the `process` method
+
+#### Returns
+
+A Promise that resolves to the processed image data (same as the `process` method)
+
+#### Example
+
+```javascript
+SpriteProcessor.processSprite('input.png', {
+  transform: { resize: { width: 32, height: 32 } },
+  pixelArt: { pixelation: 'low' },
+  output: { format: 'png' }
+})
+.then(buffer => {
+  console.log('Processed sprite:', buffer);
+})
+.catch(error => {
+  console.error('Error processing sprite:', error);
+});
+```
+
+## Predefined Palettes
+
+The `SpriteProcessor` class includes two predefined color palettes:
+
+1. `gameboy`: A 4-color palette mimicking the original Game Boy display
+2. `cga`: A 4-color palette inspired by the CGA (Color Graphics Adapter) standard
+
+These palettes can be used with the `palette.preset` option in the `pixelArt` settings.
+
+## Notes
+
+- The `SpriteProcessor` class uses the `sharp` library for image processing, which provides high-performance operations.
+- When using the `pixelArt` options, be aware that applying a color palette will reduce the number of colors in the image, which may affect the overall appearance.
+- The `tint` option allows you to add a color overlay to the image, which can be useful for creating variations or special effects.
+- Error handling is implemented throughout the class, so be sure to catch any potential errors when using the `process` or `processSprite` methods.

@@ -1,8 +1,3 @@
----
-slug: /
-sidebar_position: 1
----
-
 # generateSprite Documentation
 
 ## Brief Description
@@ -52,3 +47,6 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+## Updating spriteAI
+The spriteAI project, which includes the `generateSprite` function, is currently out of date. The project repository has not been actively maintained, and there may be issues or missing features. It is recommended to use the latest version of the project or consider an alternative solution for your sprite generation needs.

@@ -25,7 +25,7 @@ const result = await sprite.splitSpriteSheet(imageBuffer, columns, rows, options
 
 Returns an object containing:
 
-- `frames` (Array<Buffer>): An array of image buffers, each representing a single frame from the sprite sheet.
+- `frames` (Array): An array of image buffers, each representing a single frame from the sprite sheet.
 - `metadata` (object): An object containing metadata about the split frames:
   - `frameWidth` (number): The width of each frame.
   - `frameHeight` (number): The height of each frame.

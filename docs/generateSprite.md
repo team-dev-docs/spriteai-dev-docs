@@ -2,6 +2,11 @@
 slug: /
 sidebar_position: 1
 ---
+```markdown
+---
+slug: /
+sidebar_position: 1
+---
 
 # generateSprite Documentation
 
@@ -52,3 +57,7 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+:::caution
+Please note that the `generateSprite` function has been superseded by a newer function `generateCharacterSpritesheet`. While `generateSprite` is still available, we recommend migrating to `generateCharacterSpritesheet` for improved functionality and ongoing support.
+:::

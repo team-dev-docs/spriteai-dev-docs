@@ -1,5 +1,3 @@
 {
-    "ai": {
-        "contextPrompt": "dev-docs/context-instructions.md"
-    }
+"aiProvider": "aws"
 }

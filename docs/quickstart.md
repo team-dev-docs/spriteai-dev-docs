@@ -1,0 +1,149 @@
+# Quickstart Guide for SpriteAI
+
+This guide will help you get started with SpriteAI, a library for generating game sprites and assets using AI.
+
+## Installation
+
+Install the SpriteAI package using npm:
+
+```bash
+npm install sprite-ai
+```
+
+## Basic Setup
+
+First, import SpriteAI in your project:
+
+```javascript
+import { generateCharacterSpritesheet, generateEnvironmentSprites, generateItemSprites } from 'sprite-ai';
+```
+
+Make sure you have your OpenAI API key set as an environment variable:
+
+```bash
+export OPENAI_API_KEY=your_api_key_here
+```
+
+## Generating Character Spritesheets
+
+Generate a character spritesheet with default animation states:
+
+```javascript
+const result = await generateCharacterSpritesheet('medieval knight with armor and sword');
+
+console.log(result.original); // URL to the original image
+console.log(result.spritesheet); // Base64 encoded spritesheet
+console.log(result.metadata); // Animation metadata
+```
+
+### Customizing Character Generation
+
+You can customize the character spritesheet with various options:
+
+```javascript
+const customCharacter = await generateCharacterSpritesheet('cute cartoon bunny', {
+  states: ['idle', 'hop', 'eat', 'sleep'],
+  framesPerState: 4,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'left',
+  save: true // Save to disk in ./assets/ folder
+});
+```
+
+## Generating Environment Assets
+
+Create environment sprites for your game:
+
+```javascript
+const environment = await generateEnvironmentSprites('forest with trees and bushes', {
+  elements: 6,
+  style: 'pixel-art',
+  theme: 'fantasy',
+  save: true
+});
+
+console.log(environment.tileset); // Base64 encoded tileset
+console.log(environment.metadata); // Environment asset metadata
+```
+
+## Generating Item Sprites
+
+Generate item sprites for your game:
+
+```javascript
+const items = await generateItemSprites('magic potions and scrolls', {
+  itemCount: 6,
+  style: 'pixel-art',
+  itemType: 'consumables',
+  background: 'transparent',
+  save: true
+});
+
+console.log(items.itemSheet); // Base64 encoded item sheet
+console.log(items.metadata); // Item metadata
+```
+
+## Working with Metadata
+
+All sprite generation functions return metadata that you can use in your game engine:
+
+```javascript
+const character = await generateCharacterSpritesheet('ninja warrior');
+
+// Access animation data
+const { states, framesPerState, totalFrames, dimensions, frameData } = character.metadata;
+
+// Example: Setting up an animation in a game engine
+for (const state in frameData) {
+  const animation = frameData[state];
+  console.log(`Animation state: ${state}`);
+  console.log(`  Row: ${animation.row}`);
+  console.log(`  Frames: ${animation.frames}`);
+  console.log(`  Start frame: ${animation.startFrame}`);
+  console.log(`  End frame: ${animation.endFrame}`);
+}
+```
+
+## Saving Generated Assets
+
+All sprite generation functions support saving the output to disk:
+
+```javascript
+await generateCharacterSpritesheet('robot explorer', { save: true });
+await generateEnvironmentSprites('desert landscape', { save: true });
+await generateItemSprites('sci-fi weapons', { save: true });
+```
+
+Files are saved in the `./assets/` directory with names based on the description.
+
+## Advanced Usage
+
+### Fetching Available Animation States
+
+Get a list of all available animation states:
+
+```javascript
+import { fetchAvailableAnimationStates } from 'sprite-ai';
+
+const states = await fetchAvailableAnimationStates();
+console.log(states); // ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die']
+```
+
+### Fetching Available Sprite Styles
+
+Get a list of all available sprite styles:
+
+```javascript
+import { fetchAvailableSpriteStyles } from 'sprite-ai';
+
+const styles = await fetchAvailableSpriteStyles();
+console.log(styles); // ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+## Next Steps
+
+- Check out the documentation for each function for more detailed options
+- Explore integrating the sprites with your game engine
+- Try different art styles and descriptions to find what works best for your game

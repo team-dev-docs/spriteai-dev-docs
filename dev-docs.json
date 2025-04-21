@@ -1,3 +1,9 @@
 {
-"aiProvider": "aws"
+  "gitHubApp": {
+    "approvalWorkflow": true,
+    "userDocsWorkflows": ["generateUserDocs"],
+    "issues": true,
+    "connectedOrg": "spriteai"
+  },
+  "aiProvider": "aws"
 }

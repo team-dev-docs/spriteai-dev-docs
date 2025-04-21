@@ -1,65 +1,121 @@
-# splitSpriteSheet
+---
+slug: /
+sidebar_position: 1
+---
+# SpriteProcessor Documentation
 
 ## Brief Description
+The `SpriteProcessor` class is a rather smashing tool for processing and manipulating sprite images. It provides various transformation and pixel art effects, allowing developers to create customized sprite sheets for game development or other graphical applications, quite splendid indeed!
 
-The `splitSpriteSheet` function is a utility that splits a sprite sheet image into individual frames. It's part of the sprite module and is designed to work with sprite sheets generated or used in game development contexts.
+Oh, and I must say, the SpriteProcessor is absolutely wicked cool! It's the bee's knees of sprite manipulation, letting you transform ordinary images into spectacular pixel art masterpieces with just a few lines of code. Proper brilliant for game developers and digital artists alike who want to add that special oomph to their creations without a fuss. Simply smashing tool, innit?
 
 ## Usage
-
-To use `splitSpriteSheet`, import it from the sprite module and call it with the necessary parameters:
+To use the `SpriteProcessor`, import it from the module and create an instance with an input image, easy peasy:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+const SpriteProcessor = require('./path/to/SpriteProcessor');
 
-const result = await sprite.splitSpriteSheet(imageBuffer, columns, rows, options);
+const processor = new SpriteProcessor('path/to/your/image.png');
 ```
 
-## Parameters
+## Constructor
+- `input` (string | Buffer): Path to the image file or a Buffer containing the image data, jolly good.
 
-- `imageBuffer` (Buffer, required): The image buffer of the sprite sheet to be split.
-- `columns` (number, required): The number of columns in the sprite sheet.
-- `rows` (number, required): The number of rows in the sprite sheet.
-- `options` (object, optional): Additional options for processing (currently not used, but reserved for future extensions).
+## Methods
 
-## Return Value
+### process(options)
+Processes the input image with the specified options, tickety-boo!
 
-Returns an object containing:
+#### Parameters
+- `options` (object, optional):
+  - `transform` (object, optional): Transformation options, proper brilliant
+    - `resize` (object): `{ width, height, fit }` for resizing the image
+    - `flipHorizontal` (boolean): Flip the image horizontally, bloody marvelous
+    - `flipVertical` (boolean): Flip the image vertically
+    - `rotate` (number): Rotation angle in degrees
+    - `hsl` (object): `{ hue, saturation, lightness }` for HSL adjustments
+    - `tint` (object): `{ r, g, b, alpha }` for applying a colour tint
+    - `blendMode` (string): Blending mode for the tint (default: 'multiply')
+  - `pixelArt` (object, optional): Pixel art effect options, absolutely cracking
+    - `pixelation` (number | string): Pixelation factor or preset ('low', 'medium', 'high')
+    - `palette` (object): `{ preset, colours }` for colour palette reduction
+    - `dithering` (boolean): Enable dithering for palette reduction
+  - `output` (object, optional): Output options, top-notch
+    - `format` (string): Output format (default: 'png')
+    - `quality` (number): Output quality (default: 80)
+    - `metadata` (boolean): Include metadata in the result
 
-- `frames` (Array<Buffer>): An array of image buffers, each representing a single frame from the sprite sheet.
-- `metadata` (object): An object containing metadata about the split frames:
-  - `frameWidth` (number): The width of each frame.
-  - `frameHeight` (number): The height of each frame.
-  - `totalFrames` (number): The total number of frames extracted.
-  - `originalDimensions` (object): The dimensions of the original sprite sheet:
-    - `width` (number): The width of the original sprite sheet.
-    - `height` (number): The height of the original sprite sheet.
+#### Returns
+- Promise: Processed image data and optional metadata, quite the bee's knees
+
+### Static Methods
+
+#### processSprite(input, options)
+A static method that creates a new `SpriteProcessor` instance and processes the input image, rather posh.
+
+#### Parameters
+- `input` (string | Buffer): Path to the image file or a Buffer containing the image data
+- `options` (object): Same as the `process` method options
+
+#### Returns
+- Promise: Processed image data and optional metadata
 
 ## Examples
 
-### Basic Usage
-
+1. Basic image processing, a doddle:
 ```javascript
-import { sprite } from './sprite';
-import fs from 'fs';
+const SpriteProcessor = require('./SpriteProcessor');
 
-const spriteSheetBuffer = fs.readFileSync('path/to/spritesheet.png');
+async function processSpriteExample() {
+  try {
+    const result = await SpriteProcessor.processSprite('input.png', {
+      transform: {
+        resize: { width: 64, height: 64, fit: 'contain' },
+        flipHorizontal: true,
+        rotate: 90
+      },
+      output: { format: 'png', quality: 90 }
+    });
 
-const result = await sprite.splitSpriteSheet(spriteSheetBuffer, 4, 4);
+    // result is a Buffer containing the processed image data
+    console.log('Sprite processed successfully, bob's your uncle!');
+  } catch (error) {
+    console.error('Blimey! Error processing sprite:', error.message);
+  }
+}
 
-console.log(`Total frames: ${result.metadata.totalFrames}`);
-console.log(`Frame dimensions: ${result.metadata.frameWidth}x${result.metadata.frameHeight}`);
-
-// Save each frame as a separate file
-result.frames.forEach((frame, index) => {
-  fs.writeFileSync(`frame_${index}.png`, frame);
-});
+processSpriteExample();
 ```
 
-## Notes or Considerations
+2. Applying pixel art effects, rather fancy:
+```javascript
+const SpriteProcessor = require('./SpriteProcessor');
 
-- The function assumes that all frames in the sprite sheet are of equal size.
-- The sprite sheet should be evenly divisible by the number of columns and rows specified.
-- This function uses the `sharp` library for image processing, which provides high performance for large images.
-- Error handling for invalid inputs or processing errors should be implemented in the calling code.
-- The function returns image buffers, which can be further processed or saved as needed.
-- Future versions may include additional options for frame extraction or processing.
+async function pixelArtExample() {
+  try {
+    const processor = new SpriteProcessor('input.png');
+    const result = await processor.process({
+      pixelArt: {
+        pixelation: 'medium',
+        palette: { preset: 'gameboy' },
+        dithering: true
+      },
+      output: { format: 'png', metadata: true }
+    });
+
+    console.log('Processed image metadata, simply smashing:', result.metadata);
+    // result.buffer contains the processed image data
+  } catch (error) {
+    console.error('Crikey! Error creating pixel art:', error.message);
+  }
+}
+
+pixelArtExample();
+```
+
+## Notes and Considerations
+- The `SpriteProcessor` uses the `sharp` library internally for image processing, ensuring high-performance operations, right proper it is.
+- When using the `pixelArt` options, do mind that the resulting image may have a reduced colour palette and lower resolution.
+- The `gameboy` and `cga` palette presets are available for creating retro-style pixel art, quite chuffed with those, we are.
+- Error handling is important, as image processing operations may fail due to various reasons (e.g., invalid input, unsupported formats), a bit of a faff otherwise.
+- For best results, have a jolly good experiment with different combinations of transformation and pixel art options to achieve the desired effect, cheerio!

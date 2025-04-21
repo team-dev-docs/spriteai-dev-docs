@@ -5,10 +5,10 @@ sidebar_position: 1
 # SpriteProcessor Documentation
 
 ## Brief Description
-The `SpriteProcessor` class is a powerful tool for processing and manipulating sprite images. It provides various transformation and pixel art effects, allowing developers to create customized sprite sheets for game development or other graphical applications.
+The `SpriteProcessor` class is a jolly good tool for processing and manipulating sprite images. It provides various transformation and pixel art effects, allowing chaps and lasses to create customized sprite sheets for game development or other graphical applications.
 
 ## Usage
-To use the `SpriteProcessor`, import it from the module and create an instance with an input image:
+To use the `SpriteProcessor`, import it from the module and create an instance with an input image, easy-peasy:
 
 ```javascript
 const SpriteProcessor = require('./path/to/SpriteProcessor');
@@ -22,7 +22,7 @@ const processor = new SpriteProcessor('path/to/your/image.png');
 ## Methods
 
 ### process(options)
-Processes the input image with the specified options.
+Processes the input image with the specified options, rather splendid if I do say so myself.
 
 #### Parameters
 - `options` (object, optional):
@@ -32,11 +32,11 @@ Processes the input image with the specified options.
     - `flipVertical` (boolean): Flip the image vertically
     - `rotate` (number): Rotation angle in degrees
     - `hsl` (object): `{ hue, saturation, lightness }` for HSL adjustments
-    - `tint` (object): `{ r, g, b, alpha }` for applying a color tint
+    - `tint` (object): `{ r, g, b, alpha }` for applying a colour tint
     - `blendMode` (string): Blending mode for the tint (default: 'multiply')
   - `pixelArt` (object, optional): Pixel art effect options
     - `pixelation` (number | string): Pixelation factor or preset ('low', 'medium', 'high')
-    - `palette` (object): `{ preset, colors }` for color palette reduction
+    - `palette` (object): `{ preset, colors }` for colour palette reduction
     - `dithering` (boolean): Enable dithering for palette reduction
   - `output` (object, optional): Output options
     - `format` (string): Output format (default: 'png')
@@ -44,19 +44,19 @@ Processes the input image with the specified options.
     - `metadata` (boolean): Include metadata in the result
 
 #### Returns
-- Promise<Buffer | { buffer: Buffer, metadata: object }>: Processed image data and optional metadata
+- Promise: Processed image data and optional metadata
 
 ### Static Methods
 
 #### processSprite(input, options)
-A static method that creates a new `SpriteProcessor` instance and processes the input image.
+A static method that creates a new `SpriteProcessor` instance and processes the input image. Quite brilliant!
 
 #### Parameters
 - `input` (string | Buffer): Path to the image file or a Buffer containing the image data
 - `options` (object): Same as the `process` method options
 
 #### Returns
-- Promise<Buffer | { buffer: Buffer, metadata: object }>: Processed image data and optional metadata
+- Promise: Processed image data and optional metadata
 
 ## Examples
 
@@ -112,8 +112,8 @@ pixelArtExample();
 ```
 
 ## Notes and Considerations
-- The `SpriteProcessor` uses the `sharp` library internally for image processing, ensuring high-performance operations.
-- When using the `pixelArt` options, be aware that the resulting image may have a reduced color palette and lower resolution.
-- The `gameboy` and `cga` palette presets are available for creating retro-style pixel art.
-- Error handling is important, as image processing operations may fail due to various reasons (e.g., invalid input, unsupported formats).
-- For best results, experiment with different combinations of transformation and pixel art options to achieve the desired effect.
+- The `SpriteProcessor` uses the `sharp` library internally for image processing, ensuring proper smashing high-performance operations.
+- When using the `pixelArt` options, be chuffed to bits aware that the resulting image may have a reduced colour palette and lower resolution.
+- The `gameboy` and `cga` palette presets are available for creating retro-style pixel art. Bob's your uncle!
+- Error handling is jolly important, as image processing operations may fail due to various reasons (e.g., dodgy input, unsupported formats).
+- For tip-top results, have a tinkle with different combinations of transformation and pixel art options to achieve the desired effect.

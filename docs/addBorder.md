@@ -17,21 +17,13 @@ const result = await sprite.generateSpriteWithBorder(
 
 ## Parameters
 
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `description` | string | (required) | Description of the pixel art to generate |
-| `borderColor` | object | `{ r: 0, g: 0, b: 0, alpha: 255 }` | RGB color object with alpha value for the border |
-| `borderThickness` | number | `1` | Thickness of the border in pixels |
-| `options` | object | `{}` | Additional options for pixel art generation |
+ParameterTypeDefaultDescription`description`string(required)Description of the pixel art to generate`borderColor`object`{ r: 0, g: 0, b: 0, alpha: 255 }`RGB color object with alpha value for the border`borderThickness`number`1`Thickness of the border in pixels`options`object`{}`Additional options for pixel art generation
 
 ## Return Value
 
 The function returns a Promise that resolves to an object with the following properties:
 
-| Property | Type | Description |
-|---|---|---|
-| `original` | string | Base64-encoded data URL of the original sprite |
-| `bordered` | string | Base64-encoded data URL of the sprite with the border applied |
+PropertyTypeDescription`original`stringBase64-encoded data URL of the original sprite`bordered`stringBase64-encoded data URL of the sprite with the border applied
 
 ## Example
 
@@ -54,5 +46,6 @@ Under the hood, this function first generates a pixel art sprite using `generate
 
 ## Related Functions
 
-- `generatePixelArt()`: Creates the base sprite
-- `addOutline()`: Adds an outline to a sprite that follows the sprite's contours instead of creating a rectangular border
+* `generatePixelArt()`: Creates the base sprite
+
+* `addOutline()`: Adds an outline to a sprite that follows the sprite's contours instead of creating a rectangular border

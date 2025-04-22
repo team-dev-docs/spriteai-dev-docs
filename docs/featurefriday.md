@@ -1,21 +1,19 @@
----
-slug: /
-sidebar_position: 1
----
-
 # Feature Friday
 
 ## Overview
 
 Feature Friday is a weekly event where we showcase and discuss new features, improvements, and updates to our product. This initiative aims to keep our team and stakeholders informed about recent developments and upcoming enhancements.
 
-## Purpose
+## Purpose!
 
 The primary purposes of Feature Friday are:
 
 1. To highlight recent product improvements
+
 2. To gather feedback from team members and stakeholders
+
 3. To align the team on product direction and priorities
+
 4. To foster innovation and encourage idea sharing
 
 ## Format
@@ -23,8 +21,11 @@ The primary purposes of Feature Friday are:
 Feature Friday typically follows this format:
 
 1. Introduction (5 minutes)
+
 2. Feature Demonstrations (30 minutes)
-3. Q&A Session (15 minutes)
+
+3. Q\&A Session (15 minutes)
+
 4. Open Discussion (10 minutes)
 
 ## Participation

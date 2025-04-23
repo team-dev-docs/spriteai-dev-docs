@@ -52,3 +52,62 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+## Additional Functions
+
+### generateEnvironmentSprites
+
+This function generates environment sprites based on a given description.
+
+#### Usage
+
+```javascript
+import { generateEnvironmentSprites } from './path/to/sprite/module';
+
+const result = await generateEnvironmentSprites(description, options);
+```
+
+#### Parameters
+- `description` (string, required): A text description of the environment to generate.
+- `options` (object, optional):
+  - `elements` (number): Number of different elements to generate (default: 4).
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the sprites (default: "pixel-art").
+  - `padding` (number): Padding between elements (default: 1).
+  - `theme` (string): Theme of the environment (default: "fantasy").
+  - `save` (boolean): Whether to save the generated image to disk.
+
+#### Return Value
+Returns an object containing:
+- `original`: URL of the originally generated image.
+- `tileset`: Base64-encoded image data URL of the generated tileset.
+- `metadata`: Object containing information about the generated tileset.
+
+### generateItemSprites
+
+This function generates item sprites based on a given description.
+
+#### Usage
+
+```javascript
+import { generateItemSprites } from './path/to/sprite/module';
+
+const result = await generateItemSprites(description, options);
+```
+
+#### Parameters
+- `description` (string, required): A text description of the items to generate.
+- `options` (object, optional):
+  - `itemCount` (number): Number of different items to generate (default: 4).
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the sprites (default: "pixel-art").
+  - `padding` (number): Padding between items (default: 1).
+  - `itemType` (string): Type of items to generate (default: "equipment").
+  - `background` (string): Background color of the image (default: "white").
+  - `save` (boolean): Whether to save the generated image to disk.
+
+#### Return Value
+Returns an object containing:
+- `original`: URL of the originally generated image.
+- `itemSheet`: Base64-encoded image data URL of the generated item sheet.
+- `metadata`: Object containing information about the generated items.

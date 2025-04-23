@@ -6,49 +6,87 @@ sidebar_position: 1
 # generateSprite Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`generateSprite` is a function that generates sprite sheet images based on given descriptions, using AI-powered image generation and analysis. It now includes two main functions: `generateCharacterSpritesheet` for character sprites and `generateLandscapeSprite` for landscape backgrounds.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use the sprite generation functions, import them from the sprite module and call them with the appropriate descriptions and options.
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet, generateLandscapeSprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const characterResult = await generateCharacterSpritesheet(description, options);
+const landscapeResult = await generateLandscapeSprite(description, options);
 ```
 
 ## Parameters
+
+### generateCharacterSpritesheet
 - `description` (string, required): A text description of the character to generate.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
+  - `states` (array): Animation states to generate (default: ['idle', 'walk', 'run', 'attack']).
+  - `framesPerState` (number): Number of frames per animation state (default: 6).
   - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Art style of the sprite (default: "pixel-art").
+  - `padding` (number): Padding between sprites (default: 1).
+  - `direction` (string): Base direction of character (default: "right").
   - `save` (boolean): Whether to save the generated image to disk.
 
+### generateLandscapeSprite
+- `description` (string, required): A text description of the landscape to generate.
+- `options` (object, optional):
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Art style of the sprite (default: "pixel-art").
+  - `timeOfDay` (string): Time of day setting (default: "day").
+  - `weather` (string): Weather conditions (default: "clear").
+  - `perspective` (string): Perspective of the landscape (default: "side-scrolling").
+  - `save` (boolean): Whether to save the generated image to disk.
+  - `removeBackground` (boolean): Whether to remove the background color.
+  - `backgroundColor` (string): Background color to remove (if removeBackground is true).
+  - `colorThreshold` (number): Threshold for color removal (if removeBackground is true).
+
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+### generateCharacterSpritesheet
+Returns an object containing:
+- `original`: URL of the original generated image.
+- `spritesheet`: Base64-encoded image data URL of the processed sprite sheet.
+- `metadata`: Object containing information about the sprite sheet, including states, frames, dimensions, and frame data.
+
+### generateLandscapeSprite
+Returns an object containing:
+- `original`: URL of the original generated image.
+- `landscape`: Base64-encoded image data URL of the processed landscape sprite.
+- `metadata`: Object containing information about the landscape sprite, including description, style, time of day, weather, perspective, and dimensions.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Generate a character sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const result = await generateCharacterSpritesheet("A pixelated robot", {
+  states: ['idle', 'walk', 'attack'],
+  framesPerState: 4,
+  style: "pixel-art"
+});
+console.log(result.metadata);
+console.log(result.spritesheet);
 ```
 
-2. Generate multiple variations:
+2. Generate a landscape sprite:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const landscape = await generateLandscapeSprite("A forest at sunset", {
+  timeOfDay: "sunset",
+  weather: "clear",
+  perspective: "side-scrolling",
+  removeBackground: true
 });
+console.log(landscape.metadata);
+console.log(landscape.landscape);
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
+- Both functions use AI models (DALL-E 3) to generate images, which may result in varying outputs for the same input.
+- The `generateCharacterSpritesheet` function now supports multiple animation states and customizable frame counts.
+- The `generateLandscapeSprite` function allows for various landscape settings, including time of day, weather, and perspective.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+- The functions may take some time to complete due to API calls and image processing.
+- The `removeBackground` option in `generateLandscapeSprite` allows for transparency in the final output.

@@ -1,35 +1,107 @@
-Front-end developers:
-• Core features: HTML, CSS, JavaScript, front-end frameworks (React, Angular, Vue.js)
-• Use cases: Building user interfaces, creating responsive designs, client-side functionality
+# Developer Roles and Specialisations
 
-Back-end developers:
-• Core features: Server-side languages (Python, Java, PHP, etc.), databases, APIs
-• Use cases: Data processing, business logic implementation, server management
+This document provides an overview of various developer roles and their core competencies in the software development industry.
 
-Full-stack developers:
-• Core features: Combination of front-end and back-end technologies
-• Use cases: End-to-end application development, system architecture
+## Front-end Developers
 
-Mobile developers:
-• Core features: Native languages (Swift, Kotlin) or cross-platform frameworks (React Native, Flutter)
-• Use cases: Building mobile apps for iOS and Android
+### Core Competencies
+- HTML, CSS, JavaScript
+- Front-end frameworks (e.g., React, Angular, Vue.js)
 
-DevOps engineers:
-• Core features: CI/CD, containerization, cloud platforms, automation tools
-• Use cases: Streamlining development processes, managing infrastructure, deployment
+### Use Cases
+- Constructing user interfaces
+- Developing responsive designs
+- Implementing client-side functionality
 
-Data scientists:
-• Core features: Python, R, machine learning libraries, data visualization tools
-• Use cases: Data analysis, predictive modeling, creating insights from large datasets
+## Back-end Developers
 
-Security engineers:
-• Core features: Penetration testing tools, security protocols, encryption methods
-• Use cases: Identifying vulnerabilities, implementing security measures, ensuring data protection
+### Core Competencies
+- Server-side languages (e.g., Python, Java, PHP)
+- Database management
+- API development
 
-UI/UX designers:
-• Core features: Design tools (Sketch, Figma), prototyping, user research methods
-• Use cases: Creating user-friendly interfaces, improving user experience, visual design
+### Use Cases
+- Data processing
+- Business logic implementation
+- Server management
 
-QA engineers:
-• Core features: Testing frameworks, automation tools, bug tracking systems
-• Use cases: Ensuring software quality, writing and executing test cases, identifying and reporting bugs
+## Full-stack Developers
+
+### Core Competencies
+- Combination of front-end and back-end technologies
+
+### Use Cases
+- End-to-end application development
+- System architecture design
+
+## Mobile Developers
+
+### Core Competencies
+- Native languages (e.g., Swift, Kotlin)
+- Cross-platform frameworks (e.g., React Native, Flutter)
+
+### Use Cases
+- Developing mobile applications for iOS and Android platforms
+
+## DevOps Engineers
+
+### Core Competencies
+- Continuous Integration/Continuous Deployment (CI/CD)
+- Containerisation
+- Cloud platforms
+- Automation tools
+
+### Use Cases
+- Streamlining development processes
+- Managing infrastructure
+- Overseeing deployment procedures
+
+## Data Scientists
+
+### Core Competencies
+- Python, R
+- Machine learning libraries
+- Data visualisation tools
+
+### Use Cases
+- Data analysis
+- Predictive modelling
+- Extracting insights from large datasets
+
+## Security Engineers
+
+### Core Competencies
+- Penetration testing tools
+- Security protocols
+- Encryption methods
+
+### Use Cases
+- Identifying vulnerabilities
+- Implementing security measures
+- Ensuring data protection
+
+## UI/UX Designers
+
+### Core Competencies
+- Design tools (e.g., Sketch, Figma)
+- Prototyping
+- User research methodologies
+
+### Use Cases
+- Creating user-friendly interfaces
+- Enhancing user experience
+- Visual design
+
+## QA Engineers
+
+### Core Competencies
+- Testing frameworks
+- Automation tools
+- Bug tracking systems
+
+### Use Cases
+- Ensuring software quality
+- Writing and executing test cases
+- Identifying and reporting defects
+
+This document serves as a general guide to the primary roles within the software development industry. Each role requires continuous learning and adaptation to keep pace with evolving technologies and methodologies.

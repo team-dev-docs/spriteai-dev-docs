@@ -1,18 +1,4 @@
-# SpriteAI Quickstart Guide
-
-This guide will help you get started with the SpriteAI library, which provides various functions for generating game assets using AI.
-
-## Installation
-
-First, install the SpriteAI library in your project:
-
-```bash
-npm install spriteai
-```
-
-## Usage
-
-Import the required functions from the SpriteAI library:
+esdfdsfdsffddfsImport the required functions from the SpriteAI library:
 
 ```javascript
 import { 
@@ -99,9 +85,12 @@ console.log('Available sprite styles:', spriteStyles);
 
 ## Notes
 
-- All generation functions return both the generated image (as a Base64-encoded string) and metadata about the generated assets.
-- The `save` option in the configuration objects allows you to automatically save the generated images to your project's `assets` folder.
-- The AI models used for generation may produce varying results for the same input.
-- Make sure you have the necessary API keys and permissions set up for using the OpenAI service, which is used internally by SpriteAI.
+* All generation functions return both the generated image (as a Base64-encoded string) and metadata about the generated assets.
+
+* The `save` option in the configuration objects allows you to automatically save the generated images to your project's `assets` folder.
+
+* The AI models used for generation may produce varying results for the same input.
+
+* Make sure you have the necessary API keys and permissions set up for using the OpenAI service, which is used internally by SpriteAI.
 
 This quickstart guide covers the basic usage of the main functions in the SpriteAI library. For more detailed information on each function and its options, please refer to the specific documentation pages for each feature.

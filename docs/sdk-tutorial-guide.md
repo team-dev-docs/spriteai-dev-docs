@@ -1,16 +1,22 @@
-# SpriteAI SDK Tutorial Guide
+# SpriteAI SDK Tutorial Guide@@
 
 Welcome to the SpriteAI SDK tutorial guide! This document will walk you through the main features of our SDK and provide examples of how to use them in your projects.
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Installation](#installation)
-3. [Generating Character Spritesheets](#generating-character-spritesheets)
-4. [Creating Environment Sprites](#creating-environment-sprites)
-5. [Generating Item Sprites](#generating-item-sprites)
-6. [Fetching Available Animation States](#fetching-available-animation-states)
-7. [Fetching Available Sprite Styles](#fetching-available-sprite-styles)
+1. Introduction
+
+2. Installation
+
+3. Generating Character Spritesheets
+
+4. Creating Environment Sprites
+
+5. Generating Item Sprites
+
+6. Fetching Available Animation States
+
+7. Fetching Available Sprite Styles
 
 ## Introduction
 

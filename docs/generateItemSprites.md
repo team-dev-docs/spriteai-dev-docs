@@ -7,7 +7,7 @@ sidebar_position: 4
 
 ## Brief Description
 
-`generateItemSprites` is a function that generates a sprite sheet of item icons based on a given description, using AI-powered image generation.
+`generateItemSprites` is a function that generates a sprite sheet of game items based on a given description using AI-powered image generation. This function is particularly useful for creating consistent and visually appealing item sprites for games or applications.
 
 ## Usage
 
@@ -26,7 +26,7 @@ const result = await generateItemSprites(description, options);
   - `itemCount` (number): Number of items to generate (default: 4).
   - `size` (string): Size of the generated image (default: "1024x1024").
   - `style` (string): Style of the generated sprites (default: "pixel-art").
-  - `padding` (number): Padding between items (default: 1).
+  - `padding` (number): Padding between items in the sprite sheet (default: 1).
   - `itemType` (string): Type of items to generate (default: "equipment").
   - `background` (string): Background color of the sprite sheet (default: "white").
   - `save` (boolean): Whether to save the generated image to disk.
@@ -35,9 +35,9 @@ const result = await generateItemSprites(description, options);
 
 Returns a Promise that resolves to an object containing:
 
-- `original` (string): URL of the original AI-generated image.
+- `original` (string): URL of the original generated image.
 - `itemSheet` (string): Base64-encoded image data URL of the processed sprite sheet.
-- `metadata` (object): Information about the generated sprite sheet, including:
+- `metadata` (object): Information about the generated items, including:
   - `itemCount` (number): Number of items generated.
   - `itemType` (string): Type of items generated.
   - `dimensions` (object): Width and height of the sprite sheet.
@@ -58,14 +58,14 @@ console.log(result.metadata);
 ```javascript
 const options = {
   itemCount: 6,
-  size: "2048x2048",
+  size: "512x512",
   style: "hand-drawn",
   itemType: "potions",
   background: "transparent",
   save: true
 };
 
-const result = await generateItemSprites("Magical potion bottles", options);
+const result = await generateItemSprites("Colorful magic potions", options);
 console.log(result.metadata.itemCount);
 console.log(result.metadata.itemData);
 ```
@@ -73,8 +73,9 @@ console.log(result.metadata.itemData);
 ## Notes and Considerations
 
 - The function uses AI models (DALL-E 3) to generate images, which may result in varying outputs for the same input.
-- Generated sprites are arranged in a grid layout, with the number of rows calculated based on the `itemCount`.
-- The function converts the AI-generated image into a properly formatted sprite sheet with consistent spacing between items.
+- Generated items are arranged in a grid layout, with a maximum of 2 columns.
+- The `style` option allows for different art styles, such as "pixel-art", "vector", "3d", "hand-drawn", or "anime".
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
-- Ensure you have the necessary dependencies (OpenAI, axios, sharp) installed and properly configured in your project.
+- Ensure you have the necessary dependencies installed (OpenAI, axios, sharp) and proper API credentials set up.
+- Consider implementing error handling when using this function in production code.

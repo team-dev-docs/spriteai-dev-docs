@@ -1,22 +1,22 @@
 ---
 slug: /fetchAvailableSpriteStyles
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # fetchAvailableSpriteStyles
 
 ## Brief Description
 
-`fetchAvailableSpriteStyles` is an asynchronous function that retrieves a list of available sprite styles supported by the spriteAI module.
+`fetchAvailableSpriteStyles` is a function that retrieves an array of available sprite styles that can be used when generating character spritesheets.
 
 ## Usage
 
-To use `fetchAvailableSpriteStyles`, import it from the spriteAI module and call it as an asynchronous function.
+To use `fetchAvailableSpriteStyles`, import it from the sprite module and call it as an asynchronous function.
 
 ```javascript
-import { fetchAvailableSpriteStyles } from './path/to/spriteAI';
+import { fetchAvailableSpriteStyles } from './path/to/sprite/module';
 
-const styles = await fetchAvailableSpriteStyles();
+const availableStyles = await fetchAvailableSpriteStyles();
 ```
 
 ## Parameters
@@ -42,39 +42,28 @@ async function displayAvailableStyles() {
 displayAvailableStyles();
 ```
 
-### Using with UI
+### Using with generateCharacterSpritesheet
 
 ```javascript
-import React, { useState, useEffect } from 'react';
-import { fetchAvailableSpriteStyles } from './spriteAI';
+import { fetchAvailableSpriteStyles, generateCharacterSpritesheet } from './spriteAI';
 
-function StyleSelector() {
-  const [styles, setStyles] = useState([]);
-
-  useEffect(() => {
-    async function loadStyles() {
-      const availableStyles = await fetchAvailableSpriteStyles();
-      setStyles(availableStyles);
-    }
-    loadStyles();
-  }, []);
-
-  return (
-    <select>
-      {styles.map((style, index) => (
-        <option key={index} value={style}>
-          {style}
-        </option>
-      ))}
-    </select>
-  );
+async function generateCustomSpritesheet(description) {
+  const availableStyles = await fetchAvailableSpriteStyles();
+  const randomStyle = availableStyles[Math.floor(Math.random() * availableStyles.length)];
+  
+  const spritesheet = await generateCharacterSpritesheet(description, {
+    style: randomStyle
+  });
+  
+  console.log(`Generated spritesheet using ${randomStyle} style:`, spritesheet);
 }
+
+generateCustomSpritesheet('A fierce warrior');
 ```
 
 ## Notes or Considerations
 
-- The function is asynchronous and returns a Promise, so it should be used with `await` or `.then()`.
-- The available styles are predefined in the spriteAI module and may be updated in future versions.
-- Current available styles include: 'pixel-art', 'vector', '3d', 'hand-drawn', and 'anime'.
-- This function can be useful when providing style options to users in a UI or when validating user input for sprite generation functions.
-- The order of styles in the returned array is not guaranteed and may change between calls or in different versions of the module.
+- The available styles are predefined in the `spriteAI/index.js` file and currently include: 'pixel-art', 'vector', '3d', 'hand-drawn', and 'anime'.
+- This function is useful for providing users with options when generating spritesheets or for randomly selecting styles in automated processes.
+- The list of available styles may be updated in future versions, so it's recommended to use this function to get the most up-to-date list rather than hardcoding style options.
+- When using the returned styles with `generateCharacterSpritesheet`, ensure that the chosen style is passed in the `options` object with the `style` key.

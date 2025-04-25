@@ -52,3 +52,56 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+## Additional Functions
+
+### fetchAvailableSpriteStyles
+
+Retrieves a list of available sprite styles.
+
+```javascript
+import { fetchAvailableSpriteStyles } from './path/to/sprite/module';
+
+const styles = await fetchAvailableSpriteStyles();
+console.log(styles); // ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+### generateEnvironmentSprites
+
+Generates a tileset of environment sprites based on a given description.
+
+```javascript
+import { generateEnvironmentSprites } from './path/to/sprite/module';
+
+const result = await generateEnvironmentSprites("A forest landscape", {
+  elements: 4,
+  size: "1024x1024",
+  style: "pixel-art",
+  theme: "fantasy"
+});
+
+console.log(result.original); // URL of the original generated image
+console.log(result.tileset); // Base64-encoded tileset image
+console.log(result.metadata); // Object containing metadata about the generated tileset
+```
+
+### generateItemSprites
+
+Generates a collection of item sprites for a game based on a given description.
+
+```javascript
+import { generateItemSprites } from './path/to/sprite/module';
+
+const result = await generateItemSprites("Medieval weapons", {
+  itemCount: 4,
+  size: "1024x1024",
+  style: "pixel-art",
+  itemType: "equipment"
+});
+
+console.log(result.original); // URL of the original generated image
+console.log(result.itemSheet); // Base64-encoded item sheet image
+console.log(result.metadata); // Object containing metadata about the generated items
+```
+
+These additional functions provide more flexibility in generating various types of game assets, including different sprite styles, environment tilesets, and item collections.

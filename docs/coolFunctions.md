@@ -1,13 +1,18 @@
-# Cool Functions in SpriteAI
+# Great Functions in SpriteAI
 
 This document outlines the key functions available in the SpriteAI library, their purposes, and how to use them.
 
 ## Table of Contents
-1. [generateCharacterSpritesheet](#generatecharacterspritesheet)
-2. [generateEnvironmentSprites](#generateenvironmentsprites)
-3. [generateItemSprites](#generateitemsprites)
-4. [fetchAvailableAnimationStates](#fetchavailableanimationstates)
-5. [fetchAvailableSpriteStyles](#fetchavailablespritestyles)
+
+1. generateCharacterSpritesheet
+
+2. generateEnvironmentSprites
+
+3. generateItemSprites
+
+4. fetchAvailableAnimationStates
+
+5. fetchAvailableSpriteStyles
 
 ## generateCharacterSpritesheet
 
@@ -21,22 +26,33 @@ const result = await generateCharacterSpritesheet(description, options);
 
 ### Parameters
 
-- `description` (string): A description of the character to generate.
-- `options` (object, optional): Configuration options for the spritesheet generation.
-  - `states` (array of strings): Animation states to generate. Default: `['idle', 'walk', 'run', 'attack']`
-  - `framesPerState` (number): Number of frames per animation state. Default: `6`
-  - `size` (string): Output size of the image. Default: `'1024x1024'`
-  - `style` (string): Art style of the spritesheet. Default: `'pixel-art'`
-  - `padding` (number): Padding between sprites. Default: `1`
-  - `direction` (string): Base direction of the character. Default: `'right'`
-  - `save` (boolean): Whether to save the generated image to disk.
+* `description` (string): A description of the character to generate.
+
+* `options` (object, optional): Configuration options for the spritesheet generation.
+
+  * `states` (array of strings): Animation states to generate. Default: `['idle', 'walk', 'run', 'attack']`
+
+  * `framesPerState` (number): Number of frames per animation state. Default: `6`
+
+  * `size` (string): Output size of the image. Default: `'1024x1024'`
+
+  * `style` (string): Art style of the spritesheet. Default: `'pixel-art'`
+
+  * `padding` (number): Padding between sprites. Default: `1`
+
+  * `direction` (string): Base direction of the character. Default: `'right'`
+
+  * `save` (boolean): Whether to save the generated image to disk.
 
 ### Return Value
 
 The function returns an object containing:
-- `original`: URL of the original generated image.
-- `spritesheet`: Base64-encoded string of the processed spritesheet.
-- `metadata`: Object containing information about the generated spritesheet.
+
+* `original`: URL of the original generated image.
+
+* `spritesheet`: Base64-encoded string of the processed spritesheet.
+
+* `metadata`: Object containing information about the generated spritesheet.
 
 ## generateEnvironmentSprites
 
@@ -50,21 +66,31 @@ const result = await generateEnvironmentSprites(description, options);
 
 ### Parameters
 
-- `description` (string): A description of the environment to generate.
-- `options` (object, optional): Configuration options for the environment sprite generation.
-  - `elements` (number): Number of different elements to generate. Default: `4`
-  - `size` (string): Output size of the image. Default: `'1024x1024'`
-  - `style` (string): Art style of the sprites. Default: `'pixel-art'`
-  - `padding` (number): Padding between sprites. Default: `1`
-  - `theme` (string): Theme of the environment. Default: `'fantasy'`
-  - `save` (boolean): Whether to save the generated image to disk.
+* `description` (string): A description of the environment to generate.
+
+* `options` (object, optional): Configuration options for the environment sprite generation.
+
+  * `elements` (number): Number of different elements to generate. Default: `4`
+
+  * `size` (string): Output size of the image. Default: `'1024x1024'`
+
+  * `style` (string): Art style of the sprites. Default: `'pixel-art'`
+
+  * `padding` (number): Padding between sprites. Default: `1`
+
+  * `theme` (string): Theme of the environment. Default: `'fantasy'`
+
+  * `save` (boolean): Whether to save the generated image to disk.
 
 ### Return Value
 
 The function returns an object containing:
-- `original`: URL of the original generated image.
-- `tileset`: Base64-encoded string of the processed tileset.
-- `metadata`: Object containing information about the generated environment sprites.
+
+* `original`: URL of the original generated image.
+
+* `tileset`: Base64-encoded string of the processed tileset.
+
+* `metadata`: Object containing information about the generated environment sprites.
 
 ## generateItemSprites
 
@@ -78,22 +104,33 @@ const result = await generateItemSprites(description, options);
 
 ### Parameters
 
-- `description` (string): A description of the items to generate.
-- `options` (object, optional): Configuration options for the item sprite generation.
-  - `itemCount` (number): Number of different items to generate. Default: `4`
-  - `size` (string): Output size of the image. Default: `'1024x1024'`
-  - `style` (string): Art style of the sprites. Default: `'pixel-art'`
-  - `padding` (number): Padding between sprites. Default: `1`
-  - `itemType` (string): Type of items to generate. Default: `'equipment'`
-  - `background` (string): Background color of the spritesheet. Default: `'white'`
-  - `save` (boolean): Whether to save the generated image to disk.
+* `description` (string): A description of the items to generate.
+
+* `options` (object, optional): Configuration options for the item sprite generation.
+
+  * `itemCount` (number): Number of different items to generate. Default: `4`
+
+  * `size` (string): Output size of the image. Default: `'1024x1024'`
+
+  * `style` (string): Art style of the sprites. Default: `'pixel-art'`
+
+  * `padding` (number): Padding between sprites. Default: `1`
+
+  * `itemType` (string): Type of items to generate. Default: `'equipment'`
+
+  * `background` (string): Background color of the spritesheet. Default: `'white'`
+
+  * `save` (boolean): Whether to save the generated image to disk.
 
 ### Return Value
 
 The function returns an object containing:
-- `original`: URL of the original generated image.
-- `itemSheet`: Base64-encoded string of the processed item sheet.
-- `metadata`: Object containing information about the generated item sprites.
+
+* `original`: URL of the original generated image.
+
+* `itemSheet`: Base64-encoded string of the processed item sheet.
+
+* `metadata`: Object containing information about the generated item sprites.
 
 ## fetchAvailableAnimationStates
 
@@ -123,6 +160,6 @@ const styles = await fetchAvailableSpriteStyles();
 
 An array of strings representing available sprite styles, e.g., `['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']`.
 
----
+***
 
 These functions provide a powerful set of tools for generating game assets programmatically. By leveraging AI-generated images and automated processing, you can quickly create character spritesheets, environment tiles, and item sprites for your game development projects.

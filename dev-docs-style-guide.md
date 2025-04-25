@@ -1,1 +1,2 @@
-Make sure everything written is using british jargon
+- Make sure everything written is using british jargon
+- All markdown headers should end with the word "yo"

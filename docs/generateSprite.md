@@ -52,3 +52,59 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+## Additional Functions
+
+### fetchAvailableSpriteStyles
+
+Retrieves a list of available sprite styles that can be used with the `generateSprite` function.
+
+```javascript
+import { fetchAvailableSpriteStyles } from './path/to/sprite/module';
+
+const styles = await fetchAvailableSpriteStyles();
+console.log(styles); // ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+### generateEnvironmentSprites
+
+Generates environment sprites based on a given description and options.
+
+```javascript
+import { generateEnvironmentSprites } from './path/to/sprite/module';
+
+const result = await generateEnvironmentSprites("forest", {
+  elements: 4,
+  size: "1024x1024",
+  style: "pixel-art",
+  padding: 1,
+  theme: "fantasy"
+});
+
+console.log(result.original); // URL of the original generated image
+console.log(result.tileset); // Base64-encoded tileset image
+console.log(result.metadata); // Object containing metadata about the generated tileset
+```
+
+### generateItemSprites
+
+Generates item sprites based on a given description and options.
+
+```javascript
+import { generateItemSprites } from './path/to/sprite/module';
+
+const result = await generateItemSprites("medieval weapons", {
+  itemCount: 4,
+  size: "1024x1024",
+  style: "pixel-art",
+  padding: 1,
+  itemType: "equipment",
+  background: "white"
+});
+
+console.log(result.original); // URL of the original generated image
+console.log(result.itemSheet); // Base64-encoded item sheet image
+console.log(result.metadata); // Object containing metadata about the generated item sheet
+```
+
+These additional functions expand the capabilities of the sprite generation module, allowing for the creation of environment tiles and item sprites alongside character sprites.

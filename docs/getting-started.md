@@ -20,32 +20,27 @@ const spriteAI = require('spriteai');
 // Initialise a new SpriteAI instance
 const ai = new spriteAI.SpriteAI();
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
+// Using async/await for sprite operations
+async function spriteOperations() {
+  try {
+    // Generate a sprite
+    const generatedSprite = await ai.generateSprite('player', 32, 32);
+    console.log('Sprite successfully generated:', generatedSprite);
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
+    // Load an existing sprite
+    const loadedSprite = await ai.loadSprite('path/to/sprite.png');
+    console.log('Sprite successfully loaded:', loadedSprite);
 
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
+    // Save a sprite
+    await ai.saveSprite(generatedSprite, 'path/to/save/sprite.png');
     console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
-  });
+  } catch (error) {
+    console.error('An error occurred during sprite operations:', error);
+  }
+}
+
+// Call the async function
+spriteOperations();
 ```
 
 ## Key Features

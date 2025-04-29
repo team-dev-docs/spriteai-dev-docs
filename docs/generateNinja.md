@@ -66,6 +66,18 @@ The function returns the result of `generateCharacterSpritesheet`, which include
 - The sprite is designed in a pixel-art style by default.
 - The function is asynchronous and returns a Promise, so it should be used with `await` or `.then()`.
 
+## Function Flow
+
+```mermaid
+graph TD
+    A[Start] --> B[Parse Options]
+    B --> C[Merge Default and Custom Options]
+    C --> D[Call generateCharacterSpritesheet]
+    D --> E[Generate Ninja Sprite]
+    E --> F[Return Sprite Data]
+    F --> G[End]
+```
+
 ## See Also
 
 - `generateCharacterSpritesheet`: The underlying function used to generate the spritesheet.

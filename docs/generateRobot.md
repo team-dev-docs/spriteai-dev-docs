@@ -66,3 +66,17 @@ The function returns a Promise that resolves to an object containing:
 - The default animation states include 'idle', 'walk', 'run', 'attack', and 'power-up', which are common actions for a robot character in games.
 
 Remember that this function is a wrapper around `generateCharacterSpritesheet`, so any limitations or requirements of that underlying function will also apply here.
+
+## Function Flow
+
+```mermaid
+graph TD
+    A[Start] --> B[Initialize default options]
+    B --> C[Merge default options with user options]
+    C --> D[Call generateCharacterSpritesheet]
+    D --> E[Generate robot character]
+    E --> F[Return spritesheet data]
+    F --> G[End]
+```
+
+This diagram illustrates the flow of the `generateRobot` function, from initialization to returning the final spritesheet data.

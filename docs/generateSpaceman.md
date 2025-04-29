@@ -66,6 +66,17 @@ return generateCharacterSpritesheet('astronaut character with space suit and hel
 
 This approach allows for flexible customization while providing sensible defaults for a spaceman character.
 
+## Function Flow
+
+```mermaid
+graph TD
+    A[Start] --> B[Initialize defaultOptions]
+    B --> C[Merge defaultOptions with user options]
+    C --> D[Call generateCharacterSpritesheet]
+    D --> E[Return Promise]
+    E --> F[End]
+```
+
 ## Notes
 
 - The generated spaceman character will be in a pixel-art style by default.

@@ -1,2 +1,4 @@
-- Make sure everything written is using british jargon
-- All markdown headers should end with the word "yo"
+- Should have codeblocks when apporiate
+- each page can have max two mermaid diagrams
+- should use professional language
+- have good spelling and grammar

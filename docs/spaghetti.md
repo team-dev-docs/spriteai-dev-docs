@@ -1,4 +1,4 @@
-# SpriteAI Documentation
+# SpriteAI Documentation efsjfiodhsujdofsjiofds
 
 ## Introduction
 
@@ -15,20 +15,32 @@ async function generateCharacterSpritesheet(description, options = {})
 ```
 
 #### Parameters:
-- `description`: String describing the character
-- `options`: Object with the following properties:
-  - `states`: Array of animation states (default: ['idle', 'walk', 'run', 'attack'])
-  - `framesPerState`: Number of frames per state (default: 6)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between frames (default: 1)
-  - `direction`: Character facing direction (default: 'right')
+
+* `description`: String describing the character
+
+* `options`: Object with the following properties:
+
+  * `states`: Array of animation states (default: \['idle', 'walk', 'run', 'attack'])
+
+  * `framesPerState`: Number of frames per state (default: 6)
+
+  * `size`: Image size (default: '1024x1024')
+
+  * `style`: Art style (default: 'pixel-art')
+
+  * `padding`: Padding between frames (default: 1)
+
+  * `direction`: Character facing direction (default: 'right')
 
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `spritesheet`: Base64 encoded spritesheet
-- `metadata`: Object with spritesheet details
+
+* `original`: URL of the original generated image
+
+* `spritesheet`: Base64 encoded spritesheet
+
+* `metadata`: Object with spritesheet details
 
 ### generateEnvironmentSprites
 
@@ -39,19 +51,30 @@ async function generateEnvironmentSprites(description, options = {})
 ```
 
 #### Parameters:
-- `description`: String describing the environment
-- `options`: Object with the following properties:
-  - `elements`: Number of distinct elements (default: 4)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between elements (default: 1)
-  - `theme`: Environment theme (default: 'fantasy')
+
+* `description`: String describing the environment
+
+* `options`: Object with the following properties:
+
+  * `elements`: Number of distinct elements (default: 4)
+
+  * `size`: Image size (default: '1024x1024')
+
+  * `style`: Art style (default: 'pixel-art')
+
+  * `padding`: Padding between elements (default: 1)
+
+  * `theme`: Environment theme (default: 'fantasy')
 
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `tileset`: Base64 encoded tileset
-- `metadata`: Object with tileset details
+
+* `original`: URL of the original generated image
+
+* `tileset`: Base64 encoded tileset
+
+* `metadata`: Object with tileset details
 
 ### generateItemSprites
 
@@ -62,20 +85,32 @@ async function generateItemSprites(description, options = {})
 ```
 
 #### Parameters:
-- `description`: String describing the items
-- `options`: Object with the following properties:
-  - `itemCount`: Number of items to generate (default: 4)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between items (default: 1)
-  - `itemType`: Type of items (default: 'equipment')
-  - `background`: Background color (default: 'white')
+
+* `description`: String describing the items
+
+* `options`: Object with the following properties:
+
+  * `itemCount`: Number of items to generate (default: 4)
+
+  * `size`: Image size (default: '1024x1024')
+
+  * `style`: Art style (default: 'pixel-art')
+
+  * `padding`: Padding between items (default: 1)
+
+  * `itemType`: Type of items (default: 'equipment')
+
+  * `background`: Background color (default: 'white')
 
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `itemSheet`: Base64 encoded item sheet
-- `metadata`: Object with item sheet details
+
+* `original`: URL of the original generated image
+
+* `itemSheet`: Base64 encoded item sheet
+
+* `metadata`: Object with item sheet details
 
 ### fetchAvailableAnimationStates
 
@@ -86,6 +121,7 @@ async function fetchAvailableAnimationStates()
 ```
 
 #### Returns:
+
 An array of available animation states.
 
 ### fetchAvailableSpriteStyles
@@ -97,6 +133,7 @@ async function fetchAvailableSpriteStyles()
 ```
 
 #### Returns:
+
 An array of available sprite styles.
 
 ## Usage Example

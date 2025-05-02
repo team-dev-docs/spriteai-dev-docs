@@ -1,74 +1,64 @@
-# Getting Started with SpriteAI
+# Getting Started with A/B Testing
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to our A/B Testing documentation! This guide will walk you through the process of integrating and using our A/B testing tool in your projects.
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+To begin using our A/B testing tool, you'll need to install it in your project directory. Run the following command:
 
 ```bash
-npm install spriteai
+npm install abtest-tool
 ```
 
 ## Basic Usage
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+Once the A/B testing tool is installed, you can start leveraging its features in your project. Here's a quick example demonstrating the main functionalities:
 
 ```javascript
-const spriteAI = require('spriteai');
+const ABTest = require('abtest-tool');
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
+// Initialize a new A/B test
+const test = new ABTest('button-color-test');
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
+// Define variations
+test.addVariation('A', { buttonColor: 'blue' });
+test.addVariation('B', { buttonColor: 'green' });
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
+// Assign a user to a variation
+const userId = 'user123';
+const assignedVariation = test.assignUser(userId);
 
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
-  });
+console.log(`User ${userId} assigned to variation: ${assignedVariation}`);
+
+// Use the assigned variation in your application
+if (assignedVariation === 'A') {
+  // Apply blue button color
+} else {
+  // Apply green button color
+}
+
+// Track conversion
+test.trackConversion(userId);
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+Our A/B testing tool offers a range of powerful features:
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
-
-## Advanced Techniques
-
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+1. **Test Creation**: Easily create new A/B tests with `new ABTest(testName)`.
+2. **Variation Definition**: Define multiple variations for each test using `addVariation(variationName, properties)`.
+3. **User Assignment**: Consistently assign users to variations with `assignUser(userId)`.
+4. **Conversion Tracking**: Track conversions for each variation using `trackConversion(userId)`.
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
+To make the most of our A/B testing tool, we recommend:
 
 1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+2. Learning about advanced configuration options
+3. Implementing A/B tests in different parts of your application
+4. Analyzing your test results effectively
 
 For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
 
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+Thank you for choosing our A/B testing tool. We're excited to see how it will help you optimize your applications!

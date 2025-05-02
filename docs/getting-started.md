@@ -1,10 +1,10 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to SpriteAI! This guide will help you get started with using the SpriteAI package for generating and manipulating sprite images.
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+To begin using SpriteAI, you need to install it in your project. Run the following command in your project directory:
 
 ```bash
 npm install spriteai
@@ -12,63 +12,75 @@ npm install spriteai
 
 ## Basic Usage
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+After installation, you can start using SpriteAI in your project. Here's a basic example of how to use the main features:
 
 ```javascript
-const spriteAI = require('spriteai');
+import { generateCharacterSpritesheet, removeBackgroundColor } from 'spriteai';
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
+// Generate a character spritesheet
+const description = 'a cute dragon';
+const options = {
+  states: ['idle', 'walk', 'run'],
+  framesPerState: 4,
+  size: '512x512',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'right',
+  save: true
+};
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
+generateCharacterSpritesheet(description, options)
+  .then(result => {
+    console.log('Spritesheet generated:', result.spritesheet);
+    console.log('Metadata:', result.metadata);
   })
   .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
+    console.error('Error generating spritesheet:', error);
   });
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
+// Remove background color from an image
+const inputPath = 'path/to/input/image.png';
+const outputPath = 'path/to/output/image.png';
+const targetColor = '#FFFFFF'; // Color to remove
+const colorThreshold = 10; // Threshold for color matching
 
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
+removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
   .then(() => {
-    console.log('Sprite saved successfully');
+    console.log('Background color removed successfully.');
   })
   .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
+    console.error('Error removing background color:', error);
   });
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+SpriteAI offers several powerful features for sprite generation and manipulation:
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+1. **Character Spritesheet Generation**: Create spritesheets with multiple animation states.
+2. **Background Color Removal**: Remove specific colors from images to create transparent backgrounds.
+3. **Environment Sprite Generation**: Generate tileset sprites for game environments.
+4. **Item Sprite Generation**: Create sprites for game items and equipment.
 
-## Advanced Techniques
+## Advanced Usage
 
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+For more advanced usage and detailed API reference, please refer to the following sections:
+
+- [API Reference](./api-reference.md)
+- [Usage Examples](./usage-examples.md)
+- [Advanced Techniques](./advanced-techniques.md)
+
+## Configuration
+
+SpriteAI uses the OpenAI API for image generation. Make sure you have set up your OpenAI API credentials properly. You can do this by setting the `OPENAI_API_KEY` environment variable or by configuring it in your application code.
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
+To get the most out of SpriteAI:
 
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+1. Explore the full API documentation to understand all available functions and options.
+2. Experiment with different sprite generation parameters to achieve desired results.
+3. Try combining multiple features, such as generating a spritesheet and then removing its background.
+4. Join our community forums or contribute to the project on GitHub for support and collaboration.
 
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+We hope you enjoy using SpriteAI for your sprite generation needs!

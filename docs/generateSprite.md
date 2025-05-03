@@ -12,43 +12,67 @@ sidebar_position: 1
 To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateSprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const result = await generateSprite({subject, action, frameNumber});
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `subject` (string, required): The subject of the sprite (e.g., "ninja").
+- `action` (string, required): The action the subject is performing (e.g., "walking").
+- `frameNumber` (number, required): The number of frames in the sprite sheet.
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+Returns a Promise that resolves to an object containing:
+- `data`: An array with a single object containing:
+  - `b64_json`: Base64-encoded image data of the generated sprite sheet.
 
 ## Examples
 
 1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
-
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const result = await generateSprite({
+  subject: "ninja",
+  action: "walking",
+  frameNumber: 12
 });
+console.log(result.data[0].b64_json);
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
+- The function uses the OpenAI API (GPT-4 Vision) to generate images, which may result in varying outputs for the same input.
+- Generated sprites are optimized for the specified action and frame count.
+- The function generates a 64x64 pixel spritesheet with a transparent background.
+- The spritesheet is designed for use in classic side-scrolling platformer games.
 - The function may take some time to complete due to API calls and image processing.
+
+## New Feature: startServer
+
+The `startServer` function has been added to serve the generated sprite sheet and provide a simple web interface for viewing it.
+
+### Usage
+
+```javascript
+import { startServer } from './path/to/sprite/module';
+
+await startServer(port, imageFile, frameCount);
+```
+
+### Parameters
+- `port` (number, optional): The port number to run the server on. Default is 3000.
+- `imageFile` (string, optional): The name of the sprite sheet image file. Default is 'sprite.png'.
+- `frameCount` (number, optional): The number of frames in the sprite sheet. Default is 12.
+
+### Example
+
+```javascript
+await startServer(3000, "sprite.png", 12);
+```
+
+This will start a server on `http://localhost:3000/` that serves the sprite sheet and provides a simple HTML interface for viewing the animated sprite.
+
+### Notes
+- The server uses Node.js `http` module to create a basic HTTP server.
+- It serves static files (HTML, CSS, JavaScript, and images) from the current directory.
+- The server provides a JSON endpoint at `/imageFile` that returns the image file name and frame count.
+- Make sure to have the necessary HTML, CSS, and JavaScript files in place for the web interface to work correctly.

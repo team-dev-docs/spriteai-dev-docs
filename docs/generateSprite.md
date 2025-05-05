@@ -48,7 +48,35 @@ variations.forEach((variation, index) => {
 
 ## Notes or Considerations
 - The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
+- Generated sprites are optimized for walking animations and follow a specific layout (3 frames in a 1x3 grid).
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+- The default frame dimensions are now set to 256x341 pixels, which may affect how you use the generated sprite sheet in your game or application.
+
+## Using the Generated Sprite in Phaser
+
+Here's an example of how to use the generated sprite in a Phaser game:
+
+```javascript
+function preload() {
+    this.load.spritesheet('robotWalk', 'path/to/generated/sprite.png', {
+        frameWidth: 256,
+        frameHeight: 341
+    });
+}
+
+function create() {
+    this.anims.create({
+        key: 'robotWalk',
+        frames: this.anims.generateFrameNumbers('robotWalk', { start: 0, end: 2 }),
+        frameRate: 4,
+        repeat: -1
+    });
+
+    const robot = this.add.sprite(400, 400, 'robotWalk');
+    robot.play('robotWalk');
+}
+```
+
+In this example, we load the generated sprite sheet with the correct frame dimensions (256x341) and create an animation using the three frames. Adjust the `frameRate` and `repeat` values as needed for your specific animation requirements.

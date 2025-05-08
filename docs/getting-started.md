@@ -1,74 +1,126 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to SpriteAI! This guide helps you generate character spritesheets, environment sprites, and item sprites for game development.
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+Install SpriteAI in your project directory:
 
 ```bash
 npm install spriteai
 ```
 
-## Basic Usage
+## Quick Example
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+Generate a character spritesheet:
 
 ```javascript
-const spriteAI = require('spriteai');
+import { generateCharacterSpritesheet } from 'spriteai';
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
+const description = 'a cute dragon';
+const options = {
+  states: ['idle', 'walk', 'run'],
+  framesPerState: 4,
+  size: '512x512',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'left',
+  save: true
+};
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
-
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
-  });
+generateCharacterSpritesheet(description, options)
+  .then(result => console.log('Spritesheet generated:', result.spritesheet))
+  .catch(error => console.error('Error:', error));
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+1. **Character Spritesheet Generation**
+2. **Environment Sprite Generation**
+3. **Item Sprite Generation**
+4. **Background Removal**
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+## Generating Sprites
 
-## Advanced Techniques
+### Character Spritesheet
 
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+```javascript
+import { generateCharacterSpritesheet } from 'spriteai';
+
+const options = {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  direction: 'right',
+  save: true
+};
+
+generateCharacterSpritesheet('a brave knight', options)
+  .then(result => console.log('Spritesheet URL:', result.spritesheet))
+  .catch(error => console.error('Error:', error));
+```
+
+### Environment Sprites
+
+```javascript
+import { generateEnvironmentSprites } from 'spriteai';
+
+const options = {
+  elements: 4,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  theme: 'fantasy'
+};
+
+generateEnvironmentSprites('forest', options)
+  .then(result => console.log('Tileset URL:', result.tileset))
+  .catch(error => console.error('Error:', error));
+```
+
+### Item Sprites
+
+```javascript
+import { generateItemSprites } from 'spriteai';
+
+const options = {
+  itemCount: 4,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  itemType: 'equipment',
+  background: 'transparent'
+};
+
+generateItemSprites('medieval weapons', options)
+  .then(result => console.log('Item sheet URL:', result.itemSheet))
+  .catch(error => console.error('Error:', error));
+```
+
+## Removing Background Color
+
+```javascript
+import { removeBackgroundColor } from 'spriteai';
+
+removeBackgroundColor('input.png', 'output.png', '#FFFFFF', 10)
+  .then(() => console.log('Background removed'))
+  .catch(error => console.error('Error:', error));
+```
+
+## Advanced Usage
+
+- `fetchAvailableAnimationStates()`: List available animation states
+- `fetchAvailableSpriteStyles()`: List available sprite styles
+
+For detailed information, refer to our API documentation.
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
+1. Experiment with different options
+2. Combine sprites for complete game assets
+3. Explore API documentation
+4. Join community forums for support
 
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
-
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+Thank you for choosing SpriteAI!

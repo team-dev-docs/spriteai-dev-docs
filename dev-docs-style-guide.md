@@ -1,4 +1,1 @@
-- Should have codeblocks when apporiate
-- each page can have max two mermaid diagrams
-- should use professional language
-- have good spelling and grammar
+dsfdsfdsfdsfdsffdsfdsf

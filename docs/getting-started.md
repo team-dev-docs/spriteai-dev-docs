@@ -10,9 +10,7 @@ To begin using SpriteAI, you'll need to install it in your project directory. Fi
 npm install spriteai
 ```
 
-## Basic Usage
-
-Once SpriteAI is installed, you can start using its features in your project. Here's a quick example demonstrating how to generate a character spritesheet:
+start using its features in your project. Here's a quick example demonstrating how to generate a character spritesheet:
 
 ```javascript
 import { generateCharacterSpritesheet } from 'spriteai';
@@ -43,8 +41,11 @@ generateCharacterSpritesheet(description, options)
 SpriteAI offers several powerful features to enhance your sprite creation:
 
 1. **Character Spritesheet Generation**: Create animated character spritesheets with customizable states and frames.
+
 2. **Environment Sprite Generation**: Generate tilesets for game environments.
+
 3. **Item Sprite Generation**: Create sprites for game items and equipment.
+
 4. **Background Removal**: Remove specific background colors from images.
 
 ## Generating a Character Spritesheet
@@ -153,8 +154,9 @@ removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
 
 SpriteAI provides additional functions to enhance your sprite generation:
 
-- `fetchAvailableAnimationStates()`: Retrieve a list of available animation states.
-- `fetchAvailableSpriteStyles()`: Get a list of available sprite styles.
+* `fetchAvailableAnimationStates()`: Retrieve a list of available animation states.
+
+* `fetchAvailableSpriteStyles()`: Get a list of available sprite styles.
 
 For more detailed information on these functions and advanced usage scenarios, please refer to our API documentation.
 
@@ -163,8 +165,11 @@ For more detailed information on these functions and advanced usage scenarios, p
 To make the most of SpriteAI, we recommend:
 
 1. Experimenting with different descriptions and options to generate diverse sprites.
+
 2. Combining generated sprites to create complete game assets.
+
 3. Exploring the API documentation for advanced features and customization options.
+
 4. Joining our community forums for tips, inspiration, and support.
 
 Thank you for choosing SpriteAI. We're excited to see the amazing game assets you'll create with our package!

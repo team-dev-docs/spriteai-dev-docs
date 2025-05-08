@@ -1,10 +1,10 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to SpriteAI! This guide will help you get started with using SpriteAI to generate character spritesheets, environment sprites, and item sprites for your game development projects.
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+To begin using SpriteAI, you'll need to install it in your project directory. First, make sure you have Node.js installed, then run the following command:
 
 ```bash
 npm install spriteai
@@ -12,63 +12,159 @@ npm install spriteai
 
 ## Basic Usage
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+Once SpriteAI is installed, you can start using its features in your project. Here's a quick example demonstrating how to generate a character spritesheet:
 
 ```javascript
-const spriteAI = require('spriteai');
+import { generateCharacterSpritesheet } from 'spriteai';
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
+const description = 'a cute dragon';
+const options = {
+  states: ['idle', 'walk', 'run'],
+  framesPerState: 4,
+  size: '512x512',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'left',
+  save: true
+};
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
+generateCharacterSpritesheet(description, options)
+  .then(result => {
+    console.log('Spritesheet generated:', result.spritesheet);
+    console.log('Metadata:', result.metadata);
   })
   .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
-
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
+    console.error('Error generating spritesheet:', error);
   });
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+SpriteAI offers several powerful features to enhance your sprite creation:
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+1. **Character Spritesheet Generation**: Create animated character spritesheets with customizable states and frames.
+2. **Environment Sprite Generation**: Generate tilesets for game environments.
+3. **Item Sprite Generation**: Create sprites for game items and equipment.
+4. **Background Removal**: Remove specific background colors from images.
 
-## Advanced Techniques
+## Generating a Character Spritesheet
 
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+To generate a character spritesheet, use the `generateCharacterSpritesheet` function:
+
+```javascript
+import { generateCharacterSpritesheet } from 'spriteai';
+
+const description = 'a brave knight';
+const options = {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  direction: 'right',
+  save: true
+};
+
+generateCharacterSpritesheet(description, options)
+  .then(result => {
+    console.log('Spritesheet URL:', result.spritesheet);
+    console.log('Metadata:', result.metadata);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+## Generating Environment Sprites
+
+To create environment sprites, use the `generateEnvironmentSprites` function:
+
+```javascript
+import { generateEnvironmentSprites } from 'spriteai';
+
+const description = 'forest';
+const options = {
+  elements: 4,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  theme: 'fantasy'
+};
+
+generateEnvironmentSprites(description, options)
+  .then(result => {
+    console.log('Tileset URL:', result.tileset);
+    console.log('Metadata:', result.metadata);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+## Generating Item Sprites
+
+To generate item sprites, use the `generateItemSprites` function:
+
+```javascript
+import { generateItemSprites } from 'spriteai';
+
+const description = 'medieval weapons';
+const options = {
+  itemCount: 4,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  itemType: 'equipment',
+  background: 'transparent'
+};
+
+generateItemSprites(description, options)
+  .then(result => {
+    console.log('Item sheet URL:', result.itemSheet);
+    console.log('Metadata:', result.metadata);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+```
+
+## Removing Background Color
+
+To remove a specific background color from an image, use the `removeBackgroundColor` function:
+
+```javascript
+import { removeBackgroundColor } from 'spriteai';
+
+const inputPath = 'path/to/input/image.png';
+const outputPath = 'path/to/output/image.png';
+const targetColor = '#FFFFFF'; // Color to remove
+const colorThreshold = 10; // Threshold for color matching
+
+removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold)
+  .then(() => {
+    console.log('Background color removed successfully.');
+  })
+  .catch(error => {
+    console.error('Error removing background color:', error);
+  });
+```
+
+## Advanced Usage
+
+SpriteAI provides additional functions to enhance your sprite generation:
+
+- `fetchAvailableAnimationStates()`: Retrieve a list of available animation states.
+- `fetchAvailableSpriteStyles()`: Get a list of available sprite styles.
+
+For more detailed information on these functions and advanced usage scenarios, please refer to our API documentation.
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
+To make the most of SpriteAI, we recommend:
 
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+1. Experimenting with different descriptions and options to generate diverse sprites.
+2. Combining generated sprites to create complete game assets.
+3. Exploring the API documentation for advanced features and customization options.
+4. Joining our community forums for tips, inspiration, and support.
 
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+Thank you for choosing SpriteAI. We're excited to see the amazing game assets you'll create with our package!

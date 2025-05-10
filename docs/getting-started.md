@@ -1,10 +1,10 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects and getting started with its core features.
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+To begin using SpriteAI, you'll need to install it in your project directory. Run the following command:
 
 ```bash
 npm install spriteai
@@ -17,7 +17,7 @@ Once SpriteAI is installed, you can start leveraging its powerful features in yo
 ```javascript
 const spriteAI = require('spriteai');
 
-// Initialise a new SpriteAI instance
+// Initialize a new SpriteAI instance
 const ai = new spriteAI.SpriteAI();
 
 // Generate a sprite
@@ -52,7 +52,7 @@ ai.saveSprite(sprite, 'path/to/save/sprite.png')
 
 SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
+1. **Sprite Generation**: Utilize `generateSprite(name, width, height)` to programmatically create new sprites.
 2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
 3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
 

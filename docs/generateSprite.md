@@ -3,52 +3,108 @@ slug: /
 sidebar_position: 1
 ---
 
-# generateSprite Documentation
+# spriteAI Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`spriteAI` is a project designed to generate character spritesheets and manipulate images using the OpenAI API and image processing libraries. This tool allows users to create pixel-art character animations with customizable states and frames.
+
+## Features
+- Generate character spritesheets based on descriptions and animation states.
+- Remove background colors from images to create transparent backgrounds.
+- Supports various art styles and output sizes.
+- Easy integration with OpenAI's DALL-E for image generation.
+- Fetch available animation states and sprite styles dynamically.
+- Generate environment tilesets based on descriptions.
+
+## Installation
+To get started with `spriteAI`, clone the repository and install the necessary dependencies:
+
+```bash
+git clone 
+cd spriteAI
+npm install
+```
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+### Generating a Spritesheet
+Use the `generateCharacterSpritesheet` function to generate a character spritesheet:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet } from './index.js';
 
-const result = await sprite.generateSprite(description, options);
+const description = 'a cute dragon';
+const options = {
+  states: ['idle', 'walk', 'run'],
+  framesPerState: 4,
+  size: '512x512',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'left',
+  save: true
+};
+
+const result = await generateCharacterSpritesheet(description, options);
+console.log('Spritesheet generated:', result.spritesheet);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+### Removing Background Color
+Use the `removeBackgroundColor` function to remove a specific background color from an image:
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
-
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+import { removeBackgroundColor } from './index.js';
+
+const inputPath = 'path/to/image.png';
+const outputPath = 'path/to/output.png';
+const targetColor = '#FFFFFF'; // Color to remove
+const colorThreshold = 10; // Threshold for color matching
+
+await removeBackgroundColor(inputPath, outputPath, targetColor, colorThreshold);
+console.log('Background color removed successfully.');
 ```
 
-2. Generate multiple variations:
+### Generating Environment Sprites
+Use the `generateEnvironmentSprites` function to generate a tiled environment spritesheet:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+import { generateEnvironmentSprites } from './index.js';
+
+const description = 'fantasy environment';
+const options = {
+  elements: 8,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 2,
+  theme: 'fantasy',
+  save: true
+};
+
+const result = await generateEnvironmentSprites(description, options);
+console.log('Environment tileset generated:', result.tileset);
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## Fetch Available Options
+The `spriteAI` module provides the following functions to fetch available animation states and sprite styles:
+
+```javascript
+import { fetchAvailableAnimationStates, fetchAvailableSpriteStyles } from './index.js';
+
+const states = await fetchAvailableAnimationStates();
+console.log('Available animation states:', states);
+
+const styles = await fetchAvailableSpriteStyles();
+console.log('Available sprite styles:', styles);
+```
+
+## Directory Structure
+- `index.js`: Main logic for generating spritesheets, removing backgrounds, and generating environment sprites.
+- `package.json`: Project configuration and dependencies.
+- `assets/`: Directory for storing generated spritesheets and environment tilesets.
+- `lib/imageProcessing.js`: Functions for image manipulation.
+- `lib/openaiHelpers.js`: Helper functions for OpenAI API interactions.
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.

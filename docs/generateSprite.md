@@ -1,54 +1,69 @@
----
-slug: /
-sidebar_position: 1
----
-
-# generateSprite Documentation
+# colorizeSprite
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+
+The `colorizeSprite` function applies color manipulation effects to a sprite image, allowing you to tint, adjust HSL values, and preserve alpha channels.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+
+To use `colorizeSprite`, import it from the sprite module and call it with an input sprite and options:
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const result = await sprite.colorizeSprite(inputSprite, options);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
+
+- `input` (Buffer | string, required): Input sprite as a buffer or file path.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+  - `tint` (object): Tint color {r: number, g: number, b: number, alpha?: number}
+  - `mode` (string): Blend mode for tint ('multiply', 'overlay', 'screen', etc.). Default: 'multiply'
+  - `hsl` (object): HSL adjustments {hue?: number, saturation?: number, lightness?: number}
+  - `preserveAlpha` (boolean): Whether to preserve the original alpha channel. Default: true
+  - `output` (object): Output options {format?: string, quality?: number}
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+Returns a Promise that resolves to an object containing:
+- `buffer`: Buffer containing the processed image data
+- `metadata`: Object with format, width, height, channels, and size information
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Apply a red tint to a sprite:
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const inputSprite = 'path/to/sprite.png';
+const options = {
+  tint: { r: 255, g: 0, b: 0, alpha: 0.5 },
+  mode: 'multiply'
+};
+
+const result = await sprite.colorizeSprite(inputSprite, options);
+console.log(result.metadata);
 ```
 
-2. Generate multiple variations:
+2. Adjust HSL values:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+const inputBuffer = fs.readFileSync('path/to/sprite.png');
+const options = {
+  hsl: { hue: 180, saturation: 1.2, lightness: 0.8 },
+  preserveAlpha: true,
+  output: { format: 'png', quality: 90 }
+};
+
+const result = await sprite.colorizeSprite(inputBuffer, options);
+fs.writeFileSync('output.png', result.buffer);
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+
+- The function uses the Sharp library for image processing, ensuring high-performance operations.
+- When applying a tint, you can adjust the alpha value to control the intensity of the effect.
+- HSL adjustments allow for fine-tuning of the sprite's colors without affecting its overall structure.
+- The `preserveAlpha` option is useful when you want to maintain the original transparency of the sprite.
+- You can combine tinting and HSL adjustments in a single operation for more complex color manipulations.
+- The function supports various input and output formats, defaulting to PNG if not specified.

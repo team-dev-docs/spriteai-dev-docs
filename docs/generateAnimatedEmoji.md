@@ -1,10 +1,10 @@
 # generateAnimatedEmoji
 
 ## Brief Description
-`generateAnimatedEmoji` is a function that generates a 4-frame animated emoji based on a given description using AI-powered image generation.
+`generateAnimatedEmoji` is a function that creates animated emoji in a 2x2 grid layout, generating all frames for a smooth animation using AI-powered image generation.
 
 ## Usage
-To use `generateAnimatedEmoji`, import it from the sprite module and call it with a description of the emoji animation you want to generate.
+To use `generateAnimatedEmoji`, import it from the sprite module and call it with a description of the animated emoji you want to generate.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
@@ -16,6 +16,7 @@ const result = await sprite.generateAnimatedEmoji(description, options);
 - `description` (string, required): A text description of the animated emoji to generate.
 - `options` (object, optional):
   - `save` (boolean): Whether to save the generated image to disk.
+  - Other options inherited from the base generate function.
 
 ## Return Value
 Returns an object containing:
@@ -24,23 +25,28 @@ Returns an object containing:
 
 ## Examples
 
-1. Generate an animated emoji:
+1. Generate a simple animated emoji:
 ```javascript
-const result = await sprite.generateAnimatedEmoji("A smiling face winking");
-console.log(result.image); // Base64-encoded image data URL
-console.log(result.url); // Direct URL to the generated image
+const result = await sprite.generateAnimatedEmoji("A smiling sun with rays that pulse");
+console.log(result.image);
+console.log(result.url);
 ```
 
 2. Generate and save an animated emoji:
 ```javascript
-const result = await sprite.generateAnimatedEmoji("A heart beating", { save: true });
-console.log("Emoji saved and accessible at:", result.url);
+const result = await sprite.generateAnimatedEmoji("A cat winking", { save: true });
+console.log("Saved animated emoji:", result.url);
 ```
 
+## Technical Details
+- The function uses OpenAI's DALL-E 3 model to generate a 2x2 grid of images.
+- The prompt specifically requests a sequence that forms a smooth animation when viewed in order.
+- The generated image is organized in a 2x2 grid layout containing all frames of the animation.
+- The animation is designed to be short and loopable for emoji-style usage.
+
 ## Notes or Considerations
-- The function uses the DALL-E 3 AI model to generate images, which may result in varying outputs for the same input.
-- Generated emojis are optimized for animation, with 4 frames arranged in a 2x2 grid.
-- The function returns a single image containing all 4 frames of the animation.
+- The function uses AI models to generate animations, which may result in varying outputs for the same input.
+- Generated emojis are optimized for a simple, recognizable style suitable for emoji usage.
 - When saving images, they are stored with a timestamp-based filename.
 - The function may take some time to complete due to API calls and image processing.
-- Ensure you have the necessary API credentials and permissions to use the OpenAI image generation service.
+- Ensure you have the necessary permissions and API keys set up for using the OpenAI image generation service.

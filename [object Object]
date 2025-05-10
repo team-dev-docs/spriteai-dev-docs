@@ -1,0 +1,162 @@
+# SpriteAI Wizard
+
+The SpriteAI Wizard provides an easy way to generate different types of sprites for your games, including character spritesheets, environment elements, and item collections.
+
+## Overview
+
+The wizard functions allow you to generate different types of game assets by providing simple descriptions and customization options. Behind the scenes, these functions use advanced AI models to create high-quality sprites based on your specifications.
+
+## Character Spritesheet Generator
+
+```javascript
+async function generateCharacterSpritesheet(description, options = {})
+```
+
+Generates a complete character spritesheet with multiple animation states.
+
+### Parameters:
+
+- `description` (string): Description of the character to generate.
+- `options` (object): Customization options including:
+  - `states` (array): Animation states to include (default: ['idle', 'walk', 'run', 'attack'])
+  - `framesPerState` (number): Frames per animation state (default: 6)
+  - `size` (string): Image size (default: '1024x1024')
+  - `style` (string): Art style (default: 'pixel-art')
+  - `padding` (number): Padding between frames (default: 1)
+  - `direction` (string): Character facing direction (default: 'right')
+  - `save` (boolean): Whether to save the output file locally
+
+### Returns:
+
+An object containing:
+- `original`: URL to the original generated image
+- `spritesheet`: Base64-encoded spritesheet image
+- `metadata`: Detailed information about the spritesheet
+
+### Example Usage:
+
+```javascript
+const characterSheet = await spriteAI.generateCharacterSpritesheet('warrior with sword and shield', {
+  states: ['idle', 'walk', 'attack', 'die'],
+  framesPerState: 4,
+  style: 'pixel-art',
+  save: true
+});
+```
+
+## Environment Sprites Generator
+
+```javascript
+async function generateEnvironmentSprites(description, options = {})
+```
+
+Creates a tileset of environment elements for game backgrounds and scenes.
+
+### Parameters:
+
+- `description` (string): Description of the environment to generate.
+- `options` (object): Customization options including:
+  - `elements` (number): Number of environment elements (default: 4)
+  - `size` (string): Image size (default: '1024x1024')
+  - `style` (string): Art style (default: 'pixel-art')
+  - `padding` (number): Padding between elements (default: 1)
+  - `theme` (string): Environment theme (default: 'fantasy')
+  - `save` (boolean): Whether to save the output file locally
+
+### Returns:
+
+An object containing:
+- `original`: URL to the original generated image
+- `tileset`: Base64-encoded tileset image
+- `metadata`: Detailed information about the tileset
+
+### Example Usage:
+
+```javascript
+const forestEnvironment = await spriteAI.generateEnvironmentSprites('forest with trees and rocks', {
+  elements: 6,
+  theme: 'fantasy',
+  save: true
+});
+```
+
+## Item Sprites Generator
+
+```javascript
+async function generateItemSprites(description, options = {})
+```
+
+Generates a collection of item sprites for game inventories, pickups, etc.
+
+### Parameters:
+
+- `description` (string): Description of the items to generate.
+- `options` (object): Customization options including:
+  - `itemCount` (number): Number of items to generate (default: 4)
+  - `size` (string): Image size (default: '1024x1024')
+  - `style` (string): Art style (default: 'pixel-art')
+  - `padding` (number): Padding between items (default: 1)
+  - `itemType` (string): Type of items (default: 'equipment')
+  - `background` (string): Background color (default: 'white')
+  - `save` (boolean): Whether to save the output file locally
+
+### Returns:
+
+An object containing:
+- `original`: URL to the original generated image
+- `itemSheet`: Base64-encoded item sheet image
+- `metadata`: Detailed information about the items
+
+### Example Usage:
+
+```javascript
+const potionItems = await spriteAI.generateItemSprites('magical potions with different colors', {
+  itemCount: 8,
+  itemType: 'consumables',
+  save: true
+});
+```
+
+## Helper Functions
+
+### Available Animation States
+
+```javascript
+async function fetchAvailableAnimationStates()
+```
+
+Returns an array of available animation states for character spritesheets.
+
+#### Example Usage:
+
+```javascript
+const states = await spriteAI.fetchAvailableAnimationStates();
+// Returns: ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die']
+```
+
+### Available Sprite Styles
+
+```javascript
+async function fetchAvailableSpriteStyles()
+```
+
+Returns an array of available art styles for sprite generation.
+
+#### Example Usage:
+
+```javascript
+const styles = await spriteAI.fetchAvailableSpriteStyles();
+// Returns: ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+## Tips for Best Results
+
+1. **Be Specific**: The more detailed your description, the better the results will match your vision.
+
+2. **Consider Style Consistency**: Choose a consistent art style across all your game assets.
+
+3. **Test Different Options**: Experiment with different settings to find the perfect combination for your game.
+
+4. **Post-Processing**: You might want to further edit the generated sprites using image editing tools for perfect results.
+
+5. **Save Generated Assets**: Use the `save: true` option to automatically save your generated assets to the project's assets folder.

@@ -2,7 +2,6 @@
 slug: /
 sidebar_position: 1
 ---
-
 # generateSprite Documentation
 
 ## Brief Description
@@ -52,3 +51,56 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+# Quickstart Guide
+
+## Getting Started with generateSprite
+
+1. Install the required dependencies:
+```bash
+npm install @your-package/sprite-ai
+```
+
+2. Import the sprite module in your project:
+```javascript
+import { sprite } from '@your-package/sprite-ai';
+```
+
+3. Generate a simple sprite:
+```javascript
+const description = "A cute pixelated cat";
+const result = await sprite.generateSprite(description);
+
+// Access the generated sprite data
+console.log(result.messages); // Frame information
+console.log(result.image);    // Base64-encoded image data
+```
+
+4. Customize your sprite generation:
+```javascript
+const options = {
+  iterations: 2,
+  size: "512x512",
+  save: true
+};
+
+const variations = await sprite.generateSprite("A fierce dragon", options);
+
+variations.forEach((variation, index) => {
+  console.log(`Variation ${index + 1}:`, variation.messages);
+});
+```
+
+5. Integrate the generated sprite into your game or application:
+```javascript
+// Example: Display the sprite in an HTML canvas
+const canvas = document.getElementById('spriteCanvas');
+const ctx = canvas.getContext('2d');
+const img = new Image();
+img.onload = () => {
+  ctx.drawImage(img, 0, 0);
+};
+img.src = result.image;
+```
+
+With these steps, you can quickly start generating and using AI-powered sprites in your projects!

@@ -1,47 +1,119 @@
-# generatePixelArt Documentation
+---
+slug: /
+sidebar_position: 1
+---
+# SpriteProcessor Documentation
 
 ## Brief Description
-`generatePixelArt` is a function that generates a pixel art sprite based on a given description using AI-powered image generation and processing.
+The `SpriteProcessor` class is a jolly good tool for processing and manipulating sprite images, innit? It provides various transformation and pixel art effects, allowing you chaps to create customized sprite sheets for game development or other graphical applications. Quite splendid!
 
 ## Usage
-To use `generatePixelArt`, import it from the sprite module and call it with a description of the pixel art sprite you want to generate.
+To use the `SpriteProcessor`, import it from the module and create an instance with an input image, as you do:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+const SpriteProcessor = require('./path/to/SpriteProcessor');
 
-const result = await sprite.generatePixelArt(description, options);
+const processor = new SpriteProcessor('path/to/your/image.png');
 ```
 
-## Parameters
-- `description` (string, required): A text description of the pixel art sprite to generate.
-- `options` (object, optional):
-  - `save` (boolean): Whether to save the generated image to disk.
-  - Other options inherited from the base generate function.
+## Constructor
+- `input` (string | Buffer): Path to the image file or a Buffer containing the image data. Smashing!
 
-## Return Value
-Returns an object containing:
-- `image`: Base64-encoded image data URL of the generated pixel art sprite.
-- `url`: Direct URL to the generated image.
+## Methods
+
+### process(options)
+Processes the input image with the specified options. Proper job!
+
+#### Parameters
+- `options` (object, optional):
+  - `transform` (object, optional): Transformation options, rather fancy
+    - `resize` (object): `{ width, height, fit }` for resizing the image
+    - `flipHorizontal` (boolean): Flip the image horizontally, like a right proper flip
+    - `flipVertical` (boolean): Flip the image vertically, topsy-turvy style
+    - `rotate` (number): Rotation angle in degrees, give it a good spin
+    - `hsl` (object): `{ hue, saturation, lightness }` for HSL adjustments
+    - `tint` (object): `{ r, g, b, alpha }` for applying a colour tint (mind the 'u'!)
+    - `blendMode` (string): Blending mode for the tint (default: 'multiply')
+  - `pixelArt` (object, optional): Pixel art effect options, absolutely brilliant
+    - `pixelation` (number | string): Pixelation factor or preset ('low', 'medium', 'high')
+    - `palette` (object): `{ preset, colors }` for colour palette reduction
+    - `dithering` (boolean): Enable dithering for palette reduction, quite posh
+  - `output` (object, optional): Output options, pip pip
+    - `format` (string): Output format (default: 'png')
+    - `quality` (number): Output quality (default: 80)
+    - `metadata` (boolean): Include metadata in the result
+
+#### Returns
+- Promise: Processed image data and optional metadata. Bob's your uncle!
+
+### Static Methods
+
+#### processSprite(input, options)
+A static method that creates a new `SpriteProcessor` instance and processes the input image. Bloody brilliant!
+
+#### Parameters
+- `input` (string | Buffer): Path to the image file or a Buffer containing the image data
+- `options` (object): Same as the `process` method options
+
+#### Returns
+- Promise: Processed image data and optional metadata
 
 ## Examples
 
-1. Generate a simple pixel art sprite:
+1. Basic image processing:
 ```javascript
-const result = await sprite.generatePixelArt("A pixelated robot");
-console.log(result.image);
-console.log(result.url);
+const SpriteProcessor = require('./SpriteProcessor');
+
+async function processSpriteExample() {
+  try {
+    const result = await SpriteProcessor.processSprite('input.png', {
+      transform: {
+        resize: { width: 64, height: 64, fit: 'contain' },
+        flipHorizontal: true,
+        rotate: 90
+      },
+      output: { format: 'png', quality: 90 }
+    });
+
+    // result is a Buffer containing the processed image data
+    console.log('Sprite processed successfully, old chap!');
+  } catch (error) {
+    console.error('Blimey! Error processing sprite:', error.message);
+  }
+}
+
+processSpriteExample();
 ```
 
-2. Generate and save a pixel art sprite:
+2. Applying pixel art effects:
 ```javascript
-const result = await sprite.generatePixelArt("A pixel art cat", { save: true });
-console.log("Saved pixel art sprite:", result.url);
+const SpriteProcessor = require('./SpriteProcessor');
+
+async function pixelArtExample() {
+  try {
+    const processor = new SpriteProcessor('input.png');
+    const result = await processor.process({
+      pixelArt: {
+        pixelation: 'medium',
+        palette: { preset: 'gameboy' },
+        dithering: true
+      },
+      output: { format: 'png', metadata: true }
+    });
+
+    console.log('Processed image metadata, spot on:', result.metadata);
+    // result.buffer contains the processed image data
+  } catch (error) {
+    console.error('Cor blimey! Error creating pixel art:', error.message);
+  }
+}
+
+pixelArtExample();
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3) to generate pixel art images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for a pixel art style with a maximum of 32x32 pixels.
-- The function converts images to a limited color palette for authentic pixel art appearance.
-- When saving images, they are stored with a timestamp-based filename.
-- The function may take some time to complete due to API calls and image processing.
-- Ensure you have the necessary permissions and API keys set up for using the OpenAI image generation service.
+## Notes and Considerations
+- The `SpriteProcessor` uses the `sharp` library internally for image processing, ensuring high-performance operations. Quite the dog's bollocks!
+- When using the `pixelArt` options, be aware that the resulting image may have a reduced colour palette and lower resolution. Mind how you go!
+- The `gameboy` and `cga` palette presets are available for creating retro-style pixel art. Simply smashing!
+- Error handling is important, as image processing operations may fail due to various reasons (e.g., invalid input, unsupported formats). Don't get your knickers in a twist!
+- For best results, experiment with different combinations of transformation and pixel art options to achieve the desired effect. Go on, give it a cheeky try!

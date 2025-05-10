@@ -2,7 +2,6 @@
 slug: /
 sidebar_position: 1
 ---
-
 # generateSprite Documentation
 
 ## Brief Description
@@ -28,6 +27,23 @@ const result = await sprite.generateSprite(description, options);
 Returns an object or array of objects containing:
 - `messages`: JSON object with frameHeight and frameWidth information.
 - `image`: Base64-encoded image data URL of the generated sprite sheet.
+
+## Process Flow
+
+```mermaid
+graph TD
+    A[Start] --> B[Prepare Prompt]
+    B --> C[API Request to DALL-E]
+    C --> D[Image Download]
+    D --> E[Spritesheet Generation]
+    E --> F{Background Removal?}
+    F -- Yes --> G[Remove Background]
+    F -- No --> H[Skip Background Removal]
+    G --> I[Image Saving]
+    H --> I
+    I --> J[Return Result]
+    J --> K[End]
+```
 
 ## Examples
 

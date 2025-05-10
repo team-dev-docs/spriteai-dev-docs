@@ -52,3 +52,63 @@ variations.forEach((variation, index) => {
 - The function converts images to grayscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.
+
+## Additional Functions
+
+### generateEnvironmentSprites
+
+This function generates environment sprites based on a given description.
+
+```javascript
+import { generateEnvironmentSprites } from './path/to/sprite/module';
+
+const result = await generateEnvironmentSprites(description, options);
+```
+
+#### Parameters
+- `description` (string, required): A text description of the environment to generate.
+- `options` (object, optional):
+  - `elements` (number): Number of different elements to generate (default: 4).
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the generated sprites (default: "pixel-art").
+  - `padding` (number): Padding between elements (default: 1).
+  - `theme` (string): Theme of the environment (default: "fantasy").
+  - `save` (boolean): Whether to save the generated image to disk.
+
+#### Return Value
+Returns an object containing:
+- `original`: URL of the original generated image.
+- `tileset`: Base64-encoded image data URL of the generated tileset.
+- `metadata`: Object containing information about the generated tileset.
+
+### fetchAvailableSpriteStyles
+
+This function fetches the available sprite styles that can be used with the sprite generation functions.
+
+```javascript
+import { fetchAvailableSpriteStyles } from './path/to/sprite/module';
+
+const styles = await fetchAvailableSpriteStyles();
+```
+
+#### Return Value
+Returns an array of strings representing the available sprite styles (e.g., ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']).
+
+## Examples
+
+1. Generate environment sprites:
+```javascript
+const result = await generateEnvironmentSprites("A lush forest with ancient ruins", {
+  elements: 6,
+  style: "pixel-art",
+  theme: "fantasy"
+});
+console.log(result.tileset);
+console.log(result.metadata);
+```
+
+2. Fetch available sprite styles:
+```javascript
+const styles = await fetchAvailableSpriteStyles();
+console.log("Available styles:", styles);
+```

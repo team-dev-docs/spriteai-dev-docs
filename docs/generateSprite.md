@@ -2,7 +2,6 @@
 slug: /
 sidebar_position: 1
 ---
-
 # generateSprite Documentation
 
 ## Brief Description
@@ -22,7 +21,7 @@ const result = await sprite.generateSprite(description, options);
 - `options` (object, optional):
   - `iterations` (number): Number of sprite variations to generate.
   - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+  - `save` (boolean): Whether to save the generated image to disc.
 
 ## Return Value
 Returns an object or array of objects containing:
@@ -47,8 +46,8 @@ variations.forEach((variation, index) => {
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
+- The function uses AI models (DALL-E 3 and GPT) to generate and analyse images, which may result in varying outputs for the same input.
+- Generated sprites are optimised for walking animations and follow a specific layout (6 frames in a 2x3 grid).
+- The function converts images to greyscale, which may affect the final output.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
 - The function may take some time to complete due to API calls and image processing.

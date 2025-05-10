@@ -2,53 +2,89 @@
 slug: /
 sidebar_position: 1
 ---
-
-# generateSprite Documentation
+# SpriteProcessor Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+The `SpriteProcessor` class is a fire tool for processing and manipulating sprite images. It lets you create dope sprite sheets for your game dev projects or other visual apps with various transformations and pixel art effects.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use the `SpriteProcessor`, just import it and create an instance with your image, no cap:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+const SpriteProcessor = require('./path/to/SpriteProcessor');
 
-const result = await sprite.generateSprite(description, options);
+const processor = new SpriteProcessor('path/to/your/image.png');
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+## Constructor
+- `input` (string | Buffer): Path to the image file or a Buffer with the image data.
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+## Methods
+
+### process(options)
+Processes your image with the specified options. It's bussin'!
+
+#### Parameters
+- `options` (object, optional):
+  - `transform` (object): Resize, flip, rotate, adjust HSL, apply tint
+  - `pixelArt` (object): Add pixelation, palette reduction, dithering
+  - `output` (object): Set format, quality, include metadata
+
+#### Returns
+- Promise: Processed image data + optional metadata
+
+### Static Methods
+
+#### processSprite(input, options)
+Static method that creates a new instance and processes the image in one go. Super lit!
+
+#### Parameters
+- `input` (string | Buffer): Image path or Buffer
+- `options` (object): Same as the `process` method options
+
+#### Returns
+- Promise: Processed image data + optional metadata
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Basic image processing:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const SpriteProcessor = require('./SpriteProcessor');
+
+async function processSpriteExample() {
+  try {
+    const result = await SpriteProcessor.processSprite('input.png', {
+      transform: {
+        resize: { width: 64, height: 64, fit: 'contain' },
+        flipHorizontal: true,
+        rotate: 90
+      },
+      output: { format: 'png', quality: 90 }
+    });
+
+    console.log('Sprite processed successfully');
+  } catch (error) {
+    console.error('Error processing sprite:', error.message);
+  }
+}
 ```
 
-2. Generate multiple variations:
+2. Applying pixel art effects:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const processor = new SpriteProcessor('input.png');
+const result = await processor.process({
+  pixelArt: {
+    pixelation: 'medium',
+    palette: { preset: 'gameboy' },
+    dithering: true
+  },
+  output: { format: 'png', metadata: true }
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## Notes
+- Uses the `sharp` library internally for high-key performance
+- With `pixelArt` options, expect a reduced color palette and lower resolution
+- `gameboy` and `cga` palette presets available for that retro vibe
+- Error handling is essential—image processing can fail for sus inputs
+- Experiment with different options to get the most based results

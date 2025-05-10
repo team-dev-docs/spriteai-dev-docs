@@ -2,14 +2,13 @@
 slug: /
 sidebar_position: 1
 ---
-
 # generateSprite Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`generateSprite` is a function that generates sprite sheet images from text descriptions using AI-powered image generation and analysis.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+Import and use the `generateSprite` function in your code:
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
@@ -18,37 +17,37 @@ const result = await sprite.generateSprite(description, options);
 ```
 
 ## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+- `description` (string, required): Text description of the character or object to generate.
+- `options` (object, optional): Configuration options:
+  - `iterations` (number): Number of sprite variants to generate.
+  - `size` (string): Image size. Default: "1024x1024".
+  - `save` (boolean): Whether to save the generated image.
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
+The function returns an object with:
+- `messages`: JSON object containing frameHeight and frameWidth.
 - `image`: Base64-encoded image data URL of the generated sprite sheet.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Generate a single sprite:
 ```javascript
 const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+console.log("Sprite dimensions:", result.messages);
+console.log("Sprite image data:", result.image);
 ```
 
-2. Generate multiple variations:
+2. Generate multiple sprite variants:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const results = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
+results.forEach((variant, index) => {
+  console.log(`Variant ${index + 1} dimensions:`, variant.messages);
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## Notes
+- This function uses AI models (DALL-E 3 and GPT) for image generation and analysis.
+- Sprites are optimized for walking animations in a 6-frame, 2x3 grid layout.
+- Generated images are converted to grayscale for optimization.
+- Generated images are saved in the 'assets' folder, named after their description.
+- The generation process may take some time depending on the complexity of the description and the number of iterations.

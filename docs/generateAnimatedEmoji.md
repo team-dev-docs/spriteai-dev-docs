@@ -37,7 +37,7 @@ const result = await sprite.generateAnimatedEmoji("A heart beating", { save: tru
 console.log("Emoji saved and accessible at:", result.url);
 ```
 
-## Notes or Considerations
+## Notes and Considerations
 - The function uses the DALL-E 3 AI model to generate images, which may result in varying outputs for the same input.
 - Generated emojis are optimized for animation, with 4 frames arranged in a 2x2 grid.
 - The function returns a single image containing all 4 frames of the animation.

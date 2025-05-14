@@ -2,14 +2,13 @@
 slug: /
 sidebar_position: 1
 ---
+# 🌶️ Spicy generateSprite Documentation 🌶️
 
-# generateSprite Documentation
+## 🚀 Brief Description
+`generateSprite` is a spellbinding function that conjures sprite sheet images from mere descriptions, using AI sorcery for image generation and analysis!
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
-
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+## 🔥 Usage
+To harness the power of `generateSprite`, summon it from the sprite module and invoke it with a tantalizing description of the character you wish to materialize.
 
 ```javascript
 import { sprite } from './path/to/sprite/module';
@@ -17,38 +16,99 @@ import { sprite } from './path/to/sprite/module';
 const result = await sprite.generateSprite(description, options);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
+## 🎭 Parameters
+- `description` (string, required): A sizzling text description of the character to generate.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+  - `iterations` (number): Number of sprite variations to spawn.
+  - `size` (string): Dimensions of the generated image (default: "1024x1024").
+  - `save` (boolean): Whether to immortalize the generated image on disk.
+  - `states` (array): Animation states to breathe life into (default: ['idle', 'walk', 'run', 'attack']).
+  - `framesPerState` (number): Number of frames per animation state (default: 6).
+  - `style` (string): The artistic flair of the sprite (default: 'pixel-art').
+  - `padding` (number): Spacing between frames (default: 1).
+  - `direction` (string): The direction your character should face (default: 'right').
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+## 💎 Return Value
+Unleashes an object containing:
+- `original`: URL of the pristine generated image.
+- `spritesheet`: Base64-encoded image data URL of the processed sprite sheet.
+- `metadata`: A treasure trove of information about the sprite sheet, including:
+  - `states`: Array of animation states.
+  - `framesPerState`: Number of frames per state.
+  - `totalFrames`: Total frames in the sprite sheet.
+  - `dimensions`: Object with width and height of the sprite sheet.
+  - `frameData`: Object with juicy details about each animation state's position in the sprite sheet.
 
-## Examples
+## 🎨 Examples
 
-1. Generate a single sprite sheet:
+1. Generate a single, sizzling sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const result = await sprite.generateSprite("A pixelated robot with laser eyes");
+console.log(result.metadata);
+console.log(result.spritesheet);
 ```
 
-2. Generate multiple variations:
+2. Generate a sprite sheet with custom, spicy options:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const result = await sprite.generateSprite("A cartoon cat breathing fire", {
+  states: ['idle', 'walk', 'jump', 'breathe-fire'],
+  framesPerState: 8,
+  style: 'vector',
+  direction: 'left'
 });
+console.log(result.metadata);
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## 🌟 Additional Magical Functions
+
+### 🕺 fetchAvailableAnimationStates
+Unveils a list of available animation states.
+
+```javascript
+const states = await sprite.fetchAvailableAnimationStates();
+console.log(states); // ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die', 'dance']
+```
+
+### 🎭 fetchAvailableSpriteStyles
+Reveals a list of available sprite styles.
+
+```javascript
+const styles = await sprite.fetchAvailableSpriteStyles();
+console.log(styles); // ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime', 'neon']
+```
+
+### 🌳 generateEnvironmentSprites
+Conjures a tileset of environment sprites.
+
+```javascript
+const result = await sprite.generateEnvironmentSprites("Enchanted Forest", {
+  elements: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  theme: 'fantasy'
+});
+console.log(result.tileset);
+console.log(result.metadata);
+```
+
+### 🗡️ generateItemSprites
+Materializes a collection of item sprites.
+
+```javascript
+const result = await sprite.generateItemSprites("Legendary Artifacts of Power", {
+  itemCount: 8,
+  size: '1024x1024',
+  style: 'pixel-art',
+  itemType: 'equipment'
+});
+console.log(result.itemSheet);
+console.log(result.metadata);
+```
+
+## 🌶️ Spicy Notes and Considerations 🌶️
+- This function harnesses the power of AI models (DALL-E 3 and GPT) to generate and analyze images, potentially resulting in wildly varied outputs for the same input!
+- Generated sprites are optimized for the specified animation states and follow the layout defined by the `framesPerState` option, ensuring a consistent spiciness level.
+- When saving images, they are stored in an 'assets' folder with filenames based on the description. Be prepared for some saucy file names!
+- The function may take some time to complete due to API calls and image processing. Use this time to prepare for the incoming awesomeness!
+- The new convenience functions allow for more specific generation of character types, environments, and items, providing greater flexibility in sprite creation. Let your imagination run wild!
+- Remember, with great power comes great responsibility. Use these spicy sprite generation tools wisely, and may your games be ever flavorful! 🎮🔥

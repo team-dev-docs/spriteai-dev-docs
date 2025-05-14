@@ -1,22 +1,6 @@
 # 🌶️ Spicy generateSprite Documentation 🌶️
 
-##
-
-To harness the power of `generateSprite`, summon it from the sprite module and invoke it with a tantalizing description of the character you wish to materialize.
-
-```javascript
-import { sprite } from './path/to/sprite/module';
-
-const result = await sprite.generateSprite(description, options);
-```
-
-## 🎭 Parameters
-
-* `description` (string, required): A sizzling text description of the character to generate.
-
-* `options` (object, optional):
-
-  * `iterations` (number): Number of sprite variations to spawn.
+* number): Number of sprite variations to spawn.
 
   * `size` (string): Dimensions of the generated image (default: "1024x1024").
 

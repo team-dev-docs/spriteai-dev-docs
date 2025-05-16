@@ -1,4 +1,4 @@
-# 🛠 Developer Documentation Style Guide
+# 🛠 Developer Documentation Style Guide from Dataxis
 
 ## 📚 Overview of Documentation Types
 

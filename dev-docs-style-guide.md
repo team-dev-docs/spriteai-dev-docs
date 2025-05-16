@@ -1,1 +1,1 @@
-make the docs spicy and use emojis, and use good grammar.  Please
+make the docs spicy and use emojis, and use good grammar.  Please be concise

@@ -1,1 +1,1 @@
-My writing style guide instructions go here
+make the docs spicy and use emojis

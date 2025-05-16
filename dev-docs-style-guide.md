@@ -1,0 +1,1 @@
+Can you make all docs spicy and use emojis

@@ -1,6 +1,6 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects and using its powerful sprite generation capabilities.
 
 ## Installation
 
@@ -15,59 +15,88 @@ npm install spriteai
 Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
 
 ```javascript
-const spriteAI = require('spriteai');
+const { generateCharacterSpritesheet, generateLandscapeSprite } from 'spriteai';
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
-
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
+// Generate a character spritesheet
+generateCharacterSpritesheet('a cute robot')
+  .then(result => {
+    console.log('Character spritesheet generated:', result.spritesheet);
+    console.log('Metadata:', result.metadata);
   })
   .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
+    console.error('Spritesheet generation encountered an error:', error);
   });
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
+// Generate a landscape sprite
+generateLandscapeSprite('a lush forest', { timeOfDay: 'sunset', weather: 'clear' })
+  .then(result => {
+    console.log('Landscape sprite generated:', result.landscape);
+    console.log('Metadata:', result.metadata);
   })
   .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
+    console.error('Landscape sprite generation encountered an error:', error);
   });
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+SpriteAI offers a range of powerful features to enhance your sprite creation:
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+1. **Character Spritesheet Generation**: Utilize `generateCharacterSpritesheet(description, options)` to create detailed character spritesheets with multiple animation states.
+2. **Landscape Sprite Generation**: Use `generateLandscapeSprite(description, options)` to generate beautiful landscape sprites for game backgrounds.
+3. **Customizable Options**: Both functions accept various options to tailor the output to your needs, including art style, size, and more.
 
 ## Advanced Techniques
 
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+### Customizing Character Spritesheets
+
+You can customize your character spritesheets by specifying animation states, frames per state, and other options:
+
+```javascript
+generateCharacterSpritesheet('a fierce dragon', {
+  states: ['idle', 'fly', 'breathe-fire', 'roar'],
+  framesPerState: 8,
+  size: '2048x2048',
+  style: 'pixel-art',
+  direction: 'left'
+})
+  .then(result => {
+    console.log('Custom dragon spritesheet generated:', result.spritesheet);
+  });
+```
+
+### Creating Diverse Landscapes
+
+Experiment with different landscape types, time of day, and weather conditions:
+
+```javascript
+generateLandscapeSprite('a snowy mountain range', {
+  timeOfDay: 'night',
+  weather: 'snowy',
+  perspective: 'side-scrolling',
+  style: 'pixel-art',
+  size: '1024x512'
+})
+  .then(result => {
+    console.log('Night-time snowy landscape generated:', result.landscape);
+  });
+```
+
+## Best Practices
+
+1. **Descriptive Prompts**: Provide clear and detailed descriptions for best results.
+2. **Experiment with Options**: Try different styles, sizes, and settings to achieve the desired look.
+3. **Error Handling**: Always include error handling to manage potential API or processing issues.
+4. **Asset Management**: When saving generated sprites, implement a proper asset management system in your project.
 
 ## Next Steps
 
 To truly master SpriteAI, we recommend:
 
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+1. Exploring the full API documentation for detailed parameter descriptions.
+2. Experimenting with different character types and animation states.
+3. Creating a variety of landscapes for diverse game environments.
+4. Integrating generated sprites into your game development workflow.
 
 For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
 

@@ -1,4 +1,4 @@
-# New Character Generation Functions in SpriteAI
+# New Character Generation Functions in SpriteAI!
 
 ## Introduction
 
@@ -23,10 +23,13 @@ export const generateNinja = async function(options = {}) {
 };
 ```
 
-- Default animation states: idle, walk, run, attack, and sneak
-- Pixel-art style by default
-- 6 frames per animation state
-- Customizable through the `options` parameter
+* Default animation states: idle, walk, run, attack, and sneak
+
+* Pixel-art style by default
+
+* 6 frames per animation state
+
+* Customizable through the `options` parameter
 
 ### 2. generateSpaceman()
 
@@ -45,10 +48,13 @@ export const generateSpaceman = async function(options = {}) {
 };
 ```
 
-- Default animation states: idle, walk, run, and float
-- Pixel-art style by default
-- 6 frames per animation state
-- Customizable through the `options` parameter
+* Default animation states: idle, walk, run, and float
+
+* Pixel-art style by default
+
+* 6 frames per animation state
+
+* Customizable through the `options` parameter
 
 ### 3. generateRobot()
 
@@ -67,10 +73,13 @@ export const generateRobot = async function(options = {}) {
 };
 ```
 
-- Default animation states: idle, walk, run, attack, and power-up
-- Pixel-art style by default
-- 6 frames per animation state
-- Customizable through the `options` parameter
+* Default animation states: idle, walk, run, attack, and power-up
+
+* Pixel-art style by default
+
+* 6 frames per animation state
+
+* Customizable through the `options` parameter
 
 ## Usage
 
@@ -96,9 +105,11 @@ const robotSprite = await generateRobot();
 
 Each function accepts an `options` object that allows you to override the default settings. You can customize:
 
-- `states`: An array of animation states
-- `style`: The art style (default is 'pixel-art')
-- `framesPerState`: The number of frames for each animation state
+* `states`: An array of animation states
+
+* `style`: The art style (default is 'pixel-art')
+
+* `framesPerState`: The number of frames for each animation state
 
 For example:
 

@@ -1,4 +1,4 @@
-# SpriteAI Overview
+# SpriteAI Overview Hey SAMY AND SARA
 
 SpriteAI is a powerful library for generating game assets using AI. This document provides an overview of the main features and functions available in the SpriteAI library.
 

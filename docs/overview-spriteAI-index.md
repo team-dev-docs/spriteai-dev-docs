@@ -1,4 +1,4 @@
-# Overview of spriteAI/index.js
+# Overview of spriteAI/index.js!
 
 ## Introduction
 
@@ -17,15 +17,22 @@ export const generateCharacterSpritesheet = async function(description, options 
 ```
 
 #### Parameters:
-- `description`: A string describing the character
-- `options`: An object containing various configuration options
+
+* `description`: A string describing the character
+
+* `options`: An object containing various configuration options
 
 #### Features:
-- Generates a spritesheet with multiple animation states (e.g., idle, walk, run, attack)
-- Customizable number of frames per state
-- Supports different styles (e.g., pixel-art)
-- Returns both the original image and the processed spritesheet
-- Includes metadata about the generated spritesheet
+
+* Generates a spritesheet with multiple animation states (e.g., idle, walk, run, attack)
+
+* Customizable number of frames per state
+
+* Supports different styles (e.g., pixel-art)
+
+* Returns both the original image and the processed spritesheet
+
+* Includes metadata about the generated spritesheet
 
 ### fetchAvailableAnimationStates
 
@@ -58,10 +65,14 @@ export const generateEnvironmentSprites = async function(description, options = 
 ```
 
 #### Features:
-- Creates a tileset of environment elements
-- Customizable number of elements, style, and theme
-- Returns both the original image and the processed tileset
-- Includes metadata about the generated environment sprites
+
+* Creates a tileset of environment elements
+
+* Customizable number of elements, style, and theme
+
+* Returns both the original image and the processed tileset
+
+* Includes metadata about the generated environment sprites
 
 ### generateItemSprites
 
@@ -74,10 +85,14 @@ export const generateItemSprites = async function(description, options = {}) {
 ```
 
 #### Features:
-- Creates a collection of item sprites
-- Customizable number of items, style, and item type
-- Returns both the original image and the processed item sheet
-- Includes metadata about the generated item sprites
+
+* Creates a collection of item sprites
+
+* Customizable number of items, style, and item type
+
+* Returns both the original image and the processed item sheet
+
+* Includes metadata about the generated item sprites
 
 ## Utility Functions
 
@@ -94,11 +109,16 @@ async function removeBackgroundColor(inputPath, outputPath, targetColor, colorTh
 ## Dependencies
 
 The file uses several external libraries:
-- OpenAI: For AI-powered image generation
-- axios: For making HTTP requests
-- sharp: For image processing
-- Jimp: For image manipulation
-- fs and path: Node.js built-in modules for file system operations
+
+* OpenAI: For AI-powered image generation
+
+* axios: For making HTTP requests
+
+* sharp: For image processing
+
+* Jimp: For image manipulation
+
+* fs and path: Node.js built-in modules for file system operations
 
 ## Conclusion
 

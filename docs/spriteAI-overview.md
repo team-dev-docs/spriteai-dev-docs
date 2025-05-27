@@ -4,10 +4,13 @@ SpriteAI is a powerful library for generating game assets using AI. This documen
 
 ## Key Features
 
-- Generate character spritesheets
-- Create environment sprites
-- Produce item sprites
-- Fetch available animation states and sprite styles
+* Generate character spritesheets
+
+* Create environment sprites
+
+* Produce item sprites
+
+* Fetch available animation states and sprite styles
 
 ## Main Functions
 
@@ -19,21 +22,15 @@ This function creates a character spritesheet based on a given description and o
 const result = await generateCharacterSpritesheet(description, options);
 ```
 
-#### Parameters:
-- `description`: A string describing the character
-- `options`: An object containing customization options such as:
-  - `states`: Array of animation states (default: ['idle', 'walk', 'run', 'attack'])
-  - `framesPerState`: Number of frames per animation state (default: 6)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between frames (default: 1)
-  - `direction`: Character facing direction (default: 'right')
-
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `spritesheet`: Base64-encoded PNG of the processed spritesheet
-- `metadata`: Detailed information about the spritesheet
+
+* `original`: URL of the original generated image
+
+* `spritesheet`: Base64-encoded PNG of the processed spritesheet
+
+* `metadata`: Detailed information about the spritesheet
 
 ### generateEnvironmentSprites
 
@@ -44,19 +41,30 @@ const result = await generateEnvironmentSprites(description, options);
 ```
 
 #### Parameters:
-- `description`: A string describing the environment
-- `options`: An object containing customization options such as:
-  - `elements`: Number of environment elements (default: 4)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between elements (default: 1)
-  - `theme`: Environment theme (default: 'fantasy')
+
+* `description`: A string describing the environment
+
+* `options`: An object containing customization options such as:
+
+  * `elements`: Number of environment elements (default: 4)
+
+  * `size`: Image size (default: '1024x1024')
+
+  * `style`: Art style (default: 'pixel-art')
+
+  * `padding`: Padding between elements (default: 1)
+
+  * `theme`: Environment theme (default: 'fantasy')
 
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `tileset`: Base64-encoded PNG of the processed tileset
-- `metadata`: Detailed information about the tileset
+
+* `original`: URL of the original generated image
+
+* `tileset`: Base64-encoded PNG of the processed tileset
+
+* `metadata`: Detailed information about the tileset
 
 ### generateItemSprites
 
@@ -67,20 +75,32 @@ const result = await generateItemSprites(description, options);
 ```
 
 #### Parameters:
-- `description`: A string describing the items
-- `options`: An object containing customization options such as:
-  - `itemCount`: Number of items to generate (default: 4)
-  - `size`: Image size (default: '1024x1024')
-  - `style`: Art style (default: 'pixel-art')
-  - `padding`: Padding between items (default: 1)
-  - `itemType`: Type of items (default: 'equipment')
-  - `background`: Background color (default: 'white')
+
+* `description`: A string describing the items
+
+* `options`: An object containing customization options such as:
+
+  * `itemCount`: Number of items to generate (default: 4)
+
+  * `size`: Image size (default: '1024x1024')
+
+  * `style`: Art style (default: 'pixel-art')
+
+  * `padding`: Padding between items (default: 1)
+
+  * `itemType`: Type of items (default: 'equipment')
+
+  * `background`: Background color (default: 'white')
 
 #### Returns:
+
 An object containing:
-- `original`: URL of the original generated image
-- `itemSheet`: Base64-encoded PNG of the processed item sheet
-- `metadata`: Detailed information about the item sheet
+
+* `original`: URL of the original generated image
+
+* `itemSheet`: Base64-encoded PNG of the processed item sheet
+
+* `metadata`: Detailed information about the item sheet
 
 ### fetchAvailableAnimationStates
 
@@ -91,6 +111,7 @@ const states = await fetchAvailableAnimationStates();
 ```
 
 #### Returns:
+
 An array of strings representing available animation states.
 
 ### fetchAvailableSpriteStyles
@@ -102,6 +123,7 @@ const styles = await fetchAvailableSpriteStyles();
 ```
 
 #### Returns:
+
 An array of strings representing available sprite styles.
 
 ## Utility Functions

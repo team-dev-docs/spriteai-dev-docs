@@ -1,4 +1,4 @@
-# Changelog 🌶️🔥
+# Changelog 🔥
 
 ## [Unreleased] - 2025-05-26 🚀
 
@@ -32,8 +32,8 @@
 - Test file `tests/sprite.test.js` with spicy new test cases for the added functions
 
 ### Developer Notes 🧠
-- These new functions supercharge the spriteAI SDK, allowing for more diverse asset generation
-- The addition of environment and item sprite generation opens up a world of possibilities for creating complete game asset sets
-- New utility functions for fetching available options will level up the developer experience and SDK flexibility
+- These new functions expand the capabilities of the spriteAI SDK, allowing for more diverse and explosive asset generation
+- The addition of environment and item sprite generation opens up mind-blowing possibilities for creating complete game asset sets
+- New utility functions for fetching available options will supercharge the developer experience and SDK flexibility
 
-Get ready to create some pixel-perfect, jaw-dropping sprites with these blazing new features! 🔥🎮✨
+Get ready to create some fire game assets with these blazing new features! 🔥🎮

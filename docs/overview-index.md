@@ -1,4 +1,4 @@
-# Overview of SpriteAI V2
+# Overview of SpriteAI V2!
 
 ## Introduction
 
@@ -48,7 +48,9 @@ export const startServer = (port = 3000, imageFile = 'sprite.png', frameCount = 
 To use the SpriteAI V2 system:
 
 1. Generate a sprite using the `generateSprite` function, providing the necessary parameters.
+
 2. Convert the generated sprite sheet to a data URL using `convertSpritesheetToDataUrl`.
+
 3. Start the local server using `startServer` to view and test the animation.
 
 ## Conclusion

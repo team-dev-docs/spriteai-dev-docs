@@ -1,4 +1,4 @@
-# SpriteAI Overview
+# SpriteAI Overview!
 
 ## **Character Spritesheet Generation**: Create animated character spritesheets with customizable states and frames.
 

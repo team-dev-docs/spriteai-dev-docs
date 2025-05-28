@@ -6,49 +6,110 @@ sidebar_position: 1
 # generateSprite Documentation
 
 ## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis. The module also includes functions for generating environment sprites, item sprites, and fetching available animation states and sprite styles.
 
 ## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+To use the sprite generation functions, import them from the sprite module and call them with the required parameters.
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet, generateEnvironmentSprites, generateItemSprites, fetchAvailableAnimationStates, fetchAvailableSpriteStyles } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const characterResult = await generateCharacterSpritesheet(description, options);
+const environmentResult = await generateEnvironmentSprites(description, options);
+const itemResult = await generateItemSprites(description, options);
+const availableStates = await fetchAvailableAnimationStates();
+const availableStyles = await fetchAvailableSpriteStyles();
 ```
 
 ## Parameters
+
+### generateCharacterSpritesheet
 - `description` (string, required): A text description of the character to generate.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
+  - `states` (array): Animation states to include (default: ['idle', 'walk', 'run', 'attack']).
+  - `framesPerState` (number): Number of frames per animation state (default: 6).
   - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the sprite (default: "pixel-art").
+  - `padding` (number): Padding between frames (default: 1).
+  - `direction` (string): Direction the character faces (default: "right").
+  - `save` (boolean): Whether to save the generated image to disk.
+
+### generateEnvironmentSprites
+- `description` (string, required): A text description of the environment to generate.
+- `options` (object, optional):
+  - `elements` (number): Number of different elements to generate (default: 4).
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the sprites (default: "pixel-art").
+  - `padding` (number): Padding between elements (default: 1).
+  - `theme` (string): Theme of the environment (default: "fantasy").
+  - `save` (boolean): Whether to save the generated image to disk.
+
+### generateItemSprites
+- `description` (string, required): A text description of the items to generate.
+- `options` (object, optional):
+  - `itemCount` (number): Number of different items to generate (default: 4).
+  - `size` (string): Size of the generated image (default: "1024x1024").
+  - `style` (string): Style of the sprites (default: "pixel-art").
+  - `padding` (number): Padding between items (default: 1).
+  - `itemType` (string): Type of items to generate (default: "equipment").
+  - `background` (string): Background color of the spritesheet (default: "white").
   - `save` (boolean): Whether to save the generated image to disk.
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+Each generation function returns an object containing:
+- `original`: URL of the original generated image.
+- `spritesheet` or `tileset` or `itemSheet`: Base64-encoded image data URL of the processed sprite sheet.
+- `metadata`: Object containing information about the generated sprites, such as dimensions, frame data, and animation states.
+
+`fetchAvailableAnimationStates` and `fetchAvailableSpriteStyles` return arrays of strings representing available options.
 
 ## Examples
 
-1. Generate a single sprite sheet:
+1. Generate a character sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const result = await generateCharacterSpritesheet("A pixelated robot", {
+  states: ['idle', 'walk', 'attack'],
+  framesPerState: 4,
+  size: "512x512"
+});
+console.log(result.metadata);
+console.log(result.spritesheet);
 ```
 
-2. Generate multiple variations:
+2. Generate environment sprites:
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+const environmentResult = await generateEnvironmentSprites("A forest scene", {
+  elements: 6,
+  theme: "nature",
+  save: true
 });
+console.log(environmentResult.metadata);
+```
+
+3. Generate item sprites:
+```javascript
+const itemResult = await generateItemSprites("Medieval weapons", {
+  itemCount: 8,
+  itemType: "weapons",
+  style: "hand-drawn"
+});
+console.log(itemResult.metadata);
+```
+
+4. Fetch available animation states and sprite styles:
+```javascript
+const availableStates = await fetchAvailableAnimationStates();
+console.log("Available animation states:", availableStates);
+
+const availableStyles = await fetchAvailableSpriteStyles();
+console.log("Available sprite styles:", availableStyles);
 ```
 
 ## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
+- The functions use AI models (DALL-E 3) to generate images, which may result in varying outputs for the same input.
+- Generated sprites are optimized for the specified animation states and follow a grid layout.
 - When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+- The functions may take some time to complete due to API calls and image processing.
+- Consider using the `fetchAvailableAnimationStates` and `fetchAvailableSpriteStyles` functions to get up-to-date information on available options for character sprites.
+- Environment and item sprite generation functions provide flexibility in creating diverse game assets.
+- Ensure you have the necessary dependencies (OpenAI, axios, sharp, Jimp) installed and properly configured in your project.

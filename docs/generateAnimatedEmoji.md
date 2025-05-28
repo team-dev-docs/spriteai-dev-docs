@@ -44,3 +44,13 @@ console.log("Emoji saved and accessible at:", result.url);
 - When saving images, they are stored with a timestamp-based filename.
 - The function may take some time to complete due to API calls and image processing.
 - Ensure you have the necessary API credentials and permissions to use the OpenAI image generation service.
+
+## Related Functions
+- `generateCharacterSpritesheet`: For creating character spritesheets with multiple animation states.
+- `generateEnvironmentSprites`: For generating environment tileset sprites.
+- `generateItemSprites`: For creating item sprites for game inventories.
+
+## See Also
+- [Getting Started with spriteAI](./getting-started.md)
+- [Generating Pixel Art](./generatePixelArt.md)
+- [Generating Isometric Art](./generateIsometric.md)

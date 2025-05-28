@@ -45,3 +45,6 @@ console.log("Image saved and accessible at:", result.url);
 - When saving images, they are stored with a timestamp-based filename.
 - The function may take some time to complete due to API calls and image processing.
 - Ensure you have the necessary API credentials and permissions set up to use the OpenAI image generation service.
+- The `generateIsometric` function is not directly visible in the provided code files, but it is likely implemented similarly to other sprite generation functions in the project.
+- The function may use the OpenAI API and image processing libraries like Sharp and Jimp, as seen in other parts of the project.
+- Consider exploring the `generateEnvironmentSprites` function in the codebase for potential customization options that might apply to isometric sprite generation as well.

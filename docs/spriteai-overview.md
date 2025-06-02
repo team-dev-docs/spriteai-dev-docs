@@ -9,10 +9,15 @@ SpriteAI is a project that leverages OpenAI's DALL-E 3 model and image processin
 ## Key Features
 
 1. Character Spritesheet Generation
+
 2. Environment Sprite Creation
+
 3. Item Sprite Generation
+
 4. Animated Emoji Creation
+
 5. Background Removal
+
 6. Support for Multiple Art Styles
 
 ## How SpriteAI Works
@@ -25,35 +30,15 @@ SpriteAI uses OpenAI's DALL-E 3 model to generate base images from text descript
 
 After the initial image generation, SpriteAI applies various image processing techniques to optimize the output for game development use. This includes:
 
-- Converting images to specific sizes and formats
-- Arranging frames for spritesheets
-- Applying pixel art styles when required
-- Removing backgrounds to create transparent sprites
+* Converting images to specific sizes and formats
 
-### 3. Metadata Generation
+* Arranging frames for spritesheets
 
-SpriteAI doesn't just create images; it also generates useful metadata about the sprites, such as:
+* Applying pixel art styles when required
 
-- Frame dimensions
-- Animation states and frame counts
-- Tile information for environment sprites
-- Item counts and arrangement for item sheets
-
-## Main Functions
-
-### generateCharacterSpritesheet
-
-This function creates a full character spritesheet with multiple animation states (e.g., idle, walk, run, attack). Users can specify the number of frames per state, sprite size, art style, and other parameters.
-
-### generateEnvironmentSprites
-
-Used for creating sets of environment tiles or objects, this function generates a tileset based on a given description and theme.
-
-### generateItemSprites
-
-This function creates a sheet of item sprites, useful for game inventories or collectibles.
-
-### generateAnimatedEmoji
+* Removing backgrounds to create transparent sprites\
+  \
+  generateAnimatedEmoji
 
 Specifically designed for creating 4-frame animated emojis, this function is perfect for adding expressive animations to games or applications.
 
@@ -66,7 +51,9 @@ A utility function that removes a specified background color from an image, usef
 To use SpriteAI, you'll need to:
 
 1. Install the necessary dependencies (OpenAI, axios, sharp, jimp)
+
 2. Set up your OpenAI API credentials
+
 3. Import the desired functions from the SpriteAI module
 
 Here's a quick example of generating a character spritesheet:

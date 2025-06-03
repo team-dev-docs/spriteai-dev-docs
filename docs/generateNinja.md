@@ -1,4 +1,4 @@
-# Generate Ninja
+# Generate Ninja Emily is cool
 
 The `generateNinja` function is a specialized tool for creating pixel art sprite sheets of ninja characters. This function is part of the spriteAI library and leverages AI-powered image generation to produce customizable ninja sprites for game development.
 

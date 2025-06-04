@@ -2,6 +2,7 @@
 title: generateEnvironmentSprites
 description: Generate sizzling environment sprite sheets using AI-powered image generation
 ---
+
 # 🌳🔥 generateEnvironmentSprites: Spice Up Your Game Worlds!
 
 Welcome to the flavor-packed world of environment sprite generation! 🌶️ The `generateEnvironmentSprites` function is your secret ingredient for cooking up mouth-watering environment sprite sheets. Part of the SpriteAI module, this function is the hot sauce that'll make your game worlds pop and sizzle!

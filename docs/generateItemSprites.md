@@ -84,17 +84,3 @@ console.log(`On a canvas of ${magicalConcoctions.metadata.dimensions.width}x${ma
 Remember, with great spice comes great responsibility. Handle errors gracefully and implement rate limiting to avoid overwhelming your game's palate!
 
 Now go forth and create some truly explosive game assets! 🌶️🔥🎮
-
-## 🌟 Extra Spicy Tips
-
-- For an extra kick, try combining different styles and backgrounds. How about "neon-infused-pixel-art" on a "lava-flow" background?
-- Challenge the AI by requesting impossible items like "ethereal phase-shifting daggers" or "quantum entangled potions". You might be surprised by the results!
-- Use seasonal themes to spice up your game events. "Haunted Halloween potions" or "Festive Christmas weapons" anyone?
-
-## 🚒 Troubleshooting: When the Kitchen Gets Too Hot
-
-- If your sprites come out bland, try adding more descriptive adjectives to your `description`. The spicier the description, the zestier the result!
-- Getting rate-limited? Implement a cooldown period between generations. Even the hottest chefs need a break sometimes.
-- If your items are coming out too similar, try adjusting the `padding` or `itemCount`. Sometimes, less is more when it comes to spice!
-
-Remember, the key to mastering `generateItemSprites` is experimentation and a dash of creativity. Don't be afraid to push the boundaries and see what kind of flavorful concoctions you can create! Happy sprite cooking! 🍳🎨🔥

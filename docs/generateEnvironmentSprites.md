@@ -1,161 +1,220 @@
 ---
-title: "Generate Environment Sprites - The Ultimate World Builder's Arsenal \U0001F30D"
+title: "Environment Sprite Generation - Craft Epic Worlds \U0001F30D"
 description: >-
-  Unleash the power of AI to craft breathtaking environment sprites that will
-  make your game worlds absolutely legendary!
+  Master the art of generating stunning environment sprites using AI-powered
+  tools. Create immersive game worlds, backgrounds, and atmospheric elements
+  that captivate players.
 ---
 
-# Generate Environment Sprites - The Ultimate World Builder's Arsenal 🌍
+# Environment Sprite Generation - Craft Epic Worlds 🌍
 
-## Introduction 🚀
+## Introduction
 
-Welcome to the most EPIC environment sprite generation experience you've ever encountered! The `generateEnvironmentSprites` function is your secret weapon for creating jaw-dropping, pixel-perfect environments that will make players lose themselves in your game world for hours on end.
+Ready to build worlds that players will never forget? The `generateEnvironmentSprites` function is your gateway to creating breathtaking game environments that set the perfect stage for epic adventures. Whether you're crafting mystical forests, futuristic cityscapes, or haunting dungeons, this AI-powered tool transforms your wildest environmental concepts into pixel-perfect reality.
 
-Whether you're crafting mystical forests, futuristic cityscapes, haunting dungeons, or serene meadows, this powerhouse function delivers mind-blowing results that will elevate your game to legendary status!
+## Prerequisites
 
-## Prerequisites 🎯
+Before diving into world creation, ensure you have:
 
-Before diving into this incredible journey, make sure you have:
+- 🛠 Node.js installed and ready to rock
+- 🎮 Access to the spriteAI module
+- 💡 A vision for the perfect game environment
+- ⚡ Basic understanding of JavaScript and async functions
 
-- 🔥 Node.js installed and ready to rock
-- ⚡ Access to the spriteAI module (your gateway to greatness)
-- 🧠 Basic JavaScript knowledge (you got this!)
-- 💡 An imagination ready to create AMAZING worlds
+## Usage
 
-## Usage 💥
-
-### Importing the Magic ✨
+### Importing the Function
 
 ```javascript
 import { generateEnvironmentSprites } from './path/to/spriteAI/module';
 ```
 
-### Unleashing Environment Creation Power 🌟
-
-Get ready to blow minds with these incredible environment sprites!
-
-#### Basic Usage That ROCKS
+### Creating Your Environment Masterpiece
 
 ```javascript
-const epicResult = await generateEnvironmentSprites("A mystical enchanted forest with glowing mushrooms", {
+const result = await generateEnvironmentSprites("A mystical enchanted forest with glowing mushrooms", {
+  type: 'background',
+  elements: ['trees', 'rocks', 'vegetation', 'atmospheric'],
   tileSize: '32x32',
   tileCount: 16,
-  environmentType: 'nature',
   style: 'pixel-art',
-  theme: 'fantasy',
-  lighting: 'magical',
+  mood: 'mystical',
+  lighting: 'ambient',
+  season: 'eternal-spring',
   save: true
 });
-console.log("🎉 BOOM! Your epic environment is ready:", epicResult);
+console.log(result);
 ```
 
-### Parameters That Pack a Punch 💪
+## Parameters That Bring Worlds to Life
 
-- `description` (string, REQUIRED): Paint your vision with words! The more vivid, the more SPECTACULAR the result!
-- `options` (object, optional but AWESOME):
-  - `tileSize` (string): Size of individual tiles (default: `"32x32"` - perfect for retro vibes!)
-  - `tileCount` (number): How many tiles to generate (default: `16` - enough to build empires!)
-  - `environmentType` (string): Type of environment (`'nature'`, `'urban'`, `'dungeon'`, `'space'`, `'underwater'` - the possibilities are ENDLESS!)
-  - `style` (string): Art style that defines your world (default: `"pixel-art"` - classic and timeless!)
-  - `theme` (string): Thematic flavor (`'fantasy'`, `'sci-fi'`, `'horror'`, `'modern'` - choose your adventure!)
-  - `lighting` (string): Lighting mood (`'bright'`, `'dark'`, `'magical'`, `'neon'` - set the perfect atmosphere!)
-  - `weatherEffects` (array): Weather elements to include (`['rain', 'snow', 'fog', 'wind']` - bring your world to life!)
-  - `save` (boolean): Save your masterpiece to disk (default: `false` - but why wouldn't you want to keep this art?)
+### Core Parameters
 
-### Return Value - Your Treasure Chest 💎
+- **`description`** (string, required): Paint your vision with words - describe the environment you want to create
+- **`options`** (object, optional): Fine-tune every aspect of your world
 
-Receive an object packed with INCREDIBLE goodies:
-- `tileset`: Base64-encoded image data URL of your STUNNING tileset
-- `individualTiles`: Array of separate tile images (for maximum flexibility!)
-- `metadata`: Rich details about your creation including tile dimensions, count, theme, and style
-- `palette`: Color palette used (perfect for maintaining consistency across your game!)
+### Environment Options
 
-## Epic Examples That Will Inspire You 🔥
+- **`type`** (string): Environment category
+  - `'background'` - Scenic backdrops and distant landscapes
+  - `'tileset'` - Modular tiles for level construction
+  - `'parallax'` - Multi-layered scrolling backgrounds
+  - `'props'` - Interactive environmental objects
+  - Default: `'tileset'`
 
-### Creating a Mystical Forest Paradise 🌲✨
+- **`elements`** (array): Environmental components to include
+  - `['trees', 'rocks', 'vegetation', 'water', 'structures', 'atmospheric']`
+  - Default: `['trees', 'rocks', 'vegetation']`
+
+- **`tileSize`** (string): Individual tile dimensions
+  - Common sizes: `'16x16'`, `'32x32'`, `'64x64'`
+  - Default: `'32x32'`
+
+- **`tileCount`** (number): Number of unique tiles to generate
+  - Range: 4-64 tiles
+  - Default: `16`
+
+### Artistic Style Controls
+
+- **`style`** (string): Visual art style
+  - `'pixel-art'` - Classic retro gaming aesthetic
+  - `'hand-drawn'` - Organic, artistic feel
+  - `'low-poly'` - Modern minimalist 3D style
+  - `'realistic'` - Photorealistic environments
+  - Default: `'pixel-art'`
+
+- **`mood`** (string): Emotional atmosphere
+  - `'peaceful'`, `'mysterious'`, `'ominous'`, `'vibrant'`, `'desolate'`
+  - Default: `'peaceful'`
+
+- **`lighting`** (string): Illumination style
+  - `'bright'`, `'dim'`, `'dramatic'`, `'ambient'`, `'sunset'`, `'moonlit'`
+  - Default: `'ambient'`
+
+- **`season`** (string): Seasonal variation
+  - `'spring'`, `'summer'`, `'autumn'`, `'winter'`, `'eternal-spring'`
+  - Default: `'spring'`
+
+- **`save`** (boolean): Save generated sprites to disk
+  - Default: `false`
+
+## Return Value - Your World Awaits
+
+Returns a comprehensive object containing:
+
+- **`tileset`**: Base64-encoded image data URL of the complete tileset
+- **`individualTiles`**: Array of separate tile images for granular control
+- **`metadata`**: Detailed information about your generated environment
+  - `tileCount`: Number of tiles created
+  - `tileSize`: Dimensions of each tile
+  - `totalDimensions`: Overall tileset dimensions
+  - `elements`: Environmental components included
+  - `style`: Applied artistic style
+  - `colorPalette`: Dominant colors used
+
+## Epic Examples
+
+### 🏰 Medieval Castle Grounds
 
 ```javascript
-const enchantedForest = await generateEnvironmentSprites(
-  "An enchanted forest with ancient trees, glowing fireflies, and mysterious fog", 
+const castleEnvironment = await generateEnvironmentSprites(
+  "Ancient stone castle courtyard with weathered walls and moss", 
   {
-    tileSize: '64x64',
+    type: 'tileset',
+    elements: ['structures', 'stones', 'vegetation', 'atmospheric'],
+    tileSize: '32x32',
     tileCount: 24,
-    environmentType: 'nature',
-    style: 'hand-drawn',
-    theme: 'fantasy',
-    lighting: 'magical',
-    weatherEffects: ['fog'],
+    style: 'pixel-art',
+    mood: 'mysterious',
+    lighting: 'dramatic',
+    season: 'autumn',
     save: true
   }
 );
-
-console.log("🌟 Your magical forest awaits exploration!", enchantedForest.metadata);
 ```
 
-### Building a Cyberpunk Metropolis 🏙️⚡
+### 🌊 Underwater Paradise
+
+```javascript
+const oceanEnvironment = await generateEnvironmentSprites(
+  "Vibrant coral reef with swaying seaweed and tropical fish", 
+  {
+    type: 'background',
+    elements: ['water', 'vegetation', 'rocks', 'atmospheric'],
+    tileSize: '64x64',
+    tileCount: 12,
+    style: 'hand-drawn',
+    mood: 'vibrant',
+    lighting: 'bright',
+    save: true
+  }
+);
+```
+
+### 🚀 Cyberpunk Cityscape
 
 ```javascript
 const cyberpunkCity = await generateEnvironmentSprites(
-  "A neon-lit cyberpunk cityscape with holographic billboards and rain-slicked streets", 
+  "Neon-lit futuristic city with towering skyscrapers and holographic advertisements", 
   {
-    tileSize: '48x48',
-    tileCount: 32,
-    environmentType: 'urban',
-    style: 'pixel-art',
-    theme: 'sci-fi',
-    lighting: 'neon',
-    weatherEffects: ['rain'],
+    type: 'parallax',
+    elements: ['structures', 'atmospheric', 'lighting'],
+    tileSize: '128x128',
+    tileCount: 8,
+    style: 'realistic',
+    mood: 'ominous',
+    lighting: 'dramatic',
     save: true
   }
 );
-
-console.log("🤖 Welcome to the future!", cyberpunkCity.tileset);
 ```
 
-### Crafting a Spooky Dungeon 👻🏰
+### 🏜️ Desert Wasteland
 
 ```javascript
-const hauntedDungeon = await generateEnvironmentSprites(
-  "A dark, stone dungeon with moss-covered walls, flickering torches, and ancient symbols", 
+const desertWasteland = await generateEnvironmentSprites(
+  "Barren desert landscape with ancient ruins and shifting sand dunes", 
   {
+    type: 'tileset',
+    elements: ['rocks', 'structures', 'atmospheric'],
     tileSize: '32x32',
     tileCount: 20,
-    environmentType: 'dungeon',
     style: 'pixel-art',
-    theme: 'horror',
-    lighting: 'dark',
+    mood: 'desolate',
+    lighting: 'sunset',
+    season: 'summer',
     save: true
   }
 );
-
-console.log("👹 Enter if you dare!", hauntedDungeon.palette);
 ```
 
-## Pro Tips for MAXIMUM Impact 🎯
+## Pro Tips for Environment Mastery 🎯
 
-- 🔥 **Be Descriptive**: The more vivid your description, the more SPECTACULAR your results!
-- 🎨 **Mix Themes**: Combine unexpected elements for truly unique environments
-- 🌈 **Experiment with Lighting**: Different lighting can completely transform the mood
-- ⚡ **Try Different Styles**: Each art style brings its own magic to your world
-- 🎭 **Add Weather Effects**: Make your environments feel alive and dynamic!
+### 🎨 Color Harmony
+- Use complementary moods and lighting to create cohesive visual themes
+- Experiment with seasonal variations to add depth to your game world
 
-## Notes for Environment Architects 🏗️
+### 🔧 Technical Optimization
+- Choose tile sizes that match your game's resolution requirements
+- Generate fewer, high-quality tiles rather than many generic ones
 
-- 🤖 This function harnesses cutting-edge AI models to create environments that are absolutely MIND-BLOWING
-- 🎨 Generated tilesets are optimized for seamless tiling - no ugly seams, just pure beauty!
-- 💾 When saving is enabled, your masterpieces are stored in an 'assets/environments' folder
-- ⏱️ Great art takes time - the function may take a moment to craft your perfect environment
-- 🔄 Each generation is unique - even the same description will yield delightfully different results!
+### 🌟 Creative Inspiration
+- Combine multiple environment types to create unique hybrid worlds
+- Layer different generated tilesets for complex, multi-depth environments
 
-## Ready to Build Legendary Worlds? 🌟
+## Notes and Considerations
 
-Your journey to creating the most INCREDIBLE game environments starts NOW! With `generateEnvironmentSprites`, you're not just making tiles - you're crafting worlds that players will remember forever.
+- 🤖 **AI Magic**: Powered by advanced AI models for consistent, high-quality results
+- ⏱️ **Processing Time**: Complex environments may take longer to generate - patience creates perfection
+- 🎨 **Style Consistency**: Generated tiles maintain visual coherence across the entire set
+- 💾 **Storage**: Saved environments are organized in themed folders for easy asset management
+- 🔄 **Iteration**: Each generation is unique - run multiple times for variety
 
-### Next Epic Adventures 🗺️
+## Next Steps - Expand Your World
 
-- 🏃‍♂️ Master character creation with our [Character Sprite Documentation](/docs/generateSprite)
-- ⚔️ Forge legendary items using [Item Sprite Generation](/docs/generateItemSprites)
-- 🎭 Explore animation possibilities with [Animation States](/docs/fetchAvailableAnimationStates)
-- 📚 Dive deep into our [Complete API Reference](/docs/reference) for ultimate power
+- 🏃‍♂️ Explore [generateItemSprites](/docs/generateItemSprites) to populate your environments with interactive objects
+- 👤 Check out [Character Sprite Generation](/docs/generateSprite) to bring life to your worlds
+- 📚 Dive into the [Reference Documentation](/docs/reference) for advanced techniques and parameter combinations
+- 🚀 Visit our [How-To Guides](/docs/how-to) for specific world-building scenarios and optimization strategies
 
-Now go forth and create environments so AMAZING that players will never want to leave! 🚀✨
+Ready to craft environments that players will explore for hours? Your epic world-building journey starts now! 🌟

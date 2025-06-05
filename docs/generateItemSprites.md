@@ -1,277 +1,205 @@
 ---
-title: "Generate Item Sprites - The Ultimate Power-Up Creator \U0001F3AE"
+title: "Generate Item Sprites - Ultimate Guide \U0001F3AE"
 description: >-
-  Unleash the power of AI to generate epic item sprites! From legendary weapons
-  to mystical potions, create stunning game assets that'll make your players
-  drool.
+  Master the art of generating stunning item sprites with AI! Create weapons,
+  potions, treasures, and game assets that'll make your players drool.
 ---
 
-# Generate Item Sprites - The Ultimate Power-Up Creator 🎮
+# Generate Item Sprites - Ultimate Guide 🎮
 
-## Introduction 🚀
+## 🔥 Introduction
 
-Ready to turn your game into a loot-lover's paradise? The `generateItemSprites` function is your secret weapon for creating drool-worthy items that'll have players grinding for hours! Whether you need legendary swords, magical potions, or epic armor pieces, this AI-powered beast will generate sprites so stunning, your players will think they've found actual treasure.
+Ready to create **mind-blowing item sprites** that'll make your game stand out? The `generateItemSprites` function is your secret weapon for crafting everything from legendary swords to magical potions with the power of AI!
 
-## Prerequisites 🛠️
+## 🚀 Prerequisites
 
-Before diving into the treasure vault, make sure you've got:
+Before diving into the sprite creation madness, make sure you have:
 
-- Node.js installed (because we're not savages)
-- Access to the spriteAI module (your golden ticket)
-- A burning desire to create epic loot
-- Coffee ☕ (optional but highly recommended)
+- 🛠 Node.js installed and ready to rock
+- 🎯 Access to the spriteAI module
+- 💪 Basic JavaScript knowledge (async/await is your friend!)
+- ☕ Coffee (optional but highly recommended)
 
-## Usage 💥
+## ⚡ Quick Start Guide
 
-### Importing the Function
-
-First, grab your tools from the spriteAI arsenal:
+### Import Like a Pro
 
 ```javascript
-import { generateItemSprites, fetchAvailableItemTypes } from './path/to/spriteAI/module';
+import { generateItemSprites } from './path/to/spriteAI/module';
 ```
 
-### Basic Usage - Create Your First Legendary Item
-
-Time to forge some digital gold! Here's how to create items that'll make your players' eyes light up:
+### Generate Your First Epic Item
 
 ```javascript
-const epicLoot = await generateItemSprites("A glowing legendary sword with ancient runes", {
-  itemType: 'weapon',
+const epicSword = await generateItemSprites("Legendary flaming sword with blue gems", {
+  category: 'weapon',
   rarity: 'legendary',
-  size: '128x128',
+  size: '64x64',
   style: 'pixel-art',
-  variants: 3,
-  glowEffect: true,
-  backgroundTransparent: true
+  variations: 3,
+  animated: true,
+  save: true
 });
 
-console.log("Behold, your legendary loot!", epicLoot);
+console.log('🔥 Your epic sword is ready!', epicSword);
 ```
 
-## Parameters - Your Crafting Recipe 📋
+## 🎨 Function Parameters (The Good Stuff)
 
 ### Required Parameters
-- `description` (string): Paint a vivid picture of your item! The more epic, the better.
+- **`description`** (string): Describe your item like you're selling it to a dragon! 
+  - Example: `"Glowing health potion with sparkly effects"`
 
-### Optional Parameters (The Spice Rack)
-- `itemType` (string): Type of item - 'weapon', 'armor', 'consumable', 'accessory', 'tool' (default: 'weapon')
-- `rarity` (string): How rare is this bad boy? 'common', 'uncommon', 'rare', 'epic', 'legendary' (default: 'common')
-- `size` (string): Sprite dimensions - '64x64', '128x128', '256x256' (default: '128x128')
-- `style` (string): Art style - 'pixel-art', 'hand-drawn', 'realistic', 'cartoon' (default: 'pixel-art')
-- `variants` (number): How many versions? More variants = more variety! (default: 1)
-- `glowEffect` (boolean): Add that legendary glow effect (default: false)
-- `backgroundTransparent` (boolean): Transparent background for easy integration (default: true)
-- `colorScheme` (string): Color palette - 'vibrant', 'muted', 'monochrome', 'neon' (default: 'vibrant')
+### Optional Parameters (Customize to Your Heart's Content)
+- **`category`** (string): What type of item are you creating?
+  - Options: `'weapon'`, `'potion'`, `'armor'`, `'accessory'`, `'treasure'`, `'consumable'`
+  - Default: `'misc'`
 
-## Return Value - Your Treasure Chest 💎
+- **`rarity`** (string): How rare is this bad boy?
+  - Options: `'common'`, `'uncommon'`, `'rare'`, `'epic'`, `'legendary'`, `'mythic'`
+  - Default: `'common'`
 
-The function returns a treasure trove of data:
+- **`size`** (string): Pixel perfect sizing!
+  - Options: `'32x32'`, `'64x64'`, `'128x128'`, `'256x256'`
+  - Default: `'64x64'`
+
+- **`style`** (string): Choose your artistic destiny!
+  - Options: `'pixel-art'`, `'hand-drawn'`, `'3d-rendered'`, `'anime'`, `'realistic'`
+  - Default: `'pixel-art'`
+
+- **`variations`** (number): How many versions do you want?
+  - Range: 1-5
+  - Default: `1`
+
+- **`animated`** (boolean): Want some sweet animation?
+  - Default: `false`
+
+- **`save`** (boolean): Save to disk for later use?
+  - Default: `false`
+
+## 🎯 Return Value (What You Get Back)
+
+The function returns an object packed with goodies:
 
 ```javascript
 {
   items: [
     {
-      sprite: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA...', // Base64 sprite data
+      id: "unique-item-id",
+      name: "Generated Item Name",
+      image: "data:image/png;base64,...", // Base64 image data
       metadata: {
-        itemType: 'weapon',
-        rarity: 'legendary',
-        dimensions: { width: 128, height: 128 },
-        colorPalette: ['#FF6B35', '#F7931E', '#FFD23F'],
-        hasGlowEffect: true
+        category: "weapon",
+        rarity: "legendary",
+        size: "64x64",
+        style: "pixel-art",
+        animated: true,
+        frames: 4 // if animated
       }
     }
   ],
   totalGenerated: 3,
-  processingTime: '2.5s'
+  processingTime: "2.3s"
 }
 ```
 
-## Epic Examples 🔥
+## 🔥 Epic Examples
 
-### The Legendary Weapon Forge
+### 1. Create a Legendary Weapon Arsenal
 
 ```javascript
-// Create a weapon that screams "BOSS FIGHT!"
-const dragonSlayer = await generateItemSprites(
-  "A massive two-handed sword forged from dragon scales, crackling with lightning", 
-  {
-    itemType: 'weapon',
-    rarity: 'legendary',
-    size: '256x256',
-    style: 'realistic',
-    variants: 5,
-    glowEffect: true,
-    colorScheme: 'vibrant'
-  }
+const weapons = await generateItemSprites("Ancient dragon slayer sword with runes", {
+  category: 'weapon',
+  rarity: 'legendary',
+  size: '128x128',
+  style: 'pixel-art',
+  variations: 3,
+  animated: true,
+  save: true
+});
+
+weapons.items.forEach((weapon, index) => {
+  console.log(`�sword Weapon ${index + 1}:`, weapon.name);
+  console.log(`⚡ Rarity: ${weapon.metadata.rarity}`);
+});
+```
+
+### 2. Potion Shop Extravaganza
+
+```javascript
+const potions = [
+  "Glowing health potion with red liquid",
+  "Shimmering mana potion with blue sparkles",
+  "Toxic poison bottle with green smoke",
+  "Golden elixir of strength with yellow glow"
+];
+
+const potionShop = await Promise.all(
+  potions.map(description => 
+    generateItemSprites(description, {
+      category: 'potion',
+      rarity: 'uncommon',
+      size: '64x64',
+      style: 'pixel-art',
+      animated: true
+    })
+  )
 );
 
-console.log("🗡️ Dragon Slayer crafted!", dragonSlayer);
+console.log('🧪 Potion shop is now open for business!');
 ```
 
-### The Mysterious Potion Laboratory
+### 3. Treasure Chest Bonanza
 
 ```javascript
-// Brew some magical potions that'll make alchemists jealous
-const magicPotions = await generateItemSprites(
-  "Swirling magical potions with mysterious bubbling effects", 
-  {
-    itemType: 'consumable',
-    rarity: 'rare',
-    size: '128x128',
-    style: 'pixel-art',
-    variants: 8,
-    glowEffect: true,
-    colorScheme: 'neon'
-  }
-);
+const treasures = await generateItemSprites("Sparkling diamond with rainbow reflections", {
+  category: 'treasure',
+  rarity: 'mythic',
+  size: '256x256',
+  style: '3d-rendered',
+  variations: 5,
+  animated: true,
+  save: true
+});
 
-console.log("🧪 Potions brewed to perfection!", magicPotions);
+console.log('💎 Your treasure collection:', treasures.totalGenerated, 'items generated!');
 ```
 
-### The Armor Smithy of Legends
+## 🎮 Pro Tips & Best Practices
 
-```javascript
-// Forge armor that makes players feel invincible
-const dragonArmor = await generateItemSprites(
-  "Gleaming plate armor with intricate dragon motifs and glowing gems", 
-  {
-    itemType: 'armor',
-    rarity: 'epic',
-    size: '128x128',
-    style: 'hand-drawn',
-    variants: 4,
-    glowEffect: true,
-    colorScheme: 'vibrant'
-  }
-);
+### 🧠 Writing Killer Descriptions
+- **Be specific**: "Glowing red sword" > "sword"
+- **Add personality**: "Mischievous healing potion that giggles"
+- **Include materials**: "Obsidian dagger with silver handle"
+- **Mention effects**: "Sword trailing fire particles"
 
-console.log("🛡️ Dragon Armor forged!", dragonArmor);
-```
+### ⚡ Performance Optimization
+- Use smaller sizes (`32x32`, `64x64`) for inventory items
+- Save `animated: false` for static items to speed up generation
+- Batch similar items together for consistency
 
-## Pro Tips for Maximum Epicness 🎯
+### 🎨 Style Matching
+- Stick to one style per game for consistency
+- `pixel-art` works best for retro games
+- `3d-rendered` for modern, realistic games
+- `anime` for Japanese-style games
 
-### 1. Description is Everything!
-Don't just say "sword" - say "A cursed blade that whispers ancient secrets, dripping with ethereal energy!"
+## 🚨 Common Gotchas (Don't Fall Into These Traps!)
 
-### 2. Rarity Matters
-Legendary items get the VIP treatment with better effects and more detailed sprites.
+- **Over-complex descriptions**: Keep it focused, AI can get confused
+- **Mixing styles**: Don't mix `pixel-art` with `realistic` in the same game
+- **Ignoring rarity**: Higher rarity = more detailed generation (but slower)
+- **Forgetting to save**: Set `save: true` if you want to keep your creations!
 
-### 3. Mix and Match Styles
-```javascript
-// Create a variety pack of awesome
-const mixedLoot = await Promise.all([
-  generateItemSprites("Retro energy sword", { style: 'pixel-art', rarity: 'epic' }),
-  generateItemSprites("Mystical staff of power", { style: 'hand-drawn', rarity: 'legendary' }),
-  generateItemSprites("Futuristic laser rifle", { style: 'realistic', rarity: 'rare' })
-]);
-```
+## 🔗 What's Next?
 
-### 4. Batch Generation for Efficiency
-```javascript
-// Generate an entire loot table in one go!
-const lootTable = await generateItemSprites(
-  "Fantasy RPG starter pack: sword, shield, potion, and ring", 
-  {
-    variants: 12,
-    itemType: 'mixed',
-    rarity: 'common',
-    style: 'pixel-art'
-  }
-);
-```
+- 🏰 Check out [generateEnvironmentSprites](/docs/generateEnvironmentSprites) for creating epic backgrounds
+- 👾 Explore [generateSprite](/docs/generateSprite) for character creation
+- 🎭 Learn about [fetchAvailableAnimationStates](/docs/fetchAvailableAnimationStates) for character animations
+- 📚 Dive into the [Reference Documentation](/docs/reference) for advanced techniques
 
-## Fetching Available Item Types 📋
+## 🎊 Final Words
 
-Not sure what types of items you can create? We've got you covered:
+You're now equipped with the knowledge to create **absolutely stunning** item sprites that'll make your game pop! Remember, the only limit is your imagination (and your API quota 😉).
 
-```javascript
-const availableTypes = await fetchAvailableItemTypes();
-console.log("Available item types:", availableTypes);
-// Output: ['weapon', 'armor', 'consumable', 'accessory', 'tool', 'misc']
-```
-
-## Performance Notes ⚡
-
-- **Generation Time**: Legendary items take longer to craft (they're worth it!)
-- **Batch Processing**: Generate multiple variants in one call for efficiency
-- **Memory Usage**: Higher resolution sprites use more memory (but look amazing!)
-- **Rate Limits**: Don't spam the API - even legendary blacksmiths need breaks
-
-## Common Pitfalls (And How to Avoid Them) 🚫
-
-### ❌ Vague Descriptions
-```javascript
-// DON'T: "A sword"
-// DO: "A crystalline blade that pulses with inner light, its edge sharp enough to cut through reality itself"
-```
-
-### ❌ Ignoring Rarity Settings
-```javascript
-// DON'T: Generate legendary items without glow effects
-// DO: Match your effects to your rarity level
-```
-
-### ❌ Wrong Size for Purpose
-```javascript
-// DON'T: Use 64x64 for detailed legendary items
-// DO: Use 256x256 for showcase items, 128x128 for inventory
-```
-
-## Integration Examples 🔗
-
-### React Component Integration
-```jsx
-import React, { useState, useEffect } from 'react';
-import { generateItemSprites } from './spriteAI';
-
-const ItemGenerator = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const generateEpicLoot = async () => {
-    setLoading(true);
-    try {
-      const result = await generateItemSprites(
-        "Legendary gaming mouse that grants +100 APM",
-        { rarity: 'legendary', glowEffect: true }
-      );
-      setItems(result.items);
-    } catch (error) {
-      console.error("Loot generation failed!", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="item-generator">
-      <button onClick={generateEpicLoot} disabled={loading}>
-        {loading ? "Forging Epic Loot..." : "Generate Legendary Item!"}
-      </button>
-      <div className="item-gallery">
-        {items.map((item, index) => (
-          <img key={index} src={item.sprite} alt={`Epic Item ${index + 1}`} />
-        ))}
-      </div>
-    </div>
-  );
-};
-```
-
-## Next Steps - Your Quest Continues 🗺️
-
-- 🎮 Check out [generateSprite](/docs/generateSprite) for character creation
-- 🌍 Explore [generateEnvironmentSprites](/docs/generateEnvironmentSprites) for world building
-- 🎭 Master [fetchAvailableAnimationStates](/docs/fetchAvailableAnimationStates) for dynamic characters
-- 📚 Dive into the [Complete API Reference](/docs/reference) for advanced techniques
-
-## Final Words 🎉
-
-You're now armed with the power to create items so epic, your players will screenshot them and share them on social media! Remember: great items tell a story, legendary items become legends themselves.
-
-Now go forth and create loot that'll make Diablo jealous! 🔥✨
-
----
-
-*"The best items aren't just pixels on a screen - they're dreams made digital."* - Ancient Gamedev Proverb
+Happy sprite crafting! 🎨✨

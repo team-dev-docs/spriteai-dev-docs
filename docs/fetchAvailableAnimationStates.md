@@ -11,12 +11,17 @@ description: >-
 
 The `fetchAvailableAnimationStates` function is a new addition to our SDK, designed to help developers retrieve the list of available animation states that can be used in conjunction with sprite generation functions. This documentation will guide you through the usage and implementation of this function.
 
-## Prerequisites
+## Prerequisites 🔥
 
-Before you begin, ensure you have the following:
+Before you dive into the world of epic sprite animation states, make sure you've got your developer toolkit locked and loaded:
 
-- A working development environment set up.
-- The latest version of our SDK installed.
+- **🚀 A blazing-fast development environment** - No potato computers allowed! Your setup should be smooth enough to handle our lightning-fast sprite generation.
+- **⚡ The latest version of our SDK installed** - Don't be that developer stuck in the stone age with outdated packages. Fresh installs only!
+- **💪 Node.js powers activated** - Make sure you're running a recent version that won't leave you hanging.
+- **🧠 Basic JavaScript kung fu** - You should know your way around async/await and promises like a coding ninja.
+- **🎮 Game development mindset** - Ready to bring characters to life with buttery-smooth animations?
+
+Pro tip: If you're missing any of these, stop right here and get your setup dialed in first. Trust us, your future self will thank you when everything just works! 🎯
 
 ## Usage
 

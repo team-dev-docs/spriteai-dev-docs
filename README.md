@@ -1,61 +1,36 @@
-# SpriteAI: Comprehensive Sprite Generation Library
+# SpriteAI Documentation
 
-## Overview
+## Introduction
 
-SpriteAI is a powerful npm package designed to streamline sprite creation and manipulation for game development and digital art projects. This documentation provides an introduction to the library's core features and usage.
+SpriteAI is a powerful library for programmatically generating and manipulating sprites for game development. This documentation provides comprehensive information on how to utilize SpriteAI effectively in your projects.
 
-## Installation
+## Getting Started
 
-To integrate SpriteAI into your project, execute the following command in your project directory:
+To begin using SpriteAI, follow these steps:
 
-```bash
-npm install spriteai
-```
+1. Install the SpriteAI library using npm:
+   ```
+   npm install spriteai
+   ```
 
-## Basic Usage
+2. Import SpriteAI into your project:
+   ```javascript
+   import SpriteAI from 'spriteai';
+   ```
 
-After installation, you can begin leveraging SpriteAI's capabilities in your project. Here's a concise example demonstrating the primary functionalities:
+3. Initialize SpriteAI with your configuration:
+   ```javascript
+   const spriteAI = new SpriteAI({
+     // Configuration options
+   });
+   ```
 
-```javascript
-const spriteAI = require('spriteai');
+## Core Features
 
-// Initialize a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
-
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite generated successfully:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation error:', error);
-  });
-
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite loaded successfully:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving error:', error);
-  });
-```
-
-## Key Features
-
-SpriteAI offers a robust set of features for sprite creation and manipulation:
+SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation workflows:
 
 1. **Sprite Generation**: Utilize `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Efficiently load existing sprites with `loadSprite(path)`.
+2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
 3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
 4. **Character Spritesheet Generation**: Create detailed character spritesheets with `generateCharacterSpritesheet(description, options)`.
 5. **Environment Sprite Generation**: Generate environment sprites with `generateEnvironmentSprites(description, options)`.
@@ -63,7 +38,7 @@ SpriteAI offers a robust set of features for sprite creation and manipulation:
 
 ## Convenience Functions
 
-SpriteAI provides specialized functions for generating specific character types:
+SpriteAI includes convenient functions for generating specific character types:
 
 ```javascript
 // Generate a ninja character
@@ -82,21 +57,76 @@ spriteAI.generateRobot(options)
   .catch(error => console.error(error));
 ```
 
-These functions come with preset options tailored for each character type, while still allowing for customization through the `options` parameter.
+These functions come with preset options tailored for each character type, but you can customize them as needed.
+
+### Detailed Usage of Convenience Functions
+
+#### generateNinja(options)
+
+Generates a ninja character spritesheet with default states: idle, walk, run, attack, and sneak.
+
+```javascript
+const options = {
+  style: 'pixel-art',
+  framesPerState: 6
+  // Add any custom options here
+};
+
+spriteAI.generateNinja(options)
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+```
+
+#### generateSpaceman(options)
+
+Creates an astronaut character spritesheet with default states: idle, walk, run, and float.
+
+```javascript
+const options = {
+  style: 'pixel-art',
+  framesPerState: 6
+  // Add any custom options here
+};
+
+spriteAI.generateSpaceman(options)
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+```
+
+#### generateRobot(options)
+
+Produces a robot character spritesheet with default states: idle, walk, run, attack, and power-up.
+
+```javascript
+const options = {
+  style: 'pixel-art',
+  framesPerState: 6
+  // Add any custom options here
+};
+
+spriteAI.generateRobot(options)
+  .then(result => console.log(result))
+  .catch(error => console.error(error));
+```
+
+Each of these functions uses the `generateCharacterSpritesheet` method internally with predefined descriptions and states, while allowing for customization through the options parameter.
 
 ## Advanced Techniques
 
-SpriteAI's capabilities extend beyond basic sprite operations. You can create intricate sprite animations, apply various transformations, and explore a wide range of creative possibilities. For in-depth information on these advanced features, please refer to our comprehensive API documentation.
+For more complex sprite manipulation and generation techniques, refer to our Advanced Techniques guide.
 
-## Next Steps
+## API Reference
 
-To fully leverage SpriteAI's potential, we recommend:
+For a complete list of SpriteAI's methods and their parameters, consult our API Reference documentation.
 
-1. Exploring the complete API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+## Contributing
 
-For detailed information and advanced usage scenarios, please consult our extensive API documentation.
+We welcome contributions to SpriteAI. Please read our Contributing Guidelines for more information on how to get involved.
 
-Thank you for choosing SpriteAI. We look forward to seeing the innovative sprites you'll create with our library!
+## Support
+
+If you encounter any issues or have questions about SpriteAI, please file an issue on our GitHub repository or contact our support team.
+
+## License
+
+SpriteAI is released under the MIT License. See the LICENSE file for more details.

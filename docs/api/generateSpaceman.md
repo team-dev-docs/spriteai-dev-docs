@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `generateSpaceman` function is a specialized method provided by the SpriteAI library for generating a sprite sheet of an astronaut character. This function leverages the more comprehensive `generateCharacterSpritesheet` function, offering pre-configured options tailored specifically for a spaceman character.
+The `generateSpaceman` function is a specialized method within the SpriteAI library designed for creating sprite sheets of astronaut characters. This function leverages the more comprehensive `generateCharacterSpritesheet` function, offering pre-configured options tailored specifically for spaceman character generation.
 
 ## Syntax
 
@@ -14,7 +14,7 @@ export const generateSpaceman = async function(options = {}) {
 
 ## Parameters
 
-- `options` (optional): An object containing configuration options to customize the sprite generation. If not provided, default values will be used.
+- `options` (optional): An object containing configuration options to customize the sprite generation. If not provided, default values will be utilized.
 
 ### Default Options
 
@@ -31,8 +31,8 @@ export const generateSpaceman = async function(options = {}) {
 The function returns a Promise that resolves to an object containing:
 
 - `original`: The URL of the original generated image.
-- `spritesheet`: A base64-encoded string of the processed sprite sheet.
-- `metadata`: An object containing information about the generated sprite sheet.
+- `spritesheet`: A base64-encoded string representing the processed sprite sheet.
+- `metadata`: An object containing detailed information about the generated sprite sheet.
 
 ## Usage
 
@@ -53,21 +53,21 @@ const customResult = await generateSpaceman({
 
 The `generateSpaceman` function creates a pixel-art style sprite sheet of an astronaut character. By default, it includes four animation states: idle, walk, run, and float. Each state is represented by 6 frames in the resulting sprite sheet.
 
-Internally, this function calls `generateCharacterSpritesheet` with a pre-defined description: "astronaut character with space suit and helmet". This approach ensures consistency in the generated spaceman character across different function calls.
+Internally, this function invokes `generateCharacterSpritesheet` with a pre-defined description: "astronaut character with space suit and helmet". This approach ensures consistency in the generated spaceman character across different function calls.
 
 ## Customization
 
 While the function provides default options, developers can customize various aspects of the sprite generation by passing an `options` object. This flexibility allows for:
 
 - Addition or removal of animation states
-- Modification of the number of frames per state
-- Alteration of the art style (although 'pixel-art' is recommended for consistency)
+- Adjustment of the number of frames per state
+- Modification of the art style (although 'pixel-art' is recommended for consistency)
 
 ## Notes
 
-- The generated sprite sheet is optimized for use in 2D games or applications requiring animated astronaut characters.
-- The 'float' state is unique to the spaceman character, simulating low-gravity or zero-gravity movement.
-- For more granular control over the sprite generation process, consider using the `generateCharacterSpritesheet` function directly.
+- The generated sprite sheet is optimized for integration into 2D games or applications requiring animated astronaut characters.
+- The 'float' state is a unique feature of the spaceman character, designed to simulate low-gravity or zero-gravity movement.
+- For more granular control over the sprite generation process, developers may consider using the `generateCharacterSpritesheet` function directly.
 
 ## See Also
 

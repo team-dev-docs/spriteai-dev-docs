@@ -5,7 +5,7 @@ description: >-
   list of available animation states for sprite generation.
 ---
 
-# fetchAvailableAnimationStates Documentation!
+# fetchAvailableAnimationStates Documentation! 🔥
 
 ## Introduction
 
@@ -59,33 +59,48 @@ The function returns an array of available animation states. Here's an example o
 ]
 ```
 
-## Using with Sprite Generation
+## Using with Sprite Generation 🎮🔥
 
-Once you have the list of available animation states, you can use them when generating sprites. Below is an example of how to use the `generateCharacterSpritesheet` function with a selected animation state.
+**Time to unleash the magic!** 🪄 Once you've got your hands on that sweet list of animation states, it's time to create some absolutely legendary sprites that'll make your game characters come ALIVE! 
+
+This is where the real fun begins - we're talking about transforming static descriptions into dynamic, frame-perfect animations that'll blow your players' minds! 🤯
 
 ### Example: Generating a Character Spritesheet
+
+**Get ready to witness some serious sprite wizardry in action!** ⚡ Here's how you combine the power of `fetchAvailableAnimationStates` with `generateCharacterSpritesheet` to create gaming gold:
 
 ```javascript
 import { fetchAvailableAnimationStates, generateCharacterSpritesheet } from './path/to/sprite/module';
 
+// 🎯 This function is about to blow your mind!
 async function generateSpriteWithAnimationState() {
+  // First, grab all those juicy animation states
   const animationStates = await fetchAvailableAnimationStates();
-  const selectedState = animationStates[0]; // 'idle' in this example
+  const selectedState = animationStates[0]; // 'idle' - the calm before the storm! 😎
 
+  // Now for the main event - sprite generation magic! ✨
   const result = await generateCharacterSpritesheet("A pixelated robot", {
     states: [selectedState],
-    framesPerState: 6,
-    size: '1024x1024',
-    style: 'pixel-art',
-    padding: 1,
-    direction: 'right'
+    framesPerState: 6,        // 6 frames of pure awesomeness
+    size: '1024x1024',        // Crystal clear quality, baby!
+    style: 'pixel-art',       // Retro vibes that never go out of style
+    padding: 1,               // Perfectly spaced frames
+    direction: 'right'        // Ready for action!
   });
 
+  // BAM! Your sprite masterpiece is ready! 🎨
   console.log(result);
 }
 
+// Fire it up and watch the magic happen! 🚀
 generateSpriteWithAnimationState();
 ```
+
+**Pro Developer Tips for Maximum Spiciness:** 🌶️
+- Mix and match different animation states to create complex character behaviors
+- Experiment with different frame counts for varied animation speeds - more frames = smoother action!
+- Try different art styles to match your game's aesthetic perfectly
+- Use the padding wisely to ensure your sprites don't overlap during gameplay
 
 ## Parameters
 

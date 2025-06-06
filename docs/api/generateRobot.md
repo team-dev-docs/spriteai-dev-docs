@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `generateRobot` function is a specialized method provided by the SpriteAI library for creating robot character spritesheets. This function streamlines the process of generating pixel art robot sprites with predefined animation states, offering a balance between ease of use and customization.
+The `generateRobot` function is a convenience method provided by the SpriteAI library for generating a robot character spritesheet. This function simplifies the process of creating a pixel art robot character with predefined animation states.
 
 ## Syntax
 
@@ -27,9 +27,9 @@ The function returns a Promise that resolves to an object containing:
 
 ## Description
 
-The `generateRobot` function builds upon the `generateCharacterSpritesheet` function, providing a simplified interface tailored for creating robot character sprites. It uses predefined settings optimized for robot characters, including specific animation states and a default description.
+The `generateRobot` function is built on top of the `generateCharacterSpritesheet` function, providing a simplified interface for creating robot character sprites. It uses predefined settings tailored for robot characters, including specific animation states and a default description.
 
-By default, the function generates a pixel art robot character with mechanical limbs and glowing eyes. The spritesheet includes five animation states: idle, walk, run, attack, and power-up, each represented by 6 frames.
+By default, the function generates a pixel art robot character with mechanical limbs and glowing eyes. The spritesheet includes five animation states: idle, walk, run, attack, and power-up.
 
 ## Usage Example
 
@@ -54,7 +54,7 @@ createRobotSprite();
 
 ## Customization
 
-You can customize the robot sprite generation by passing options to the `generateRobot` function. For example:
+You can customize the robot sprite generation by passing options to the `generateRobot` function. For example, you can change the number of frames per state or add additional animation states:
 
 ```javascript
 const customRobot = await generateRobot({
@@ -63,8 +63,6 @@ const customRobot = await generateRobot({
   style: 'vector'
 });
 ```
-
-This will generate a robot sprite with an additional 'shutdown' state, 4 frames per state, and in a vector art style.
 
 ## Notes
 

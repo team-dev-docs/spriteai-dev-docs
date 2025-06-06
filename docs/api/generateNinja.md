@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `generateNinja` function is a specialized method provided by the SpriteAI library for generating a ninja character spritesheet. This function streamlines the process of creating a pixel-art style ninja character with predefined animation states.
+The `generateNinja` function is a convenience method provided by the SpriteAI library for generating a ninja character spritesheet. This function simplifies the process of creating a pixel-art style ninja character with predefined animation states.
 
 ## Syntax
 

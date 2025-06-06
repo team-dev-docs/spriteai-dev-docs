@@ -115,6 +115,16 @@ Returns an array of strings, each representing an available animation state.
 - The list of animation states is predefined and includes common states used in game development.
 - Ensure you handle the returned array appropriately in your application to avoid errors.
 
+### Installation
+
+To get started with SpriteAI, install the npm package:
+
+```bash
+npm install spriteai
+```
+
+😊
+
 ## Next Steps
 
 - Explore the [generateCharacterSpritesheet documentation](/docs/generateCharacterSpritesheet) to learn more about generating sprite sheets.

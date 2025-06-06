@@ -1,9 +1,11 @@
 ---
 title: fetchAvailableAnimationStates Documentation
-description: Learn how to use the `fetchAvailableAnimationStates` function to retrieve the list of available animation states for sprite generation.
+description: >-
+  Learn how to use the `fetchAvailableAnimationStates` function to retrieve the
+  list of available animation states for sprite generation.
 ---
 
-# fetchAvailableAnimationStates Documentation
+# fetchAvailableAnimationStates Documentation!
 
 ## Introduction
 
@@ -37,7 +39,7 @@ console.log(animationStates);
 
 ### Example Output
 
-The function returns an array of available animation states. Here’s an example of what the output might look like:
+The function returns an array of available animation states. Here's an example of what the output might look like:
 
 ```javascript
 [

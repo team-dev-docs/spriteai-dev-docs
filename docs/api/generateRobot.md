@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `generateRobot` function is a convenience method provided by the SpriteAI library for generating a robot character spritesheet. This function simplifies the process of creating a pixel art robot character with predefined animation states.
+The `generateRobot` function is a convenience method provided by the SpriteAI library for generating a robot character spritesheet. This function streamlines the process of creating a pixel art robot character with predefined animation states.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ Returns a Promise that resolves to an object containing:
 
 ## Description
 
-The `generateRobot` function is built on top of the `generateCharacterSpritesheet` function, providing a simplified interface for creating robot character sprites. It uses predefined settings tailored for robot characters, including specific animation states and a default description.
+The `generateRobot` function is built on top of the `generateCharacterSpritesheet` function, providing a simplified interface for creating robot character sprites. It utilizes predefined settings tailored for robot characters, including specific animation states and a default description.
 
 By default, the function generates a pixel art robot character with mechanical limbs and glowing eyes. The spritesheet includes five animation states: idle, walk, run, attack, and power-up.
 
@@ -42,7 +42,7 @@ async function createRobotSprite() {
       style: 'pixel-art'
     });
     console.log('Robot sprite generated:', robotSprite);
-    // Use the robotSprite.spritesheet data in your game or application
+    // Utilize the robotSprite.spritesheet data in your game or application
   } catch (error) {
     console.error('Error generating robot sprite:', error);
   }
@@ -53,7 +53,7 @@ createRobotSprite();
 
 ## Customization
 
-You can customize the robot sprite generation by passing options to the `generateRobot` function. For example, you can change the number of frames per state or add additional animation states:
+You can customize the robot sprite generation by passing options to the `generateRobot` function. For example, you can modify the number of frames per state or add additional animation states:
 
 ```javascript
 const customRobot = await generateRobot({
@@ -65,9 +65,9 @@ const customRobot = await generateRobot({
 
 ## Notes
 
-- The function uses AI-powered image generation, so results may vary slightly between calls.
-- The generated spritesheet is optimized for game development and can be easily integrated into game engines or frameworks that support spritesheets.
-- For more complex customizations, consider using the `generateCharacterSpritesheet` function directly.
+- The function employs AI-powered image generation, so results may vary slightly between calls.
+- The generated spritesheet is optimized for game development and can be seamlessly integrated into game engines or frameworks that support spritesheets.
+- For more advanced customizations, consider utilizing the `generateCharacterSpritesheet` function directly.
 
 ## See Also
 

@@ -57,20 +57,54 @@ Internally, this function calls `generateCharacterSpritesheet` with a pre-define
 
 ## Customization
 
-While the function comes with default options, you can customize various aspects of the sprite generation by passing an `options` object. This allows you to:
+The `generateSpaceman` function allows for customization through the `options` parameter. Developers can modify various aspects of the sprite generation:
 
 - Add or remove animation states
-- Change the number of frames per state
-- Alter the art style (though 'pixel-art' is recommended for consistency)
+- Adjust the number of frames per state
+- Modify the art style (although 'pixel-art' is recommended for consistency)
+
+Example of customization:
+
+```javascript
+const customSpaceman = await generateSpaceman({
+  states: ['idle', 'walk', 'run', 'float', 'moonwalk'],
+  framesPerState: 8,
+  style: 'pixel-art'
+});
+```
+
+## Performance Considerations
+
+When generating multiple spaceman sprites, consider caching the results to improve performance and reduce unnecessary API calls.
 
 ## Notes
 
 - The generated sprite sheet is optimized for use in 2D games or applications requiring animated astronaut characters.
 - The 'float' state is unique to the spaceman character, simulating low-gravity or zero-gravity movement.
-- For more control over the sprite generation process, consider using the `generateCharacterSpritesheet` function directly.
+- For more granular control over the sprite generation process, consider using the `generateCharacterSpritesheet` function directly.
 
 ## See Also
 
 - [generateCharacterSpritesheet](./generateCharacterSpritesheet.md)
 - [generateNinja](./generateNinja.md)
 - [generateRobot](./generateRobot.md)
+
+## Error Handling
+
+The `generateSpaceman` function may throw errors in case of network issues or invalid options. It's recommended to implement proper error handling:
+
+```javascript
+try {
+  const spaceman = await generateSpaceman(options);
+  // Use the generated spaceman sprite
+} catch (error) {
+  console.error('Error generating spaceman:', error);
+  // Handle the error appropriately
+}
+```
+
+## Best Practices
+
+1. Always provide fallback options in case the sprite generation fails.
+2. Test the generated sprites in various game engines to ensure compatibility.
+3. Consider implementing a caching mechanism for frequently used spaceman configurations to improve performance.

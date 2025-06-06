@@ -5,135 +5,125 @@ description: >-
   list of available animation states for sprite generation.
 ---
 
-# 🎮 fetchAvailableAnimationStates Documentation
+# fetchAvailableAnimationStates Documentation! 🔥
 
-## 🔥 Introduction
+## Introduction
 
-The `fetchAvailableAnimationStates` function is a **game-changing** addition to our SDK, designed to supercharge your sprite generation workflow! This powerhouse function helps developers retrieve the complete arsenal of available animation states that can be used in conjunction with our sprite generation functions. Get ready to unleash some seriously **spicy** sprite animations! 🌶️
+The `fetchAvailableAnimationStates` function is a new addition to our SDK, designed to help developers retrieve the list of available animation states that can be used in conjunction with sprite generation functions. This documentation will guide you through the usage and implementation of this function.
 
-## 🚀 Prerequisites
+## Prerequisites 🔥
 
-Before you dive into this **epic** journey, ensure you have the following:
+Before you dive into the world of epic sprite animation states, make sure you've got your developer toolkit locked and loaded:
 
-- A working development environment set up 💻
-- The latest version of our SDK installed 📦
-- Basic JavaScript knowledge (you got this!) 🧠
-- A burning desire to create **amazing** sprites 🔥
+- **🚀 A blazing-fast development environment** - No potato computers allowed! Your setup should be smooth enough to handle our lightning-fast sprite generation.
+- **⚡ The latest version of our SDK installed** - Don't be that developer stuck in the stone age with outdated packages. Fresh installs only!
+- **💪 Node.js powers activated** - Make sure you're running a recent version that won't leave you hanging.
+- **🧠 Basic JavaScript kung fu** - You should know your way around async/await and promises like a coding ninja.
+- **🎮 Game development mindset** - Ready to bring characters to life with buttery-smooth animations?
 
-## 🎯 Usage
+Pro tip: If you're missing any of these, stop right here and get your setup dialed in first. Trust us, your future self will thank you when everything just works! 🎯
 
-To use `fetchAvailableAnimationStates`, import it from the sprite module and call the function. It's that **simple**!
+## Usage
 
-### 📥 Importing the Function
+To use `fetchAvailableAnimationStates`, import it from the sprite module and call the function.
+
+### Importing the Function
 
 ```javascript
 import { fetchAvailableAnimationStates } from './path/to/sprite/module';
 ```
 
-### 🎬 Calling the Function
+### Calling the Function
 
-The `fetchAvailableAnimationStates` function doesn't require any parameters - it's **zero-config awesome**! Simply call it to retrieve the list of available animation states.
+The `fetchAvailableAnimationStates` function does not require any parameters. Simply call it to retrieve the list of available animation states.
 
 ```javascript
 const animationStates = await fetchAvailableAnimationStates();
 console.log(animationStates);
 ```
 
-### 🎨 Example Output
+### Example Output
 
-The function returns an array of available animation states. Check out this **sweet** output:
+The function returns an array of available animation states. Here's an example of what the output might look like:
 
 ```javascript
 [
-  'idle',      // 😴 Chilling and waiting
-  'walk',      // 🚶 Casual strolling
-  'run',       // 🏃 Full speed ahead!
-  'attack',    // ⚔️ Battle mode activated
-  'jump',      // 🦘 Defying gravity
-  'fall',      // 🍂 Coming back down
-  'hurt',      // 😵 Ouch, that stings!
-  'die'        // 💀 Game over, man!
+  'idle',
+  'walk',
+  'run',
+  'attack',
+  'jump',
+  'fall',
+  'hurt',
+  'die'
 ]
 ```
 
-## 🎮 Using with Sprite Generation
+## Using with Sprite Generation 🎮🔥
 
-Once you have the list of available animation states, you can use them when generating sprites like a **total boss**! Below is an example of how to use the `generateCharacterSpritesheet` function with a selected animation state.
+**Time to unleash the magic!** 🪄 Once you've got your hands on that sweet list of animation states, it's time to create some absolutely legendary sprites that'll make your game characters come ALIVE! 
 
-### 🔥 Example: Generating a Character Spritesheet
+This is where the real fun begins - we're talking about transforming static descriptions into dynamic, frame-perfect animations that'll blow your players' minds! 🤯
+
+### Example: Generating a Character Spritesheet
+
+**Get ready to witness some serious sprite wizardry in action!** ⚡ Here's how you combine the power of `fetchAvailableAnimationStates` with `generateCharacterSpritesheet` to create gaming gold:
 
 ```javascript
 import { fetchAvailableAnimationStates, generateCharacterSpritesheet } from './path/to/sprite/module';
 
+// 🎯 This function is about to blow your mind!
 async function generateSpriteWithAnimationState() {
-  // 🎯 Fetch all the spicy animation states
+  // First, grab all those juicy animation states
   const animationStates = await fetchAvailableAnimationStates();
-  const selectedState = animationStates[0]; // 'idle' in this example - keeping it chill! 😎
+  const selectedState = animationStates[0]; // 'idle' - the calm before the storm! 😎
 
-  // 🚀 Generate that epic spritesheet!
-  const result = await generateCharacterSpritesheet("A pixelated robot warrior", {
+  // Now for the main event - sprite generation magic! ✨
+  const result = await generateCharacterSpritesheet("A pixelated robot", {
     states: [selectedState],
-    framesPerState: 6,
-    size: '1024x1024',
-    style: 'pixel-art',
-    padding: 1,
-    direction: 'right'
+    framesPerState: 6,        // 6 frames of pure awesomeness
+    size: '1024x1024',        // Crystal clear quality, baby!
+    style: 'pixel-art',       // Retro vibes that never go out of style
+    padding: 1,               // Perfectly spaced frames
+    direction: 'right'        // Ready for action!
   });
 
-  console.log(result); // 🎉 Boom! Your sprite is ready!
+  // BAM! Your sprite masterpiece is ready! 🎨
+  console.log(result);
 }
 
+// Fire it up and watch the magic happen! 🚀
 generateSpriteWithAnimationState();
 ```
 
-### 🌟 Pro Tip: Multiple Animation States
+**Pro Developer Tips for Maximum Spiciness:** 🌶️
+- Mix and match different animation states to create complex character behaviors
+- Experiment with different frame counts for varied animation speeds - more frames = smoother action!
+- Try different art styles to match your game's aesthetic perfectly
+- Use the padding wisely to ensure your sprites don't overlap during gameplay
 
-Why settle for one animation state when you can have them **all**? Here's how to create a **mega-sprite** with multiple states:
+## Parameters
 
-```javascript
-async function generateEpicMultiStateSprite() {
-  const animationStates = await fetchAvailableAnimationStates();
-  
-  // 🔥 Use the first 4 states for maximum awesomeness
-  const selectedStates = animationStates.slice(0, 4);
-  
-  const result = await generateCharacterSpritesheet("A legendary ninja cat", {
-    states: selectedStates, // ['idle', 'walk', 'run', 'attack']
-    framesPerState: 8,
-    size: '2048x2048', // Go big or go home! 🏠
-    style: 'pixel-art',
-    padding: 2,
-    direction: 'right'
-  });
+The `fetchAvailableAnimationStates` function does not accept any parameters.
 
-  return result; // 🎊 Your epic sprite awaits!
-}
+## Return Value
+
+Returns an array of strings, each representing an available animation state.
+
+## Notes or Considerations
+
+- The list of animation states is predefined and includes common states used in game development.
+- Ensure you handle the returned array appropriately in your application to avoid errors.
+
+To get started with SpriteAI, install the npm package:
+
+```bash
+npm install spriteai
 ```
 
-## 📋 Parameters
+😊
 
-The `fetchAvailableAnimationStates` function is **beautifully simple** - it doesn't accept any parameters! Just call it and watch the magic happen ✨
+## Next Steps
 
-## 🎁 Return Value
-
-Returns an array of strings, each representing an available animation state that's ready to bring your sprites to life!
-
-## 💡 Pro Tips & Considerations
-
-- 🎯 The list of animation states is carefully curated and includes the most **essential** states used in game development
-- 🛡️ Always handle the returned array appropriately in your application to avoid errors
-- 🚀 These states are optimized for maximum **visual impact** and gameplay versatility
-- 🎨 Mix and match different states to create unique character behaviors
-- ⚡ The function is **lightning-fast** and doesn't require any API calls!
-
-## 🚀 Next Steps
-
-Ready to take your sprite game to the **next level**? Check out these **spicy** resources:
-
-- 🎮 Explore the [generateCharacterSpritesheet documentation](/docs/generateCharacterSpritesheet) to learn more about generating **epic** sprite sheets
-- 🎨 Check out the [fetchAvailableSpriteStyles documentation](/docs/fetchAvailableSpriteStyles) to discover **amazing** sprite styles
-- 🔥 Dive into advanced sprite generation techniques and become a **sprite master**!
-
----
-
-**Ready to create some absolutely legendary sprites?** 🌟 Let's get this party started! 🎉
+- Explore the [generateCharacterSpritesheet documentation](/docs/generateCharacterSpritesheet) to learn more about generating sprite sheets.
+- Check out the [fetchAvailableSpriteStyles documentation](/docs/fetchAvailableSpriteStyles) to learn about available sprite styles.

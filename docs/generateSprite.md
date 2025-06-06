@@ -1,54 +1,153 @@
 ---
+title: Generate Sprite Documentation
+description: >-
+  Learn how to use the generateSprite function to create character spritesheets,
+  environment sprites, and item sprites using AI-powered image generation.
 slug: /
 sidebar_position: 1
 ---
 
-# generateSprite Documentation
+# Generate Sprite Documentation
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+## Introduction
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+The `generateSprite` module provides powerful functions for creating game assets using AI-powered image generation. This tutorial will guide you through using these functions to generate character spritesheets, environment sprites, and item sprites for your game development projects.
+
+## Prerequisites
+
+- Node.js installed on your system
+- Basic knowledge of JavaScript and async/await syntax
+- An OpenAI API key (for image generation)
+
+## Generating Character Spritesheets
+
+The `generateCharacterSpritesheet` function allows you to create a character spritesheet with multiple animation states.
+
+### Basic Usage
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet } from './path/to/spriteAI';
 
-const result = await sprite.generateSprite(description, options);
+const description = "A pixelated robot character";
+const result = await generateCharacterSpritesheet(description);
+
+console.log(result.spritesheet); // Base64-encoded spritesheet image
+console.log(result.metadata); // Metadata about the generated spritesheet
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+### Customizing the Spritesheet
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+You can customize various aspects of the generated spritesheet:
 
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+const options = {
+  states: ['idle', 'walk', 'run', 'attack', 'jump'],
+  framesPerState: 8,
+  size: '2048x2048',
+  style: 'pixel-art',
+  padding: 2,
+  direction: 'left',
+  save: true // Save the spritesheet to disk
+};
+
+const result = await generateCharacterSpritesheet(description, options);
 ```
 
-2. Generate multiple variations:
+### Available Animation States
+
+To get a list of available animation states:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+import { fetchAvailableAnimationStates } from './path/to/spriteAI';
+
+const states = await fetchAvailableAnimationStates();
+console.log(states); // ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die']
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+### Available Sprite Styles
+
+To get a list of available sprite styles:
+
+```javascript
+import { fetchAvailableSpriteStyles } from './path/to/spriteAI';
+
+const styles = await fetchAvailableSpriteStyles();
+console.log(styles); // ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+## Generating Environment Sprites
+
+The `generateEnvironmentSprites` function creates a tileset of environment elements.
+
+### Basic Usage
+
+```javascript
+import { generateEnvironmentSprites } from './path/to/spriteAI';
+
+const description = "Forest environment";
+const result = await generateEnvironmentSprites(description);
+
+console.log(result.tileset); // Base64-encoded tileset image
+console.log(result.metadata); // Metadata about the generated tileset
+```
+
+### Customizing Environment Sprites
+
+You can customize the environment sprite generation:
+
+```javascript
+const options = {
+  elements: 6,
+  size: '2048x2048',
+  style: 'pixel-art',
+  padding: 2,
+  theme: 'fantasy',
+  save: true // Save the tileset to disk
+};
+
+const result = await generateEnvironmentSprites(description, options);
+```
+
+## Generating Item Sprites
+
+The `generateItemSprites` function creates a collection of item sprites for your game.
+
+### Basic Usage
+
+```javascript
+import { generateItemSprites } from './path/to/spriteAI';
+
+const description = "Medieval weapons and armor";
+const result = await generateItemSprites(description);
+
+console.log(result.itemSheet); // Base64-encoded item sheet image
+console.log(result.metadata); // Metadata about the generated items
+```
+
+### Customizing Item Sprites
+
+You can customize the item sprite generation:
+
+```javascript
+const options = {
+  itemCount: 8,
+  size: '2048x2048',
+  style: 'pixel-art',
+  padding: 2,
+  itemType: 'equipment',
+  background: 'transparent',
+  save: true // Save the item sheet to disk
+};
+
+const result = await generateItemSprites(description, options);
+```
+
+## Outcome
+
+After following this tutorial, you'll be able to generate character spritesheets, environment tilesets, and item sprite collections using AI-powered image generation. These assets can be directly used in your game development projects.
+
+## Next Steps
+
+- Learn how to integrate these generated sprites into your game engine
+- Explore advanced customization options for each sprite generation function
+- Check out the Reference documentation for detailed API information

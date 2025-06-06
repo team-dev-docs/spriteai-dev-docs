@@ -26,9 +26,9 @@ Returns a Promise that resolves to an object containing:
 
 ## Description
 
-The `generateRobot` function is built on top of the `generateCharacterSpritesheet` function, providing a simplified interface for creating robot character sprites. It utilizes predefined settings tailored for robot characters, including specific animation states and a default description.
+The `generateRobot` function is built upon the `generateCharacterSpritesheet` function, offering a simplified interface for creating robot character sprites. It utilizes predefined settings tailored for robot characters, including specific animation states and a default description.
 
-By default, the function generates a pixel art robot character with mechanical limbs and glowing eyes. The spritesheet includes five animation states: idle, walk, run, attack, and power-up.
+By default, the function generates a pixel art robot character featuring mechanical limbs and glowing eyes. The spritesheet encompasses five animation states: idle, walk, run, attack, and power-up.
 
 ## Usage Example
 
@@ -53,7 +53,7 @@ createRobotSprite();
 
 ## Customization
 
-You can customize the robot sprite generation by passing options to the `generateRobot` function. For example, you can modify the number of frames per state or add additional animation states:
+You can customize the robot sprite generation by passing options to the `generateRobot` function. For instance, you can modify the number of frames per state or incorporate additional animation states:
 
 ```javascript
 const customRobot = await generateRobot({
@@ -65,7 +65,7 @@ const customRobot = await generateRobot({
 
 ## Notes
 
-- The function employs AI-powered image generation, so results may vary slightly between calls.
+- The function employs AI-powered image generation, so results may exhibit slight variations between calls.
 - The generated spritesheet is optimized for game development and can be seamlessly integrated into game engines or frameworks that support spritesheets.
 - For more advanced customizations, consider utilizing the `generateCharacterSpritesheet` function directly.
 

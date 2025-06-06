@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `generateNinja` function is a utility method provided by the SpriteAI library for generating a ninja character spritesheet. This function streamlines the process of creating a pixel-art style ninja character with predefined animation states.
+The `generateNinja` function is a convenience method provided by the SpriteAI library for generating a ninja character spritesheet. This function simplifies the process of creating a pixel-art style ninja character with predefined animation states.
 
 ## Syntax
 
@@ -53,15 +53,15 @@ const customResult = await generateNinja({
 
 The `generateNinja` function creates a pixel-art style spritesheet of a ninja character. By default, it includes five animation states: idle, walk, run, attack, and sneak. Each state is represented by 6 frames in the resulting spritesheet.
 
-Internally, this function invokes `generateCharacterSpritesheet` with a predefined description: "ninja character with black outfit and mask". This ensures consistency in the generated ninja character across different function calls.
+Internally, this function utilizes the `generateCharacterSpritesheet` method with a pre-defined description: "ninja character with black outfit and mask". This approach ensures consistency in the generated ninja character across different function calls.
 
 ## Customization
 
-While the function comes with default options, developers can customize various aspects of the sprite generation by passing an `options` object. This allows for:
+While the function provides default options, developers can customize various aspects of the sprite generation by passing an `options` object. This allows for:
 
 - Addition or removal of animation states
 - Modification of the number of frames per state
-- Alteration of the art style (though 'pixel-art' is recommended for consistency)
+- Alteration of the art style (although 'pixel-art' is recommended for consistency)
 
 ## Notes
 

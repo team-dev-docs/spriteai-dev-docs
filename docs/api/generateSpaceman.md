@@ -57,11 +57,11 @@ Internally, this function calls `generateCharacterSpritesheet` with a pre-define
 
 ## Customization
 
-The `generateSpaceman` function allows for customization through the `options` parameter. Developers can modify various aspects of the sprite generation:
+The `generateSpaceman` function provides flexibility through its `options` parameter. Developers can customize various aspects of the sprite generation:
 
-- Add or remove animation states
-- Adjust the number of frames per state
-- Modify the art style (although 'pixel-art' is recommended for consistency)
+- **Animation States**: Add or remove states to suit specific game requirements.
+- **Frame Count**: Adjust the number of frames per state for smoother or more detailed animations.
+- **Art Style**: While 'pixel-art' is the default and recommended style for consistency, other styles can be explored for unique visual effects.
 
 Example of customization:
 
@@ -75,7 +75,17 @@ const customSpaceman = await generateSpaceman({
 
 ## Performance Considerations
 
-When generating multiple spaceman sprites, consider caching the results to improve performance and reduce unnecessary API calls.
+When using the `generateSpaceman` function, consider the following performance aspects:
+
+1. **Sprite Sheet Size**: Increasing the number of states or frames per state will result in larger sprite sheets, which may impact load times and memory usage.
+2. **Generation Time**: Complex customizations might increase the time required to generate the sprite sheet.
+3. **Caching**: For frequently used spaceman configurations, consider caching the generated sprite sheets to improve performance in subsequent uses.
+
+## Best Practices
+
+1. **Consistent Style**: Maintain a consistent art style across all character types in your game for a cohesive visual experience.
+2. **Optimize Animation States**: Include only the necessary animation states to keep the sprite sheet size manageable.
+3. **Test Performance**: If using multiple custom spaceman characters, test the performance impact, especially on lower-end devices.
 
 ## Notes
 
@@ -88,23 +98,3 @@ When generating multiple spaceman sprites, consider caching the results to impro
 - [generateCharacterSpritesheet](./generateCharacterSpritesheet.md)
 - [generateNinja](./generateNinja.md)
 - [generateRobot](./generateRobot.md)
-
-## Error Handling
-
-The `generateSpaceman` function may throw errors in case of network issues or invalid options. It's recommended to implement proper error handling:
-
-```javascript
-try {
-  const spaceman = await generateSpaceman(options);
-  // Use the generated spaceman sprite
-} catch (error) {
-  console.error('Error generating spaceman:', error);
-  // Handle the error appropriately
-}
-```
-
-## Best Practices
-
-1. Always provide fallback options in case the sprite generation fails.
-2. Test the generated sprites in various game engines to ensure compatibility.
-3. Consider implementing a caching mechanism for frequently used spaceman configurations to improve performance.

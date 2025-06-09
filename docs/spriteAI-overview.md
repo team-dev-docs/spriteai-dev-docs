@@ -4,37 +4,19 @@
 
 SpriteAI is a powerful and versatile library designed to generate and manipulate game sprites and assets using AI-powered image generation. It offers a range of functions to create character spritesheets, environment sprites, item sprites, and more, making it an essential tool for game developers and digital artists.
 
-## Key Features
-
-### Character Spritesheet Generation
-
-The `generateCharacterSpritesheet` function allows you to create detailed character spritesheets with customizable animation states, including:
-
-- Multiple animation states (e.g., idle, walk, run, attack)
-- Adjustable number of frames per state
-- Various output sizes and styles
-- Directional facing options
-
-### Environment Sprite Generation
-
-With the `generateEnvironmentSprites` function, you can create tileset-style environment sprites, perfect for game backgrounds and levels. Features include:
-
-- Customizable number of elements
-- Various themes (e.g., fantasy, sci-fi)
-- Consistent style across elements
-
-### Item Sprite Generation
-
 The `generateItemSprites` function helps create collections of item sprites for game inventories or pickups. It offers:
 
-- Adjustable item count
-- Different item types (e.g., equipment, consumables)
-- Consistent styling and scaling
+* Adjustable item count
+
+* Different item types (e.g., equipment, consumables)
+
+* Consistent styling and scaling
 
 ### Additional Utilities
 
-- Background color removal for creating transparent sprites
-- Fetching available animation states and sprite styles
+* Background color removal for creating transparent sprites
+
+* Fetching available animation states and sprite styles
 
 ## Getting Started
 
@@ -74,10 +56,13 @@ const itemSprites = await generateItemSprites('medieval weapons', {
 
 SpriteAI offers various options for fine-tuning your sprite generation. You can adjust parameters such as image size, style, padding, and more. For detailed information on each function and its options, refer to the specific documentation pages:
 
-- [Generate Sprite](./generateSprite.md)
-- [Generate Pixel Art](./generatePixelArt.md)
-- [Generate Animated Emoji](./generateAnimatedEmoji.md)
-- [Generate Isometric Sprites](./generateIsometric.md)
+* [Generate Sprite](./generateSprite.md)
+
+* [Generate Pixel Art](./generatePixelArt.md)
+
+* [Generate Animated Emoji](./generateAnimatedEmoji.md)
+
+* [Generate Isometric Sprites](./generateIsometric.md)
 
 ## Conclusion
 

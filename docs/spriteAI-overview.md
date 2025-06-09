@@ -1,4 +1,4 @@
-# SpriteAI Overview
+# Hi Kyle and Thomas
 
 ## Introduction
 

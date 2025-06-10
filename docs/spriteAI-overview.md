@@ -1,4 +1,4 @@
-# SpriteAI Overview
+# THANKS FOR WATCHIN THE DEMO ANNA
 
 ## Introduction
 
@@ -6,12 +6,17 @@ SpriteAI is a powerful tool designed to generate and manipulate character sprite
 
 ## Key Features
 
-- Generate character spritesheets with customizable animation states
-- Create environment tileset sprites
-- Produce item sprite collections
-- Generate isometric sprites
-- Create animated emojis
-- Remove background colors from images
+* Generate character spritesheets with customizable animation states
+
+* Create environment tileset sprites
+
+* Produce item sprite collections
+
+* Generate isometric sprites
+
+* Create animated emojis
+
+* Remove background colors from images
 
 ## Main Components
 
@@ -43,10 +48,13 @@ The `generateItemSprites` function produces collections of item sprites suitable
 
 ### Additional Features
 
-- `generateIsometric`: Creates isometric sprite images
-- `generatePixelArt`: Generates pixel art sprites
-- `generateAnimatedEmoji`: Produces 4-frame animated emojis
-- `removeBackgroundColor`: Removes specific background colors from images
+* `generateIsometric`: Creates isometric sprite images
+
+* `generatePixelArt`: Generates pixel art sprites
+
+* `generateAnimatedEmoji`: Produces 4-frame animated emojis
+
+* `removeBackgroundColor`: Removes specific background colors from images
 
 ## Getting Started
 
@@ -66,10 +74,13 @@ import { generateCharacterSpritesheet } from 'spriteai';
 
 ## Technology Stack
 
-- Node.js
-- OpenAI API (DALL-E 3)
-- Sharp and Jimp for image processing
-- Axios for HTTP requests
+* Node.js
+
+* OpenAI API (DALL-E 3)
+
+* Sharp and Jimp for image processing
+
+* Axios for HTTP requests
 
 ## Conclusion
 

@@ -1,54 +1,183 @@
 ---
+title: Sprite Generation and Management
+description: >-
+  Learn how to generate character spritesheets, environment sprites, and item
+  sprites using AI-powered tools.
 slug: /
 sidebar_position: 1
 ---
 
-# generateSprite Documentation
+# Sprite Generation and Management
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+## Introduction
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+This guide will walk you through the process of generating and managing various types of sprites using our AI-powered tools. You'll learn how to create character spritesheets, environment sprites, and item sprites, as well as how to fetch available animation states and sprite styles.
+
+## Prerequisites
+
+- Node.js installed on your system
+- Access to the sprite generation module
+- OpenAI API key (for AI-powered image generation)
+
+## Generating Character Spritesheets
+
+The `generateCharacterSpritesheet` function allows you to create character spritesheets with multiple animation states.
+
+### Usage
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet } from './path/to/sprite/module';
 
-const result = await sprite.generateSprite(description, options);
+const description = "A pixelated robot";
+const options = {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  direction: 'right'
+};
+
+const result = await generateCharacterSpritesheet(description, options);
+console.log(result);
 ```
 
-## Parameters
+### Parameters
+
 - `description` (string, required): A text description of the character to generate.
 - `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+  - `states` (array): Animation states to include (default: ['idle', 'walk', 'run', 'attack'])
+  - `framesPerState` (number): Number of frames per animation state (default: 6)
+  - `size` (string): Size of the generated image (default: "1024x1024")
+  - `style` (string): Art style of the sprite (default: "pixel-art")
+  - `direction` (string): Direction the character faces (default: "right")
+  - `save` (boolean): Whether to save the generated image to disk
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+### Return Value
 
-## Examples
+The function returns an object containing:
 
-1. Generate a single sprite sheet:
+- `original`: URL of the original generated image
+- `spritesheet`: Base64-encoded image data URL of the processed spritesheet
+- `metadata`: Object containing information about the spritesheet, including states, dimensions, and frame data
+
+## Generating Environment Sprites
+
+The `generateEnvironmentSprites` function creates a tileset of environment elements.
+
+### Usage
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+import { generateEnvironmentSprites } from './path/to/sprite/module';
+
+const description = "Forest landscape";
+const options = {
+  elements: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  theme: 'fantasy'
+};
+
+const result = await generateEnvironmentSprites(description, options);
+console.log(result);
 ```
 
-2. Generate multiple variations:
+### Parameters
+
+- `description` (string, required): A text description of the environment to generate.
+- `options` (object, optional):
+  - `elements` (number): Number of distinct environment pieces to generate (default: 4)
+  - `size` (string): Size of the generated image (default: "1024x1024")
+  - `style` (string): Art style of the sprites (default: "pixel-art")
+  - `theme` (string): Theme of the environment (default: "fantasy")
+  - `save` (boolean): Whether to save the generated image to disk
+
+### Return Value
+
+The function returns an object containing:
+
+- `original`: URL of the original generated image
+- `tileset`: Base64-encoded image data URL of the processed tileset
+- `metadata`: Object containing information about the tileset, including dimensions and tile data
+
+## Generating Item Sprites
+
+The `generateItemSprites` function creates a collection of item sprites for game inventories or pickups.
+
+### Usage
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+import { generateItemSprites } from './path/to/sprite/module';
+
+const description = "Magic potions";
+const options = {
+  itemCount: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  itemType: 'consumable'
+};
+
+const result = await generateItemSprites(description, options);
+console.log(result);
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+### Parameters
+
+- `description` (string, required): A text description of the items to generate.
+- `options` (object, optional):
+  - `itemCount` (number): Number of distinct items to generate (default: 4)
+  - `size` (string): Size of the generated image (default: "1024x1024")
+  - `style` (string): Art style of the sprites (default: "pixel-art")
+  - `itemType` (string): Type of items to generate (default: "equipment")
+  - `save` (boolean): Whether to save the generated image to disk
+
+### Return Value
+
+The function returns an object containing:
+
+- `original`: URL of the original generated image
+- `itemSheet`: Base64-encoded image data URL of the processed item sheet
+- `metadata`: Object containing information about the item sheet, including dimensions and item data
+
+## Fetching Available Animation States
+
+The `fetchAvailableAnimationStates` function retrieves a list of supported animation states for character spritesheets.
+
+### Usage
+
+```javascript
+import { fetchAvailableAnimationStates } from './path/to/sprite/module';
+
+const states = await fetchAvailableAnimationStates();
+console.log(states);
+```
+
+### Return Value
+
+An array of strings representing available animation states (e.g., ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die']).
+
+## Fetching Available Sprite Styles
+
+The `fetchAvailableSpriteStyles` function retrieves a list of supported art styles for sprite generation.
+
+### Usage
+
+```javascript
+import { fetchAvailableSpriteStyles } from './path/to/sprite/module';
+
+const styles = await fetchAvailableSpriteStyles();
+console.log(styles);
+```
+
+### Return Value
+
+An array of strings representing available sprite styles (e.g., ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']).
+
+## Conclusion
+
+With these powerful sprite generation tools, you can quickly create diverse and customized assets for your game or application. Experiment with different descriptions, styles, and options to achieve the perfect look for your project.
+
+## Next Steps
+
+- Learn how to integrate these sprites into your game engine
+- Explore advanced customization options for sprite generation
+- Discover best practices for optimizing sprite performance in your projects

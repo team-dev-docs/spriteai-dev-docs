@@ -1,4 +1,4 @@
-# SpriteAI Overview
+THANKS FOR WATCHIN THE DEMO
 
 ## Introduction
 
@@ -6,11 +6,15 @@ SpriteAI is a powerful tool designed to generate and manipulate game assets usin
 
 ## Key Features
 
-- Generate character spritesheets with customizable animation states
-- Create environment sprites for game worlds
-- Produce item sprites for in-game objects
-- Remove background colors from images
-- Support for various art styles and output sizes
+* Generate character spritesheets with customizable animation states
+
+* Create environment sprites for game worlds
+
+* Produce item sprites for in-game objects
+
+* Remove background colors from images
+
+* Support for various art styles and output sizes
 
 ## Main Functions
 
@@ -23,14 +27,22 @@ const result = await generateCharacterSpritesheet(description, options);
 ```
 
 #### Parameters:
-- `description`: A string describing the character
-- `options`: An object containing customization parameters such as:
-  - `states`: Array of animation states (e.g., ['idle', 'walk', 'run'])
-  - `framesPerState`: Number of frames for each state
-  - `size`: Output image size (e.g., '1024x1024')
-  - `style`: Art style (e.g., 'pixel-art')
-  - `padding`: Padding between frames
-  - `direction`: Character facing direction
+
+* `description`: A string describing the character
+
+* `options`: An object containing customization parameters such as:
+
+  * `states`: Array of animation states (e.g., \['idle', 'walk', 'run'])
+
+  * `framesPerState`: Number of frames for each state
+
+  * `size`: Output image size (e.g., '1024x1024')
+
+  * `style`: Art style (e.g., 'pixel-art')
+
+  * `padding`: Padding between frames
+
+  * `direction`: Character facing direction
 
 ### generateEnvironmentSprites
 
@@ -41,13 +53,20 @@ const result = await generateEnvironmentSprites(description, options);
 ```
 
 #### Parameters:
-- `description`: A string describing the environment
-- `options`: An object containing customization parameters such as:
-  - `elements`: Number of distinct environment pieces
-  - `size`: Output image size
-  - `style`: Art style
-  - `padding`: Padding between elements
-  - `theme`: Environment theme (e.g., 'fantasy')
+
+* `description`: A string describing the environment
+
+* `options`: An object containing customization parameters such as:
+
+  * `elements`: Number of distinct environment pieces
+
+  * `size`: Output image size
+
+  * `style`: Art style
+
+  * `padding`: Padding between elements
+
+  * `theme`: Environment theme (e.g., 'fantasy')
 
 ### generateItemSprites
 
@@ -58,13 +77,20 @@ const result = await generateItemSprites(description, options);
 ```
 
 #### Parameters:
-- `description`: A string describing the items
-- `options`: An object containing customization parameters such as:
-  - `itemCount`: Number of items to generate
-  - `size`: Output image size
-  - `style`: Art style
-  - `padding`: Padding between items
-  - `itemType`: Type of items (e.g., 'equipment')
+
+* `description`: A string describing the items
+
+* `options`: An object containing customization parameters such as:
+
+  * `itemCount`: Number of items to generate
+
+  * `size`: Output image size
+
+  * `style`: Art style
+
+  * `padding`: Padding between items
+
+  * `itemType`: Type of items (e.g., 'equipment')
 
 ## Additional Utilities
 

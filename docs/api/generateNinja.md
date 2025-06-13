@@ -71,6 +71,7 @@ This will generate a ninja sprite with 8 frames per animation state in a hand-dr
 
 - The function uses AI-powered image generation, so results may vary slightly between calls.
 - The generated spritesheet is optimized for game development use, with clear separation between animation states.
+- The 'sneak' state is included in the default options, which is unique to the ninja character.
 - For more control over the sprite generation process, consider using the `generateCharacterSpritesheet` function directly.
 
 ## See Also

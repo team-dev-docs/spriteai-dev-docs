@@ -1,74 +1,79 @@
-# Getting Started with SpriteAI
+# SpriteAI Quick Start Guide
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+## Prerequisites
+
+- Node.js (version 14.x or higher)
+- npm (version 6.x or higher)
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+Install SpriteAI using npm:
 
 ```bash
 npm install spriteai
 ```
 
-## Basic Usage
-
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+## Basic Setup
 
 ```javascript
 const spriteAI = require('spriteai');
 
-// Initialise a new SpriteAI instance
+// Initialize SpriteAI
 const ai = new spriteAI.SpriteAI();
+```
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
+## Quick Examples
+
+### Generate a Sprite
+
+```javascript
+ai.generateSprite('hero', 64, 64)
   .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
+    console.log('Sprite created:', sprite);
   })
   .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
+    console.error('Sprite generation failed:', error);
   });
+```
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
+### Load an Existing Sprite
+
+```javascript
+ai.loadSprite('path/to/character.png')
   .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
+    console.log('Sprite loaded successfully');
   })
   .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
+    console.error('Sprite loading failed:', error);
   });
+```
 
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
+### Save a Sprite
+
+```javascript
+ai.saveSprite(sprite, 'path/to/save/character.png')
   .then(() => {
     console.log('Sprite saved successfully');
   })
   .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
+    console.error('Sprite saving failed:', error);
   });
 ```
 
-## Key Features
+## Best Practices
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+- Always use error handling with promises
+- Specify precise dimensions when generating sprites
+- Use descriptive names for your sprite generations
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+## Troubleshooting
 
-## Advanced Techniques
-
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+- Ensure you have the latest version of SpriteAI
+- Check network connections for online sprite generation
+- Verify file paths when loading or saving sprites
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
-
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
-
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+- Explore advanced sprite transformations
+- Learn about sprite animation techniques
+- Join the SpriteAI community for support and inspiration

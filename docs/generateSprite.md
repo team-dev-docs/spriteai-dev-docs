@@ -1,54 +1,128 @@
 ---
+title: generateSprite Documentation
+description: >-
+  Learn how to use the generateSprite function to create character spritesheets,
+  environment sprites, and item sprites using AI-powered image generation.
 slug: /
 sidebar_position: 1
 ---
 
 # generateSprite Documentation
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+## Introduction
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+The `generateSprite` function is a powerful tool that allows you to create various types of game assets using AI-powered image generation. This tutorial will guide you through the process of generating character spritesheets, environment sprites, and item sprites using the `generateSprite` function and its related utilities.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js installed on your system
+- The necessary dependencies installed (OpenAI, axios, sharp, Jimp)
+- An OpenAI API key set up in your environment
+
+## Generating a Character Spritesheet
+
+Let's start by creating a character spritesheet using the `generateCharacterSpritesheet` function.
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { generateCharacterSpritesheet } from './spriteAI';
 
-const result = await sprite.generateSprite(description, options);
+const description = "A pixelated robot";
+const options = {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  direction: 'right',
+  save: true
+};
+
+const result = await generateCharacterSpritesheet(description, options);
+console.log(result.metadata);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+This code will generate a spritesheet for a pixelated robot character with four animation states: idle, walk, run, and attack. The resulting spritesheet will be saved as an image file, and the metadata will be logged to the console.
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+## Generating Environment Sprites
 
-## Examples
+Next, let's create some environment sprites using the `generateEnvironmentSprites` function.
 
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+import { generateEnvironmentSprites } from './spriteAI';
+
+const description = "Forest tileset";
+const options = {
+  elements: 6,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  theme: 'fantasy',
+  save: true
+};
+
+const result = await generateEnvironmentSprites(description, options);
+console.log(result.metadata);
 ```
 
-2. Generate multiple variations:
+This code will generate a set of forest environment sprites in a fantasy theme. The resulting tileset will be saved as an image file, and the metadata will be logged to the console.
+
+## Generating Item Sprites
+
+Finally, let's create some item sprites using the `generateItemSprites` function.
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+import { generateItemSprites } from './spriteAI';
+
+const description = "Magic potions";
+const options = {
+  itemCount: 8,
+  size: '1024x1024',
+  style: 'pixel-art',
+  padding: 1,
+  itemType: 'consumable',
+  background: 'transparent',
+  save: true
+};
+
+const result = await generateItemSprites(description, options);
+console.log(result.metadata);
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+This code will generate a set of magic potion item sprites. The resulting item sheet will be saved as an image file, and the metadata will be logged to the console.
+
+## Fetching Available Options
+
+You can use the following utility functions to fetch available animation states and sprite styles:
+
+```javascript
+import { fetchAvailableAnimationStates, fetchAvailableSpriteStyles } from './spriteAI';
+
+const animationStates = await fetchAvailableAnimationStates();
+console.log("Available animation states:", animationStates);
+
+const spriteStyles = await fetchAvailableSpriteStyles();
+console.log("Available sprite styles:", spriteStyles);
+```
+
+These functions will return arrays of available options that you can use when generating sprites.
+
+## Outcome
+
+After running these examples, you should have:
+
+1. A character spritesheet with multiple animation states
+2. An environment tileset with various elements
+3. An item sprite sheet with multiple items
+4. Lists of available animation states and sprite styles
+
+You can now use these generated assets in your game development projects.
+
+## Next Steps
+
+- Learn how to integrate these sprites into your game engine
+- Explore advanced customization options for sprite generation
+- Discover techniques for optimizing and processing generated sprites
+
+For more detailed information about the API and available options, check out the [generateSprite Reference Documentation](/docs/reference/generateSprite).

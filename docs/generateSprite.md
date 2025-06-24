@@ -1,54 +1,96 @@
 ---
+title: Generate Character Spritesheet
+description: >-
+  Learn how to use the generateCharacterSpritesheet function to create custom
+  character spritesheets for your game.
 slug: /
 sidebar_position: 1
 ---
 
-# generateSprite Documentation
+# Generate Character Spritesheet
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+## Introduction
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+The `generateCharacterSpritesheet` function is a powerful tool that allows you to create custom character spritesheets for your game using AI-generated images. This tutorial will guide you through the process of using this function to create a character spritesheet with various animation states.
+
+## Prerequisites
+
+- Node.js installed on your system
+- Access to the `spriteAI` module
+- An OpenAI API key (for image generation)
+
+## Steps
+
+### 1. Import the necessary modules
+
+First, make sure you have the required modules imported in your project:
 
 ```javascript
-import { sprite } from './path/to/sprite/module';
-
-const result = await sprite.generateSprite(description, options);
+import { generateCharacterSpritesheet } from 'spriteAI';
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+### 2. Set up the function call
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
+Now, let's create a basic function call to generate a character spritesheet:
 
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+async function createCharacterSpritesheet() {
+  const description = "A pixelated warrior with sword and shield";
+  const result = await generateCharacterSpritesheet(description);
+  console.log(result);
+}
+
+createCharacterSpritesheet();
 ```
 
-2. Generate multiple variations:
+### 3. Customize the spritesheet options
+
+The `generateCharacterSpritesheet` function accepts an options object as its second parameter. Let's explore some of the available options:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+async function createCustomCharacterSpritesheet() {
+  const description = "A steampunk robot with gears and steam pipes";
+  const options = {
+    states: ['idle', 'walk', 'attack', 'jump'],
+    framesPerState: 8,
+    size: '1024x1024',
+    style: 'pixel-art',
+    direction: 'left',
+    save: true
+  };
+
+  const result = await generateCharacterSpritesheet(description, options);
+  console.log(result);
+}
+
+createCustomCharacterSpritesheet();
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+### 4. Understanding the result
+
+The function returns an object with the following properties:
+
+- `original`: The URL of the original AI-generated image
+- `spritesheet`: A base64-encoded string of the processed spritesheet
+- `metadata`: An object containing information about the spritesheet, including:
+  - `states`: An array of animation states
+  - `framesPerState`: The number of frames per animation state
+  - `totalFrames`: The total number of frames in the spritesheet
+  - `dimensions`: The width and height of the spritesheet
+  - `frameData`: An object with information about each animation state
+
+### 5. Using the generated spritesheet
+
+You can use the base64-encoded spritesheet directly in your game or save it as an image file. If you set `save: true` in the options, the function will automatically save the spritesheet in the `assets` folder of your project.
+
+## Outcome
+
+After running the function, you'll have a custom character spritesheet that you can use in your game. The spritesheet will contain multiple animation states for your character, ready to be implemented in your game engine.
+
+## Next Steps
+
+- Learn how to [fetch available animation states](/docs/fetchAvailableAnimationStates) for your spritesheets
+- Explore [generating environment sprites](/docs/generateEnvironmentSprites) for your game world
+- Dive into [creating item sprites](/docs/generateItemSprites) for your game's inventory system
+
+By following this tutorial, you've learned how to use the `generateCharacterSpritesheet` function to create custom character spritesheets for your game. Experiment with different descriptions, styles, and options to create unique characters for your projects!

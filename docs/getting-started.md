@@ -1,7 +1,5 @@
 # Getting Started with SpriteAI
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
-
 ## Installation
 
 To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
@@ -12,63 +10,95 @@ npm install spriteai
 
 ## Basic Usage
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+SpriteAI provides powerful tools for generating and manipulating game sprites. Here's a comprehensive overview of its key features:
+
+### Character Sprite Generation
+
+Create dynamic character spritesheets with ease:
 
 ```javascript
 const spriteAI = require('spriteai');
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
+// Generate a character spritesheet
+await spriteAI.generateCharacterSpritesheet('hero warrior', {
+  states: ['idle', 'walk', 'run', 'attack'],
+  framesPerState: 6,
+  style: 'pixel-art',
+  save: true
+});
+```
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
+### Available Animation States
 
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
+SpriteAI supports a variety of predefined animation states:
 
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
-  });
+```javascript
+const animationStates = await spriteAI.fetchAvailableAnimationStates();
+// Returns: ['idle', 'walk', 'run', 'attack', 'jump', 'fall', 'hurt', 'die']
+```
+
+### Sprite Styles
+
+Choose from multiple sprite rendering styles:
+
+```javascript
+const spriteStyles = await spriteAI.fetchAvailableSpriteStyles();
+// Returns: ['pixel-art', 'vector', '3d', 'hand-drawn', 'anime']
+```
+
+### Environment Sprite Generation
+
+Create environment sprite tilesets for game worlds:
+
+```javascript
+await spriteAI.generateEnvironmentSprites('fantasy forest', {
+  elements: 4,
+  style: 'pixel-art',
+  theme: 'fantasy'
+});
+```
+
+### Item Sprite Generation
+
+Generate item sprites for game inventories:
+
+```javascript
+await spriteAI.generateItemSprites('magical weapons', {
+  itemCount: 4,
+  style: 'pixel-art',
+  itemType: 'equipment'
+});
+```
+
+## Advanced Features
+
+### Background Removal
+
+Remove background colors from sprites:
+
+```javascript
+await spriteAI.removeBackgroundColor(
+  'input-sprite.png', 
+  'output-sprite.png', 
+  'white', 
+  colorThreshold
+);
 ```
 
 ## Key Features
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
+1. **AI-Powered Sprite Generation**: Create unique sprites using advanced AI algorithms
+2. **Multiple Animation States**: Support for various character animations
+3. **Flexible Style Options**: Choose from multiple artistic styles
+4. **Environment and Item Sprite Creation**: Generate complete game asset collections
+5. **Background Removal**: Easy sprite background manipulation
 
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
+## Recommended Next Steps
 
-## Advanced Techniques
+1. Explore the full API documentation
+2. Experiment with different sprite generation options
+3. Join our community forums for tips and inspiration
 
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+For in-depth information and advanced usage scenarios, please refer to our comprehensive API documentation.
 
-## Next Steps
-
-To truly master SpriteAI, we recommend:
-
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
-
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+Thank you for choosing SpriteAI. We're excited to see the amazing game assets you'll create with our package!

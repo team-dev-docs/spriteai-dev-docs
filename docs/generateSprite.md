@@ -1,54 +1,165 @@
 ---
+title: Sprite Generation API
+description: >-
+  Learn how to generate character sprites, environment sprites, and item sprites
+  using the Sprite Generation API.
 slug: /
 sidebar_position: 1
 ---
 
-# generateSprite Documentation
+# Sprite Generation API
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+## Introduction
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+The Sprite Generation API allows you to create various types of sprites for your game or application using AI-powered image generation. This tutorial will guide you through generating character sprites, environment sprites, and item sprites, as well as fetching available animation states and sprite styles.
 
-```javascript
-import { sprite } from './path/to/sprite/module';
+## Prerequisites
 
-const result = await sprite.generateSprite(description, options);
+- Node.js installed on your system
+- Basic knowledge of JavaScript and async/await syntax
+- An OpenAI API key (for image generation)
+
+## Getting Started
+
+First, install the required dependencies:
+
+```bash
+npm install openai axios sharp jimp fs path
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+Then, import the necessary functions from the Sprite Generation API:
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
-
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+import { 
+  generateCharacterSpritesheet, 
+  generateEnvironmentSprites, 
+  generateItemSprites,
+  fetchAvailableAnimationStates,
+  fetchAvailableSpriteStyles
+} from './spriteAI';
 ```
 
-2. Generate multiple variations:
+## Generating Character Sprites
+
+Let's create a character spritesheet with custom options:
+
 ```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
+async function createCharacterSprite() {
+  const options = {
+    states: ['idle', 'walk', 'run', 'attack'],
+    framesPerState: 6,
+    size: '1024x1024',
+    style: 'pixel-art',
+    padding: 1,
+    direction: 'right',
+    save: true
+  };
+
+  const result = await generateCharacterSpritesheet("A brave knight in shining armor", options);
+  
+  console.log("Spritesheet URL:", result.spritesheet);
+  console.log("Metadata:", result.metadata);
+}
+
+createCharacterSprite();
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+This will generate a spritesheet for a knight character with idle, walk, run, and attack animations.
+
+## Generating Environment Sprites
+
+Create a set of environment sprites for your game:
+
+```javascript
+async function createEnvironmentSprites() {
+  const options = {
+    elements: 4,
+    size: '1024x1024',
+    style: 'pixel-art',
+    padding: 1,
+    theme: 'fantasy',
+    save: true
+  };
+
+  const result = await generateEnvironmentSprites("Medieval castle elements", options);
+  
+  console.log("Environment tileset URL:", result.tileset);
+  console.log("Metadata:", result.metadata);
+}
+
+createEnvironmentSprites();
+```
+
+This will generate a tileset of medieval castle elements for a fantasy-themed environment.
+
+## Generating Item Sprites
+
+Create a set of item sprites for your game inventory:
+
+```javascript
+async function createItemSprites() {
+  const options = {
+    itemCount: 4,
+    size: '1024x1024',
+    style: 'pixel-art',
+    padding: 1,
+    itemType: 'equipment',
+    background: 'transparent',
+    save: true
+  };
+
+  const result = await generateItemSprites("Medieval weapons and armor", options);
+  
+  console.log("Item spritesheet URL:", result.itemSheet);
+  console.log("Metadata:", result.metadata);
+}
+
+createItemSprites();
+```
+
+This will generate a spritesheet of medieval weapons and armor items for your game's equipment system.
+
+## Fetching Available Animation States
+
+To get a list of available animation states for character sprites:
+
+```javascript
+async function getAnimationStates() {
+  const states = await fetchAvailableAnimationStates();
+  console.log("Available animation states:", states);
+}
+
+getAnimationStates();
+```
+
+## Fetching Available Sprite Styles
+
+To get a list of available sprite styles:
+
+```javascript
+async function getSpriteStyles() {
+  const styles = await fetchAvailableSpriteStyles();
+  console.log("Available sprite styles:", styles);
+}
+
+getSpriteStyles();
+```
+
+## Outcome
+
+After running these functions, you'll have:
+
+1. A character spritesheet with multiple animations
+2. An environment tileset for your game world
+3. An item spritesheet for your inventory system
+4. Lists of available animation states and sprite styles
+
+You can use these generated assets in your game engine or application to create a visually cohesive and animated game world.
+
+## Next Steps
+
+- Learn how to integrate these sprites into your game engine
+- Explore advanced customization options for sprite generation
+- Discover techniques for optimizing and compressing sprite assets
+
+By mastering the Sprite Generation API, you'll be able to quickly create diverse and visually appealing assets for your game development projects.

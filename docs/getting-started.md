@@ -1,74 +1,111 @@
-# Getting Started with SpriteAI
+# SpriteAI Generate Functions Documentation
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+## Overview
 
-## Installation
+SpriteAI provides multiple specialized sprite generation functions to help developers create diverse and dynamic sprites for game development and digital art projects.
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+## Available Generation Functions
 
-```bash
-npm install spriteai
+### generateSprite()
+
+#### Description
+Generates a comprehensive sprite sheet with AI-powered image generation, optimized for character and game sprite creation.
+
+#### Usage
+```javascript
+const result = await sprite.generateSprite(description, options);
 ```
 
-## Basic Usage
+#### Parameters
+- `description` (string, required): Detailed text description of the sprite
+- `options` (object, optional):
+  - `iterations`: Number of sprite variations
+  - `size`: Generated image dimensions
+  - `save`: Boolean to save generated image
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+#### Returns
+- `messages`: Sprite metadata (frame dimensions)
+- `image`: Base64-encoded sprite sheet
+
+### generatePixelArt()
+
+#### Description
+Creates pixel art sprites with a retro, low-resolution aesthetic.
+
+#### Usage
+```javascript
+const result = await sprite.generatePixelArt(description, options);
+```
+
+#### Parameters
+- `description` (string, required): Pixel art sprite concept
+- `options` (object, optional):
+  - `save`: Option to save generated pixel art
+
+#### Returns
+- `image`: Base64-encoded pixel art sprite
+- `url`: Direct image URL
+
+### generateIsometric()
+
+#### Description
+Generates isometric sprites for strategy, management, and top-down perspective games.
+
+#### Usage
+```javascript
+const result = await sprite.generateIsometric(description, options);
+```
+
+#### Parameters
+- `description` (string, required): Isometric object or character description
+- `options` (object, optional):
+  - `save`: Option to save generated isometric sprite
+
+#### Returns
+- `image`: Base64-encoded isometric sprite
+- `url`: Direct image URL
+
+## Notes and Considerations
+
+- AI-powered generation may produce variable results
+- Sprites are optimized for game development workflows
+- Image processing might modify original input slightly
+- Requires appropriate API credentials for image generation
+
+## Best Practices
+
+1. Provide clear, detailed descriptions
+2. Experiment with multiple generations
+3. Review and potentially refine generated sprites
+4. Consider saving variations for future use
+
+## Performance Tips
+
+- Cache generated sprites when possible
+- Use specific, concise descriptions
+- Limit iterations to manage computational resources
+
+## Compatibility
+
+Supports modern JavaScript environments with async/await support and compatible with major game development frameworks.
+
+## API Requirements
+
+- OpenAI API Key
+- Internet Connection
+- Node.js (recommended version 14+)
+
+## Example
 
 ```javascript
-const spriteAI = require('spriteai');
+// Generate a character sprite
+const heroSprite = await sprite.generateSprite('Medieval knight in plate armor', { 
+  iterations: 2, 
+  save: true 
+});
 
-// Initialise a new SpriteAI instance
-const ai = new spriteAI.SpriteAI();
-
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
-  .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
-
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
-  });
+// Create a pixel art character
+const pixelHero = await sprite.generatePixelArt('Retro adventurer with sword', { 
+  save: true 
+});
 ```
-
-## Key Features
-
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
-
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
-
-## Advanced Techniques
-
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
-
-## Next Steps
-
-To truly master SpriteAI, we recommend:
-
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
-
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
-
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!

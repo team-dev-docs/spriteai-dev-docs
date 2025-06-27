@@ -1,47 +1,69 @@
-# generateIsometric Documentation
+# SpriteAI Documentation
 
-## Brief Description
-`generateIsometric` is a function that generates an isometric sprite image based on a given description, using AI-powered image generation and analysis.
+## Feature Updates: 2025-04-18 Release
 
-## Usage
-To use `generateIsometric`, import it from the sprite module and call it with a description of the object or character you want to generate in isometric style.
+### New Function: generateItemSprites()
 
+#### Description
+The `generateItemSprites()` function allows developers to create game item sprite collections with advanced customization options.
+
+#### Usage
 ```javascript
-import { sprite } from './path/to/sprite/module';
-
-const result = await sprite.generateIsometric(description, options);
+const itemSprites = await sprite.generateItemSprites(options);
 ```
 
-## Parameters
-- `description` (string, required): A text description of the object or character to generate in isometric style.
-- `options` (object, optional):
-  - `save` (boolean): Whether to save the generated image to disk.
-  - Other options may be available (refer to the options in generateSprite for potential additional parameters).
+#### Parameters
+- `options` (object):
+  - `itemCount` (number): Number of items to generate
+  - `size` (string): Size of individual sprites
+  - `style` (string): Visual style of the sprites
+  - `padding` (number): Space between items in the sprite sheet
+  - `itemType` (string): Type of items to generate (e.g., 'weapons', 'potions')
+  - `background` (string): Background style for the sprite sheet
 
-## Return Value
+#### Return Value
 Returns an object containing:
-- `image`: Base64-encoded image data URL of the generated isometric sprite.
-- `url`: Direct URL to the generated image.
+- Original image URL
+- Processed item sprite sheet
+- Metadata about generated sprites
 
-## Examples
-
-1. Generate an isometric sprite:
+#### Example
 ```javascript
-const result = await sprite.generateIsometric("A medieval castle");
-console.log(result.image); // Base64-encoded image data URL
-console.log(result.url); // Direct URL to the image
+const result = await sprite.generateItemSprites({
+  itemCount: 6,
+  size: '64x64',
+  style: 'pixel',
+  itemType: 'weapons'
+});
 ```
 
-2. Generate and save an isometric sprite:
-```javascript
-const result = await sprite.generateIsometric("A futuristic spaceship", { save: true });
-console.log("Image saved and accessible at:", result.url);
-```
+## Environment Sprite Enhancements
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3) to generate images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for isometric game graphics, viewed from a top-down 3/4 perspective.
-- The function generates a single frame, suitable for static isometric objects or characters.
-- When saving images, they are stored with a timestamp-based filename.
-- The function may take some time to complete due to API calls and image processing.
-- Ensure you have the necessary API credentials and permissions set up to use the OpenAI image generation service.
+The `generateEnvironmentSprites()` function has been updated with improved flexibility and generation capabilities.
+
+## Additional Updates
+
+### New Utility Functions
+Several new utility functions have been added to enhance sprite manipulation, including:
+- `rotateSpritesheet()`
+- `tintSprite()`
+- `calculateOptimalAnimationSpeed()`
+- `generateSpriteMetadata()`
+
+### Performance Improvements
+- Enhanced options handling in sprite generation methods
+- Improved sprite sheet generation algorithms
+
+## Compatibility
+
+These new features are compatible with the latest version of SpriteAI and require the most recent SDK version.
+
+## Best Practices
+
+- Always specify detailed options to get the most accurate sprite generation
+- Use the new utility functions to fine-tune sprite appearance and behavior
+- Check sprite metadata for additional generation information
+
+## Upcoming Features
+
+Stay tuned for more advanced sprite generation and manipulation features in future releases!

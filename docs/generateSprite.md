@@ -2,53 +2,140 @@
 slug: /
 sidebar_position: 1
 ---
+# Latest SpriteAI Features and Updates
 
-# generateSprite Documentation
+## Sprite Generation Enhancements (2025-04-15)
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+### New Functions
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+#### Item Sprite Generation
+- `generateItemSprites()`: Create game item sprite collections with advanced configuration
+  - Supports multiple options:
+    - Item count
+    - Size specification
+    - Style selection
+    - Padding configuration
+    - Item type definition
+    - Background customization
 
-```javascript
-import { sprite } from './path/to/sprite/module';
+#### Environment and Landscape Sprite Creation
+- `generateEnvironmentSprites()`: Generate comprehensive environment sprite tilesets
+- `generateLandscapeSprite()`: Create detailed landscape scenes
 
-const result = await sprite.generateSprite(description, options);
+#### Character Sprite Utilities
+- `generateCharacterSpritesheet()`: Advanced character sprite sheet generation
+
+### New Utility Functions
+
+#### Sprite Transformation
+- `rotateSpritesheet()`
+- `tintSprite()`
+- `flipSprite()`
+- `combineSprites()`
+- `generateSpriteMetadata()`
+
+#### Visual Effects
+- `createParticleEffect()`
+- `createColorCyclingAnimation()`
+- `generateOutline()`
+- `pixelSort()`
+- `addNoise()`
+- `extractPalette()`
+- `pixelPerfectScale()`
+- `generateShadow()`
+
+#### Advanced Visual Manipulations
+- `createMirrorEffect()`
+- `interpolateFrames()`
+- `createReflection()`
+- `createWaveDistortion()`
+- `createPixelationEffect()`
+- `createMosaicEffect()`
+- `createDissolveEffect()`
+
+#### Special Effects
+- `createSplashEffect()`
+- `createShatterEffect()`
+- `createKaleidoscopeEffect()`
+- `createGlitchWaveEffect()`
+- `createDisplacementEffect()`
+- `createWeatherEffect()`
+
+### New Sprite Object Methods
+
+#### Transformation Methods
+- `generateParticleEffect()`
+- `createColorCycle()`
+- `combineSprites()`
+- `addOutline()`
+- `createGlitchArt()`
+- `generateSpriteVariations()`
+- `optimizePalette()`
+- `createPixelPerfect()`
+
+#### Effect Methods
+- `addShadow()`
+- `createMirrorSprite()`
+- `createSpriteAnimation()`
+- `addReflectionEffect()`
+- `addWaveEffect()`
+- `addPixelationEffect()`
+- `addMosaicEffect()`
+- `addDissolveEffect()`
+- `addSplashEffect()`
+- `addShatterEffect()`
+- `addKaleidoscopeEffect()`
+- `addGlitchWaveEffect()`
+- `addDisplacementEffect()`
+
+#### Variant Generation
+- `createMechaSpriteVariation()`
+- `createElementalVariation()`
+- `createLightingVariation()`
+- `addWeatherEffect()`
+- `generateSpriteWithBorder()`
+
+## Changelog Notes
+
+### Improvements
+- Enhanced `generateCharacterSpritesheet()` function with improved flexibility
+- Refined options handling across sprite generation methods
+
+### Performance
+- Ongoing code optimizations
+- Bug fixes throughout the codebase
+
+## Getting Started with New Features
+
+To leverage these new functionalities, ensure you have the latest version of SpriteAI installed:
+
+```bash
+npm install spriteai@latest
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+### Quick Example
 
-## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
-
-## Examples
-
-1. Generate a single sprite sheet:
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
-```
+const spriteAI = require('spriteai');
 
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
+// Generate item sprites
+const itemSprites = await spriteAI.generateItemSprites({
+  description: 'Fantasy game weapons',
+  itemCount: 5,
+  style: 'pixel-art'
 });
 ```
 
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
+## Compatibility
+
+- Requires Node.js 16.x or higher
+- Compatible with modern browser environments
+- API key required for AI-powered generation
+
+## Future Roadmap
+
+- Continued expansion of sprite generation capabilities
+- Machine learning model improvements
+- Enhanced customization options
+
+*Last Updated: 2025-04-18*

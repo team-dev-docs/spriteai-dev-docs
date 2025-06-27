@@ -1,74 +1,70 @@
-# Getting Started with SpriteAI
+# SpriteAI Quick Start Guide
 
-Welcome to SpriteAI! This guide will walk you through the process of integrating the SpriteAI npm package into your projects.
+## Prerequisites
+
+- Node.js (version 16.0 or higher)
+- npm (version 8.0 or higher)
 
 ## Installation
 
-To begin using SpriteAI, you'll need to install it in your project directory. Simply run the following command:
+Install SpriteAI using npm:
 
 ```bash
 npm install spriteai
 ```
 
-## Basic Usage
+## Basic Setup
 
-Once SpriteAI is installed, you can start leveraging its powerful features in your project. Here's a quick example demonstrating the main functionalities:
+### Importing SpriteAI
 
 ```javascript
 const spriteAI = require('spriteai');
+```
 
-// Initialise a new SpriteAI instance
+## Quick Examples
+
+### Generate a Basic Sprite
+
+```javascript
 const ai = new spriteAI.SpriteAI();
 
-// Generate a sprite
-ai.generateSprite('player', 32, 32)
+ai.generateSprite('hero', 32, 32)
   .then(sprite => {
-    console.log('Sprite successfully generated:', sprite);
+    console.log('Hero sprite generated successfully');
   })
   .catch(error => {
-    console.error('Sprite generation encountered an error:', error);
-  });
-
-// Load an existing sprite
-ai.loadSprite('path/to/sprite.png')
-  .then(sprite => {
-    console.log('Sprite successfully loaded:', sprite);
-  })
-  .catch(error => {
-    console.error('Sprite loading encountered an error:', error);
-  });
-
-// Save a sprite
-ai.saveSprite(sprite, 'path/to/save/sprite.png')
-  .then(() => {
-    console.log('Sprite saved successfully');
-  })
-  .catch(error => {
-    console.error('Sprite saving encountered an error:', error);
+    console.error('Sprite generation failed:', error);
   });
 ```
 
-## Key Features
+### Load and Manipulate Sprites
 
-SpriteAI offers a range of powerful features to enhance your sprite creation and manipulation:
-
-1. **Sprite Generation**: Utilise `generateSprite(name, width, height)` to programmatically create new sprites.
-2. **Sprite Loading**: Easily load existing sprites with `loadSprite(path)`.
-3. **Sprite Saving**: Preserve your sprites using `saveSprite(sprite, path)`.
-
-## Advanced Techniques
-
-SpriteAI is capable of much more than basic sprite operations. You can create intricate sprite animations, apply various transformations, and unlock a world of creative possibilities. Dive into our comprehensive API documentation to explore the full potential of SpriteAI.
+```javascript
+// Load an existing sprite
+ai.loadSprite('player.png')
+  .then(sprite => {
+    // Save modified sprite
+    return ai.saveSprite(sprite, 'updated_player.png');
+  })
+  .then(() => {
+    console.log('Sprite processed successfully');
+  });
+```
 
 ## Next Steps
 
-To truly master SpriteAI, we recommend:
+- Explore advanced sprite generation techniques
+- Review full API documentation
+- Join our developer community for support
 
-1. Exploring the full API documentation
-2. Experimenting with complex sprite animations
-3. Applying different transformations to your sprites
-4. Joining our community forums for tips and inspiration
+## Troubleshooting
 
-For in-depth information and advanced usage scenarios, please refer to our extensive API documentation.
+- Ensure you have the latest version of SpriteAI
+- Check your Node.js and npm versions
+- Review error messages for specific guidance
 
-Thank you for choosing SpriteAI. We're excited to see the amazing sprites you'll create with our package!
+## Resources
+
+- [Full Documentation](/docs)
+- [Community Forums](https://spriteai.community)
+- [GitHub Repository](https://github.com/spriteai/spriteai)

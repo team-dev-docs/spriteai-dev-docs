@@ -2,53 +2,79 @@
 slug: /
 sidebar_position: 1
 ---
+# generateSprite
 
-# generateSprite Documentation
+## Overview
 
-## Brief Description
-`generateSprite` is a function that generates a sprite sheet image based on a given description, using AI-powered image generation and analysis.
+The `generateSprite` function is a powerful tool in the SpriteAI SDK that allows you to generate sprite sheets for game characters using advanced AI technology. It creates pixel art sprite sheets optimized for walking animations by leveraging DALL-E 3 and GPT models.
 
-## Usage
-To use `generateSprite`, import it from the sprite module and call it with a description of the character you want to generate.
+## Why Use This Function?
 
+Using `generateSprite` offers several key benefits:
+- Quickly generate unique character sprites for game development
+- Create sprites with consistent style and animation potential
+- Eliminate manual sprite creation time
+- Leverage AI to produce diverse and creative sprite designs
+
+## Parameters and Arguments
+
+### description (string, required)
+- A text description of the character you want to generate
+- Example: "A medieval knight", "A robotic cat"
+
+### options (object, optional)
+- `iterations` (number): Number of sprite variations to generate
+- `size` (string): Size of generated image (default: "1024x1024")
+- `save` (boolean): Whether to save the generated image to disk
+
+## Prerequisites
+
+- OpenAI API key
+- Node.js environment
+- Install spriteAI package via npm
+- Stable internet connection
+
+## How to Use the Function
+
+### Basic Usage
 ```javascript
-import { sprite } from './path/to/sprite/module';
+import { sprite } from 'spriteai';
 
-const result = await sprite.generateSprite(description, options);
+// Generate a single sprite
+const result = await sprite.generateSprite('A pixelated robot');
 ```
 
-## Parameters
-- `description` (string, required): A text description of the character to generate.
-- `options` (object, optional):
-  - `iterations` (number): Number of sprite variations to generate.
-  - `size` (string): Size of the generated image (default: "1024x1024").
-  - `save` (boolean): Whether to save the generated image to disk.
+### Multiple Sprite Variations
+```javascript
+// Generate multiple sprite variations
+const variations = await sprite.generateSprite('A cartoon cat', { iterations: 3 });
+```
+
+### Saving Sprites
+```javascript
+// Generate and save sprite
+const result = await sprite.generateSprite('A ninja warrior', { save: true });
+```
+
+## Important Notes
+
+- Sprites are optimized for walking animations
+- Generated images follow a 2x3 grid layout (6 frames)
+- Images are converted to grayscale
+- Generation time varies based on AI processing
 
 ## Return Value
-Returns an object or array of objects containing:
-- `messages`: JSON object with frameHeight and frameWidth information.
-- `image`: Base64-encoded image data URL of the generated sprite sheet.
 
-## Examples
+Returns an array or object with:
+- `messages`: Frame dimension information
+- `image`: Base64-encoded sprite sheet image
 
-1. Generate a single sprite sheet:
+## Error Handling
+
 ```javascript
-const result = await sprite.generateSprite("A pixelated robot");
-console.log(result.messages);
-console.log(result.image);
+try {
+  const sprite = await sprite.generateSprite('Character description');
+} catch (error) {
+  console.error('Sprite generation failed:', error);
+}
 ```
-
-2. Generate multiple variations:
-```javascript
-const variations = await sprite.generateSprite("A cartoon cat", { iterations: 3 });
-variations.forEach((variation, index) => {
-  console.log(`Variation ${index + 1}:`, variation.messages);
-});
-```
-
-## Notes or Considerations
-- The function uses AI models (DALL-E 3 and GPT) to generate and analyze images, which may result in varying outputs for the same input.
-- Generated sprites are optimized for walking animations and follow a specific layout (6 frames in a 2x3 grid).
-- The function converts images to grayscale, which may affect the final output.
-- When saving images, they are stored in an 'assets' folder with a filename based on the description.
-- The function may take some time to complete due to API calls and image processing.
